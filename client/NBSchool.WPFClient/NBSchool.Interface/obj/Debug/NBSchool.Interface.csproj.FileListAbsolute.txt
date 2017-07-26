@@ -1,0 +1,4 @@
+G:\waibao\NBSchool.WPFClient\bin\Debug\NBSchool.Interface.dll
+G:\waibao\NBSchool.WPFClient\bin\Debug\NBSchool.Interface.pdb
+G:\waibao\NBSchool.WPFClient\NBSchool.Interface\obj\Debug\NBSchool.Interface.dll
+G:\waibao\NBSchool.WPFClient\NBSchool.Interface\obj\Debug\NBSchool.Interface.pdb

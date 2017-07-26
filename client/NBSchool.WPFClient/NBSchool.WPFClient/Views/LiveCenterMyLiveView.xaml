@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="NBSchool.WPFClient.Views.LiveCenterMyLiveView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NBSchool.WPFClient"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <DataTemplate x:Key="CheckFailed">
+            <Button Content="修改申请"/>
+        </DataTemplate>
+        <DataTemplate x:Key="CheckSuccess">
+            <StackPanel Orientation="Horizontal">
+                <Button Content="修改时间"/>
+                <Button Content="取消申请"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="LiveEnd">
+            <Button Content="删除记录"/>
+        </DataTemplate>
+        <DataTemplate x:Key="WaitCheck">
+            <Button Content="修改时间"/>
+        </DataTemplate>
+        <DataTemplate x:Key="WaitLive">
+            <Button Content="开始直播"/>
+        </DataTemplate>
+        <local:LiveStatusOperationTemplateSelector x:Key="LiveStatusOperationTemplateSelector"
+                                                    CheckFailed="{StaticResource CheckFailed}"
+                                                    CheckSuccess="{StaticResource CheckSuccess}"
+                                                    LiveEnd="{StaticResource LiveEnd}"
+                                                    WaitCheck="{StaticResource WaitCheck}"
+                                                    WaitLive="{StaticResource WaitLive}"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <RadioButton Content="待直播"/>
+            <RadioButton Content="审核成功"/>
+            <RadioButton Content="待审核"/>
+            <RadioButton Content="已结束"/>
+            <RadioButton Content="全部直播"/>
+        </StackPanel>
+        <ListView Grid.Row="1">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="直播名称" DisplayMemberBinding="{Binding Name}">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Width="16" Height="16" Source="Images/logo_120.png"/>
+                                        <TextBlock Text="{Binding .}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="直播类型" DisplayMemberBinding="{Binding Type}"/>
+                        <GridViewColumn Header="开始时间" DisplayMemberBinding="{Binding BeginTime}"/>
+                        <GridViewColumn Header="结束时间" DisplayMemberBinding="{Binding EndTime}"/>
+                        <GridViewColumn Header="状态" DisplayMemberBinding="{Binding DisplayStatus}"/>
+                        <GridViewColumn Header="操作" DisplayMemberBinding="{Binding Status}"
+                                        CellTemplateSelector="{StaticResource LiveStatusOperationTemplateSelector}"/>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>

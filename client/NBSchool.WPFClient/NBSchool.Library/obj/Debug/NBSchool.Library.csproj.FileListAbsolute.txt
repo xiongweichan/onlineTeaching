@@ -1,0 +1,5 @@
+G:\waibao\NBSchool.WPFClient\bin\Debug\NBSchool.Library.dll
+G:\waibao\NBSchool.WPFClient\bin\Debug\NBSchool.Library.pdb
+G:\waibao\NBSchool.WPFClient\NBSchool.Library\obj\Debug\NBSchool.Library.csprojResolveAssemblyReference.cache
+G:\waibao\NBSchool.WPFClient\NBSchool.Library\obj\Debug\NBSchool.Library.dll
+G:\waibao\NBSchool.WPFClient\NBSchool.Library\obj\Debug\NBSchool.Library.pdb

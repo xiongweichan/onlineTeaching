@@ -1,0 +1,4 @@
+G:\waibao\NBSchool.WPFClient\bin\Debug\NBSchool.Contract.dll
+G:\waibao\NBSchool.WPFClient\bin\Debug\NBSchool.Contract.pdb
+G:\waibao\NBSchool.WPFClient\NBSchool.Contract\obj\Debug\NBSchool.Contract.dll
+G:\waibao\NBSchool.WPFClient\NBSchool.Contract\obj\Debug\NBSchool.Contract.pdb

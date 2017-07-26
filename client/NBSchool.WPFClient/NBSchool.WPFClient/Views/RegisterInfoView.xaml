@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="NBSchool.WPFClient.Views.RegisterInfoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NBSchool.WPFClient.Views"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             mc:Ignorable="d" 
+             xmlns:Extention="clr-namespace:NBSchool.WPFClient.Controls"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBox Text="注册信息" BorderBrush="{StaticResource BasicBorderBrush}" BorderThickness="0,0,0,1"
+                 Height="30" VerticalContentAlignment="Center"/>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="手机号："/>
+            <TextBox Text="{Binding TelPhone, Mode=TwoWay}" Grid.Column="1" Controls:TextBoxHelper.Watermark="输入手机号码"/>
+            <TextBlock Text="验证码：" Grid.Row="1"/>
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Text="{Binding Certification, Mode=TwoWay}"/>
+                <Button Content="获取验证码" Grid.Column="1"/>
+            </Grid>
+            <TextBlock Text="邮箱：" Grid.Row="2"/>
+            <TextBox Text="{Binding EMail, Mode=TwoWay}" Grid.Column="1" Grid.Row="2" Controls:TextBoxHelper.Watermark="输入邮箱账号"/>
+            <TextBlock Text="密码：" Grid.Row="3"/>
+            <PasswordBox Extention:PasswordBoxExtention.Attach="true" Extention:PasswordBoxExtention.Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" Grid.Column="1" Grid.Row="3" Controls:TextBoxHelper.Watermark="输入密码"/>
+            <TextBlock Text="重复密码：" Grid.Row="4"/>
+            <PasswordBox Extention:PasswordBoxExtention.Attach="true" Extention:PasswordBoxExtention.Password="{Binding RepeatPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" Grid.Column="1" Grid.Row="4" Controls:TextBoxHelper.Watermark="输入密码"/>
+            <Button Content="《用户服务协议》" Grid.Row="5" Grid.ColumnSpan="2"/>
+            <Button x:Name="btnNextStep" Content="下一步" Grid.Row="6" Grid.ColumnSpan="2"/>
+        </Grid>
+    </Grid>
+</UserControl>

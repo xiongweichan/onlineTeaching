@@ -1,0 +1,5 @@
+G:\waibao\NBSchool.WPFClient\bin\Debug\NBSchool.Business.dll
+G:\waibao\NBSchool.WPFClient\bin\Debug\NBSchool.Business.pdb
+G:\waibao\NBSchool.WPFClient\NBSchool.Business\obj\Debug\NBSchool.Business.csprojResolveAssemblyReference.cache
+G:\waibao\NBSchool.WPFClient\NBSchool.Business\obj\Debug\NBSchool.Business.dll
+G:\waibao\NBSchool.WPFClient\NBSchool.Business\obj\Debug\NBSchool.Business.pdb

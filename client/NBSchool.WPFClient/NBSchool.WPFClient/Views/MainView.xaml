@@ -1,0 +1,64 @@
+﻿<Controls:MetroWindow x:Class="NBSchool.WPFClient.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NBSchool.WPFClient.Views"
+        mc:Ignorable="d"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        Icon="/NBSchool.WPFClient;component/Images/logo_32.ico"
+        Width="1027"
+        Height="720"
+        ShowTitleBar="False"
+        WindowTransitionsEnabled ="False"    
+        xmlns:Extention="clr-namespace:NBSchool.WPFClient.Controls"
+        NonActiveBorderBrush="{StaticResource BasicBorderBrush}"
+        BorderBrush="{StaticResource BasicBorderBrush}" WindowStartupLocation="CenterScreen"
+        WindowCloseButtonStyle="{StaticResource ResourceKey=MetroWindowButtonStyle}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <!--头-->
+            <RowDefinition Height="auto"/>
+            <!--菜单-->
+            <RowDefinition Height="auto"/>
+            <!--内容-->
+            <RowDefinition Height="*"/>
+            <!--状态栏-->
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Image Width="64" Height="64" Source="/Images/logo_120.png" Stretch="Fill"
+               UseLayoutRounding="True" SnapsToDevicePixels="True">
+                <Image.Clip>
+                    <EllipseGeometry RadiusX="32" RadiusY="32" Center="32,32"/>
+                </Image.Clip>
+            </Image>
+            <Menu Margin="16,0,0,0" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                <MenuItem HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center">
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding UserAccount}" Margin="16,0,0,0" VerticalAlignment="Center"/>
+                            <Path Margin="16,0,0,0" Data="M0,0L 12,0 6,6z" Height="6" Width="12" Fill="{StaticResource Background1Brush}"/>
+                        </StackPanel>
+                    </MenuItem.Header>
+                    <MenuItem Header="退出账号"/>
+                </MenuItem>
+            </Menu>
+            <Button ContentStringFormat="（{0}条）" Content="{Binding MessageCount}" VerticalAlignment="Center"/>
+            <TextBlock Text="|" Margin="6,0" VerticalAlignment="Center"/>
+            <Button Content="帮助" VerticalAlignment="Center"/>
+        </StackPanel>
+        <Button Content="我要直播" Width="100" Height="22" HorizontalAlignment="Right"/>
+        <TabControl Grid.Row="1">
+            <TabItem Header="讲师首页" IsSelected="{Binding ShowTeacherIndex}"/>
+            <TabItem Header="直播中心" IsSelected="{Binding ShowLiveCenter}"/>
+            <TabItem Header="课程中心" IsSelected="{Binding ShowClassCenter}"/>
+            <TabItem Header="线下课堂" IsSelected="{Binding ShowOfflineClass}"/>
+            <TabItem Header="课酬中心" IsSelected="{Binding ShowRewardCenter}"/>
+        </TabControl>
+        <ContentControl Grid.Row="2" x:Name="ActiveItem"/>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="OpenSetting" Content="设置"/>
+        </StackPanel>
+    </Grid>
+</Controls:MetroWindow>
