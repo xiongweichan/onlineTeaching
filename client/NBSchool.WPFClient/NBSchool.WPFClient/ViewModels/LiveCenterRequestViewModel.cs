@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace NBSchool.WPFClient.ViewModels
 {
     [Export()]
-    public class LiveCenterMyLiveViewModel : Conductor<IRendering>.Collection.OneActive, IRendering
+    public class LiveCenterRequestViewModel : Conductor<IRendering>.Collection.OneActive, IRendering
     {
     }
 }

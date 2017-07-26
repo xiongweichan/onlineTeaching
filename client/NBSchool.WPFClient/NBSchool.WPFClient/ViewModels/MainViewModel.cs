@@ -35,14 +35,15 @@ namespace NBSchool.WPFClient.ViewModels
 
         public void OpenSetting()
         {
-            IoC.Get<IWindowManager>().ShowDialog(IoC.Get<ISetting>());            
+            IoC.Get<IWindowManager>().ShowDialog(IoC.Get<ISetting>());
         }
 
         void ChangeView()
         {
             if (this.ShowTeacherIndex)
                 this.ActiveItem = IoC.Get<TeacherIndexViewModel>();
-
+            else if (this.ShowLiveCenter)
+                this.ActiveItem = IoC.Get<LiveCenterViewModel>();
 
             else
                 this.ActiveItem = null;

@@ -89,6 +89,7 @@
     <Compile Include="ViewModels\CertificationViewModel.cs" />
     <Compile Include="ViewModels\LiveCenterLivingViewModel.cs" />
     <Compile Include="ViewModels\LiveCenterMyLiveViewModel.cs" />
+    <Compile Include="ViewModels\LiveCenterRequestViewModel.cs" />
     <Compile Include="ViewModels\LiveCenterViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -109,6 +110,9 @@
     </Compile>
     <Compile Include="Views\LiveCenterMyLiveView.xaml.cs">
       <DependentUpon>LiveCenterMyLiveView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LiveCenterRequestView.xaml.cs">
+      <DependentUpon>LiveCenterRequestView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LiveCenterView.xaml.cs">
       <DependentUpon>LiveCenterView.xaml</DependentUpon>
@@ -212,6 +216,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LiveCenterMyLiveView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LiveCenterRequestView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

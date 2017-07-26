@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-G:\waibao\NBSchool.WPFClient\NBSchool.WPFClient\obj\Debug\
+G:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\obj\Debug\
 NBSchool.WPFClient
 none
 false
 DEBUG;TRACE
-G:\waibao\NBSchool.WPFClient\NBSchool.WPFClient\App.xaml
-16-1427442090
+G:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\App.xaml
+171388682461
 
-48-670516353
-74-1102823462
-Resources\ColorDictionary.xaml;Resources\MahApps.Theme.xaml;Views\CertificationView.xaml;Views\LiveCenterLivingView.xaml;Views\LiveCenterMyLiveView.xaml;Views\LiveCenterView.xaml;Views\LoginView.xaml;Views\MainView.xaml;Views\RegisterCompletedView.xaml;Views\RegisterInfoView.xaml;Views\RegisterView.xaml;Views\SettingView.xaml;Views\TeacherIndexIdentifyCheckView.xaml;Views\TeacherIndexSummaryInfoView.xaml;Views\TeacherIndexTeacherInfoView.xaml;Views\TeacherIndexView.xaml;
+50-588854015
+741728202765
+Resources\ColorDictionary.xaml;Resources\MahApps.Theme.xaml;Views\CertificationView.xaml;Views\LiveCenterLivingView.xaml;Views\LiveCenterMyLiveView.xaml;Views\LiveCenterRequestView.xaml;Views\LiveCenterView.xaml;Views\LoginView.xaml;Views\MainView.xaml;Views\RegisterCompletedView.xaml;Views\RegisterInfoView.xaml;Views\RegisterView.xaml;Views\SettingView.xaml;Views\TeacherIndexIdentifyCheckView.xaml;Views\TeacherIndexSummaryInfoView.xaml;Views\TeacherIndexTeacherInfoView.xaml;Views\TeacherIndexView.xaml;
 
-True
+False
 
