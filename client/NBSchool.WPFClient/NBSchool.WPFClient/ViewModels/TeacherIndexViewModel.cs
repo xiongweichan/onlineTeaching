@@ -17,34 +17,39 @@ namespace NBSchool.WPFClient.ViewModels
             this.ShowSummaryInfo = true;
         }
 
-
-        void ChangeView()
-        {
-            if (this.ShowSummaryInfo)
-                this.ActiveItem = IoC.Get<TeacherIndexSummaryInfoViewModel>();
-            else if (this.ShowTeacherInfo)
-                this.ActiveItem = IoC.Get<TeacherIndexTeacherInfoViewModel>();
-
-
-        }
         #region
         bool _ShowSummaryInfo;
         public bool ShowSummaryInfo
         {
             get { return _ShowSummaryInfo; }
-            set { this.Set(ref _ShowSummaryInfo, value); if (value) ChangeView(); }
+            set
+            {
+                this.Set(ref _ShowSummaryInfo, value);
+                if (value)
+                    this.ActiveItem = IoC.Get<TeacherIndexSummaryInfoViewModel>();
+            }
         }
         bool _ShowTeacherInfo;
         public bool ShowTeacherInfo
         {
             get { return _ShowTeacherInfo; }
-            set { this.Set(ref _ShowTeacherInfo, value); if (value) ChangeView(); }
+            set
+            {
+                this.Set(ref _ShowTeacherInfo, value);
+                if (value)
+                    this.ActiveItem = IoC.Get<TeacherIndexTeacherInfoViewModel>();
+            }
         }
         bool _ShowCertification;
         public bool ShowCertification
         {
             get { return _ShowCertification; }
-            set { this.Set(ref _ShowCertification, value); if (value) ChangeView(); }
+            set
+            {
+                this.Set(ref _ShowCertification, value);
+                if (value)
+                    this.ActiveItem = IoC.Get<TeacherIndexIdentifyCheckViewModel>();
+            }
         }
         #endregion
     }

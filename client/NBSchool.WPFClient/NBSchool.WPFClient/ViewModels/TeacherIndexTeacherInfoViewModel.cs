@@ -12,6 +12,11 @@ namespace NBSchool.WPFClient.ViewModels
     [Export()]
     public class TeacherIndexTeacherInfoViewModel : Conductor<IRendering>.Collection.OneActive, IRendering
     {
+        public TeacherIndexTeacherInfoViewModel()
+        {
+            ShowUserInfo = true;
+        }
+
         bool _ShowUserInfo;
         public bool ShowUserInfo
         {

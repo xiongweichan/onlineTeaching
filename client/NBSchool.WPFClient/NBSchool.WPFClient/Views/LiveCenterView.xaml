@@ -12,8 +12,8 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
-            <RadioButton Content="我的直播" IsChecked="{Binding ShowMyLive}" GroupName="livecenter"/>
-            <RadioButton Content="申请直播" IsChecked="{Binding ShowRequestLive}" GroupName="livecenter"/>
+            <RadioButton Content="我的直播" IsChecked="{Binding ShowMyLive}" />
+            <RadioButton Content="申请直播" IsChecked="{Binding ShowRequestLive}" />
         </StackPanel>
         <ContentControl  x:Name="ActiveItem" Grid.Row="1"/>
     </Grid>

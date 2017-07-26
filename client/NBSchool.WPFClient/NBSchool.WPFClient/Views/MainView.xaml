@@ -57,6 +57,10 @@
             <TabItem Header="课酬中心" IsSelected="{Binding ShowRewardCenter}"/>
         </TabControl>
         <ContentControl Grid.Row="2" x:Name="ActiveItem"/>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Left">
+            <Image Width="32" Height="32" Source="/Images/logo_120.png" />
+            <TextBlock Text="{Binding Version,StringFormat='版本：{0}'}"/>
+        </StackPanel>
         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button x:Name="OpenSetting" Content="设置"/>
         </StackPanel>

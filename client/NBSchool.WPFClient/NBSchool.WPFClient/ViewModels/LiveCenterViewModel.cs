@@ -12,27 +12,34 @@ namespace NBSchool.WPFClient.ViewModels
     [Export()]
     public class LiveCenterViewModel : Conductor<IRendering>.Collection.OneActive, IRendering
     {
-
-        public void ChangeView()
+        public LiveCenterViewModel()
         {
-            if (ShowMyLive)
-                this.ActiveItem = IoC.Get<LiveCenterMyLiveViewModel>();
-            else if (ShowRequestLive)
-                this.ActiveItem = IoC.Get<LiveCenterRequestViewModel>();
+            ShowMyLive = true;
         }
 
-        bool _ShowMyLive = true;
+
+        bool _ShowMyLive;
         public bool ShowMyLive
         {
             get { return _ShowMyLive; }
-            set { this.Set(ref _ShowMyLive, value); if (value) ChangeView(); }
+            set
+            {
+                this.Set(ref _ShowMyLive, value);
+                if (value)
+                    this.ActiveItem = IoC.Get<LiveCenterMyLiveViewModel>();
+            }
         }
 
         bool _ShowRequestLive;
         public bool ShowRequestLive
         {
             get { return _ShowRequestLive; }
-            set { this.Set(ref _ShowRequestLive, value); if (value) ChangeView(); }
+            set
+            {
+                this.Set(ref _ShowRequestLive, value);
+                if (value)
+                    this.ActiveItem = IoC.Get<LiveCenterRequestViewModel>();
+            }
         }
     }
 }
