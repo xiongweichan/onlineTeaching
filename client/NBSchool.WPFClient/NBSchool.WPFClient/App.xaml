@@ -8,6 +8,13 @@
                 <ResourceDictionary>
                     <local:AppBootstrapper x:Key="bootstrapper" />
                     <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+                    <local:IntToColorConverter x:Key="IntToColorConverter"/>
+                    <local:IntToVisibilityConverter x:Key="IntToVisibilityConverter"/>
+
+                    <SolidColorBrush x:Key="HighlightBackgroundColorBrush" Color="{x:Static local:Config.HighlightBackgroundColor}"/>
+                    <SolidColorBrush x:Key="NormalBackgroundColorBrush" Color="{x:Static local:Config.NormalBackgroundColor}"/>
+                    <SolidColorBrush x:Key="HighlightForegroundColorBrush" Color="{x:Static local:Config.HighlightForegroundColor}"/>
+                    <SolidColorBrush x:Key="NormalForegroundColorBrush" Color="{x:Static local:Config.NormalForegroundColor}"/>
                 </ResourceDictionary>
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />

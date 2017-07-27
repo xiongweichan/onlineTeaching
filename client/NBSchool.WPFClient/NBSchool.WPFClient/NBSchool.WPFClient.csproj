@@ -85,17 +85,26 @@
     </Compile>
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="Controls\PasswordBoxExtention.cs" />
+    <Compile Include="Converter\IntToColorConverter.cs" />
     <Compile Include="Converter\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converter\IntToVisibilityConverter.cs" />
     <Compile Include="Converter\LiveStatusOperationTemplateSelector.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Resources\Config.cs" />
     <Compile Include="Services\IServiceLocator.cs" />
     <Compile Include="Services\MefServiceLocator.cs" />
     <Compile Include="ViewModels\CertificationViewModel.cs" />
+    <Compile Include="ViewModels\ClassCenterViewModel.cs" />
+    <Compile Include="ViewModels\ClassManagerViewModel.cs" />
+    <Compile Include="ViewModels\CoursewareManagerViewModel.cs" />
+    <Compile Include="ViewModels\ForgetPasswordViewModel.cs" />
     <Compile Include="ViewModels\LiveCenterLivingViewModel.cs" />
     <Compile Include="ViewModels\LiveCenterMyLiveViewModel.cs" />
     <Compile Include="ViewModels\LiveCenterRequestViewModel.cs" />
     <Compile Include="ViewModels\LiveCenterViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\MessageCenterViewModel.cs" />
     <Compile Include="ViewModels\RegisterCompletedViewModel.cs" />
     <Compile Include="ViewModels\RegisterInfoViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
@@ -107,6 +116,18 @@
     <Compile Include="ViewModels\ViewModelExtensions.cs" />
     <Compile Include="Views\CertificationView.xaml.cs">
       <DependentUpon>CertificationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClassCenterView.xaml.cs">
+      <DependentUpon>ClassCenterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClassManagerView.xaml.cs">
+      <DependentUpon>ClassManagerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CoursewareManagerView.xaml.cs">
+      <DependentUpon>CoursewareManagerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ForgetPasswordView.xaml.cs">
+      <DependentUpon>ForgetPasswordView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LiveCenterLivingView.xaml.cs">
       <DependentUpon>LiveCenterLivingView.xaml</DependentUpon>
@@ -211,6 +232,22 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\CertificationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ClassCenterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ClassManagerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CoursewareManagerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ForgetPasswordView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

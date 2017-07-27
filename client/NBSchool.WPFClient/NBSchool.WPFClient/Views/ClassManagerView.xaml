@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="NBSchool.WPFClient.Views.ClassManagerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NBSchool.WPFClient.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <StackPanel>
+            <TextBlock Text="上传课程"/>
+            <Border Height="1" BorderThickness="1" BorderBrush="Gray"/>
+            <Button Content="上传"/>
+            <TextBlock>
+                <Run Text="上传要求："/><LineBreak/>
+                <Run Text="文件大小不得超过100M，支持视频，word文档、图片"/><LineBreak/>
+                <Run Text="视频支持MP4、RMVB、AVI格式，图片支持JPG/PNG/BMP等格式"/>
+            </TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <RadioButton Content="课程管理" IsChecked="{Binding ShowClassManager}"/>
+                <RadioButton Content="课程审核" IsChecked="{Binding ShowClassCheck}"/>
+                <RadioButton Content="传输列表" IsChecked="{Binding ShowTransportList}"/>
+            </StackPanel>
+            <ItemsControl ItemsSource="{Binding ClassList}"
+                          Visibility="{Binding ShowClassManager, Converter={StaticResource BoolToVisibilityConverter}}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+            <Grid Visibility="{Binding ShowClassCheck, Converter={StaticResource BoolToVisibilityConverter}}">
+                <ListView ItemsSource="{Binding ClassCheckList}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Width="16" Height="16"/>
+                                <TextBlock Text="{Binding Name}"/>
+                                <TextBlock Text="{Binding Size}"/>
+                                <TextBlock Text="{Binding FileType}"/>
+                                <TextBlock Text="{Binding UploadTime}"/>
+                                <TextBlock Text="{Binding Status}"/>
+                                <Button Content="删除课程"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+            <Grid Visibility="{Binding ShowTransportList, Converter={StaticResource BoolToVisibilityConverter}}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="上传总进度："/>
+                    <ProgressBar Width="300"/>
+                    <TextBlock Text="{Binding Speed}"/>
+                    <Button Content="全部开始"/>
+                    <Button Content="全部暂停"/>
+                </StackPanel>
+                <ItemsControl ItemsSource="{Binding TransportList}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Width="16" Height="16"/>
+                                <TextBlock Text="{Binding Name}"/>
+                                <TextBlock Text="{Binding Speed}"/>
+                                <ProgressBar/>
+                                <ToggleButton Content="开始"/>
+                                <Button Content="取消上传"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>

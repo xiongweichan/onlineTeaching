@@ -2,3 +2,8 @@ G:\waibao\NBSchool.WPFClient\bin\Debug\NBSchool.Contract.dll
 G:\waibao\NBSchool.WPFClient\bin\Debug\NBSchool.Contract.pdb
 G:\waibao\NBSchool.WPFClient\NBSchool.Contract\obj\Debug\NBSchool.Contract.dll
 G:\waibao\NBSchool.WPFClient\NBSchool.Contract\obj\Debug\NBSchool.Contract.pdb
+G:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\bin\Debug\NBSchool.Contract.dll
+G:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\bin\Debug\NBSchool.Contract.pdb
+G:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.Contract\obj\Debug\NBSchool.Contract.csprojResolveAssemblyReference.cache
+G:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.Contract\obj\Debug\NBSchool.Contract.dll
+G:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.Contract\obj\Debug\NBSchool.Contract.pdb

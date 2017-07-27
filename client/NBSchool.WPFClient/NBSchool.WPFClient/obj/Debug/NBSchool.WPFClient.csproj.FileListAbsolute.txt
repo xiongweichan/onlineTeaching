@@ -87,3 +87,5 @@ G:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\obj\De
 G:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\obj\Debug\NBSchool.WPFClient.csproj.GenerateResource.Cache
 G:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\obj\Debug\Views\LiveCenterRequestView.g.cs
 G:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\obj\Debug\Views\LiveCenterRequestView.baml
+G:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\obj\Debug\Views\ForgetPasswordView.g.cs
+G:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\obj\Debug\Views\ForgetPasswordView.baml

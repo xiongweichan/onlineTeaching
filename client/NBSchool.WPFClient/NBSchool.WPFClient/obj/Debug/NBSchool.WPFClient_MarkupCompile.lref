@@ -2,8 +2,10 @@
 FG:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\App.xaml;;
 FG:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\Resources\ColorDictionary.xaml;;
 FG:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\Views\CertificationView.xaml;;
+FG:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\Views\ForgetPasswordView.xaml;;
 FG:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\Views\LiveCenterLivingView.xaml;;
 FG:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\Views\LiveCenterMyLiveView.xaml;;
+FG:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\Views\LiveCenterRequestView.xaml;;
 FG:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\Views\LiveCenterView.xaml;;
 FG:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\Views\LoginView.xaml;;
 FG:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\Views\MainView.xaml;;
@@ -15,5 +17,4 @@ FG:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\Views
 FG:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\Views\TeacherIndexSummaryInfoView.xaml;;
 FG:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\Views\TeacherIndexTeacherInfoView.xaml;;
 FG:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\Views\TeacherIndexView.xaml;;
-FG:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\Views\LiveCenterRequestView.xaml;;
 
