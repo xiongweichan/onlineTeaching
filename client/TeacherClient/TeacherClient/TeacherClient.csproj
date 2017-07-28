@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0E2745D3-E6E6-4E1E-952B-C7617C0C978F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TeacherClient</RootNamespace>
+    <AssemblyName>TeacherClient</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\IntToColorConverter.cs" />
+    <Compile Include="Converters\IntToVisibilityConverter.cs" />
+    <Compile Include="Converters\LiveStatusOperationTemplateSelector.cs" />
+    <Compile Include="Converters\TextToVisibilityConverter.cs" />
+    <Compile Include="Extension\PasswordBoxExtention.cs" />
+    <Compile Include="Extension\StringExtension.cs" />
+    <Compile Include="FindPasswordWindow.xaml.cs">
+      <DependentUpon>FindPasswordWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RegisterWindow.xaml.cs">
+      <DependentUpon>RegisterWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="FindPasswordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="RegisterWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\登录注册\excel.png" />
+    <Resource Include="Images\登录注册\LOGO %282%29.png" />
+    <Resource Include="Images\登录注册\LOGO.png" />
+    <Resource Include="Images\登录注册\上传图片.png" />
+    <Resource Include="Images\登录注册\专业资格证示例1.png" />
+    <Resource Include="Images\登录注册\专业资格证示例2.png" />
+    <Resource Include="Images\登录注册\专业资格证示例3.png" />
+    <Resource Include="Images\登录注册\关闭.png" />
+    <Resource Include="Images\登录注册\形状-3 %282%29.png" />
+    <Resource Include="Images\登录注册\形状-3-拷贝.png" />
+    <Resource Include="Images\登录注册\形状-3.png" />
+    <Resource Include="Images\登录注册\形状-4.png" />
+    <Resource Include="Images\登录注册\持身份证正面头部照示例.png" />
+    <Resource Include="Images\登录注册\收起.png" />
+    <Resource Include="Images\登录注册\注册申请提交成功.png" />
+    <Resource Include="Images\登录注册\点击上传按钮.png" />
+    <Resource Include="Images\登录注册\直播端.png" />
+    <Resource Include="Images\登录注册\背景.png" />
+    <Resource Include="Images\登录注册\身份证反面照片示例.png" />
+    <Resource Include="Images\登录注册\身份证正面照片.png" />
+    <Resource Include="Images\直播中心\修改时间.png" />
+    <Resource Include="Images\直播中心\修改申请.png" />
+    <Resource Include="Images\直播中心\关闭-拷贝.png" />
+    <Resource Include="Images\直播中心\关闭-拷贝_34.png" />
+    <Resource Include="Images\直播中心\删除.png" />
+    <Resource Include="Images\直播中心\取消申请.png" />
+    <Resource Include="Images\直播中心\圆角矩形-10.png" />
+    <Resource Include="Images\直播中心\圆角矩形-14-拷贝-3_88.png" />
+    <Resource Include="Images\直播中心\学员.png" />
+    <Resource Include="Images\直播中心\开启场景直播.png" />
+    <Resource Include="Images\直播中心\开启录像直播.png" />
+    <Resource Include="Images\直播中心\开启录屏直播.png" />
+    <Resource Include="Images\直播中心\形状-53.png" />
+    <Resource Include="Images\直播中心\形状-54-拷贝-2.png" />
+    <Resource Include="Images\直播中心\形状-54.png" />
+    <Resource Include="Images\直播中心\形状-55-拷贝-3.png" />
+    <Resource Include="Images\直播中心\形状-55-拷贝-4.png" />
+    <Resource Include="Images\直播中心\形状-55-拷贝-6.png" />
+    <Resource Include="Images\直播中心\形状-55.png" />
+    <Resource Include="Images\直播中心\形状-59.png" />
+    <Resource Include="Images\直播中心\形状-60.png" />
+    <Resource Include="Images\直播中心\形状-66.png" />
+    <Resource Include="Images\线下课堂\关闭-拷贝.png" />
+    <Resource Include="Images\线下课堂\圆角矩形-2.png" />
+    <Resource Include="Images\线下课堂\圆角矩形-4-拷贝.png" />
+    <Resource Include="Images\线下课堂\形状-55-拷贝.png" />
+    <Resource Include="Images\线下课堂\椭圆-2-拷贝.png" />
+    <Resource Include="Images\线下课堂\椭圆-2.png" />
+    <Resource Include="Images\线下课堂\矩形-10-拷贝-6.png" />
+    <Resource Include="Images\课程中心\picture.png" />
+    <Resource Include="Images\课程中心\上传-拷贝.png" />
+    <Resource Include="Images\课程中心\上传.png" />
+    <Resource Include="Images\课程中心\关闭-拷贝.png" />
+    <Resource Include="Images\课程中心\删除课程.png" />
+    <Resource Include="Images\课程中心\图层-11.png" />
+    <Resource Include="Images\课程中心\图层-12-拷贝.png" />
+    <Resource Include="Images\课程中心\图层-12.png" />
+    <Resource Include="Images\课程中心\图层-5-拷贝.png" />
+    <Resource Include="Images\课程中心\图层-5.png" />
+    <Resource Include="Images\课程中心\图层-7.png" />
+    <Resource Include="Images\课程中心\圆角矩形-10.png" />
+    <Resource Include="Images\课程中心\开始.png" />
+    <Resource Include="Images\课程中心\形状-54-拷贝-2.png" />
+    <Resource Include="Images\课程中心\形状-55-拷贝.png" />
+    <Resource Include="Images\课程中心\暂停.png" />
+    <Resource Include="Images\课程中心\椭圆-2-拷贝.png" />
+    <Resource Include="Images\课程中心\椭圆-2.png" />
+    <Resource Include="Images\课程中心\课程封面.png" />
+    <Resource Include="Images\课酬中心\游艇.png" />
+    <Resource Include="Images\课酬中心\轿车.png" />
+    <Resource Include="Images\课酬中心\金蛋.png" />
+    <Resource Include="Images\课酬中心\飞机.png" />
+    <Resource Include="Images\课酬中心\鲜花.png" />
+    <Resource Include="Images\首页\个人信息.png" />
+    <Resource Include="Images\首页\圆角矩形-2.png" />
+    <Resource Include="Images\首页\头像.png" />
+    <Resource Include="Images\首页\完善个人资料.png" />
+    <Resource Include="Images\首页\形状-4-拷贝-2.png" />
+    <Resource Include="Images\首页\待审核课程.png" />
+    <Resource Include="Images\首页\待提现课程.png" />
+    <Resource Include="Images\首页\待直播课程.png" />
+    <Resource Include="Images\首页\我要直播按钮.png" />
+    <Resource Include="Images\首页\按钮.png" />
+    <Resource Include="Images\首页\按钮点中.png" />
+    <Resource Include="Images\首页\滚动条.png" />
+    <Resource Include="Images\首页\滚动条上.png" />
+    <Resource Include="Images\首页\滚动条下.png" />
+    <Resource Include="Images\首页\版本信息.png" />
+    <Resource Include="Images\首页\矩形-3.png" />
+    <Resource Include="Images\首页\设置.png" />
+    <Resource Include="Images\首页\账号绑定.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
