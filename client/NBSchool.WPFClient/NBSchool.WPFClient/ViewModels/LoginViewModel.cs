@@ -64,7 +64,8 @@ namespace NBSchool.WPFClient.ViewModels
 
         public void ForgetPassword()
         {
-            //TODO:忘记密码
+            object obj = IoC.Get<IForgetPassword>();
+            IoC.Get<IWindowManager>().ShowDialog(obj);
         }
 
         public void RegisterAccount()

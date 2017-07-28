@@ -89,3 +89,11 @@ G:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\obj\De
 G:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\obj\Debug\Views\LiveCenterRequestView.baml
 G:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\obj\Debug\Views\ForgetPasswordView.g.cs
 G:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\obj\Debug\Views\ForgetPasswordView.baml
+G:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\obj\Debug\Views\ClassCenterView.g.cs
+G:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\obj\Debug\Views\ClassManagerView.g.cs
+G:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\obj\Debug\Views\CoursewareManagerView.g.cs
+G:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\obj\Debug\Views\ClassCenterView.baml
+G:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\obj\Debug\Views\ClassManagerView.baml
+G:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\obj\Debug\Views\CoursewareManagerView.baml
+G:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\obj\Debug\Resources\ButtonDictionary.baml
+G:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\obj\Debug\Resources\TextBoxDictionary.baml

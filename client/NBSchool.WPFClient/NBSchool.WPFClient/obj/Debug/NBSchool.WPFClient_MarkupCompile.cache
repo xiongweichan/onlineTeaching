@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 G:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\App.xaml
-181315379768
+23-730676591
 
-52773145118
+60-1699937966
 75781152377
-Resources\ColorDictionary.xaml;Resources\MahApps.Theme.xaml;Views\CertificationView.xaml;Views\ForgetPasswordView.xaml;Views\LiveCenterLivingView.xaml;Views\LiveCenterMyLiveView.xaml;Views\LiveCenterRequestView.xaml;Views\LiveCenterView.xaml;Views\LoginView.xaml;Views\MainView.xaml;Views\RegisterCompletedView.xaml;Views\RegisterInfoView.xaml;Views\RegisterView.xaml;Views\SettingView.xaml;Views\TeacherIndexIdentifyCheckView.xaml;Views\TeacherIndexSummaryInfoView.xaml;Views\TeacherIndexTeacherInfoView.xaml;Views\TeacherIndexView.xaml;
+Resources\ButtonDictionary.xaml;Resources\ColorDictionary.xaml;Resources\MahApps.Theme.xaml;Resources\TextBoxDictionary.xaml;Views\CertificationView.xaml;Views\ClassCenterView.xaml;Views\ClassManagerView.xaml;Views\CoursewareManagerView.xaml;Views\ForgetPasswordView.xaml;Views\LiveCenterLivingView.xaml;Views\LiveCenterMyLiveView.xaml;Views\LiveCenterRequestView.xaml;Views\LiveCenterView.xaml;Views\LoginView.xaml;Views\MainView.xaml;Views\RegisterCompletedView.xaml;Views\RegisterInfoView.xaml;Views\RegisterView.xaml;Views\SettingView.xaml;Views\TeacherIndexIdentifyCheckView.xaml;Views\TeacherIndexSummaryInfoView.xaml;Views\TeacherIndexTeacherInfoView.xaml;Views\TeacherIndexView.xaml;
 
 False
 

@@ -1,7 +1,12 @@
 ﻿
 FG:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\App.xaml;;
+FG:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\Resources\ButtonDictionary.xaml;;
 FG:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\Resources\ColorDictionary.xaml;;
+FG:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\Resources\TextBoxDictionary.xaml;;
 FG:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\Views\CertificationView.xaml;;
+FG:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\Views\ClassCenterView.xaml;;
+FG:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\Views\ClassManagerView.xaml;;
+FG:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\Views\CoursewareManagerView.xaml;;
 FG:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\Views\ForgetPasswordView.xaml;;
 FG:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\Views\LiveCenterLivingView.xaml;;
 FG:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\Views\LiveCenterMyLiveView.xaml;;

@@ -7,6 +7,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary>
                     <local:AppBootstrapper x:Key="bootstrapper" />
+                    <local:TextToVisibilityConverter x:Key="TextToVisibilityConverter"/>
                     <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
                     <local:IntToColorConverter x:Key="IntToColorConverter"/>
                     <local:IntToVisibilityConverter x:Key="IntToVisibilityConverter"/>
@@ -24,7 +25,8 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Buttons.xaml" />
                 <ResourceDictionary Source="Resources/ColorDictionary.xaml"/>
-
+                <ResourceDictionary Source="Resources/ButtonDictionary.xaml"/>
+                <ResourceDictionary Source="Resources/TextBoxDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

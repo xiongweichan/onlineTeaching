@@ -89,6 +89,7 @@
     <Compile Include="Converter\BoolToVisibilityConverter.cs" />
     <Compile Include="Converter\IntToVisibilityConverter.cs" />
     <Compile Include="Converter\LiveStatusOperationTemplateSelector.cs" />
+    <Compile Include="Converter\TextToVisibilityConverter.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Resources\Config.cs" />
     <Compile Include="Services\IServiceLocator.cs" />
@@ -223,6 +224,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Resources\ButtonDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\ColorDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -230,6 +235,10 @@
     <Page Include="Resources\MahApps.Theme.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\TextBoxDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CertificationView.xaml">
       <SubType>Designer</SubType>
@@ -309,13 +318,100 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\logo_32.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\logo_120.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="讲师直播端页面说明.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\登录注册\excel.png" />
+    <Resource Include="Images\登录注册\LOGO %282%29.png" />
+    <Resource Include="Images\登录注册\LOGO.png" />
+    <Resource Include="Images\登录注册\上传图片.png" />
+    <Resource Include="Images\登录注册\专业资格证示例1.png" />
+    <Resource Include="Images\登录注册\专业资格证示例2.png" />
+    <Resource Include="Images\登录注册\专业资格证示例3.png" />
+    <Resource Include="Images\登录注册\关闭.png" />
+    <Resource Include="Images\登录注册\形状-3 %282%29.png" />
+    <Resource Include="Images\登录注册\形状-3-拷贝.png" />
+    <Resource Include="Images\登录注册\形状-3.png" />
+    <Resource Include="Images\登录注册\形状-4.png" />
+    <Resource Include="Images\登录注册\持身份证正面头部照示例.png" />
+    <Resource Include="Images\登录注册\收起.png" />
+    <Resource Include="Images\登录注册\注册申请提交成功.png" />
+    <Resource Include="Images\登录注册\点击上传按钮.png" />
+    <Resource Include="Images\登录注册\直播端.png" />
+    <Resource Include="Images\登录注册\背景.png" />
+    <Resource Include="Images\登录注册\身份证反面照片示例.png" />
+    <Resource Include="Images\登录注册\身份证正面照片.png" />
+    <Resource Include="Images\直播中心\修改时间.png" />
+    <Resource Include="Images\直播中心\修改申请.png" />
+    <Resource Include="Images\直播中心\关闭-拷贝.png" />
+    <Resource Include="Images\直播中心\关闭-拷贝_34.png" />
+    <Resource Include="Images\直播中心\删除.png" />
+    <Resource Include="Images\直播中心\取消申请.png" />
+    <Resource Include="Images\直播中心\圆角矩形-10.png" />
+    <Resource Include="Images\直播中心\圆角矩形-14-拷贝-3_88.png" />
+    <Resource Include="Images\直播中心\学员.png" />
+    <Resource Include="Images\直播中心\开启场景直播.png" />
+    <Resource Include="Images\直播中心\开启录像直播.png" />
+    <Resource Include="Images\直播中心\开启录屏直播.png" />
+    <Resource Include="Images\直播中心\形状-53.png" />
+    <Resource Include="Images\直播中心\形状-54-拷贝-2.png" />
+    <Resource Include="Images\直播中心\形状-54.png" />
+    <Resource Include="Images\直播中心\形状-55-拷贝-3.png" />
+    <Resource Include="Images\直播中心\形状-55-拷贝-4.png" />
+    <Resource Include="Images\直播中心\形状-55-拷贝-6.png" />
+    <Resource Include="Images\直播中心\形状-55.png" />
+    <Resource Include="Images\直播中心\形状-59.png" />
+    <Resource Include="Images\直播中心\形状-60.png" />
+    <Resource Include="Images\直播中心\形状-66.png" />
+    <Resource Include="Images\线下课堂\关闭-拷贝.png" />
+    <Resource Include="Images\线下课堂\圆角矩形-2.png" />
+    <Resource Include="Images\线下课堂\圆角矩形-4-拷贝.png" />
+    <Resource Include="Images\线下课堂\形状-55-拷贝.png" />
+    <Resource Include="Images\线下课堂\椭圆-2-拷贝.png" />
+    <Resource Include="Images\线下课堂\椭圆-2.png" />
+    <Resource Include="Images\线下课堂\矩形-10-拷贝-6.png" />
+    <Resource Include="Images\课程中心\picture.png" />
+    <Resource Include="Images\课程中心\上传-拷贝.png" />
+    <Resource Include="Images\课程中心\上传.png" />
+    <Resource Include="Images\课程中心\关闭-拷贝.png" />
+    <Resource Include="Images\课程中心\删除课程.png" />
+    <Resource Include="Images\课程中心\图层-11.png" />
+    <Resource Include="Images\课程中心\图层-12-拷贝.png" />
+    <Resource Include="Images\课程中心\图层-12.png" />
+    <Resource Include="Images\课程中心\图层-5-拷贝.png" />
+    <Resource Include="Images\课程中心\图层-5.png" />
+    <Resource Include="Images\课程中心\图层-7.png" />
+    <Resource Include="Images\课程中心\圆角矩形-10.png" />
+    <Resource Include="Images\课程中心\开始.png" />
+    <Resource Include="Images\课程中心\形状-54-拷贝-2.png" />
+    <Resource Include="Images\课程中心\形状-55-拷贝.png" />
+    <Resource Include="Images\课程中心\暂停.png" />
+    <Resource Include="Images\课程中心\椭圆-2-拷贝.png" />
+    <Resource Include="Images\课程中心\椭圆-2.png" />
+    <Resource Include="Images\课程中心\课程封面.png" />
+    <Resource Include="Images\课酬中心\游艇.png" />
+    <Resource Include="Images\课酬中心\轿车.png" />
+    <Resource Include="Images\课酬中心\金蛋.png" />
+    <Resource Include="Images\课酬中心\飞机.png" />
+    <Resource Include="Images\课酬中心\鲜花.png" />
+    <Resource Include="Images\首页\个人信息.png" />
+    <Resource Include="Images\首页\圆角矩形-2.png" />
+    <Resource Include="Images\首页\头像.png" />
+    <Resource Include="Images\首页\完善个人资料.png" />
+    <Resource Include="Images\首页\形状-4-拷贝-2.png" />
+    <Resource Include="Images\首页\待审核课程.png" />
+    <Resource Include="Images\首页\待提现课程.png" />
+    <Resource Include="Images\首页\待直播课程.png" />
+    <Resource Include="Images\首页\我要直播按钮.png" />
+    <Resource Include="Images\首页\按钮.png" />
+    <Resource Include="Images\首页\按钮点中.png" />
+    <Resource Include="Images\首页\滚动条.png" />
+    <Resource Include="Images\首页\滚动条上.png" />
+    <Resource Include="Images\首页\滚动条下.png" />
+    <Resource Include="Images\首页\版本信息.png" />
+    <Resource Include="Images\首页\矩形-3.png" />
+    <Resource Include="Images\首页\设置.png" />
+    <Resource Include="Images\首页\账号绑定.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
