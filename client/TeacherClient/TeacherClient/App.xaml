@@ -5,7 +5,13 @@
              xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="TeacherClient.App"
              StartupUri="LoginWindow.xaml">
     <Application.Resources>
-        <local:TextToVisibilityConverter x:Key="TextToVisibilityConverter"/>
-        <System:Double x:Key="FontSize1">14</System:Double>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ButtonDictionary.xaml"/>
+                <ResourceDictionary Source="TextBoxDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <local:TextToVisibilityConverter x:Key="TextToVisibilityConverter"/>
+            <System:Double x:Key="FontSize1">14</System:Double>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

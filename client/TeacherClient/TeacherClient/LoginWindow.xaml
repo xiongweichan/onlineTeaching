@@ -7,13 +7,21 @@
         mc:Ignorable="d" AllowsTransparency="True"
         Width="360"
         Height="468" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None">
-    <Border CornerRadius="6,6,6,6">
+    <Window.Resources>
+
+    </Window.Resources>
+    <Border CornerRadius="6,6,6,6" >
         <Border.Background>
             <ImageBrush ImageSource="/Images/登录注册/背景.png"/>
         </Border.Background>
         <Canvas>
-            <Image x:Name="Images_登录注册_关闭_png" Height="12" Source="Images/登录注册/关闭.png" Stretch="Fill" Width="12" Canvas.Left="338" Canvas.Top="10"/>
-            <Image x:Name="Images_登录注册_收起_png" Height="3" Source="Images/登录注册/收起.png" Stretch="Fill" Width="12" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="314" Canvas.Top="15"/>
+            <Grid Width="360" Height="30" Background="Transparent" Panel.ZIndex="2" PreviewMouseMove="Canvas_PreviewMouseMove"/>
+            <Button Panel.ZIndex="3" Canvas.Right="38" Canvas.Top="11" BorderThickness="0" Background="Transparent" Width="20" Height="20" Canvas.Left="306" Click="Button_Click">
+                <Image x:Name="Images_登录注册_收起_png" Height="3" Source="Images/登录注册/收起.png" Stretch="Fill" Width="12" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            </Button>
+            <Button  Panel.ZIndex="3" Canvas.Right="8" Canvas.Top="10" BorderThickness="0" Background="Transparent" Width="20" Height="20" Click="Button_Click_1">
+                <Image x:Name="Images_登录注册_关闭_png" Height="12" Source="Images/登录注册/关闭.png" Stretch="Fill" Width="12"/>
+            </Button>
             <Image Source="/Images/登录注册/形状-4.png" Stretch="None" Margin="22,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <Image Source="/Images/登录注册/excel.png" Canvas.Left="89" Canvas.Top="8"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="88.5,64,88.5,3">
@@ -26,10 +34,10 @@
             </Grid>
             <Grid Grid.Row="2" Canvas.Left="60" Canvas.Top="236">
                 <TextBox x:Name="textBox" Foreground="#333333" Height="40" Width="260" Text="{Binding UserAccount, Mode=TwoWay}"
-                     FontSize="14" VerticalContentAlignment="Center" Margin="0" d:LayoutOverrides="Height"/>
+                     FontSize="14" VerticalContentAlignment="Center" Margin="0" d:LayoutOverrides="Height" Style="{DynamicResource TextBoxStyle1}"/>
                 <TextBlock Text="账号" IsHitTestVisible="False" Foreground="#FFCCCCCC" HorizontalAlignment="Left" Margin="10,0,0,0" d:LayoutOverrides="Height" Visibility="{Binding Text, Converter={StaticResource TextToVisibilityConverter}, ElementName=textBox}" VerticalAlignment="Center" FontSize="{DynamicResource FontSize1}"/>
             </Grid>
-            <Grid Grid.Row="3" Canvas.Left="60" Canvas.Top="276">
+            <Grid Grid.Row="3" Canvas.Left="60" Canvas.Top="275">
                 <PasswordBox x:Name="passwordBox" VerticalContentAlignment="Center" Height="40" Width="260" local:PasswordBoxExtention.Attach="True"
                      local:PasswordBoxExtention.Password="{Binding Password, Mode=TwoWay, NotifyOnSourceUpdated=True}" Margin="0" d:LayoutOverrides="Height"/>
                 <TextBlock Text="密码" IsHitTestVisible="False" Foreground="#FFCCCCCC" HorizontalAlignment="Left" Margin="10,0,0,0" d:LayoutOverrides="Height" Visibility="{Binding Password, Converter={StaticResource TextToVisibilityConverter}}" VerticalAlignment="Center" FontSize="{DynamicResource FontSize1}"/>
@@ -37,14 +45,14 @@
             <!--<PasswordBox VerticalContentAlignment="Center" Grid.Row="3" Height="40" Width="260" Margin="0,-1,0,0"
                  Controls:TextBoxHelper.Watermark="密码" Extention:PasswordBoxExtention.Attach="True"
                      Extention:PasswordBoxExtention.Password="{Binding Password,Mode=TwoWay, NotifyOnSourceUpdated=True}"/>-->
-            <Button x:Name="ForgetPassword" Content="忘记密码" Grid.Row="3" Width="80" HorizontalAlignment="Right" Style="{DynamicResource ButtonStyle1}" FontSize="14" FontWeight="Normal" FontFamily="微软雅黑" Canvas.Left="240" Canvas.Top="284.516"/>
+            <Button x:Name="ForgetPassword" Content="忘记密码" Grid.Row="3" HorizontalAlignment="Left" FontSize="14" FontWeight="Normal" FontFamily="微软雅黑" Canvas.Left="256" Canvas.Top="284.516" Style="{DynamicResource ButtonStyle2}" Foreground="#FF63A1FF" Background="White" BorderThickness="0" VerticalAlignment="Top"/>
             <CheckBox Grid.Row="4" HorizontalAlignment="Left" Content="记住密码" IsChecked="{Binding RememblePwd}" FontSize="14" FontFamily="Microsoft YaHei" Foreground="#FFA1A1A1" Canvas.Left="60" Canvas.Top="339"/>
             <CheckBox Grid.Row="4" HorizontalAlignment="Right" Content="自动登录" IsChecked="{Binding AutoLogin}" FontSize="14" FontFamily="Microsoft YaHei" Foreground="#FFA1A1A1" Canvas.Left="244.025" Canvas.Top="339"/>
 
-            <Button x:Name="Login" Content="登录" Grid.Row="5" Width="260" Height="39" Background="#FF0096FF" Foreground="White" Margin="0" BorderThickness="0" FontFamily="Microsoft YaHei" FontSize="16" FontWeight="Normal" Style="{DynamicResource ButtonStyle2}" Canvas.Left="60" Canvas.Top="378"/>
+            <Button x:Name="Login" Content="登录" Grid.Row="5" Width="260" Height="39" Background="#FF0096FF" Foreground="White" Margin="0" BorderThickness="0" FontFamily="Microsoft YaHei" FontSize="16" FontWeight="Normal" Canvas.Left="60" Canvas.Top="378" Style="{DynamicResource ButtonStyle1}"/>
             <StackPanel Orientation="Horizontal" Grid.Row="6" Canvas.Top="431" VerticalAlignment="Top" Canvas.Left="134">
                 <Image Source="/Images/登录注册/形状-3.png" Stretch="None" Margin="6" HorizontalAlignment="Center" VerticalAlignment="Center" UseLayoutRounding="True"/>
-                <Button x:Name="RegisterAccount" Content="注册账号" VerticalAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" FontFamily="Microsoft YaHei" FontSize="14" FontWeight="Normal" Foreground="#FF63A1FF" d:LayoutOverrides="LeftMargin, RightMargin" MinHeight="0" Padding="0" Style="{DynamicResource ButtonStyle1}"/>
+                <Button x:Name="RegisterAccount" Background="White" Content="注册账号" VerticalAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" FontFamily="Microsoft YaHei" FontSize="14" FontWeight="Normal" Foreground="#FF63A1FF" d:LayoutOverrides="LeftMargin, RightMargin" MinHeight="0" Padding="0" Style="{DynamicResource ButtonStyle2}"/>
             </StackPanel>
         </Canvas>
     </Border>
