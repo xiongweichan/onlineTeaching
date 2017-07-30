@@ -1,12 +1,144 @@
-﻿<Window x:Class="TeacherClient.RegisterWindow"
+﻿<local:WindowBase x:Class="TeacherClient.RegisterWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TeacherClient"
-        mc:Ignorable="d"
-        Title="RegisterWindow" Height="300" Width="300">
+        xmlns:local="clr-namespace:TeacherClient" 
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d" Height="500" Width="700">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Margin="6,8">
+            <Image Source="/Images/登录注册/LOGO (2).png"/>
+            <TextBlock Text="邻居学院-账号注册" Margin="6,0,0,0" FontSize="{StaticResource FontSize2}" Foreground="{StaticResource Forground3}" FontFamily="Microsoft YaHei"/>
+        </StackPanel>
+        <Grid Grid.Row="1" Margin="10">
+            <Grid Visibility="Collapsed">
+                <RadioButton GroupName="page" IsChecked="{Binding ShowFirstPage}"/>
+                <RadioButton GroupName="page" IsChecked="{Binding ShowSecondPage}"/>
+                <RadioButton GroupName="page" IsChecked="{Binding ShowThirdPage}"/>
+            </Grid>
+            <StackPanel Visibility="{Binding ShowFirstPage, Converter={StaticResource BoolToVisibilityConverter}}">
+                <StackPanel Orientation="Horizontal" Margin="20">
+                    <Grid>
+                        <Image Source="/Images/登录注册/形状-3 (2).png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="填写注册信息" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14"
+                               Foreground="{DynamicResource Forground1}"/>
+                    </Grid>
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Image Source="/Images/登录注册/形状-3-拷贝.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="上传专业资质" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Forground34}"/>
+                    </Grid>
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Image Source="/Images/登录注册/形状-3-拷贝.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="等待平台审核" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Forground34}"/>
+                    </Grid>
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Image Source="/Images/登录注册/形状-3-拷贝.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="注册成功" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14"
+                               Foreground="{DynamicResource Forground34}"/>
+                    </Grid>
+                </StackPanel>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="手机号：" Foreground="{StaticResource Forground35}"/>
+                    <TextBox Text="{Binding TelPhone, Mode=TwoWay}" Grid.Column="1" Tag="输入手机号码"/>
+                    <TextBlock Text="验证码：" Grid.Row="1"/>
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Text="{Binding Certification, Mode=TwoWay}"/>
+                        <Button Content="获取验证码" Grid.Column="1"/>
+                    </Grid>
+                    <TextBlock Text="邮箱：" Grid.Row="2"/>
+                    <TextBox Text="{Binding EMail, Mode=TwoWay}" Grid.Column="1" Grid.Row="2" Tag="输入邮箱账号"/>
+                    <TextBlock Text="密码：" Grid.Row="3"/>
+                    <PasswordBox local:PasswordBoxExtention.Attach="true" local:PasswordBoxExtention.Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" Grid.Column="1" Grid.Row="3" Tag="输入密码"/>
+                    <TextBlock Text="重复密码：" Grid.Row="4"/>
+                    <PasswordBox local:PasswordBoxExtention.Attach="true" local:PasswordBoxExtention.Password="{Binding RepeatPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" Grid.Column="1" Grid.Row="4" Tag="输入密码"/>
+                    <Button Content="《用户服务协议》" Grid.Row="5" Grid.ColumnSpan="2"/>
+                    <Button x:Name="btnNextStep" Content="下一步" Grid.Row="6" Grid.ColumnSpan="2" Style="{DynamicResource ButtonStyle1}" Width="140" Height="30"/>
+                </Grid>
+            </StackPanel>
+            <StackPanel Visibility="{Binding ShowSecondPage, Converter={StaticResource BoolToVisibilityConverter}}">
+                <StackPanel Orientation="Horizontal" Margin="20">
+                    <Grid>
+                        <Image Source="/Images/登录注册/形状-3 (2).png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="填写注册信息" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14"
+                               Foreground="{DynamicResource Forground1}"/>
+                    </Grid>
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Image Source="/Images/登录注册/形状-3 (2).png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="上传专业资质" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Forground34}"/>
+                    </Grid>
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Image Source="/Images/登录注册/形状-3-拷贝.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="等待平台审核" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Forground34}"/>
+                    </Grid>
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Image Source="/Images/登录注册/形状-3-拷贝.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="注册成功" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14"
+                               Foreground="{DynamicResource Forground34}"/>
+                    </Grid>
+                </StackPanel>
+
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                    
+                </ScrollViewer>
+                <Button FontSize="14" HorizontalAlignment="Left" Content="下一步" Style="{DynamicResource ButtonStyle1}" Margin="100,30,0,0" Width="140" Height="30"/>
+            </StackPanel>
+            <StackPanel Visibility="{Binding ShowThirdPage, Converter={StaticResource BoolToVisibilityConverter}}">
+                <StackPanel Orientation="Horizontal" Margin="20">
+                    <Grid>
+                        <Image Source="/Images/登录注册/形状-3 (2).png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="填写注册信息" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14"
+                               Foreground="{DynamicResource Forground1}"/>
+                    </Grid>
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Image Source="/Images/登录注册/形状-3 (2).png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="上传专业资质" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Forground34}"/>
+                    </Grid>
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Image Source="/Images/登录注册/形状-3 (2).png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="等待平台审核" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Forground34}"/>
+                    </Grid>
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Image Source="/Images/登录注册/形状-3-拷贝.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="注册成功" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14"
+                               Foreground="{DynamicResource Forground34}"/>
+                    </Grid>
+                </StackPanel>
+
+                <StackPanel Margin="20,30,0,0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <Image Source="/Images/登录注册/注册申请提交成功.png" Margin="8,0"/>
+                    <TextBlock Text="您的申请已提交！" FontWeight="Bold" VerticalAlignment="Center" Foreground="{DynamicResource Forground3}"/>
+                </StackPanel>
+                <TextBlock>
+                    <Run Text="请您耐心等候，审核结果我们将会短信通知您" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground3}"/><LineBreak/>
+                    <Run Text="5秒后为您跳转回登录页，或者点击"  FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground33}"/>
+                    <Run Text="直接跳转" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground4}"/>
+                </TextBlock>
+                <Button x:Name="BtnSure" FontSize="14" HorizontalAlignment="Left" Content="确定" Style="{DynamicResource ButtonStyle1}" Margin="30,30,0,0" Width="140" Height="30"
+                    Click="BtnSure_Click"/>
+            </StackPanel>
+
+        </Grid>
     </Grid>
-</Window>
+</local:WindowBase>

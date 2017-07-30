@@ -1,0 +1,63 @@
+﻿<ResourceDictionary xmlns:sys="clr-namespace:System;assembly=mscorlib"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<!-- 应该在此定义资源字典条目。-->
+    <!--字体颜色-->
+    <!--蓝底白字-->
+    <Color x:Key="Forground1Color">#ffffff</Color>
+    <SolidColorBrush x:Key="Forground1" Color="{StaticResource Forground1Color}"/>
+    <!--灰底灰字-->
+    <Color x:Key="Forground2Color">#888888</Color>
+    <SolidColorBrush x:Key="Forground2" Color="{StaticResource Forground2Color}"/>
+    <!--白底灰字-->
+    <Color x:Key="Forground3Color">#333333</Color>
+    <Color x:Key="Forground31Color">#cccccc</Color>
+    <Color x:Key="Forground32Color">#a1a1a1</Color>
+    <Color x:Key="Forground33Color">#999999</Color>
+    <Color x:Key="Forground34Color">#646464</Color>
+    <Color x:Key="Forground35Color">#3e3e3e</Color>
+    <Color x:Key="Forground36Color">#808080</Color>
+    <Color x:Key="Forground37Color">#939393</Color>
+    <Color x:Key="Forground38Color">#7e7e7e</Color>
+
+    <SolidColorBrush x:Key="Forground3" Color="{StaticResource  Forground3Color}"/>
+    <SolidColorBrush x:Key="Forground31" Color="{StaticResource Forground31Color}"/>
+    <SolidColorBrush x:Key="Forground32" Color="{StaticResource Forground32Color}"/>
+    <SolidColorBrush x:Key="Forground33" Color="{StaticResource Forground33Color}"/>
+    <SolidColorBrush x:Key="Forground34" Color="{StaticResource Forground34Color}"/>
+    <SolidColorBrush x:Key="Forground35" Color="{StaticResource Forground35Color}"/>
+    <SolidColorBrush x:Key="Forground36" Color="{StaticResource Forground36Color}"/>
+    <SolidColorBrush x:Key="Forground37" Color="{StaticResource Forground37Color}"/>
+    <SolidColorBrush x:Key="Forground38" Color="{StaticResource Forground38Color}"/>
+    <!--白底蓝字-->
+    <Color x:Key="Forground4Color">#63a1ff</Color>
+    <SolidColorBrush x:Key="Forground4" Color="{StaticResource Forground4Color}"/>
+    <!--白底红字-->
+    <Color x:Key="Forground5Color">#ff0844</Color>
+    <SolidColorBrush x:Key="Forground5" Color="{StaticResource Forground5Color}"/>
+
+    <!--字体大小-->
+    <sys:Double x:Key="FontSize1">30</sys:Double>
+    <sys:Double x:Key="FontSize2">14</sys:Double>
+    <sys:Double x:Key="FontSize3">12</sys:Double>
+
+    <!--基础边线颜色-->
+    <Color x:Key="BasicBorderColor">#cccccc</Color>
+    <Color x:Key="BasicBorderColor2">#c9c9c9</Color>
+    <SolidColorBrush x:Key="BasicBorder" Color="{StaticResource BasicBorderColor}"/>
+    <SolidColorBrush x:Key="BasicBorder2" Color="{StaticResource BasicBorderColor2}"/>
+    <!--背景色-->
+    <Color x:Key="Background1Color">#FDFDFD</Color>
+    <SolidColorBrush x:Key="Background1" Color="{StaticResource Background1Color}"/>
+    <!--蓝色背景-->
+    <Color x:Key="Background2Color">#0096ff</Color>
+    <Color x:Key="Background21Color">#63a1ff</Color>
+    <SolidColorBrush x:Key="Background2" Color="{StaticResource  Background2Color}"/>
+    <SolidColorBrush x:Key="Background21" Color="{StaticResource Background21Color}"/>
+    <!--灰色背景-->
+    <Color x:Key="Background3Color">#d6d6d6</Color>
+    <Color x:Key="Background31Color">#dadada</Color>
+    <SolidColorBrush x:Key="Background3" Color="{StaticResource  Background3Color}"/>
+    <SolidColorBrush x:Key="Background31" Color="{StaticResource Background31Color}"/>
+
+</ResourceDictionary>

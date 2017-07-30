@@ -15,38 +15,31 @@ using System.Windows.Shapes;
 namespace TeacherClient
 {
     /// <summary>
-    /// LoginWindow.xaml 的交互逻辑
+    /// WindowBase.xaml 的交互逻辑
     /// </summary>
-    public partial class LoginWindow : WindowBase
+    public partial class WindowBase : Window
     {
-        public LoginWindow()
+        public WindowBase()
         {
             InitializeComponent();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        
+        private void MinWindow(object sender, RoutedEventArgs e)
         {
-            this.WindowState = WindowState.Minimized;
+            this.WindowState = System.Windows.WindowState.Minimized;
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void CloseWindow(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-        private void Canvas_PreviewMouseMove(object sender, MouseEventArgs e)
+        private void WindowPreviewMouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 this.DragMove();
             }
-        }
-
-        private void ForgetPassword_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-			FindPasswordWindow win = new FindPasswordWindow();
-            win.ShowDialog();
-        	// 在此处添加事件处理程序实现。
         }
     }
 }

@@ -97,3 +97,6 @@ G:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\obj\De
 G:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\obj\Debug\Views\CoursewareManagerView.baml
 G:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\obj\Debug\Resources\ButtonDictionary.baml
 G:\外包\Git\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\obj\Debug\Resources\TextBoxDictionary.baml
+D:\onlineTeaching\client\NBSchool.WPFClient\bin\Debug\NBSchool.WPFClient.exe.config
+D:\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\obj\Debug\NBSchool.WPFClient.exe
+D:\onlineTeaching\client\NBSchool.WPFClient\NBSchool.WPFClient\obj\Debug\NBSchool.WPFClient.pdb
