@@ -1,0 +1,28 @@
+<paras>
+  <para name="PRODUCT_VERSION" value="1.0.7.0"/>
+  <para name="SELL_BUY_REFRUSH_TIME" value="5000"/>
+  <para name="BASE_ADDRESS" value="http://billunion.com.cn/bill-client/"/>
+  <para name="FILE_DOWNLOAD" value="http://billunion.com.cn/bill-client/pc-client/"/>
+  <para name="FILE_BASE_ADDRESS" value="http://billunion.com.cn/bill-client/pc-client/billImage/positiveImageUpload"/>
+  <para name="BANK_CREDIT_FILE_ADDRESS" value="http://billunion.com.cn/bill-client/pc-client/filedownload/template/bank.xlsx"/>
+  <para name="LOGIN_FLAG" value="YUTRV765T"/>
+  <para name="SHORTCUTKEY_FLAG" value="ScreenCapture-True-True-False-Q" />
+  <!--以下是银联测试接口-->
+  <!--银联代付接口-->
+  <para name="CHINAPAY_TEST_ADDRESS" value="http://billunion.com.cn/bill-client/"/>
+  <!--以下是银联线上接口-->
+  <para name="CHINAPAY_ONLINE_ADDRESS" value="http://billunion.com.cn/bill-client/"/>
+  <para name="IS_HIDDEN_SERVER" value="0"/>
+  <!--以下为备注信息-->
+  <para name="USER_INFO_WHOLE_REMARK"  value="附：注册过程中，需要用户上传的资料：
+1. 加盖公章的《业务服务申请书》，申请书载明公司名称、公司账号、公司开户行、营业执照注册号等；
+2. 加盖公章的营业执照复印件或影印件；
+3. 加盖公章的《票据交易风险揭示书》回执；
+注：持票人（贴现人）为金融机构的，还需要提交证明其金融业务从业资质的法律文件；分支机构申请的，还需提供由其法人出具的授权书，并提交其法人的营业执照、组织机构代码证等材料。"/>
+  <Servers>
+    <Server name="69服务器" address="http://billunion.com.cn/bill-client/" remark="69服务器"/>
+    <Server name="99服务器" address="http://192.168.0.99:8080/bill-client/" remark="99服务器"/>
+    <Server name="254服务器" address="http://billunion.com.cn:8083/bill-client/" remark="254服务器"/>
+    <Server name="本地服务器" address="http://billunion.com.cn:8080/bill-client/" remark="本地服务器"/>
+  </Servers>
+</paras>

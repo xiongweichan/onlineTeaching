@@ -1,0 +1,7 @@
+﻿<paras>
+  <para name="IS_AUTO_STARTUP" value="true"/>
+
+  <para name="CACHE_PATH" value=""/>
+
+  <para name="BASE_ADDRESS" value="http://guocai.test2.ruanjiekeji.com/"/>
+</paras>

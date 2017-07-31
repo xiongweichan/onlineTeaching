@@ -35,6 +35,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationFramework.Classic" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -62,8 +69,9 @@
     <Compile Include="Converters\IntToVisibilityConverter.cs" />
     <Compile Include="Converters\LiveStatusOperationTemplateSelector.cs" />
     <Compile Include="Converters\TextToVisibilityConverter.cs" />
-    <Compile Include="Extension\ControlExtension.cs" />
+    <Compile Include="Extension\CacheHelper.cs" />
     <Compile Include="Extension\PasswordBoxExtention.cs" />
+    <Compile Include="Extension\StatusCode.cs" />
     <Compile Include="Extension\StringExtension.cs" />
     <Compile Include="FindPasswordWindow.xaml.cs">
       <DependentUpon>FindPasswordWindow.xaml</DependentUpon>
@@ -71,9 +79,19 @@
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MessageWindow.xaml.cs">
+      <DependentUpon>MessageWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyControls\MyPassword.xaml.cs">
+      <DependentUpon>MyPassword.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RegisterWindow.xaml.cs">
       <DependentUpon>RegisterWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SettingWIndow.xaml.cs">
+      <DependentUpon>SettingWIndow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SysConfig\Config.cs" />
     <Compile Include="WindowBase.cs" />
     <Page Include="Dictionary\ButtonDictionary.xaml">
       <SubType>Designer</SubType>
@@ -103,6 +121,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MessageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyControls\MyPassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Properties\DesignTimeResources.xaml" Condition="'$(DesignTime)'=='true' OR ('$(SolutionPath)'!='' AND Exists('$(SolutionPath)') AND '$(BuildingInsideVisualStudio)'!='true' AND '$(BuildingInsideExpressionBlend)'!='true')">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -113,6 +139,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dictionary\TextBoxDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SettingWIndow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -139,6 +169,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Design\projectGuides.guides" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -240,6 +271,26 @@
     <Resource Include="Images\首页\矩形-3.png" />
     <Resource Include="Images\首页\设置.png" />
     <Resource Include="Images\首页\账号绑定.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\首页\LOGO.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TeacherClient.Contract\TeacherClient.Contract.csproj">
+      <Project>{D5F4864B-E401-40CA-9002-F0F096B939C4}</Project>
+      <Name>TeacherClient.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TeacherClient.Core\TeacherClient.Core.csproj">
+      <Project>{4121ee90-8c88-44f7-9f43-852c8210b8c0}</Project>
+      <Name>TeacherClient.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SysConfig\SystemConfig.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="SysConfig\errorcode.xml" />
+    <Resource Include="SysConfig\url.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

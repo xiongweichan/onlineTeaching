@@ -8,7 +8,13 @@
     <SolidColorBrush x:Key="Forground1" Color="{StaticResource Forground1Color}"/>
     <!--灰底灰字-->
     <Color x:Key="Forground2Color">#888888</Color>
+    <Color x:Key="Forground21Color">#434343</Color>
+    <Color x:Key="Forground22Color">#424e67</Color>
+    <Color x:Key="Forground23Color">#a5aab1</Color>
     <SolidColorBrush x:Key="Forground2" Color="{StaticResource Forground2Color}"/>
+    <SolidColorBrush x:Key="Forground21" Color="{StaticResource Forground21Color}"/>
+    <SolidColorBrush x:Key="Forground22" Color="{StaticResource Forground22Color}"/>
+    <SolidColorBrush x:Key="Forground23" Color="{StaticResource Forground23Color}"/>
     <!--白底灰字-->
     <Color x:Key="Forground3Color">#333333</Color>
     <Color x:Key="Forground31Color">#cccccc</Color>
@@ -19,6 +25,8 @@
     <Color x:Key="Forground36Color">#808080</Color>
     <Color x:Key="Forground37Color">#939393</Color>
     <Color x:Key="Forground38Color">#7e7e7e</Color>
+    <Color x:Key="Forground39Color">#666666</Color>
+    <Color x:Key="Forground310Color">#4d5861</Color>
 
     <SolidColorBrush x:Key="Forground3" Color="{StaticResource  Forground3Color}"/>
     <SolidColorBrush x:Key="Forground31" Color="{StaticResource Forground31Color}"/>
@@ -29,9 +37,13 @@
     <SolidColorBrush x:Key="Forground36" Color="{StaticResource Forground36Color}"/>
     <SolidColorBrush x:Key="Forground37" Color="{StaticResource Forground37Color}"/>
     <SolidColorBrush x:Key="Forground38" Color="{StaticResource Forground38Color}"/>
+    <SolidColorBrush x:Key="Forground39" Color="{StaticResource Forground39Color}"/>
+    <SolidColorBrush x:Key="Forground310" Color="{StaticResource Forground310Color}"/>
     <!--白底蓝字-->
     <Color x:Key="Forground4Color">#63a1ff</Color>
     <SolidColorBrush x:Key="Forground4" Color="{StaticResource Forground4Color}"/>
+    <Color x:Key="Forground41Color">#0096ff</Color>
+    <SolidColorBrush x:Key="Forground41" Color="{StaticResource Forground41Color}"/>
     <!--白底红字-->
     <Color x:Key="Forground5Color">#ff0844</Color>
     <SolidColorBrush x:Key="Forground5" Color="{StaticResource Forground5Color}"/>
@@ -40,15 +52,21 @@
     <sys:Double x:Key="FontSize1">30</sys:Double>
     <sys:Double x:Key="FontSize2">14</sys:Double>
     <sys:Double x:Key="FontSize3">12</sys:Double>
+    <sys:Double x:Key="FontSize4">24</sys:Double>
 
     <!--基础边线颜色-->
     <Color x:Key="BasicBorderColor">#cccccc</Color>
     <Color x:Key="BasicBorderColor2">#c9c9c9</Color>
+    <Color x:Key="BorderColorColor3">#dce0e2</Color>
     <SolidColorBrush x:Key="BasicBorder" Color="{StaticResource BasicBorderColor}"/>
-    <SolidColorBrush x:Key="BasicBorder2" Color="{StaticResource BasicBorderColor2}"/>
+    <SolidColorBrush x:Key="Border2" Color="{StaticResource BasicBorderColor2}"/>
+    <SolidColorBrush x:Key="Border3" Color="{StaticResource BorderColorColor3}"/>
     <!--背景色-->
     <Color x:Key="Background1Color">#FDFDFD</Color>
     <SolidColorBrush x:Key="Background1" Color="{StaticResource Background1Color}"/>
+
+    <Color x:Key="Background11Color">#f9fafc</Color>
+    <SolidColorBrush x:Key="Background11" Color="{StaticResource Background11Color}"/>
     <!--蓝色背景-->
     <Color x:Key="Background2Color">#0096ff</Color>
     <Color x:Key="Background21Color">#63a1ff</Color>
@@ -57,7 +75,11 @@
     <!--灰色背景-->
     <Color x:Key="Background3Color">#d6d6d6</Color>
     <Color x:Key="Background31Color">#dadada</Color>
+    <Color x:Key="Background32Color">#E8ECF3</Color>
+    <Color x:Key="Background33Color">#eaf3f5</Color>
     <SolidColorBrush x:Key="Background3" Color="{StaticResource  Background3Color}"/>
     <SolidColorBrush x:Key="Background31" Color="{StaticResource Background31Color}"/>
+    <SolidColorBrush x:Key="Background32" Color="{StaticResource Background32Color}"/>
+    <SolidColorBrush x:Key="Background33" Color="{StaticResource Background33Color}"/>
 
 </ResourceDictionary>

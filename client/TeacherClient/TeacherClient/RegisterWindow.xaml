@@ -6,23 +6,19 @@
         xmlns:local="clr-namespace:TeacherClient" 
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d" Height="500" Width="700">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Margin="6,8">
+    <Canvas>
+        <StackPanel Orientation="Horizontal" Canvas.Left="9" Canvas.Top="13">
             <Image Source="/Images/登录注册/LOGO (2).png"/>
             <TextBlock Text="邻居学院-账号注册" Margin="6,0,0,0" FontSize="{StaticResource FontSize2}" Foreground="{StaticResource Forground3}" FontFamily="Microsoft YaHei"/>
         </StackPanel>
-        <Grid Grid.Row="1" Margin="10">
+        <Grid Grid.Row="1" Canvas.Left="24" Canvas.Top="58">
             <Grid Visibility="Collapsed">
-                <RadioButton GroupName="page" IsChecked="{Binding ShowFirstPage}"/>
-                <RadioButton GroupName="page" IsChecked="{Binding ShowSecondPage}"/>
-                <RadioButton GroupName="page" IsChecked="{Binding ShowThirdPage}"/>
+                <RadioButton GroupName="page" IsChecked="{Binding Model.ShowFirstPage}"/>
+                <RadioButton GroupName="page" IsChecked="{Binding Model.ShowSecondPage}"/>
+                <RadioButton GroupName="page" IsChecked="{Binding Model.ShowThirdPage}"/>
             </Grid>
-            <StackPanel Visibility="{Binding ShowFirstPage, Converter={StaticResource BoolToVisibilityConverter}}">
-                <StackPanel Orientation="Horizontal" Margin="20">
+            <!--<StackPanel Visibility="{Binding Model.ShowFirstPage, Converter={StaticResource BoolToVisibilityConverter}}">
+                <StackPanel Orientation="Horizontal">
                     <Grid>
                         <Image Source="/Images/登录注册/形状-3 (2).png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         <TextBlock Text="填写注册信息" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14"
@@ -42,43 +38,37 @@
                                Foreground="{DynamicResource Forground34}"/>
                     </Grid>
                 </StackPanel>
-                <Grid Grid.Row="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="手机号：" Foreground="{StaticResource Forground35}"/>
-                    <TextBox Text="{Binding TelPhone, Mode=TwoWay}" Grid.Column="1" Tag="输入手机号码"/>
-                    <TextBlock Text="验证码：" Grid.Row="1"/>
-                    <Grid Grid.Row="1" Grid.Column="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="auto"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBox Text="{Binding Certification, Mode=TwoWay}"/>
-                        <Button Content="获取验证码" Grid.Column="1"/>
-                    </Grid>
-                    <TextBlock Text="邮箱：" Grid.Row="2"/>
-                    <TextBox Text="{Binding EMail, Mode=TwoWay}" Grid.Column="1" Grid.Row="2" Tag="输入邮箱账号"/>
-                    <TextBlock Text="密码：" Grid.Row="3"/>
-                    <PasswordBox local:PasswordBoxExtention.Attach="true" local:PasswordBoxExtention.Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" Grid.Column="1" Grid.Row="3" Tag="输入密码"/>
-                    <TextBlock Text="重复密码：" Grid.Row="4"/>
-                    <PasswordBox local:PasswordBoxExtention.Attach="true" local:PasswordBoxExtention.Password="{Binding RepeatPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" Grid.Column="1" Grid.Row="4" Tag="输入密码"/>
-                    <Button Content="《用户服务协议》" Grid.Row="5" Grid.ColumnSpan="2"/>
-                    <Button x:Name="btnNextStep" Content="下一步" Grid.Row="6" Grid.ColumnSpan="2" Style="{DynamicResource ButtonStyle1}" Width="140" Height="30"/>
-                </Grid>
-            </StackPanel>
-            <StackPanel Visibility="{Binding ShowSecondPage, Converter={StaticResource BoolToVisibilityConverter}}">
-                <StackPanel Orientation="Horizontal" Margin="20">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                        <TextBlock Text="手机号：" Width="90" TextAlignment="Right" Foreground="{StaticResource Forground35}"/>
+                        <TextBox Style="{StaticResource TextBoxStyle2}" Width="260" Text="{Binding TelPhone, Mode=TwoWay}" Tag="输入手机号码"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <TextBlock Text="验证码：" Width="90" TextAlignment="Right" Foreground="{StaticResource Forground35}"/>
+                        <TextBox Style="{StaticResource TextBoxStyle2}" Text="{Binding Certification, Mode=TwoWay}" Width="173"/>
+                        <Button Content="获取验证码" Width="87" Style="{StaticResource ButtonStyle1}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <TextBlock Text="邮箱：" Width="90" TextAlignment="Right" Foreground="{StaticResource Forground35}"/>
+                        <TextBox Style="{StaticResource TextBoxStyle2}" Width="260" Text="{Binding EMail, Mode=TwoWay}" Grid.Column="1" Grid.Row="2" Tag="输入邮箱账号"/>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <TextBlock Text="密码：" Width="90" TextAlignment="Right" Foreground="{StaticResource Forground35}"/>
+                        <local:MyPassword Height="30" Width="260" Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" Tag="输入密码"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <TextBlock Text="重复密码：" Width="90" TextAlignment="Right" Foreground="{StaticResource Forground35}"/>
+                        <local:MyPassword Height="30" Width="260" Password="{Binding RepeatPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" Tag="输入密码"/>
+                    </StackPanel>
+
+                    <Button Content="《用户服务协议》" Margin="90,15,0,0" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground36}" Style="{StaticResource ButtonStyle2}"
+                            HorizontalAlignment="Left" BorderThickness="0" Background="Transparent"/>
+                    <Button x:Name="btnNextStep"  Margin="90,20,0,0" HorizontalAlignment="Left" Content="下一步" Style="{DynamicResource ButtonStyle1}" Width="140" Height="30"/>
+                </StackPanel>
+            </StackPanel>-->
+            <!--<StackPanel Visibility="{Binding Model.ShowSecondPage, Converter={StaticResource BoolToVisibilityConverter}}">
+                <StackPanel Orientation="Horizontal">
                     <Grid>
                         <Image Source="/Images/登录注册/形状-3 (2).png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         <TextBlock Text="填写注册信息" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14"
@@ -99,13 +89,84 @@
                     </Grid>
                 </StackPanel>
 
-                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                    
+                <ScrollViewer MaxHeight="290" Width="650" Margin="16,20,0,0" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <TextBlock>
+                            <Run Text="*" Foreground="{StaticResource Forground5}"/>
+                            <Run Text="上传身份证" Foreground="{StaticResource Forground35}" FontSize="14"/>
+                            <Run Text="（必须上传）" Foreground="{StaticResource Forground37}" FontSize="12"/>
+                        </TextBlock>
+                        <TextBlock Margin="0,18,0,0">
+                            <Run Foreground="{StaticResource Forground38}" Text="请按照以下步骤进行身份认证：" FontSize="{StaticResource FontSize3}"/><LineBreak/>
+                            <Line Height="20"/>
+                            <Run Foreground="{StaticResource Forground38}" Text="1.请拍摄一张手持身份证的正面头部照，然后点击第一个“点击上传”按钮" FontSize="{StaticResource FontSize3}"/><LineBreak/>
+                            <Line Height="20"/>
+                            <Run Foreground="{StaticResource Forground38}" Text="2.请拍摄一张半身部照，然后点击第二个“点击上传”按钮。" FontSize="{StaticResource FontSize3}"/>
+                        </TextBlock>
+                        <StackPanel Orientation="Horizontal" Margin="0,18,0,0">
+                            <StackPanel>
+                                <TextBlock Text="持身份证正面头部照" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground35}"/>
+                                <Image Margin="0,10,0,0" Source="/Images/登录注册/上传图片.png" Stretch="None"/>
+                                <Button Margin="0,8,0,0" Width="60" Height="20">
+                                    <TextBlock Text="点击上传" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground21}"/>
+                                </Button>
+                            </StackPanel>
+                            <StackPanel Margin="32,0,0,0">
+                                <TextBlock Text="身份证正面照片" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground35}"/>
+                                <Image Margin="0,10,0,0" Source="/Images/登录注册/上传图片.png" Stretch="None"/>
+                                <Button Margin="0,8,0,0" Width="60" Height="20">
+                                    <TextBlock Text="点击上传" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground21}"/>
+                                </Button>
+                            </StackPanel>
+                            <StackPanel Margin="26,0,0,0">
+                                <TextBlock Text="身份证反面照片" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground35}"/>
+                                <Image Margin="0,10,0,0" Source="/Images/登录注册/上传图片.png" Stretch="None"/>
+                                <Button Margin="0,8,0,0" Width="60" Height="20">
+                                    <TextBlock Text="点击上传" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground21}"/>
+                                </Button>
+                            </StackPanel>
+                            <StackPanel Margin="28,0,0,0">
+                                <TextBlock Text="参考示例" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground35}"/>
+                                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                    <Image Source="/Images/登录注册/持身份证正面头部照示例.png"/>
+                                    <Image Source="/Images/登录注册/身份证正面照片.png"/>
+                                    <Image Source="/Images/登录注册/身份证反面照片示例.png"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                        <Border Height="1" BorderBrush="{StaticResource BasicBorder}" BorderThickness="0,1,0,0" Margin="-16,25,0,25" Width="632" SnapsToDevicePixels="True"/>
+                        <StackPanel>
+                            <TextBlock>
+                                <Run Text="上传专业资格证" Foreground="{StaticResource Forground35}" FontSize="14"/>
+                                <Run Text="（可选择上传）" Foreground="{StaticResource Forground37}" FontSize="12"/>
+                            </TextBlock>
+                            <TextBlock Margin="0,18,0,0" Foreground="{StaticResource Forground38}" Text="请按照以下步骤进行身份认证：" FontSize="{StaticResource FontSize3}"/>
+                            <StackPanel Orientation="Horizontal" Margin="0,18,0,0">
+                                <StackPanel>
+                                    <Image Source="/Images/登录注册/上传图片.png" Stretch="None"/>
+                                    <Button Margin="0,8,0,0" Width="60" Height="20">
+                                        <TextBlock Text="点击上传" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground21}"/>
+                                    </Button>
+                                </StackPanel>
+                                <TextBlock Margin="70,0,0,0" Text="参考示例" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground35}"/>
+                                <StackPanel Margin="4,0,0,0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="/Images/登录注册/专业资格证示例1.png"/>
+                                        <Image Source="/Images/登录注册/专业资格证示例2.png"/>
+                                        <Image Source="/Images/登录注册/专业资格证示例3.png"/>
+                                    </StackPanel>
+                                    <TextBlock Height="20" Margin="0,8,0,0" Text="建议图片尺寸160x160，小于50K" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground35}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
                 </ScrollViewer>
-                <Button FontSize="14" HorizontalAlignment="Left" Content="下一步" Style="{DynamicResource ButtonStyle1}" Margin="100,30,0,0" Width="140" Height="30"/>
-            </StackPanel>
-            <StackPanel Visibility="{Binding ShowThirdPage, Converter={StaticResource BoolToVisibilityConverter}}">
-                <StackPanel Orientation="Horizontal" Margin="20">
+                <Border Height="1" BorderBrush="{StaticResource BasicBorder}" BorderThickness="0,1,0,0" Margin="-16,25,0,25" Width="632" SnapsToDevicePixels="True"/>
+
+                <Button FontSize="14" HorizontalAlignment="Left" Content="下一步" Style="{DynamicResource ButtonStyle1}" Margin="40,0,0,24" Width="140" Height="30"/>
+            </StackPanel>-->
+            <StackPanel Visibility="{Binding Model.ShowThirdPage, Converter={StaticResource BoolToVisibilityConverter}}">
+                <StackPanel Orientation="Horizontal">
                     <Grid>
                         <Image Source="/Images/登录注册/形状-3 (2).png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         <TextBlock Text="填写注册信息" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14"
@@ -126,19 +187,21 @@
                     </Grid>
                 </StackPanel>
 
-                <StackPanel Margin="20,30,0,0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                <StackPanel Margin="10,70,0,0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Source="/Images/登录注册/注册申请提交成功.png" Margin="8,0"/>
                     <TextBlock Text="您的申请已提交！" FontWeight="Bold" VerticalAlignment="Center" Foreground="{DynamicResource Forground3}"/>
                 </StackPanel>
-                <TextBlock>
+                <TextBlock Margin="50,6,0,0">
+                    <Line Height="24"/>
                     <Run Text="请您耐心等候，审核结果我们将会短信通知您" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground3}"/><LineBreak/>
+                    <Line Height="24"/>
                     <Run Text="5秒后为您跳转回登录页，或者点击"  FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground33}"/>
-                    <Run Text="直接跳转" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground4}"/>
+                    <Run PreviewMouseLeftButtonUp="Run_PreviewMouseLeftButtonUp" Text="直接跳转" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground4}"/>
                 </TextBlock>
-                <Button x:Name="BtnSure" FontSize="14" HorizontalAlignment="Left" Content="确定" Style="{DynamicResource ButtonStyle1}" Margin="30,30,0,0" Width="140" Height="30"
+                <Button x:Name="BtnSure" FontSize="14" HorizontalAlignment="Left" Content="确定" Style="{DynamicResource ButtonStyle1}" Margin="50,40,0,0" Width="140" Height="30"
                     Click="BtnSure_Click"/>
             </StackPanel>
 
         </Grid>
-    </Grid>
+    </Canvas>
 </local:WindowBase>

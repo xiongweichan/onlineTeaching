@@ -20,11 +20,23 @@ namespace TeacherClient
     /// </summary>
     public partial class RegisterWindow : WindowBase
     {
-        RegisterModel _model = new RegisterModel();
+        RegisterModel Model { get; set; }
         public RegisterWindow()
         {
             InitializeComponent();
+            Model = new RegisterModel();
             this.DataContext = this;
+            this.IsBusy = false;
+        }
+
+        private void BtnSure_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Run_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
         }
     }
 

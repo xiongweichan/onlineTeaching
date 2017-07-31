@@ -2,11 +2,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:TeacherClient"
                     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation">
-
+    <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
     <Style TargetType="{x:Type local:WindowBase}">
+        <Setter Property="Margin" Value="-1"/>
         <Setter Property="WindowStyle" Value="None"/>
         <Setter Property="ResizeMode" Value="NoResize"/>
         <Setter Property="AllowsTransparency" Value="True"/>
+        <Setter Property="BorderBrush" Value="#cccccc"/>
+        <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Background">
             <Setter.Value>
                 <ImageBrush ImageSource="/Images/登录注册/背景.png"/>
@@ -15,26 +18,31 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:WindowBase}">
-                    <Border Background="{TemplateBinding Background}"
+                    <telerik:RadBusyIndicator IsBusy="{TemplateBinding IsBusy}" BusyContent="{TemplateBinding BusyContent}">
+                        <Border Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
-                        <Grid>
-                            <ContentPresenter/>
-                            <Grid HorizontalAlignment="Stretch" Height="36" Background="Transparent" VerticalAlignment="Top">
-                                <telerik:EventToCommandBehavior.EventBindings>
-                                    <telerik:EventBinding EventName="PreviewMouseMove" Command="{Binding MoveWindowCommand,RelativeSource={RelativeSource TemplatedParent}}"/>
-                                </telerik:EventToCommandBehavior.EventBindings>
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="8" Margin="{TemplateBinding Margin}"
+                            SnapsToDevicePixels="True" UseLayoutRounding="True">
+                            <Grid>
+                                <ContentPresenter/>
+                                <Grid HorizontalAlignment="Stretch" Height="36" Background="Transparent" VerticalAlignment="Top">
+                                    <telerik:EventToCommandBehavior.EventBindings>
+                                        <telerik:EventBinding EventName="PreviewMouseMove" Command="{Binding MoveWindowCommand,RelativeSource={RelativeSource TemplatedParent}}"/>
+                                    </telerik:EventToCommandBehavior.EventBindings>
+                                </Grid>
+                                <StackPanel Orientation="Horizontal" Margin="6" VerticalAlignment="Top" HorizontalAlignment="Right">
+                                    <Button BorderThickness="0" Background="Transparent" Width="30" Height="30" Command="{Binding MinWindowCommand,RelativeSource={RelativeSource TemplatedParent}}"
+                                        Visibility="{TemplateBinding CanMinimize, Converter={StaticResource BoolToVisibilityConverter}}">
+                                        <Image Source="/Images/登录注册/收起.png" Stretch="None" />
+                                    </Button>
+                                    <Button Margin="6,0,0,0" BorderThickness="0" Background="Transparent" Width="30" Height="30" Command="{Binding CloseWindowCommand,RelativeSource={RelativeSource TemplatedParent}}">
+                                        <Image Source="/Images/登录注册/关闭.png" Stretch="None" />
+                                    </Button>
+                                </StackPanel>
                             </Grid>
-                            <StackPanel Orientation="Horizontal" Margin="6" VerticalAlignment="Top" HorizontalAlignment="Right">
-                                <Button BorderThickness="0" Background="Transparent" Width="30" Height="30" Command="{Binding MinWindowCommand,RelativeSource={RelativeSource TemplatedParent}}">
-                                    <Image Source="/Images/登录注册/收起.png" Stretch="None" />
-                                </Button>
-                                <Button Margin="6,0,0,0" BorderThickness="0" Background="Transparent" Width="30" Height="30" Command="{Binding CloseWindowCommand,RelativeSource={RelativeSource TemplatedParent}}">
-                                    <Image Source="/Images/登录注册/关闭.png" Stretch="None" />
-                                </Button>
-                            </StackPanel>
-                        </Grid>
-                    </Border>
+                        </Border>
+                    </telerik:RadBusyIndicator>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

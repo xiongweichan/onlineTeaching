@@ -25,6 +25,7 @@ namespace TeacherClient
         {
             InitializeComponent();
             this.DataContext = _model;
+            this.IsBusy = false;
         }
 
         private void ToNewPassword_Click(object sender, RoutedEventArgs e)

@@ -52,12 +52,62 @@ namespace TeacherClient
             DefaultStyleKeyProperty.OverrideMetadata(typeof(WindowBase), new FrameworkPropertyMetadata(typeof(WindowBase)));
         }
 
+
+
+        public bool CanMinimize
+        {
+            get { return (bool)GetValue(CanMinimizeProperty); }
+            set { SetValue(CanMinimizeProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for CanMinimize.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CanMinimizeProperty =
+            DependencyProperty.Register("CanMinimize", typeof(bool), typeof(WindowBase), new PropertyMetadata(true));
+
+
+
+        public bool IsBusy
+        {
+            get { return (bool)GetValue(IsBusyProperty); }
+            set { SetValue(IsBusyProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for IsBusy.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IsBusyProperty =
+            DependencyProperty.Register("IsBusy", typeof(bool), typeof(WindowBase), new PropertyMetadata(true));
+
+
+
+        public string BusyContent
+        {
+            get { return (string)GetValue(BusyContentProperty); }
+            set { SetValue(BusyContentProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for BusyContent.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty BusyContentProperty =
+            DependencyProperty.Register("BusyContent", typeof(string), typeof(WindowBase), new PropertyMetadata("加载中……"));
+
+        protected async void DoWork<T>(Func<Task<T>> func, Action<T> action)
+        {
+            this.IsBusy = true;
+            T t = await func.Invoke();
+
+            IsBusy = false;
+            action(t);
+        }
+
+
         public DelegateCommand MinWindowCommand { get; set; }
         public DelegateCommand CloseWindowCommand { get; set; }
         public DelegateCommand MoveWindowCommand { get; set; }
 
         public WindowBase()
         {
+            if (this.Owner != null)
+                this.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            else
+                this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             MinWindowCommand = new DelegateCommand((obj) => { this.WindowState = System.Windows.WindowState.Minimized; });
             CloseWindowCommand = new DelegateCommand((obj) => { this.Close(); });
             MoveWindowCommand = new DelegateCommand((obj) =>

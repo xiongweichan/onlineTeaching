@@ -1,12 +1,86 @@
-﻿<Window x:Class="TeacherClient.MainWindow"
+﻿<local:WindowBase x:Class="TeacherClient.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeacherClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="700" Width="1024">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid Height="106">
+            <Grid.Background>
+                <ImageBrush ImageSource="/Images/首页/完善个人资料.png"/>
+            </Grid.Background>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="8,0,0,0">
+                <Grid>
+                    <Ellipse Width="70" Height="70" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White"/>
+                    <Ellipse Width="65" Height="65" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="{StaticResource Background32}"/>
+                    <Image Source="/Images/首页/LOGO.png" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None"/>
+                </Grid>
+                <TextBlock Margin="8,0,4,0" Text="邻居学院" FontSize="{StaticResource FontSize4}" Foreground="{StaticResource Forground3}"/>
+                <Image Source="/Images/登录注册/直播端.png" Stretch="None" VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="348,0,0,0">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Background="Transparent"
+                                    PreviewMouseLeftButtonUp="StackPanel_PreviewMouseLeftButtonUp">
+                    <TextBlock Text="{Binding Model.UserAccount}" Foreground="{StaticResource Forground3}"/>
+                    <Path VerticalAlignment="Center" Data="M0,0L10,0 5,5" Fill="{StaticResource Forground3}" Width="10" Height="5" Margin="8,0,0,0"/>
+                </StackPanel>
+                <Popup AllowsTransparency="True" x:Name="popup_Logout" StaysOpen="False">
+                    <Button Content="退出登录" Foreground="{StaticResource Forground22}" Click="Logout_Click" Width="90" Height="26" BorderBrush="{StaticResource BasicBorder}" Background="{StaticResource Background11}"/>
+                </Popup>
+
+                <Button Margin="16,0,0,0" Style="{StaticResource ButtonStyle2}" Foreground="{StaticResource Forground39}"
+                        Content="{Binding Model.MessageCount}" ContentStringFormat="（{0}条）"/>
+                <Border SnapsToDevicePixels="True" Margin="8,0" Width="1" Height="20" BorderBrush="{StaticResource BasicBorder}" BorderThickness="1,0,0,0"/>
+                <Button Style="{StaticResource ButtonStyle2}" Foreground="{StaticResource Forground3}"
+                        Content="使用帮助"/>
+            </StackPanel>
+            <Button HorizontalAlignment="Right" Margin="0,0,97,0" Style="{StaticResource ButtonStyle1}" Content="我要直播" Width="126" Height="30"/>
+        </Grid>
+        <Border Grid.Row="1" Margin="1,0" BorderThickness="0,1" Height="42" Background="{StaticResource Background11}"
+                BorderBrush="{StaticResource Border3}">
+            <StackPanel Orientation="Horizontal">
+                <RadioButton Content="首页" Width="60" Margin="10,0,0,0" Style="{DynamicResource RadioButtonStyle1}"/>
+                <RadioButton Content="直播中心" Width="60" Margin="58,0,0,0" Style="{DynamicResource RadioButtonStyle1}"/>
+                <RadioButton Content="课程中心" Width="60" Margin="58,0,0,0" Style="{DynamicResource RadioButtonStyle1}"/>
+                <RadioButton Content="线下课堂" Width="60" Margin="58,0,0,0" Style="{DynamicResource RadioButtonStyle1}"/>
+                <RadioButton Content="课酬中心" Width="60" Margin="58,0,0,0" Style="{DynamicResource RadioButtonStyle1}"/>
+            </StackPanel>
+        </Border>
+        <Frame SnapsToDevicePixels="True" UseLayoutRounding="True" Grid.Row="2" BorderThickness="0"
+               Background="White" Margin="1,0"/>
+        <Border BorderThickness="1" BorderBrush="{StaticResource Border3}" Height="40" Grid.Row="3"
+                Background="{StaticResource Background11}" CornerRadius="0,0,6,6">
+            <Grid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center">
+                    <Image Source="/Images/首页/版本信息.png"/>
+                    <TextBlock Margin="8,0,0,0" Text="{Binding Model.Version,StringFormat='版本：{0}'}" Foreground="{StaticResource Forground23}"/>
+                </StackPanel>
+
+                <Button HorizontalAlignment="Right" Margin="0,0,20,0" VerticalAlignment="Center"
+                        Click="OpenSetting_Click" Background="Transparent">
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <StackPanel x:Name="sp_content" Orientation="Horizontal">
+                                <Image Source="/Images/首页/设置.png" UseLayoutRounding="True"/>
+                                <TextBlock VerticalAlignment="Center" Margin="8,0,0,0" Text="设置" Foreground="{StaticResource Forground23}"/>
+                            </StackPanel>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsPressed" Value="true">
+                                    <Setter Property="Background" TargetName="sp_content" Value="{StaticResource Button.Pressed.Background}"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+        </Border>
     </Grid>
-</Window>
+</local:WindowBase>

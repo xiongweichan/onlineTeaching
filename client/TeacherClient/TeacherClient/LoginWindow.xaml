@@ -23,9 +23,10 @@
             <TextBlock Text="账号" IsHitTestVisible="False" Foreground="#FFCCCCCC" HorizontalAlignment="Left" Margin="10,0,0,0" d:LayoutOverrides="Height" Visibility="{Binding Text, Converter={StaticResource TextToVisibilityConverter}, ElementName=textBox}" VerticalAlignment="Center" FontSize="{DynamicResource FontSize2}"/>
         </Grid>
         <Grid Grid.Row="3" Canvas.Left="60" Canvas.Top="275">
-            <PasswordBox x:Name="passwordBox" VerticalContentAlignment="Center" Height="40" Width="260" local:PasswordBoxExtention.Attach="True"
+            <local:MyPassword Height="40" Width="260" Password="{Binding Password}" Watermark="密码"/>
+            <!--<PasswordBox x:Name="passwordBox" VerticalContentAlignment="Center" Height="40" Width="260" local:PasswordBoxExtention.Attach="True"
                      local:PasswordBoxExtention.Password="{Binding Password, Mode=TwoWay, NotifyOnSourceUpdated=True}" Margin="0" d:LayoutOverrides="Height" Style="{DynamicResource PasswordBoxStyle1}"/>
-            <TextBlock Text="密码" IsHitTestVisible="False" Foreground="#FFCCCCCC" HorizontalAlignment="Left" Margin="10,0,0,0" d:LayoutOverrides="Height" Visibility="{Binding Password, Converter={StaticResource TextToVisibilityConverter}}" VerticalAlignment="Center" FontSize="{DynamicResource FontSize2}"/>
+            <TextBlock Text="密码" IsHitTestVisible="False" Foreground="#FFCCCCCC" HorizontalAlignment="Left" Margin="10,0,0,0" d:LayoutOverrides="Height" Visibility="{Binding Password, Converter={StaticResource TextToVisibilityConverter}}" VerticalAlignment="Center" FontSize="{DynamicResource FontSize2}"/>-->
         </Grid>
         <!--<PasswordBox VerticalContentAlignment="Center" Grid.Row="3" Height="40" Width="260" Margin="0,-1,0,0"
                  Controls:TextBoxHelper.Watermark="密码" Extention:PasswordBoxExtention.Attach="True"
@@ -34,10 +35,10 @@
         <CheckBox Grid.Row="4" HorizontalAlignment="Left" Content="记住密码" IsChecked="{Binding RememblePwd}" FontSize="14" FontFamily="Microsoft YaHei" Foreground="#FFA1A1A1" Canvas.Left="60" Canvas.Top="339"/>
         <CheckBox Grid.Row="4" HorizontalAlignment="Right" Content="自动登录" IsChecked="{Binding AutoLogin}" FontSize="14" FontFamily="Microsoft YaHei" Foreground="#FFA1A1A1" Canvas.Left="244.025" Canvas.Top="339"/>
 
-        <Button x:Name="Login" Content="登录" Grid.Row="5" Width="260" Height="39" Background="#FF0096FF" Foreground="White" Margin="0" BorderThickness="0" FontFamily="Microsoft YaHei" FontSize="16" FontWeight="Normal" Canvas.Left="60" Canvas.Top="378" Style="{DynamicResource ButtonStyle1}"/>
+        <Button x:Name="Login" Content="登录" Grid.Row="5" Width="260" Height="39" Background="#FF0096FF" Foreground="White" Margin="0" BorderThickness="0" FontFamily="Microsoft YaHei" FontSize="16" FontWeight="Normal" Canvas.Left="60" Canvas.Top="378" Style="{DynamicResource ButtonStyle1}" Click="Login_Click"/>
         <StackPanel Orientation="Horizontal" Grid.Row="6" Canvas.Top="431" VerticalAlignment="Top" Canvas.Left="134">
             <Image Source="/Images/登录注册/形状-3.png" Stretch="None" Margin="6" HorizontalAlignment="Center" VerticalAlignment="Center" UseLayoutRounding="True"/>
-            <Button x:Name="RegisterAccount" Background="White" Content="注册账号" VerticalAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" FontFamily="Microsoft YaHei" FontSize="14" FontWeight="Normal" Foreground="#FF63A1FF" d:LayoutOverrides="LeftMargin, RightMargin" MinHeight="0" Padding="0" Style="{DynamicResource ButtonStyle2}"/>
+            <Button x:Name="RegisterAccount" Background="White" Content="注册账号" VerticalAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" FontFamily="Microsoft YaHei" FontSize="14" FontWeight="Normal" Foreground="#FF63A1FF" d:LayoutOverrides="LeftMargin, RightMargin" MinHeight="0" Padding="0" Style="{DynamicResource ButtonStyle2}" Click="RegisterAccount_Click"/>
         </StackPanel>
     </Canvas>
 </local:WindowBase>
