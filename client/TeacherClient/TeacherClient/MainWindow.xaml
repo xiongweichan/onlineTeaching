@@ -18,11 +18,7 @@
                 <ImageBrush ImageSource="/Images/首页/完善个人资料.png"/>
             </Grid.Background>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="8,0,0,0">
-                <Grid>
-                    <Ellipse Width="70" Height="70" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White"/>
-                    <Ellipse Width="65" Height="65" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="{StaticResource Background32}"/>
-                    <Image Source="/Images/首页/LOGO.png" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None"/>
-                </Grid>
+                <Image Source="/Images/首页/LOGO_72.png" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None"/>
                 <TextBlock Margin="8,0,4,0" Text="邻居学院" FontSize="{StaticResource FontSize4}" Foreground="{StaticResource Forground3}"/>
                 <Image Source="/Images/登录注册/直播端.png" Stretch="None" VerticalAlignment="Center"/>
             </StackPanel>
@@ -46,16 +42,16 @@
         </Grid>
         <Border Grid.Row="1" Margin="1,0" BorderThickness="0,1" Height="42" Background="{StaticResource Background11}"
                 BorderBrush="{StaticResource Border3}">
-            <StackPanel Orientation="Horizontal">
-                <RadioButton Content="首页" Width="60" Margin="10,0,0,0" Style="{DynamicResource RadioButtonStyle1}"/>
-                <RadioButton Content="直播中心" Width="60" Margin="58,0,0,0" Style="{DynamicResource RadioButtonStyle1}"/>
-                <RadioButton Content="课程中心" Width="60" Margin="58,0,0,0" Style="{DynamicResource RadioButtonStyle1}"/>
-                <RadioButton Content="线下课堂" Width="60" Margin="58,0,0,0" Style="{DynamicResource RadioButtonStyle1}"/>
-                <RadioButton Content="课酬中心" Width="60" Margin="58,0,0,0" Style="{DynamicResource RadioButtonStyle1}"/>
+            <StackPanel Orientation="Horizontal" RadioButton.Checked="StackPanel_Checked">
+                <RadioButton Content="首页" IsChecked="{Binding Model.MenuIndex, Converter={StaticResource IntToBoolConverter}, ConverterParameter=0}" Width="60" Margin="10,0,0,0" Style="{DynamicResource RadioButtonStyle1}"/>
+                <RadioButton Content="直播中心" IsChecked="{Binding Model.MenuIndex, Converter={StaticResource IntToBoolConverter}, ConverterParameter=1}" Width="60" Margin="58,0,0,0" Style="{DynamicResource RadioButtonStyle1}"/>
+                <RadioButton Content="课程中心" IsChecked="{Binding Model.MenuIndex, Converter={StaticResource IntToBoolConverter}, ConverterParameter=2}" Width="60" Margin="58,0,0,0" Style="{DynamicResource RadioButtonStyle1}"/>
+                <RadioButton Content="线下课堂" IsChecked="{Binding Model.MenuIndex, Converter={StaticResource IntToBoolConverter}, ConverterParameter=3}" Width="60" Margin="58,0,0,0" Style="{DynamicResource RadioButtonStyle1}"/>
+                <RadioButton Content="课酬中心" IsChecked="{Binding Model.MenuIndex, Converter={StaticResource IntToBoolConverter}, ConverterParameter=4}" Width="60" Margin="58,0,0,0" Style="{DynamicResource RadioButtonStyle1}"/>
             </StackPanel>
         </Border>
         <Frame SnapsToDevicePixels="True" UseLayoutRounding="True" Grid.Row="2" BorderThickness="0"
-               Background="White" Margin="1,0"/>
+               Background="White" Margin="1,0" x:Name="frame"/>
         <Border BorderThickness="1" BorderBrush="{StaticResource Border3}" Height="40" Grid.Row="3"
                 Background="{StaticResource Background11}" CornerRadius="0,0,6,6">
             <Grid>

@@ -16,6 +16,7 @@ using Reponse = TeacherClient.Contract.Reponse;
 using TeacherClient.Core;
 using Newtonsoft.Json;
 using System.Security.Cryptography;
+using Telerik.Windows.Controls;
 
 namespace TeacherClient
 {
@@ -29,10 +30,26 @@ namespace TeacherClient
         /// </summary>
         public bool FocusNotAutoLogin { get; set; }
 
+        LoginModel _model = new LoginModel();
+
         public LoginWindow()
         {
             InitializeComponent();
+            this.DataContext = _model;
+            bool b;
+            _model.AutoLogin = bool.TryParse(ConfigManagerHelper.GetConfigByName(Config.IsAutoLogin), out b) && b;
+            _model.RememblePwd = bool.TryParse(ConfigManagerHelper.GetConfigByName(Config.IsRememberPwd), out b) && b;
+            if (_model.RememblePwd)
+            {
+                _model.UserAccount = ConfigManagerHelper.GetConfigByName(Config.UserAccount);
+                pwd.Password = ConfigManagerHelper.GetConfigByName(Config.Password);
+            }
+
             this.IsBusy = false;
+            if (_model.AutoLogin)
+            {
+                Login_Click(null, null);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -66,40 +83,60 @@ namespace TeacherClient
             win.ShowDialog();
         }
 
-        private void Login_Click(object sender, RoutedEventArgs e)
+        private async void Login_Click(object sender, RoutedEventArgs e)
         {
-            Request.RequestParam r = new Request.RequestParam();
-            Request.Login l = new Request.Login() { phone = "15989010000", password = "123456", lec_id="0", token= "登录返回的token令牌" };
-            r.data = JsonConvert.SerializeObject(l);
-
-            r.apisign = "c0b3519a7295596f9a815074bc0dcf5f"; 
-            this.DoWork<Reponse.ResponseParam<Reponse.Login>>(() =>
-                {
-                    return IPCHandle.doPost<Reponse.ResponseParam<Reponse.Login>, Request.RequestParam>("Live/LecLogin/login", r);
-                }, (t) =>
-                {
-                    if (t == null || t.status != Config.SuccessCode)
-                    {
-                        MessageWindow win = new MessageWindow();
-                        win.Title = "登录失败";
-                        win.Message = t != null ? t.info : "登录失败，请检查服务是否正常";
-                        win.ShowDialog();
-                    }
-                    else
-                    {
-                        MainWindow win = new MainWindow();
-                        win.Show();
-                        this.Close();
-                        App.Current.MainWindow = win;
-                    }
-                });
-            MyLogin();
+            //15989010000 123456
+            Request.Login l = new Request.Login() { phone = _model.UserAccount, password = pwd.Password, lec_id = string.Empty, token = string.Empty };
+            var t = await IPCHandle.doPost<Reponse.ResponseParam<Reponse.Login>>(Config.Interface_login, l.ReturnRequestParam());
+            if (t == null || t.status != Config.SuccessCode)
+            {
+                MessageWindow win = new MessageWindow();
+                win.Title = "登录失败";
+                win.Message = t != null ? t.info : "登录失败，请检查服务是否正常";
+                win.ShowDialog();
+            }
+            else
+            {
+                App.CurrentLogin = t.data;
+                MainWindow win = new MainWindow();
+                win.Show();
+                this.Close();
+                App.Current.MainWindow = win;
+            }
+        }
+    }
+    public class LoginModel : ViewModelBase
+    {
+        string _UserAccount;
+        public string UserAccount
+        {
+            get { return _UserAccount; }
+            set
+            {
+                _UserAccount = value;
+                this.OnPropertyChanged("UserAccount");
+            }
         }
 
-        async void MyLogin()
+        bool _RememblePwd;
+        public bool RememblePwd
         {
-
-
+            get { return _RememblePwd; }
+            set
+            {
+                _RememblePwd = value;
+                this.OnPropertyChanged("RememblePwd");
+            }
+        }
+        bool _AutoLogin;
+        public bool AutoLogin
+        {
+            get { return _AutoLogin; }
+            set
+            {
+                _AutoLogin = value;
+                this.OnPropertyChanged("AutoLogin");
+            }
         }
     }
 }

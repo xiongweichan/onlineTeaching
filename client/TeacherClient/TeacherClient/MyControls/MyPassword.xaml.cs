@@ -35,9 +35,13 @@ namespace TeacherClient
 
         // Using a DependencyProperty as the backing store for Password.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty PasswordProperty =
-            DependencyProperty.Register("Password", typeof(string), typeof(MyPassword), new FrameworkPropertyMetadata(string.Empty) { BindsTwoWayByDefault = true });
+            DependencyProperty.Register("Password", typeof(string), typeof(MyPassword), new FrameworkPropertyMetadata(string.Empty, PropertyChangedCallback) { BindsTwoWayByDefault = true });
 
-
+        static void PropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var _this = d as MyPassword;
+            _this.passwordBox.Password = e.NewValue.ToString();
+        }
 
         public string Watermark
         {

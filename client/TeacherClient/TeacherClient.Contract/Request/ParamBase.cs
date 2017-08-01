@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace TeacherClient.Contract.Request
 {
-    public class RequestParam
-    {
-        public string data { get; set; }
-        public string apisign { get; set; }
-    }
     public class ParamBase
     {
+        public string lec_id { get; set; }
+        public string token { get; set; }
     }
 }

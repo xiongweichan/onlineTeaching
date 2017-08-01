@@ -7,7 +7,9 @@
         <ResourceDictionary>
             <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
             <local:TextToVisibilityConverter x:Key="TextToVisibilityConverter"/>
-            
+            <local:SexIntToStringConverter x:Key="SexIntToStringConverter"/>
+            <local:IntToBoolConverter x:Key="IntToBoolConverter"/>
+
             <Style TargetType="Image">
                 <Setter Property="Stretch" Value="None"/>
                 <Setter Property="UseLayoutRounding" Value="True"/>

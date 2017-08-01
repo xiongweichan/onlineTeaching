@@ -11,6 +11,7 @@ namespace TeacherClient
     public class CacheHelper
     {
         static readonly string _defaultpath = AppDomain.CurrentDomain.BaseDirectory + "Cache";
+
         /// <summary>
         /// 缓存地址
         /// </summary>
@@ -19,10 +20,13 @@ namespace TeacherClient
             get
             {
                 var path = ConfigManagerHelper.GetConfigByName(Config.CacheFilePath);
-                if (string.IsNullOrWhiteSpace(CacheHelper.CacheFilePath))
+                if (string.IsNullOrWhiteSpace(path))
                 {
-                    path = CacheFilePath = _defaultpath;
+                    path = _defaultpath;
+                    ConfigManagerHelper.SetConfigByName(Config.CacheFilePath, _defaultpath);
                 }
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
                 return path;
             }
             set

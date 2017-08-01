@@ -25,7 +25,7 @@ namespace TeacherClient
         {
             InitializeComponent();
             Model = new SettingModel();
-            Model.UserName = "test";
+            Model.UserName = App.CurrentLogin.user.nickname;
             UpdateModel();
             this.DataContext = this;
             this.IsBusy = false;

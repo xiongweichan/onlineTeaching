@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
+using Reponse = TeacherClient.Contract.Reponse;
 using TeacherClient.Core;
 
 namespace TeacherClient
@@ -21,6 +22,9 @@ namespace TeacherClient
         {
             base.OnStartup(e);
             ConfigManagerHelper.Init(Config.SystemConfigPath, true);
+
+
+
             SetAutoStartup();
             IPCHandle.Init();
         }
@@ -57,6 +61,8 @@ namespace TeacherClient
             }
         }
 
+
+
         public static bool IsAutoStartup
         {
             get
@@ -71,12 +77,14 @@ namespace TeacherClient
             }
         }
 
-
-
-
         public static string CurrentVersion
         {
             get { return Assembly.GetExecutingAssembly().GetName().Version.ToString(); }
+        }
+
+        public static Reponse.Login CurrentLogin
+        {
+            get; set;
         }
     }
 }

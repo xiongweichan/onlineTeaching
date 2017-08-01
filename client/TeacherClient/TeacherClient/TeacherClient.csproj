@@ -65,14 +65,17 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\IntToBoolConverter.cs" />
     <Compile Include="Converters\IntToColorConverter.cs" />
     <Compile Include="Converters\IntToVisibilityConverter.cs" />
     <Compile Include="Converters\LiveStatusOperationTemplateSelector.cs" />
+    <Compile Include="Converters\SexIntToStringConverter.cs" />
     <Compile Include="Converters\TextToVisibilityConverter.cs" />
     <Compile Include="Extension\CacheHelper.cs" />
     <Compile Include="Extension\PasswordBoxExtention.cs" />
     <Compile Include="Extension\StatusCode.cs" />
     <Compile Include="Extension\StringExtension.cs" />
+    <Compile Include="Extension\WebHelper.cs" />
     <Compile Include="FindPasswordWindow.xaml.cs">
       <DependentUpon>FindPasswordWindow.xaml</DependentUpon>
     </Compile>
@@ -84,6 +87,12 @@
     </Compile>
     <Compile Include="MyControls\MyPassword.xaml.cs">
       <DependentUpon>MyPassword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MainIndex.xaml.cs">
+      <DependentUpon>MainIndex.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TogetherInfo.xaml.cs">
+      <DependentUpon>TogetherInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="RegisterWindow.xaml.cs">
       <DependentUpon>RegisterWindow.xaml</DependentUpon>
@@ -126,6 +135,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MyControls\MyPassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MainIndex.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TogetherInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -273,9 +290,6 @@
     <Resource Include="Images\首页\账号绑定.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\首页\LOGO.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\TeacherClient.Contract\TeacherClient.Contract.csproj">
       <Project>{D5F4864B-E401-40CA-9002-F0F096B939C4}</Project>
       <Name>TeacherClient.Contract</Name>
@@ -286,6 +300,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\首页\LOGO_72.png" />
+    <Resource Include="Images\登录注册\形状-3-拷贝_31.png" />
     <Content Include="SysConfig\SystemConfig.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

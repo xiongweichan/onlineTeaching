@@ -47,20 +47,25 @@
     <!--白底红字-->
     <Color x:Key="Forground5Color">#ff0844</Color>
     <SolidColorBrush x:Key="Forground5" Color="{StaticResource Forground5Color}"/>
+    <Color x:Key="Forground51Color">#ff6e63</Color>
+    <SolidColorBrush x:Key="Forground51" Color="{StaticResource Forground51Color}"/>
 
     <!--字体大小-->
     <sys:Double x:Key="FontSize1">30</sys:Double>
     <sys:Double x:Key="FontSize2">14</sys:Double>
     <sys:Double x:Key="FontSize3">12</sys:Double>
     <sys:Double x:Key="FontSize4">24</sys:Double>
+    <sys:Double x:Key="FontSize5">18</sys:Double>
 
     <!--基础边线颜色-->
     <Color x:Key="BasicBorderColor">#cccccc</Color>
     <Color x:Key="BasicBorderColor2">#c9c9c9</Color>
     <Color x:Key="BorderColorColor3">#dce0e2</Color>
+    <Color x:Key="BorderColorColor4">#ffffff</Color>
     <SolidColorBrush x:Key="BasicBorder" Color="{StaticResource BasicBorderColor}"/>
     <SolidColorBrush x:Key="Border2" Color="{StaticResource BasicBorderColor2}"/>
     <SolidColorBrush x:Key="Border3" Color="{StaticResource BorderColorColor3}"/>
+    <SolidColorBrush x:Key="Border4" Color="{StaticResource BorderColorColor4}"/>
     <!--背景色-->
     <Color x:Key="Background1Color">#FDFDFD</Color>
     <SolidColorBrush x:Key="Background1" Color="{StaticResource Background1Color}"/>

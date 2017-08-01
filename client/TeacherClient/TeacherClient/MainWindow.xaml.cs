@@ -12,7 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TeacherClient.Core;
 using Telerik.Windows.Controls;
+using Reponse = TeacherClient.Contract.Reponse;
+using Request = TeacherClient.Contract.Request;
 
 namespace TeacherClient
 {
@@ -24,12 +27,23 @@ namespace TeacherClient
         public MainWindow()
         {
             InitializeComponent();
+            Init();
+        }
+        async void Init()
+        {
             Model = new UserModel();
-            Model.UserAccount = "test";
+            Request.ParamBase l = new Request.ParamBase() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token };
+            var t = await IPCHandle.doPost<Reponse.ResponseParam<Reponse.MainIndex>>(Config.Interface_mainIndex, l.ReturnRequestParam());
+
+
+            Model.UserAccount = App.CurrentLogin.user.phone;
             Model.MessageCount = 10;
+            Model.Version = App.CurrentVersion;
+
             this.DataContext = this;
             this.IsBusy = false;
         }
+
         public UserModel Model { get; set; }
 
         private void Logout_Click(object sender, RoutedEventArgs e)
@@ -51,6 +65,29 @@ namespace TeacherClient
             SettingWIndow win = new SettingWIndow();
             win.ShowDialog();
         }
+
+        private void StackPanel_Checked(object sender, RoutedEventArgs e)
+        {
+            switch (Model.MenuIndex)
+            {
+                case 0:
+                    frame.Source = new Uri("/Pages/MainIndex.xaml", UriKind.Relative);
+                    break;
+                case 1:
+                    frame.Source = new Uri("/Pages/MainIndex.xaml", UriKind.Relative);
+                    break;
+                case 2:
+                    frame.Source = new Uri("/Pages/MainIndex.xaml", UriKind.Relative);
+                    break;
+                case 3:
+                    frame.Source = new Uri("/Pages/MainIndex.xaml", UriKind.Relative);
+                    break;
+                case 4:
+                    frame.Source = new Uri("/Pages/MainIndex.xaml", UriKind.Relative);
+                    break;
+            }
+        }
+        
     }
 
     public class UserModel : ViewModelBase
@@ -73,6 +110,27 @@ namespace TeacherClient
             {
                 _MessageCount = value;
                 this.OnPropertyChanged("MessageCount");
+            }
+        }
+        string _Version;
+        public string Version
+        {
+            get { return _Version; }
+            set
+            {
+                _Version = value;
+                this.OnPropertyChanged("Version");
+            }
+        }
+
+        int _MenuIndex;
+        public int MenuIndex
+        {
+            get { return _MenuIndex; }
+            set
+            {
+                _MenuIndex = value;
+                this.OnPropertyChanged("MenuIndex");
             }
         }
     }
