@@ -18,7 +18,7 @@
                             BorderBrush="#dce0e2" BorderThickness="1" Margin="0,16,0,0" SnapsToDevicePixels="True" UseLayoutRounding="True">
                         <Image Width="90" Height="90"/>
                     </Border>
-                    <Button Margin="0,16,0,0" Content="修改头像" Width="62" Height="22" Foreground="#566f74" FontSize="12"/>
+                    <Button Margin="0,16,0,0" Content="修改头像" Width="62" Height="22" Foreground="#566f74" FontSize="12" Style="{DynamicResource ButtonStyle3}"/>
 
                     <RadioButton x:Name="rb_PersonInfo" IsChecked="True" Margin="0,38,0,0" Style="{StaticResource RadioButtonStyle4}" Height="32" Width="150">
                         <RadioButton.Content>
@@ -106,18 +106,229 @@
                             <TextBox Height="24" Width="120" Text="{Binding Model.realname}"/>
                         </StackPanel>
                     </StackPanel>
-                    <StackPanel Margin="38,25,0,0"
-                    Visibility="{Binding ElementName=rb_Binding,Path=IsChecked,Converter={StaticResource BoolToVisibilityConverter}}">
+                    <StackPanel Margin="38,25,0,0" Visibility="{Binding ElementName=rb_Binding,Path=IsChecked,Converter={StaticResource BoolToVisibilityConverter}}">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <TextBlock Foreground="#ff0000" Text="*"/>
+                            <TextBlock Margin="2,0,6,0" FontSize="12" Foreground="#4d5861" FontWeight="Bold" Text="手机绑定"/>
+                            <Border Width="550" Height="1" BorderBrush="#dce0e2" BorderThickness="0,1,0,0"/>
+                        </StackPanel>
+                        <Grid Visibility="Collapsed">
+                            <RadioButton x:Name="rb_pcheck" GroupName="phonebinding" IsChecked="True"/>
+                            <RadioButton x:Name="rb_pedit" GroupName="phonebinding"/>
+                            <RadioButton x:Name="rb_pcompleted" GroupName="phonebinding"/>
+                        </Grid>
+                        <StackPanel>
+                            <StackPanel Visibility="{Binding ElementName=rb_pcheck,Path=IsChecked,Converter={StaticResource BoolToVisibilityConverter}}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Grid>
+                                        <Image Source="/Images/首页/形状-3 (2).png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <TextBlock Text="1.验证身份" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Foreground6}" FontWeight="Bold"/>
+                                    </Grid>
+                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Image Source="/Images/首页/形状-3-拷贝.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <TextBlock Text="2.修改已验证手机" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" FontWeight="Bold">
+                                            <TextBlock.Foreground>
+                                                <SolidColorBrush Color="{DynamicResource Forground33Color}"/>
+                                            </TextBlock.Foreground>
+                                        </TextBlock>
+                                    </Grid>
+                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Image Source="/Images/首页/形状-3-拷贝.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <TextBlock Text="3.完成" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" FontWeight="Bold">
+                                            <TextBlock.Foreground>
+                                                <SolidColorBrush Color="{DynamicResource Forground33Color}"/>
+                                            </TextBlock.Foreground>
+                                        </TextBlock>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="10,30,0,0">
+                                    <TextBlock Text="已验证手机号码：" Foreground="#666666" FontSize="12"/>
+                                    <TextBlock Text="{Binding phone}" Foreground="#333333" FontSize="12"/>
+                                    <Button Content="发送验证码" Foreground="#333333" FontSize="12" Style="{DynamicResource ButtonStyle3}" Height="22" Width="66"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="10,15,0,0">
+                                    <TextBlock Text="验证码：" Foreground="#666666" FontSize="12"/>
+                                    <TextBox Text="{Binding valid}" Width="110" Foreground="#333333" FontSize="12" Height="22"/>
+                                </StackPanel>
+                                <Button Content="下一步" Click="phoneNext_Click" Foreground="#333333" FontSize="12" Style="{DynamicResource ButtonStyle3}" Width="60" Height="25" HorizontalAlignment="Left" Margin="10,15,0,0"/>
+                            </StackPanel>
+                            <StackPanel Visibility="{Binding ElementName=rb_pedit,Path=IsChecked,Converter={StaticResource BoolToVisibilityConverter}}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Grid>
+                                        <Image Source="/Images/首页/形状-3 (2).png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <TextBlock Text="1.验证身份" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Foreground6}" FontWeight="Bold"/>
+                                    </Grid>
+                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Image Source="/Images/首页/形状-3-拷贝_31.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <TextBlock Text="2.修改已验证手机" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Foreground6}" FontWeight="Bold"/>
+                                    </Grid>
+                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Image Source="/Images/首页/形状-3-拷贝.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <TextBlock Text="3.完成" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" FontWeight="Bold">
+                                            <TextBlock.Foreground>
+                                                <SolidColorBrush Color="{DynamicResource Forground33Color}"/>
+                                            </TextBlock.Foreground>
+                                        </TextBlock>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="10,30,0,0">
+                                    <TextBlock Text="新手机号：" Foreground="#666666" FontSize="12"/>
+                                    <TextBox Text="{Binding newphone}" Width="110" Foreground="#333333" FontSize="12"/>
+                                    <Button Content="发送验证码" Foreground="#333333" FontSize="12" Width="66" Height="22" Margin="6,0,0,0" Style="{DynamicResource ButtonStyle3}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="10,15,0,0" Height="22">
+                                    <TextBlock Text="验证码：" Foreground="#666666" FontSize="12"/>
+                                    <TextBox Text="{Binding newvalid}" Width="100" Foreground="#333333" FontSize="12" Margin="12,0,0,0"/>
+                                </StackPanel>
+                                <Button Content="提交" Click="phoneNext_Click" Foreground="#333333" FontSize="12" Width="60" Height="22" HorizontalAlignment="Left" Margin="10,15,0,0" Style="{DynamicResource ButtonStyle3}"/>
+                            </StackPanel>
+                            <StackPanel Visibility="{Binding ElementName=rb_pcompleted,Path=IsChecked,Converter={StaticResource BoolToVisibilityConverter}}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Grid>
+                                        <Image Source="/Images/首页/形状-3 (2).png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <TextBlock Text="1.验证身份" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Foreground6}" FontWeight="Bold"/>
+                                    </Grid>
+                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Image Source="/Images/首页/形状-3-拷贝_31.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <TextBlock Text="2.修改已验证手机" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Foreground6}" FontWeight="Bold"/>
+                                    </Grid>
+                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Image Source="/Images/首页/形状-3-拷贝_31.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <TextBlock Text="3.完成" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Foreground6}" FontWeight="Bold"/>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,20">
+                                    <Image Source="/Images/首页/绑定成功.png"/>
+                                    <TextBlock Text="您已成功修改手机号：" Margin="16,0,0,0">
+                                        <TextBlock.Foreground>
+                                            <SolidColorBrush Color="{DynamicResource Forground3Color}"/>
+                                        </TextBlock.Foreground>
+                                    </TextBlock>
+                                    <TextBlock Text="{Binding newphone}">
+                                        <TextBlock.Foreground>
+                                            <SolidColorBrush Color="{DynamicResource Forground3Color}"/>
+                                        </TextBlock.Foreground>
+                                    </TextBlock>
+                                </StackPanel>
+                                <Button Content="确定" Foreground="#333333" FontSize="12" Click="phoneNext_Click" Height="22" Width="60" Margin="44,0,0,0" HorizontalAlignment="Left" Style="{DynamicResource ButtonStyle3}"/>
+                            </StackPanel>
+                        </StackPanel>
 
+                        <StackPanel Orientation="Horizontal" Margin="0,40,0,8">
+                            <TextBlock Margin="0,0,6,0" FontSize="12" Foreground="#4d5861" FontWeight="Bold" Text="邮箱验证"/>
+                            <Border Width="550" Height="1" BorderBrush="#dce0e2" BorderThickness="0,1,0,0"/>
+                        </StackPanel>
+
+                        <Grid Visibility="Collapsed">
+                            <RadioButton x:Name="rb_mcheck" GroupName="emailbinding" IsChecked="True"/>
+                            <RadioButton x:Name="rb_medit" GroupName="emailbinding"/>
+                            <RadioButton x:Name="rb_mcompleted" GroupName="emailbinding"/>
+                        </Grid>
+                        <StackPanel>
+                            <StackPanel Visibility="{Binding ElementName=rb_mcheck,Path=IsChecked,Converter={StaticResource BoolToVisibilityConverter}}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Grid>
+                                        <Image Source="/Images/首页/形状-3 (2).png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <TextBlock Text="1.验证身份" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Foreground6}" FontWeight="Bold"/>
+                                    </Grid>
+                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Image Source="/Images/首页/形状-3-拷贝.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <TextBlock Text="2.修改已验证邮箱" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" FontWeight="Bold">
+                                            <TextBlock.Foreground>
+                                                <SolidColorBrush Color="{DynamicResource Forground33Color}"/>
+                                            </TextBlock.Foreground>
+                                        </TextBlock>
+                                    </Grid>
+                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Image Source="/Images/首页/形状-3-拷贝.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <TextBlock Text="3.完成" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" FontWeight="Bold">
+                                            <TextBlock.Foreground>
+                                                <SolidColorBrush Color="{DynamicResource Forground33Color}"/>
+                                            </TextBlock.Foreground>
+                                        </TextBlock>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="10,30,0,0">
+                                    <TextBlock Text="已验证邮箱：" Foreground="#666666" FontSize="12"/>
+                                    <TextBlock Text="{Binding email}" Foreground="#333333" FontSize="12"/>
+                                    <Button Content="发送验证码" Foreground="#333333" FontSize="12" Style="{DynamicResource ButtonStyle3}" Height="22" Width="66"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="10,15,0,0">
+                                    <TextBlock Text="验证码：" Foreground="#666666" FontSize="12"/>
+                                    <TextBox Text="{Binding mvalid}" Width="110" Foreground="#333333" FontSize="12" Height="22"/>
+                                </StackPanel>
+                                <Button Content="下一步" Foreground="#333333" FontSize="12" Click="emailNext_Click" Style="{DynamicResource ButtonStyle3}" Margin="10,15,0,0" HorizontalAlignment="Left" Height="24" Width="60"/>
+                            </StackPanel>
+                            <StackPanel Visibility="{Binding ElementName=rb_medit,Path=IsChecked,Converter={StaticResource BoolToVisibilityConverter}}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Grid>
+                                        <Image Source="/Images/首页/形状-3 (2).png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <TextBlock Text="1.验证身份" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Foreground6}" FontWeight="Bold"/>
+                                    </Grid>
+                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Image Source="/Images/首页/形状-3-拷贝_31.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <TextBlock Text="2.修改已验证邮箱" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Foreground6}" FontWeight="Bold"/>
+                                    </Grid>
+                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Image Source="/Images/首页/形状-3-拷贝.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <TextBlock Text="3.完成" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" FontWeight="Bold">
+                                            <TextBlock.Foreground>
+                                                <SolidColorBrush Color="{DynamicResource Forground33Color}"/>
+                                            </TextBlock.Foreground>
+                                        </TextBlock>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="10,30,0,0">
+                                    <TextBlock Text="新邮箱：" Foreground="#666666" FontSize="12"/>
+                                    <TextBox Text="{Binding newemail}" Width="100" Foreground="#333333" FontSize="12"/>
+                                    <Button Content="发送验证码" Foreground="#333333" FontSize="12" Width="66" Height="22" Margin="6,0,0,0" Style="{DynamicResource ButtonStyle3}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="10,15,0,0" Height="22">
+                                    <TextBlock Text="验证码：" Foreground="#666666" FontSize="12"/>
+                                    <TextBox Text="{Binding newmvalid}" Width="100" Foreground="#333333" FontSize="12"/>
+                                </StackPanel>
+                                <Button Content="提交" Foreground="#333333" FontSize="12" Click="emailNext_Click" Height="22" Margin="10,15,0,0" HorizontalAlignment="Left" Width="60" Style="{DynamicResource ButtonStyle3}"/>
+                            </StackPanel>
+                            <StackPanel Visibility="{Binding ElementName=rb_mcompleted,Path=IsChecked,Converter={StaticResource BoolToVisibilityConverter}}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Grid>
+                                        <Image Source="/Images/首页/形状-3 (2).png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <TextBlock Text="1.验证身份" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Foreground6}" FontWeight="Bold"/>
+                                    </Grid>
+                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Image Source="/Images/首页/形状-3-拷贝_31.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <TextBlock Text="2.修改已验证邮箱" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Foreground6}" FontWeight="Bold"/>
+                                    </Grid>
+                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Image Source="/Images/首页/形状-3-拷贝_31.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <TextBlock Text="3.完成" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Foreground6}" FontWeight="Bold"/>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,20">
+                                    <Image Source="/Images/首页/绑定成功.png"/>
+                                    <TextBlock Text="您已成功修改邮箱账号：" Margin="16,0,0,0">
+                                        <TextBlock.Foreground>
+                                            <SolidColorBrush Color="{DynamicResource Forground3Color}"/>
+                                        </TextBlock.Foreground>
+                                    </TextBlock>
+                                    <TextBlock Text="{Binding newemail}">
+                                        <TextBlock.Foreground>
+                                            <SolidColorBrush Color="{DynamicResource Forground3Color}"/>
+                                        </TextBlock.Foreground>
+                                    </TextBlock>
+                                </StackPanel>
+                                <Button Content="确定" Foreground="#333333" FontSize="12" Click="emailNext_Click" Height="22" Width="60" HorizontalAlignment="Left" Margin="44,0,0,0" Style="{DynamicResource ButtonStyle3}"/>
+                            </StackPanel>
+                        </StackPanel>
                     </StackPanel>
                 </Grid>
             </ScrollViewer>
             <Grid Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom"
                   Visibility="{Binding ElementName=rb_PersonInfo,Path=IsChecked,Converter={StaticResource BoolToVisibilityConverter}}">
                 <StackPanel Orientation="Horizontal" Margin="0,0,35,12">
-                    <Button Content="保存" Width="60" Height="24" Foreground="#FF566F74"/>
-                    <Button Content="取消" Width="60" Margin="8,0" Foreground="#FF566F74"/>
-                    <Button Content="应用" Width="60" Foreground="#FF566F74"/>
+                    <Button Content="保存" Width="60" Height="24" Foreground="#FF566F74" Style="{DynamicResource ButtonStyle3}"/>
+                    <Button Content="取消" Width="60" Margin="8,0" Foreground="#FF566F74" Style="{DynamicResource ButtonStyle3}" Height="24"/>
+                    <Button Content="应用" Width="60" Foreground="#FF566F74" Style="{DynamicResource ButtonStyle3}" Height="24"/>
                 </StackPanel>
             </Grid>
         </Grid>

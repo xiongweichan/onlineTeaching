@@ -41,8 +41,7 @@ namespace TeacherClient
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
             var wins = App.Current.Windows;
-            LoginWindow win = new LoginWindow();
-            win.FocusNotAutoLogin = true;
+            LoginWindow win = new LoginWindow(true);
             win.Show();
             App.Current.MainWindow = win;
             foreach (Window item in wins)

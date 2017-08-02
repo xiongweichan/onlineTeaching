@@ -19,6 +19,7 @@
     <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
     <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
     <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+    <!--蓝色背景按钮-->
     <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="Background" Value="{StaticResource Background2}"/>
@@ -56,6 +57,7 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <!--蓝色字，透明背景按钮-->
     <Style x:Key="ButtonStyle2" TargetType="{x:Type Button}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="Background" Value="Transparent"/>
@@ -106,6 +108,22 @@
         <Setter Property="Template" >
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                          Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+                        <Image x:Name="img" Stretch="Fill" Source="/Images/首页/按钮.png"/>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   FontSize="{TemplateBinding FontSize}" 
+                                   Foreground="{TemplateBinding Foreground}"
+                                   Text="{TemplateBinding Content}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="img" Property="Source" Value="/Images/首页/按钮点中.png"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+                <!--<ControlTemplate TargetType="{x:Type Button}">
                     <Border x:Name="border" CornerRadius="2" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}"
                             MinWidth="{TemplateBinding MinWidth}" MinHeight="{TemplateBinding MinHeight}" MaxWidth="{TemplateBinding MaxWidth}" MaxHeight="{TemplateBinding MaxHeight}"
                             Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
@@ -121,7 +139,7 @@
                             <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
-                </ControlTemplate>                
+                </ControlTemplate>-->                
             </Setter.Value>
         </Setter>
     </Style>

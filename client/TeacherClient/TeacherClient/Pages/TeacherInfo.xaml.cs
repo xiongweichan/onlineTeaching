@@ -74,5 +74,37 @@ namespace TeacherClient.Pages
             for (int i = 1; i <= t; i++) list.Add(string.Format("{0}日", i));
             days.ItemsSource = list;
         }
+
+        private void phoneNext_Click(object sender, RoutedEventArgs e)
+        {
+            if(rb_pcheck.IsChecked.HasValue && rb_pcheck.IsChecked.Value)
+            {
+                rb_pedit.IsChecked = true;
+            }
+            else if(rb_pedit.IsChecked.HasValue && rb_pedit.IsChecked.Value)
+            {
+                rb_pcompleted.IsChecked = true;
+            }
+            else if(rb_pcompleted.IsChecked.HasValue && rb_pcompleted.IsChecked.Value)
+            {
+                rb_pedit.IsChecked = true;
+            }
+        }
+
+        private void emailNext_Click(object sender, RoutedEventArgs e)
+        {
+            if (rb_mcheck.IsChecked.HasValue && rb_mcheck.IsChecked.Value)
+            {
+                rb_medit.IsChecked = true;
+            }
+            else if (rb_medit.IsChecked.HasValue && rb_medit.IsChecked.Value)
+            {
+                rb_mcompleted.IsChecked = true;
+            }
+            else if (rb_mcompleted.IsChecked.HasValue && rb_mcompleted.IsChecked.Value)
+            {
+                rb_medit.IsChecked = true;
+            }
+        }
     }
 }

@@ -51,8 +51,7 @@ namespace TeacherClient
 
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
-            LoginWindow win = new LoginWindow();
-            win.FocusNotAutoLogin = true;
+            LoginWindow win = new LoginWindow(true);
             win.Show();
             App.Current.MainWindow = win;
             this.Close();

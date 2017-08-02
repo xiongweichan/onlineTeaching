@@ -25,14 +25,13 @@ namespace TeacherClient
     /// </summary>
     public partial class LoginWindow : WindowBase
     {
-        /// <summary>
-        /// 强制不允许自动登陆，退出登陆时可能用到
-        /// </summary>
-        public bool FocusNotAutoLogin { get; set; }
 
         LoginModel _model = new LoginModel();
 
         public LoginWindow()
+            : this(false)
+        { }
+        public LoginWindow(bool focus)
         {
             InitializeComponent();
             this.DataContext = _model;
@@ -46,7 +45,7 @@ namespace TeacherClient
             }
 
             this.IsBusy = false;
-            if (_model.AutoLogin)
+            if (_model.AutoLogin && !focus)
             {
                 Login_Click(null, null);
             }

@@ -317,6 +317,10 @@
   <ItemGroup>
     <Resource Include="Images\首页\LOGO_72.png" />
     <Resource Include="Images\登录注册\形状-3-拷贝_31.png" />
+    <Resource Include="Images\首页\形状-3 %282%29.png" />
+    <Resource Include="Images\首页\形状-3-拷贝.png" />
+    <Resource Include="Images\首页\形状-3-拷贝_31.png" />
+    <Resource Include="Images\首页\绑定成功.png" />
     <Content Include="SysConfig\SystemConfig.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

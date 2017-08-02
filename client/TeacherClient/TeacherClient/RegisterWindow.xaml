@@ -13,11 +13,11 @@
         </StackPanel>
         <Grid Grid.Row="1" Canvas.Left="24" Canvas.Top="58">
             <Grid Visibility="Collapsed">
-                <RadioButton GroupName="page" IsChecked="{Binding Model.ShowFirstPage}"/>
-                <RadioButton GroupName="page" IsChecked="{Binding Model.ShowSecondPage}"/>
-                <RadioButton GroupName="page" IsChecked="{Binding Model.ShowThirdPage}"/>
+                <RadioButton x:Name="firstpage" GroupName="page" IsChecked="True"/>
+                <RadioButton x:Name="secondpage" GroupName="page"/>
+                <RadioButton x:Name="thirdpage" GroupName="page"/>
             </Grid>
-            <!--<StackPanel Visibility="{Binding Model.ShowFirstPage, Converter={StaticResource BoolToVisibilityConverter}}">
+            <StackPanel Visibility="{Binding IsChecked, ElementName=firstpage, Converter={StaticResource BoolToVisibilityConverter}}">
                 <StackPanel Orientation="Horizontal">
                     <Grid>
                         <Image Source="/Images/登录注册/形状-3 (2).png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -64,10 +64,10 @@
 
                     <Button Content="《用户服务协议》" Margin="90,15,0,0" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground36}" Style="{StaticResource ButtonStyle2}"
                             HorizontalAlignment="Left" BorderThickness="0" Background="Transparent"/>
-                    <Button x:Name="btnNextStep"  Margin="90,20,0,0" HorizontalAlignment="Left" Content="下一步" Style="{DynamicResource ButtonStyle1}" Width="140" Height="30"/>
+                    <Button x:Name="btnNextStep" Click="btnNextStep_Click" Margin="90,20,0,0" HorizontalAlignment="Left" Content="下一步" Style="{DynamicResource ButtonStyle1}" Width="140" Height="30"/>
                 </StackPanel>
-            </StackPanel>-->
-            <!--<StackPanel Visibility="{Binding Model.ShowSecondPage, Converter={StaticResource BoolToVisibilityConverter}}">
+            </StackPanel>
+            <StackPanel Visibility="{Binding IsChecked, ElementName=secondpage, Converter={StaticResource BoolToVisibilityConverter}}">
                 <StackPanel Orientation="Horizontal">
                     <Grid>
                         <Image Source="/Images/登录注册/形状-3 (2).png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -75,8 +75,8 @@
                                Foreground="{DynamicResource Forground1}"/>
                     </Grid>
                     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Image Source="/Images/登录注册/形状-3 (2).png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        <TextBlock Text="上传专业资质" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Forground34}"/>
+                        <Image Source="/Images/登录注册/形状-3-拷贝_31.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="上传专业资质" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Forground1}"/>
                     </Grid>
                     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Image Source="/Images/登录注册/形状-3-拷贝.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -163,9 +163,10 @@
                 </ScrollViewer>
                 <Border Height="1" BorderBrush="{StaticResource BasicBorder}" BorderThickness="0,1,0,0" Margin="-16,25,0,25" Width="632" SnapsToDevicePixels="True"/>
 
-                <Button FontSize="14" HorizontalAlignment="Left" Content="下一步" Style="{DynamicResource ButtonStyle1}" Margin="40,0,0,24" Width="140" Height="30"/>
-            </StackPanel>-->
-            <StackPanel Visibility="{Binding Model.ShowThirdPage, Converter={StaticResource BoolToVisibilityConverter}}">
+                <Button FontSize="14" HorizontalAlignment="Left" Content="下一步" Style="{DynamicResource ButtonStyle1}" Margin="40,0,0,24" Width="140" Height="30"
+                        Click="btnNextStep_Click"/>
+            </StackPanel>
+            <StackPanel Visibility="{Binding IsChecked, ElementName=thirdpage, Converter={StaticResource BoolToVisibilityConverter}}">
                 <StackPanel Orientation="Horizontal">
                     <Grid>
                         <Image Source="/Images/登录注册/形状-3 (2).png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -173,12 +174,12 @@
                                Foreground="{DynamicResource Forground1}"/>
                     </Grid>
                     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Image Source="/Images/登录注册/形状-3 (2).png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        <TextBlock Text="上传专业资质" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Forground34}"/>
+                        <Image Source="/Images/登录注册/形状-3-拷贝_31.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="上传专业资质" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Forground1}"/>
                     </Grid>
                     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Image Source="/Images/登录注册/形状-3 (2).png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        <TextBlock Text="等待平台审核" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Forground34}"/>
+                        <Image Source="/Images/登录注册/形状-3-拷贝_31.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="等待平台审核" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Forground1}"/>
                     </Grid>
                     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Image Source="/Images/登录注册/形状-3-拷贝.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -195,7 +196,7 @@
                     <Line Height="24"/>
                     <Run Text="请您耐心等候，审核结果我们将会短信通知您" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground3}"/><LineBreak/>
                     <Line Height="24"/>
-                    <Run Text="5秒后为您跳转回登录页，或者点击"  FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground33}"/>
+                    <Run x:Name="run_time" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground33}"/><Run Text="秒后为您跳转回登录页，或者点击"  FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground33}"/>
                     <Run PreviewMouseLeftButtonUp="Run_PreviewMouseLeftButtonUp" Text="直接跳转" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground4}"/>
                 </TextBlock>
                 <Button x:Name="BtnSure" FontSize="14" HorizontalAlignment="Left" Content="确定" Style="{DynamicResource ButtonStyle1}" Margin="50,40,0,0" Width="140" Height="30"

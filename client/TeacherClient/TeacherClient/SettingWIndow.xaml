@@ -22,9 +22,9 @@
         <Border SnapsToDevicePixels="True" CornerRadius="0,0,0,6" Width="112" Grid.Row="1" Background="{StaticResource Background33}" 
                 BorderBrush="{StaticResource BasicBorder}" BorderThickness="1,0,0,1">
             <StackPanel>
-                <RadioButton x:Name="rb_account" Content="账号设置" Style="{StaticResource RadioButtonStyle2}"/>
+                <RadioButton x:Name="rb_account" IsChecked="True" Content="账号设置" Style="{StaticResource RadioButtonStyle2}"/>
                 <RadioButton x:Name="rb_common" Content="通用设置" Style="{StaticResource RadioButtonStyle2}"/>
-                <RadioButton x:Name="rb_about" IsChecked="True" Content="关于我们" Style="{StaticResource RadioButtonStyle2}"/>
+                <RadioButton x:Name="rb_about" Content="关于我们" Style="{StaticResource RadioButtonStyle2}"/>
             </StackPanel>
         </Border>
         <Grid Grid.Row="1" Grid.Column="1" >
@@ -48,7 +48,7 @@
                 </StackPanel>
                 <TextBlock Margin="6,10,0,0" Text="邻居学院文件的默认保存位置" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground33}"/>
                 <TextBlock Margin="0,20,0,0" Text="清除缓存" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground3}"/>
-                <Button Margin="0,10,0,0" HorizontalAlignment="Left" Style="{StaticResource ButtonStyle3}" Height="30" MinWidth="138" Content="{Binding Model.CacheCount}" ContentStringFormat="缓存文件（{0}MB）" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground3}"/>
+                <Button Margin="0,10,0,0" HorizontalAlignment="Left" Style="{StaticResource ButtonStyle3}" Height="30" MinWidth="138" MaxWidth="150" Content="{Binding Model.CacheCount}" ContentStringFormat="缓存文件（{0}MB）" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground3}"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,30,12,0">
                     <Button Width="78" Height="26" Style="{StaticResource ButtonStyle3}" Background="White" Content="确定" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground3}"
                             Click="ApplySetting_Click"/>

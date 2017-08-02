@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using Telerik.Windows.Controls;
 
 namespace TeacherClient
@@ -20,13 +21,23 @@ namespace TeacherClient
     /// </summary>
     public partial class RegisterWindow : WindowBase
     {
-        RegisterModel Model { get; set; }
         public RegisterWindow()
         {
             InitializeComponent();
-            Model = new RegisterModel();
             this.DataContext = this;
             this.IsBusy = false;
+            _timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, Time_Tick, this.Dispatcher);
+        }
+
+        private void Time_Tick(object sender, EventArgs e)
+        {
+            Count--;
+            run_time.Text = Count.ToString();
+            if (Count == 0)
+            {
+                BtnSure_Click(null, null);
+                _timer.Stop();
+            }
         }
 
         private void BtnSure_Click(object sender, RoutedEventArgs e)
@@ -38,67 +49,24 @@ namespace TeacherClient
         {
             this.Close();
         }
-    }
 
-    public class RegisterModel : ViewModelBase
-    {
+        DispatcherTimer _timer;
+        public int Count { get; set; }
 
-        public RegisterModel()
+        private void btnNextStep_Click(object sender, RoutedEventArgs e)
         {
-            ShowFirstPage = true;
-        }
-
-        bool _ShowFirstPage;
-        /// <summary>
-        /// 页面1
-        /// </summary>
-        public bool ShowFirstPage
-        {
-            get { return _ShowFirstPage; }
-            set
+            if (firstpage.IsChecked.HasValue && firstpage.IsChecked.Value)
             {
-                if (value != _ShowFirstPage)
-                {
-                    _ShowFirstPage = value;
-                    OnPropertyChanged("ShowFirstPage");
-                }
+                secondpage.IsChecked = true;
             }
-        }
-
-        bool _ShowSecondPage;
-        /// <summary>
-        /// 页面2
-        /// </summary>
-        public bool ShowSecondPage
-        {
-            get { return _ShowSecondPage; }
-            set
+            else if (secondpage.IsChecked.HasValue && secondpage.IsChecked.Value)
             {
-                if (value != _ShowSecondPage)
-                {
-                    _ShowSecondPage = value;
-                    OnPropertyChanged("ShowSecondPage");
-                }
+                thirdpage.IsChecked = true;
+                Count = 5;
+                run_time.Text = Count.ToString();
+                _timer.Start();
             }
+
         }
-
-        bool _ShowThirdPage;
-        /// <summary>
-        /// 页面3
-        /// </summary>
-        public bool ShowThirdPage
-        {
-            get { return _ShowThirdPage; }
-            set
-            {
-                if (value != _ShowThirdPage)
-                {
-                    _ShowThirdPage = value;
-                    OnPropertyChanged("ShowThirdPage");
-                }
-            }
-        }
-
-
     }
 }
