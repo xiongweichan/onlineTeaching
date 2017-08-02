@@ -25,5 +25,6 @@ namespace TeacherClient
 
         public static readonly string Interface_login = "Live/LecLogin/login";
         public static readonly string Interface_mainIndex = "Live/LecUser/mainIndex";
+        public static readonly string Interface_userInfo = "Live/LecUser/userInfo";
     }
 }

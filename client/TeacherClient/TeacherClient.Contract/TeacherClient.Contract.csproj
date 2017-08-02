@@ -44,7 +44,7 @@
     <Compile Include="Reponse\Login.cs" />
     <Compile Include="Reponse\MainIndex.cs" />
     <Compile Include="Reponse\ResponseParam.cs" />
-    <Compile Include="Reponse\User.cs" />
+    <Compile Include="Reponse\userInfo.cs" />
     <Compile Include="Request\Login.cs" />
     <Compile Include="Request\ParamBase.cs" />
   </ItemGroup>

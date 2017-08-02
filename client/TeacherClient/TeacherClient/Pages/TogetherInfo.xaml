@@ -39,6 +39,7 @@
                     <TextBlock Text="{Binding coursewareCount}" FontSize="{StaticResource FontSize5}" Foreground="{StaticResource Forground51}"/>
                     <TextBlock Text="课件" Margin="0,10,0,0" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground39}"/>
                 </StackPanel>
+                <Button Foreground="#63a1ff" Style="{StaticResource ButtonStyle2}" Content="完善个人资料 &gt;&gt;" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="230,0,0,0" Click="Button_Click"/>
             </StackPanel>
         </Border>
         <Border Margin="0,12" BorderBrush="{StaticResource Border4}" Height="86" Width="1000" HorizontalAlignment="Center"
@@ -77,8 +78,57 @@
                 <Grid Background="{StaticResource Background11}">
                     <TextBlock Text="消息中心" Foreground="#4d5861" FontSize="{StaticResource FontSize3}" Margin="20,0,0,0" VerticalAlignment="Center"/>
                 </Grid>
-                <StackPanel Grid.Row="1" Orientation="Horizontal">
-
+                <StackPanel Grid.Row="1">
+                    <StackPanel.Resources>
+                        <DataTemplate x:Key="MessageTemplate">
+                            <StackPanel Orientation="Horizontal" Margin="20,0,0,0" PreviewMouseLeftButtonUp="StackPanel_PreviewMouseLeftButtonUp" Tag="{Binding id}">
+                                <TextBlock Text="{Binding title, StringFormat='· {0}'}" TextTrimming="CharacterEllipsis"
+                                           Foreground="#4d5861" FontSize="{StaticResource FontSize3}" />
+                                <TextBlock Text="{Binding add_time, Converter={StaticResource IntToTimeConverter}, ConverterParameter='[MM-dd]'}" Margin="40,0,0,0"
+                                           Foreground="#4d5861" FontSize="{StaticResource FontSize3}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </StackPanel.Resources>
+                    <Grid Height="32" Background="{DynamicResource Forground1}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <ContentControl Content="{Binding messageList[0]}" ContentTemplate="{StaticResource MessageTemplate}"/>
+                        <ContentControl Content="{Binding messageList[5]}" Grid.Column="1" ContentTemplate="{StaticResource MessageTemplate}"/>
+                    </Grid>
+                    <Grid Height="32" Background="{DynamicResource Background11}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <ContentControl Content="{Binding messageList[1]}" ContentTemplate="{StaticResource MessageTemplate}"/>
+                        <ContentControl Content="{Binding messageList[6]}" Grid.Column="1" ContentTemplate="{StaticResource MessageTemplate}"/>
+                    </Grid>
+                    <Grid Height="32" Background="{DynamicResource Forground1}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <ContentControl Content="{Binding messageList[2]}" ContentTemplate="{StaticResource MessageTemplate}"/>
+                        <ContentControl Content="{Binding messageList[7]}" Grid.Column="1" ContentTemplate="{StaticResource MessageTemplate}"/>
+                    </Grid>
+                    <Grid Height="32" Background="{DynamicResource Background11}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <ContentControl Content="{Binding messageList[3]}" ContentTemplate="{StaticResource MessageTemplate}"/>
+                        <ContentControl Content="{Binding messageList[8]}" Grid.Column="1" ContentTemplate="{StaticResource MessageTemplate}"/>
+                    </Grid>
+                    <Grid Height="32" Background="{DynamicResource Forground1}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <ContentControl Content="{Binding messageList[4]}" ContentTemplate="{StaticResource MessageTemplate}"/>
+                        <ContentControl Content="{Binding messageList[9]}" Grid.Column="1" ContentTemplate="{StaticResource MessageTemplate}"/>
+                    </Grid>
                 </StackPanel>
             </Grid>
         </Border>

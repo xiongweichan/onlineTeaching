@@ -42,6 +42,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="PresentationFramework.Classic" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -67,11 +68,14 @@
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\IntToBoolConverter.cs" />
     <Compile Include="Converters\IntToColorConverter.cs" />
+    <Compile Include="Converters\IntToTimeConverter.cs" />
     <Compile Include="Converters\IntToVisibilityConverter.cs" />
     <Compile Include="Converters\LiveStatusOperationTemplateSelector.cs" />
     <Compile Include="Converters\SexIntToStringConverter.cs" />
     <Compile Include="Converters\TextToVisibilityConverter.cs" />
     <Compile Include="Extension\CacheHelper.cs" />
+    <Compile Include="Extension\IChangeData.cs" />
+    <Compile Include="Extension\INavigation.cs" />
     <Compile Include="Extension\PasswordBoxExtention.cs" />
     <Compile Include="Extension\StatusCode.cs" />
     <Compile Include="Extension\StringExtension.cs" />
@@ -90,6 +94,9 @@
     </Compile>
     <Compile Include="Pages\MainIndex.xaml.cs">
       <DependentUpon>MainIndex.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TeacherInfo.xaml.cs">
+      <DependentUpon>TeacherInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\TogetherInfo.xaml.cs">
       <DependentUpon>TogetherInfo.xaml</DependentUpon>
@@ -111,6 +118,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="FindPasswordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FrameDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -139,6 +150,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\MainIndex.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TeacherInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -9,6 +9,7 @@
             <local:TextToVisibilityConverter x:Key="TextToVisibilityConverter"/>
             <local:SexIntToStringConverter x:Key="SexIntToStringConverter"/>
             <local:IntToBoolConverter x:Key="IntToBoolConverter"/>
+            <local:IntToTimeConverter x:Key="IntToTimeConverter"/>
 
             <Style TargetType="Image">
                 <Setter Property="Stretch" Value="None"/>
@@ -19,6 +20,7 @@
                 <ResourceDictionary Source="/Dictionary/ResourceDictionary.xaml"/>
                 <ResourceDictionary Source="/Dictionary/ButtonDictionary.xaml"/>
                 <ResourceDictionary Source="/Dictionary/TextBoxDictionary.xaml"/>
+                <ResourceDictionary Source="FrameDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

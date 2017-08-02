@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TeacherClient"
-             mc:Ignorable="d" Loaded="UserControl_Loaded"
+             mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.RowDefinitions>
@@ -12,12 +12,12 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid Height="38" Background="{StaticResource Background11}">
-            <StackPanel Orientation="Horizontal" RadioButton.Checked="StackPanel_Checked">
-                <RadioButton x:Name="rb_info" Tag="1" Content="信息聚合" Style="{StaticResource RadioButtonStyle3}" Margin="10,0,0,0"/>
-                <RadioButton Tag="2" Content="讲师信息" Style="{StaticResource RadioButtonStyle3}" Margin="40,0,0,0"/>
-                <RadioButton Tag="3" Content="身份认证" Style="{StaticResource RadioButtonStyle3}" Margin="40,0,0,0"/>
+            <StackPanel Orientation="Horizontal" >
+                <RadioButton IsChecked="{Binding Type, Converter={StaticResource IntToBoolConverter}, ConverterParameter=0}" Content="信息聚合" Style="{StaticResource RadioButtonStyle3}" Margin="10,0,0,0"/>
+                <RadioButton IsChecked="{Binding Type, Converter={StaticResource IntToBoolConverter}, ConverterParameter=1}" Content="讲师信息" Style="{StaticResource RadioButtonStyle3}" Margin="40,0,0,0"/>
+                <RadioButton IsChecked="{Binding Type, Converter={StaticResource IntToBoolConverter}, ConverterParameter=2}" Content="身份认证" Style="{StaticResource RadioButtonStyle3}" Margin="40,0,0,0"/>
             </StackPanel>
         </Grid>
-        <Frame Grid.Row="1" x:Name="frame"/>
+        <ContentControl Grid.Row="1" x:Name="frame" />
     </Grid>
 </UserControl>

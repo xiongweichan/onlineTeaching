@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TeacherClient.Contract.Reponse
 {
-    public class User
+    public class userInfo
     {
         public string id { get; set; }
         public string phone { get; set; }

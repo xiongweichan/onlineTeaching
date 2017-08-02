@@ -90,18 +90,15 @@ namespace TeacherClient
             var t = await IPCHandle.doPost<Reponse.ResponseParam<Reponse.Login>>(Config.Interface_login, l.ReturnRequestParam());
             if (t == null || t.status != Config.SuccessCode)
             {
-                MessageWindow win = new MessageWindow();
-                win.Title = "登录失败";
-                win.Message = t != null ? t.info : "登录失败，请检查服务是否正常";
-                win.ShowDialog();
+                MessageWindow.Alter("错误提示", t != null ? t.info : "登录失败，请检查服务是否正常");
             }
             else
             {
                 App.CurrentLogin = t.data;
                 MainWindow win = new MainWindow();
+                App.Current.MainWindow = win;
                 win.Show();
                 this.Close();
-                App.Current.MainWindow = win;
             }
         }
     }

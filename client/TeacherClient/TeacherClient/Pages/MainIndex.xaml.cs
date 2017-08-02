@@ -18,36 +18,50 @@ namespace TeacherClient.Pages
     /// <summary>
     /// MainIndex.xaml 的交互逻辑
     /// </summary>
-    public partial class MainIndex : UserControl
+    public partial class MainIndex : UserControl, INavigation
     {
+        public static MainIndex Current { get; set; }
         public MainIndex()
         {
+            Current = this;
             InitializeComponent();
+            this.DataContext = this;
+            Type = 0;
+        }
+        TogetherInfo _togetherInfo = new TogetherInfo();
+        TeacherInfo _teacherInfo = new TeacherInfo();
+        public void NavigateToPage(int index, object data)
+        {
+            Type = index;
+            if (frame.Content is IChangeData && data != null)
+                (frame.Content as IChangeData).ChangeData(data);
         }
 
-        private void StackPanel_Checked(object sender, RoutedEventArgs e)
+        public int Type
         {
-            if (e.Source is RadioButton && (e.Source as RadioButton).Content != null)
+            get { return (int)GetValue(TypeProperty); }
+            set { SetValue(TypeProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Type.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TypeProperty =
+            DependencyProperty.Register("Type", typeof(int), typeof(MainIndex), new PropertyMetadata(-1, (obj, e) =>
             {
-                var tag = (e.Source as RadioButton).Tag.ToString();
-                switch (tag)
+                var _this = obj as MainIndex;
+                switch (_this.Type)
                 {
-                    case "1":
-                        frame.Source = new Uri("/Pages/TogetherInfo.xaml", UriKind.Relative);
+                    case 0:
+                        _this.frame.Content = _this._togetherInfo;
                         break;
-                    case "2":
-                        frame.Source = new Uri("/Pages/TogetherInfo.xaml", UriKind.Relative);
+                    case 1:
+                        _this.frame.Content = _this._teacherInfo;
                         break;
-                    case "3":
-                        frame.Source = new Uri("/Pages/TogetherInfo.xaml", UriKind.Relative);
+                    case 2:
+                        _this.frame.Content = _this._togetherInfo;
                         break;
                 }
-            }
-        }
+            }));
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            rb_info.IsChecked = true;
-        }
+
     }
 }

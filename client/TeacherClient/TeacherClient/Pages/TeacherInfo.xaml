@@ -1,0 +1,126 @@
+﻿<UserControl x:Class="TeacherClient.Pages.TeacherInfo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TeacherClient.Pages"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="1000">
+    <Border BorderBrush="#dce0e2" BorderThickness="1" Margin="14,17" SnapsToDevicePixels="True" UseLayoutRounding="True">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="177"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Background="#F7FbFE">
+                <StackPanel>
+                    <Border CornerRadius="10" Width="102" Height="102" Background="White"
+                            BorderBrush="#dce0e2" BorderThickness="1" Margin="0,16,0,0" SnapsToDevicePixels="True" UseLayoutRounding="True">
+                        <Image Width="90" Height="90"/>
+                    </Border>
+                    <Button Margin="0,16,0,0" Content="修改头像" Width="62" Height="22" Foreground="#566f74" FontSize="12"/>
+
+                    <RadioButton x:Name="rb_PersonInfo" IsChecked="True" Margin="0,38,0,0" Style="{StaticResource RadioButtonStyle4}" Height="32" Width="150">
+                        <RadioButton.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Images/首页/个人信息.png"/>
+                                <TextBlock Text="个人信息" Margin="8,0,0,0" FontSize="12" Foreground="White"/>
+                            </StackPanel>
+                        </RadioButton.Content>
+                    </RadioButton>
+                    <RadioButton x:Name="rb_Binding" Margin="0,10,0,0" Style="{StaticResource RadioButtonStyle4}" Height="32" Width="150">
+                        <RadioButton.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Images/首页/账号绑定.png"/>
+                                <TextBlock Text="账号绑定" Margin="8,0,0,0" FontSize="12" Foreground="White"/>
+                            </StackPanel>
+                        </RadioButton.Content>
+                    </RadioButton>
+                </StackPanel>
+            </Grid>
+            <Border SnapsToDevicePixels="True" UseLayoutRounding="True" BorderThickness="0,0,1,0" BorderBrush="#dce0e2"/>
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Column="1">
+                <Grid>
+                    <StackPanel Margin="38,25,0,0" Visibility="{Binding ElementName=rb_PersonInfo,Path=IsChecked,Converter={StaticResource BoolToVisibilityConverter}}">
+                        <StackPanel.Resources>
+                            <Style x:Key="text" TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                <Setter Property="FontSize" Value="12"/>
+                                <Setter Property="Foreground" Value="#333333"/>
+                            </Style>
+                        </StackPanel.Resources>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource text}" Text="{Binding Model.phone, StringFormat='账号：{0}'}"/>
+                            <TextBlock Style="{StaticResource text}" Margin="60,0,0,0" Text="{Binding Model.phone, StringFormat='讲师ID：{0}'}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource text}" Text="个人简介："/>
+                            <TextBox AcceptsReturn="True" AcceptsTab="True" Height="88" Width="455"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,8">
+                            <TextBlock FontSize="12" Foreground="#4d5861" FontWeight="Bold" Text="基本资料"/>
+                            <Border Width="455" Height="1" BorderBrush="#dce0e2" BorderThickness="0,1,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <TextBlock Text="姓       名：" Style="{StaticResource text}" Width="65"/>
+                            <TextBox Height="24" Width="120" Text="{Binding Model.realname}"/>
+                            <TextBlock Text="性       别：" Style="{StaticResource text}" Width="65" Margin="70,0,0,0"/>
+                            <ComboBox Height="24" Width="120" SelectedIndex="{Binding Model.sex}">
+                                <ComboBoxItem Content="保密"/>
+                                <ComboBoxItem Content="男"/>
+                                <ComboBoxItem Content="女"/>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <TextBlock Text="年       龄：" Style="{StaticResource text}" Width="65"/>
+                            <TextBox Height="24" Width="120" Text="{Binding Model.age}"/>
+                            <TextBlock Text="生       日：" Style="{StaticResource text}" Width="65" Margin="70,0,0,0"/>
+                            <ComboBox x:Name="months" SelectionChanged="months_SelectionChanged" Width="55"/>
+                            <ComboBox x:Name="days" Width="55" Margin="10,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <TextBlock Text="讲师类型：" Style="{StaticResource text}" Width="65"/>
+                            <ComboBox  Height="24" Width="120"/>
+                            <TextBlock Text="擅长领域：" Style="{StaticResource text}" Width="65" Margin="70,0,0,0"/>
+                            <ComboBox Height="24" Width="120"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <TextBlock Text="所  在  地：" Style="{StaticResource text}" Width="65"/>
+                            <ComboBox  Height="24" Width="120"/>
+                            <ComboBox Height="24" Width="120" Margin="8,0,0,0"/>
+                            <ComboBox Height="24" Width="120" Margin="8,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,10">
+                            <TextBlock FontSize="12" Foreground="#4d5861" FontWeight="Bold" Text="联系方式"/>
+                            <Border Width="455" Height="1" BorderBrush="#dce0e2" BorderThickness="0,1,0,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <TextBlock Text="手       机：" Style="{StaticResource text}" Width="65"/>
+                            <TextBox Height="24" Width="120" Text="{Binding Model.realname}"/>
+                            <TextBlock Text="微       信：" Style="{StaticResource text}" Width="65" Margin="70,0,0,0"/>
+                            <TextBox Height="24" Width="120" Text="{Binding Model.realname}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <TextBlock Text="邮       箱：" Style="{StaticResource text}" Width="65"/>
+                            <TextBox Height="24" Width="120" Text="{Binding Model.realname}"/>
+                            <TextBlock Text="职       业：" Style="{StaticResource text}" Width="65" Margin="70,0,0,0"/>
+                            <TextBox Height="24" Width="120" Text="{Binding Model.realname}"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Margin="38,25,0,0"
+                    Visibility="{Binding ElementName=rb_Binding,Path=IsChecked,Converter={StaticResource BoolToVisibilityConverter}}">
+
+                    </StackPanel>
+                </Grid>
+            </ScrollViewer>
+            <Grid Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                  Visibility="{Binding ElementName=rb_PersonInfo,Path=IsChecked,Converter={StaticResource BoolToVisibilityConverter}}">
+                <StackPanel Orientation="Horizontal" Margin="0,0,35,12">
+                    <Button Content="保存" Width="60" Height="24" Foreground="#FF566F74"/>
+                    <Button Content="取消" Width="60" Margin="8,0" Foreground="#FF566F74"/>
+                    <Button Content="应用" Width="60" Foreground="#FF566F74"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Border>
+
+</UserControl>

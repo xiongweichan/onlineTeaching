@@ -10,6 +10,6 @@ namespace TeacherClient.Contract.Reponse
     {
         public string lec_id { get; set; }
         public string token { get; set; }
-        public User user { get; set; }
+        public userInfo user { get; set; }
     }
 }

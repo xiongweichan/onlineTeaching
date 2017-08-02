@@ -50,7 +50,7 @@
                 <RadioButton Content="课酬中心" IsChecked="{Binding Model.MenuIndex, Converter={StaticResource IntToBoolConverter}, ConverterParameter=4}" Width="60" Margin="58,0,0,0" Style="{DynamicResource RadioButtonStyle1}"/>
             </StackPanel>
         </Border>
-        <Frame SnapsToDevicePixels="True" UseLayoutRounding="True" Grid.Row="2" BorderThickness="0"
+        <ContentControl SnapsToDevicePixels="True" UseLayoutRounding="True" Grid.Row="2" BorderThickness="0"
                Background="White" Margin="1,0" x:Name="frame"/>
         <Border BorderThickness="1" BorderBrush="{StaticResource Border3}" Height="40" Grid.Row="3"
                 Background="{StaticResource Background11}" CornerRadius="0,0,6,6">

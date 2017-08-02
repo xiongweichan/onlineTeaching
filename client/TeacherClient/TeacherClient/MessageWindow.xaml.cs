@@ -51,5 +51,12 @@ namespace TeacherClient
             this.DialogResult = false;
             this.Close();
         }
+
+
+        public static bool? Alter(string title, string msg)
+        {
+            MessageWindow win = new MessageWindow();            
+            return win.ShowDialog();
+        }
     }
 }

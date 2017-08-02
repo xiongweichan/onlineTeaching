@@ -33,12 +33,23 @@ namespace TeacherClient.Pages
 
         async void Init()
         {
-            (App.Current.MainWindow as WindowBase).IsBusy = true;
+            MainWindow.Current.IsBusy = true;
             Request.ParamBase l = new Request.ParamBase() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token };
             var t = await IPCHandle.doPost<Reponse.ResponseParam<Reponse.MainIndex>>(Config.Interface_mainIndex, l.ReturnRequestParam());
 
             this.DataContext = t.data;
-            (App.Current.MainWindow as WindowBase).IsBusy = false;
+            MainWindow.Current.IsBusy = false;
+        }
+
+        private void StackPanel_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            var id = (sender as StackPanel).Tag.ObjToString();
+            MainWindow.Current.NavigateToPage(2, 2, id);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainIndex.Current.NavigateToPage(1, null);
         }
     }
 }

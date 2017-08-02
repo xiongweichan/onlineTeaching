@@ -8,6 +8,7 @@ namespace TeacherClient.Contract.Reponse
 {
     public class MainIndex
     {
+        public string unreadCount { get; set; }
         public string liveCount { get; set; }
         public string courseCount { get; set; }
         public string coursewareCount { get; set; }

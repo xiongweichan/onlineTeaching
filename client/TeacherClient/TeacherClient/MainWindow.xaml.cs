@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TeacherClient.Core;
+using TeacherClient.Pages;
 using Telerik.Windows.Controls;
 using Reponse = TeacherClient.Contract.Reponse;
 using Request = TeacherClient.Contract.Request;
@@ -26,6 +27,8 @@ namespace TeacherClient
     {
         public MainWindow()
         {
+            Current = this;
+
             InitializeComponent();
             Init();
         }
@@ -37,7 +40,7 @@ namespace TeacherClient
 
 
             Model.UserAccount = App.CurrentLogin.user.phone;
-            Model.MessageCount = 10;
+            Model.MessageCount = t.data.unreadCount;
             Model.Version = App.CurrentVersion;
 
             this.DataContext = this;
@@ -65,29 +68,36 @@ namespace TeacherClient
             SettingWIndow win = new SettingWIndow();
             win.ShowDialog();
         }
-
+        MainIndex _mainIndex;
         private void StackPanel_Checked(object sender, RoutedEventArgs e)
         {
             switch (Model.MenuIndex)
             {
                 case 0:
-                    frame.Source = new Uri("/Pages/MainIndex.xaml", UriKind.Relative);
+                    if (_mainIndex == null)
+                        _mainIndex = new MainIndex();
+                    frame.Content = _mainIndex;
                     break;
                 case 1:
-                    frame.Source = new Uri("/Pages/MainIndex.xaml", UriKind.Relative);
+                    frame.Content = _mainIndex;
                     break;
                 case 2:
-                    frame.Source = new Uri("/Pages/MainIndex.xaml", UriKind.Relative);
+                    frame.Content = _mainIndex;
                     break;
                 case 3:
-                    frame.Source = new Uri("/Pages/MainIndex.xaml", UriKind.Relative);
+                    frame.Content = _mainIndex;
                     break;
                 case 4:
-                    frame.Source = new Uri("/Pages/MainIndex.xaml", UriKind.Relative);
+                    frame.Content = _mainIndex;
                     break;
             }
         }
-        
+        public static MainWindow Current { get; private set; }
+        public void NavigateToPage(int findex, int sindex, object data)
+        {
+            Model.MenuIndex = findex;
+            (frame.Content as INavigation).NavigateToPage(sindex, data);
+        }
     }
 
     public class UserModel : ViewModelBase
@@ -102,8 +112,8 @@ namespace TeacherClient
                 this.OnPropertyChanged("UserAccount");
             }
         }
-        int _MessageCount;
-        public int MessageCount
+        string _MessageCount;
+        public string MessageCount
         {
             get { return _MessageCount; }
             set
