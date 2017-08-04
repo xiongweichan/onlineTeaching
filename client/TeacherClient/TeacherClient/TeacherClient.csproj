@@ -76,6 +76,7 @@
     <Compile Include="Extension\CacheHelper.cs" />
     <Compile Include="Extension\IChangeData.cs" />
     <Compile Include="Extension\INavigation.cs" />
+    <Compile Include="Extension\LiveRewardListProvider.cs" />
     <Compile Include="Extension\PasswordBoxExtention.cs" />
     <Compile Include="Extension\StatusCode.cs" />
     <Compile Include="Extension\StringExtension.cs" />
@@ -92,13 +93,40 @@
     <Compile Include="MyControls\MyPassword.xaml.cs">
       <DependentUpon>MyPassword.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\MainIndex.xaml.cs">
+    <Compile Include="Pages\CourseCenter.xaml.cs">
+      <DependentUpon>CourseCenter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MaryaneRecord.xaml.cs">
+      <DependentUpon>MaryaneRecord.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\OfflineCourse.xaml.cs">
+      <DependentUpon>OfflineCourse.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RewardCenter.xaml.cs">
+      <DependentUpon>RewardCenter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\直播中心\LiveCenter.xaml.cs">
+      <DependentUpon>LiveCenter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\直播中心\LiveManager.xaml.cs">
+      <DependentUpon>LiveManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\直播中心\MyLive.xaml.cs">
+      <DependentUpon>MyLive.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\直播中心\RequestLive.xaml.cs">
+      <DependentUpon>RequestLive.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\首页\CertificateInfo.xaml.cs">
+      <DependentUpon>CertificateInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\首页\MainIndex.xaml.cs">
       <DependentUpon>MainIndex.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\TeacherInfo.xaml.cs">
+    <Compile Include="Pages\首页\TeacherInfo.xaml.cs">
       <DependentUpon>TeacherInfo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\TogetherInfo.xaml.cs">
+    <Compile Include="Pages\首页\TogetherInfo.xaml.cs">
       <DependentUpon>TogetherInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="RegisterWindow.xaml.cs">
@@ -149,15 +177,51 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\MainIndex.xaml">
+    <Page Include="Pages\CourseCenter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\TeacherInfo.xaml">
+    <Page Include="Pages\MaryaneRecord.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\TogetherInfo.xaml">
+    <Page Include="Pages\OfflineCourse.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RewardCenter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\直播中心\LiveCenter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\直播中心\LiveManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\直播中心\MyLive.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\直播中心\RequestLive.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\首页\CertificateInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\首页\MainIndex.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\首页\TeacherInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\首页\TogetherInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

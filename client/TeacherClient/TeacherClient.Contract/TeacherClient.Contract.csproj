@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reponse\liveRewardList.cs" />
     <Compile Include="Reponse\Login.cs" />
     <Compile Include="Reponse\MainIndex.cs" />
     <Compile Include="Reponse\ResponseParam.cs" />

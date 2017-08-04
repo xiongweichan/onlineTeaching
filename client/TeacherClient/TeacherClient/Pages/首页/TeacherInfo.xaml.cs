@@ -87,7 +87,7 @@ namespace TeacherClient.Pages
             }
             else if(rb_pcompleted.IsChecked.HasValue && rb_pcompleted.IsChecked.Value)
             {
-                rb_pedit.IsChecked = true;
+                rb_pcheck.IsChecked = true;
             }
         }
 

@@ -54,6 +54,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigHelper.cs" />
+    <Compile Include="DataVirtualizing\AsyncVirtualizingCollection.cs" />
+    <Compile Include="DataVirtualizing\IItemsProvider.cs" />
+    <Compile Include="DataVirtualizing\VirtualizingCollection.cs" />
     <Compile Include="HttpHandle.cs" />
     <Compile Include="HttpNetUtils.cs" />
     <Compile Include="JsonTool.cs" />

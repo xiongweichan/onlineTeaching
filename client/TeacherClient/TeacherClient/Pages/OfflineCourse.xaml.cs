@@ -16,20 +16,18 @@ using System.Windows.Shapes;
 namespace TeacherClient.Pages
 {
     /// <summary>
-    /// MainIndex.xaml 的交互逻辑
+    /// OfflineCourse.xaml 的交互逻辑
     /// </summary>
-    public partial class MainIndex : UserControl, INavigation
+    public partial class OfflineCourse : UserControl, INavigation
     {
-        public static MainIndex Current { get; set; }
-        public MainIndex()
+        public static OfflineCourse Current { get; set; }
+        public OfflineCourse()
         {
             Current = this;
             InitializeComponent();
             this.DataContext = this;
             Type = 0;
         }
-        TogetherInfo _togetherInfo = new TogetherInfo();
-        TeacherInfo _teacherInfo = new TeacherInfo();
         public void NavigateToPage(int index, object data)
         {
             Type = index;
@@ -43,25 +41,28 @@ namespace TeacherClient.Pages
             set { SetValue(TypeProperty, value); }
         }
 
+        //MyLive _myLive = new MyLive();
+        //RequestLive _requestLive = new RequestLive();
+        //LiveManager _liveManager = new LiveManager();
+
         // Using a DependencyProperty as the backing store for Type.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TypeProperty =
-            DependencyProperty.Register("Type", typeof(int), typeof(MainIndex), new PropertyMetadata(-1, (obj, e) =>
+            DependencyProperty.Register("Type", typeof(int), typeof(OfflineCourse), new PropertyMetadata(-1, (obj, e) =>
             {
-                var _this = obj as MainIndex;
+                var _this = obj as OfflineCourse;
                 switch (_this.Type)
                 {
                     case 0:
-                        _this.frame.Content = _this._togetherInfo;
+                        //_this.frame.Content = _this._liveManager;
                         break;
                     case 1:
-                        _this.frame.Content = _this._teacherInfo;
+                        //_this.frame.Content = _this._requestLive;
                         break;
                     case 2:
-                        _this.frame.Content = _this._togetherInfo;
+                        //_this.frame.Content = _this._requestLive;
                         break;
                 }
             }));
-
 
     }
 }

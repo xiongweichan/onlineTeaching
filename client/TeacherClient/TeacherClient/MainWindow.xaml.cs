@@ -68,6 +68,10 @@ namespace TeacherClient
             win.ShowDialog();
         }
         MainIndex _mainIndex;
+        LiveCenter _liveCenter;
+        CourseCenter _courseCenter;
+        OfflineCourse _offlineCourse;
+        RewardCenter _rewardCenter;
         private void StackPanel_Checked(object sender, RoutedEventArgs e)
         {
             switch (Model.MenuIndex)
@@ -78,16 +82,24 @@ namespace TeacherClient
                     frame.Content = _mainIndex;
                     break;
                 case 1:
-                    frame.Content = _mainIndex;
+                    if (_liveCenter == null)
+                        _liveCenter = new LiveCenter();
+                    frame.Content = _liveCenter;
                     break;
                 case 2:
-                    frame.Content = _mainIndex;
+                    if (_courseCenter == null)
+                        _courseCenter = new CourseCenter();
+                    frame.Content = _courseCenter;
                     break;
                 case 3:
-                    frame.Content = _mainIndex;
+                    if (_offlineCourse == null)
+                        _offlineCourse = new OfflineCourse();
+                    frame.Content = _offlineCourse;
                     break;
                 case 4:
-                    frame.Content = _mainIndex;
+                    if (_rewardCenter == null)
+                        _rewardCenter = new RewardCenter();
+                    frame.Content = _rewardCenter;
                     break;
             }
         }

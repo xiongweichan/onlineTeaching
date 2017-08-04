@@ -11,4 +11,9 @@ namespace TeacherClient.Contract.Request
         public string lec_id { get; set; }
         public string token { get; set; }
     }
+    public class PageParam : ParamBase
+    {
+        public int page { get; set; }
+        public int pageSize { get; set; }
+    }
 }

@@ -124,7 +124,7 @@
                                         <Image Source="/Images/首页/形状-3 (2).png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         <TextBlock Text="1.验证身份" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Foreground6}" FontWeight="Bold"/>
                                     </Grid>
-                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-8,0,0,0">
                                         <Image Source="/Images/首页/形状-3-拷贝.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         <TextBlock Text="2.修改已验证手机" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" FontWeight="Bold">
                                             <TextBlock.Foreground>
@@ -132,7 +132,7 @@
                                             </TextBlock.Foreground>
                                         </TextBlock>
                                     </Grid>
-                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-8,0,0,0">
                                         <Image Source="/Images/首页/形状-3-拷贝.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         <TextBlock Text="3.完成" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" FontWeight="Bold">
                                             <TextBlock.Foreground>
@@ -158,11 +158,11 @@
                                         <Image Source="/Images/首页/形状-3 (2).png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         <TextBlock Text="1.验证身份" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Foreground6}" FontWeight="Bold"/>
                                     </Grid>
-                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-8,0,0,0">
                                         <Image Source="/Images/首页/形状-3-拷贝_31.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         <TextBlock Text="2.修改已验证手机" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Foreground6}" FontWeight="Bold"/>
                                     </Grid>
-                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-8,0,0,0">
                                         <Image Source="/Images/首页/形状-3-拷贝.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         <TextBlock Text="3.完成" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" FontWeight="Bold">
                                             <TextBlock.Foreground>
@@ -188,11 +188,11 @@
                                         <Image Source="/Images/首页/形状-3 (2).png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         <TextBlock Text="1.验证身份" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Foreground6}" FontWeight="Bold"/>
                                     </Grid>
-                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-8,0,0,0">
                                         <Image Source="/Images/首页/形状-3-拷贝_31.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         <TextBlock Text="2.修改已验证手机" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Foreground6}" FontWeight="Bold"/>
                                     </Grid>
-                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-8,0,0,0">
                                         <Image Source="/Images/首页/形状-3-拷贝_31.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         <TextBlock Text="3.完成" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Foreground6}" FontWeight="Bold"/>
                                     </Grid>
@@ -231,7 +231,7 @@
                                         <Image Source="/Images/首页/形状-3 (2).png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         <TextBlock Text="1.验证身份" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Foreground6}" FontWeight="Bold"/>
                                     </Grid>
-                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-8,0,0,0">
                                         <Image Source="/Images/首页/形状-3-拷贝.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         <TextBlock Text="2.修改已验证邮箱" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" FontWeight="Bold">
                                             <TextBlock.Foreground>
@@ -239,7 +239,7 @@
                                             </TextBlock.Foreground>
                                         </TextBlock>
                                     </Grid>
-                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-8,0,0,0">
                                         <Image Source="/Images/首页/形状-3-拷贝.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         <TextBlock Text="3.完成" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" FontWeight="Bold">
                                             <TextBlock.Foreground>
@@ -265,11 +265,11 @@
                                         <Image Source="/Images/首页/形状-3 (2).png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         <TextBlock Text="1.验证身份" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Foreground6}" FontWeight="Bold"/>
                                     </Grid>
-                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-8,0,0,0">
                                         <Image Source="/Images/首页/形状-3-拷贝_31.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         <TextBlock Text="2.修改已验证邮箱" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Foreground6}" FontWeight="Bold"/>
                                     </Grid>
-                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-8,0,0,0">
                                         <Image Source="/Images/首页/形状-3-拷贝.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         <TextBlock Text="3.完成" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" FontWeight="Bold">
                                             <TextBlock.Foreground>
@@ -295,11 +295,11 @@
                                         <Image Source="/Images/首页/形状-3 (2).png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         <TextBlock Text="1.验证身份" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Foreground6}" FontWeight="Bold"/>
                                     </Grid>
-                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-8,0,0,0">
                                         <Image Source="/Images/首页/形状-3-拷贝_31.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         <TextBlock Text="2.修改已验证邮箱" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Foreground6}" FontWeight="Bold"/>
                                     </Grid>
-                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-8,0,0,0">
                                         <Image Source="/Images/首页/形状-3-拷贝_31.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         <TextBlock Text="3.完成" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Foreground6}" FontWeight="Bold"/>
                                     </Grid>
