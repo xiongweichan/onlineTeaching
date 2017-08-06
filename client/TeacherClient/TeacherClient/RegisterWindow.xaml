@@ -41,25 +41,26 @@
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
                         <TextBlock Text="手机号：" Width="90" TextAlignment="Right" Foreground="{StaticResource Forground35}"/>
-                        <TextBox Style="{StaticResource TextBoxStyle2}" Width="260" Text="{Binding TelPhone, Mode=TwoWay}" Tag="输入手机号码"/>
+                        <TextBox Style="{StaticResource TextBoxStyle2}" Width="260" Text="{Binding Model.phone, Mode=TwoWay}" Tag="输入手机号码"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                         <TextBlock Text="验证码：" Width="90" TextAlignment="Right" Foreground="{StaticResource Forground35}"/>
-                        <TextBox Style="{StaticResource TextBoxStyle2}" Text="{Binding Certification, Mode=TwoWay}" Width="173"/>
-                        <Button Content="获取验证码" Width="87" Style="{StaticResource ButtonStyle1}"/>
+                        <TextBox Style="{StaticResource TextBoxStyle2}" Text="{Binding Model.code, Mode=TwoWay}" Width="173"/>
+                        <Button Content="获取验证码" Width="87" Style="{StaticResource ButtonStyle1}"
+                                Click="btn_GetPhoneCode"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                         <TextBlock Text="邮箱：" Width="90" TextAlignment="Right" Foreground="{StaticResource Forground35}"/>
-                        <TextBox Style="{StaticResource TextBoxStyle2}" Width="260" Text="{Binding EMail, Mode=TwoWay}" Grid.Column="1" Grid.Row="2" Tag="输入邮箱账号"/>
+                        <TextBox Style="{StaticResource TextBoxStyle2}" Width="260" Text="{Binding Model.email, Mode=TwoWay}" Grid.Column="1" Grid.Row="2" Tag="输入邮箱账号"/>
 
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                         <TextBlock Text="密码：" Width="90" TextAlignment="Right" Foreground="{StaticResource Forground35}"/>
-                        <local:MyPassword Height="30" Width="260" Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" Tag="输入密码"/>
+                        <local:MyPassword x:Name="pwd_new" Password="{Binding Model.password, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" Height="30" Width="260"  Tag="输入密码"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                         <TextBlock Text="重复密码：" Width="90" TextAlignment="Right" Foreground="{StaticResource Forground35}"/>
-                        <local:MyPassword Height="30" Width="260" Password="{Binding RepeatPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" Tag="输入密码"/>
+                        <local:MyPassword Height="30" Width="260" x:Name="pwd_repeat" Tag="输入密码"/>
                     </StackPanel>
 
                     <Button Content="《用户服务协议》" Margin="90,15,0,0" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground36}" Style="{StaticResource ButtonStyle2}"
@@ -106,22 +107,22 @@
                         <StackPanel Orientation="Horizontal" Margin="0,18,0,0">
                             <StackPanel>
                                 <TextBlock Text="持身份证正面头部照" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground35}"/>
-                                <Image Margin="0,10,0,0" Source="/Images/登录注册/上传图片.png" Stretch="None"/>
-                                <Button Margin="0,8,0,0" Width="60" Height="20">
+                                <Image Width="64" Height="64" Margin="0,10,0,0" Source="{Binding Model.body_photo, Converter={StaticResource PathToImageConverter}}" Stretch="Fill"/>
+                                <Button Margin="0,8,0,0" Width="60" Height="20" Click="btn_UploadImage" Tag="1">
                                     <TextBlock Text="点击上传" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground21}"/>
                                 </Button>
                             </StackPanel>
                             <StackPanel Margin="32,0,0,0">
                                 <TextBlock Text="身份证正面照片" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground35}"/>
-                                <Image Margin="0,10,0,0" Source="/Images/登录注册/上传图片.png" Stretch="None"/>
-                                <Button Margin="0,8,0,0" Width="60" Height="20">
+                                <Image Margin="0,10,0,0" Source="{Binding Model.id_card_front, Converter={StaticResource PathToImageConverter}}" Stretch="Fill"/>
+                                <Button Margin="0,8,0,0" Width="60" Height="20" Click="btn_UploadImage" Tag="2">
                                     <TextBlock Text="点击上传" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground21}"/>
                                 </Button>
                             </StackPanel>
                             <StackPanel Margin="26,0,0,0">
                                 <TextBlock Text="身份证反面照片" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground35}"/>
-                                <Image Margin="0,10,0,0" Source="/Images/登录注册/上传图片.png" Stretch="None"/>
-                                <Button Margin="0,8,0,0" Width="60" Height="20">
+                                <Image Margin="0,10,0,0" Source="{Binding Model.id_card_back, Converter={StaticResource PathToImageConverter}}" Stretch="Fill"/>
+                                <Button Margin="0,8,0,0" Width="60" Height="20" Click="btn_UploadImage" Tag="3">
                                     <TextBlock Text="点击上传" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground21}"/>
                                 </Button>
                             </StackPanel>
@@ -143,8 +144,8 @@
                             <TextBlock Margin="0,18,0,0" Foreground="{StaticResource Forground38}" Text="请按照以下步骤进行身份认证：" FontSize="{StaticResource FontSize3}"/>
                             <StackPanel Orientation="Horizontal" Margin="0,18,0,0">
                                 <StackPanel>
-                                    <Image Source="/Images/登录注册/上传图片.png" Stretch="None"/>
-                                    <Button Margin="0,8,0,0" Width="60" Height="20">
+                                    <Image Source="{Binding Model.qualification_cert, Converter={StaticResource PathToImageConverter}}" Stretch="Fill"/>
+                                    <Button Margin="0,8,0,0" Width="60" Height="20" Click="btn_UploadImage" Tag="4">
                                         <TextBlock Text="点击上传" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground21}"/>
                                     </Button>
                                 </StackPanel>

@@ -31,6 +31,9 @@ namespace TeacherClient
 
             InitializeComponent();
             Init();
+
+            //进入主窗口就开始初始化基础数据
+            SystemInit.Instance.Init();
         }
         async void Init()
         {

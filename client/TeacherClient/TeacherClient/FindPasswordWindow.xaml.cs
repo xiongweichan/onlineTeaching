@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Telerik.Windows.Controls;
+using Reponse = TeacherClient.Contract.Reponse;
+using Request = TeacherClient.Contract.Request;
 
 namespace TeacherClient
 {
@@ -30,19 +32,45 @@ namespace TeacherClient
 
         private void ToNewPassword_Click(object sender, RoutedEventArgs e)
         {
-            _model.ShowSecondPage = true;
+        }
+        async void CheckOldPhone()
+        {
+            this.IsBusy = true;
+            Request.checkCode l = new Request.checkCode() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, phone = textBox.Text, type = Config.phoneCode.resetPassword, code = recvcode.Text };
+            var t = await WebHelper.doPost<string, Request.checkCode>(Config.Interface_phoneCode, l);
+            if (t != null)
+                _model.ShowSecondPage = true;
+            this.IsBusy = false;
         }
 
-        private void BtnOK_Click(object sender, RoutedEventArgs e)
+        private async void BtnOK_Click(object sender, RoutedEventArgs e)
         {
-            _model.ShowThirdPage = true;
+            if (pwd_new.Password != pwd_newRepeat.Password)
+            {
+                MessageWindow.Alter("提示", "两次密码输入不一致");
+                return;
+            }
+            this.IsBusy = true;
+            Request.resetPwd l = new Request.resetPwd() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, phone = textBox.Text, password = pwd_new.Password, code = recvcode.Text };
+            var t = await WebHelper.doPost<string, Request.resetPwd>(Config.Interface_phoneCode, l);
+            if (t != null)
+                _model.ShowThirdPage = true;
+            this.IsBusy = false;            
         }
 
         private void BtnSure_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-       
+
+        private async void btn_GetPhoneCode(object sender, RoutedEventArgs e)
+        {
+            this.IsBusy = true;
+            Request.phoneCode l = new Request.phoneCode() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, phone = textBox.Text, type = Config.phoneCode.resetPassword };
+            var t = await WebHelper.doPost<object, Request.phoneCode>(Config.Interface_phoneCode, l);
+            this.IsBusy = false;
+
+        }
     }
     public class FindPasswordModel : ViewModelBase
     {
@@ -102,7 +130,7 @@ namespace TeacherClient
                 }
             }
         }
-        
-        
+
+
     }
 }

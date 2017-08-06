@@ -45,6 +45,8 @@ namespace TeacherClient.Pages
 
         MaryaneRecord _maryaneRecord = new MaryaneRecord();
         GiftReward _giftRecord = new GiftReward();
+        WithDrawAdd _withDrawAdd = new WithDrawAdd();
+        withdrawList _withdrawList = new withdrawList();
         //MyLive _myLive = new MyLive();
         //RequestLive _requestLive = new RequestLive();
         //LiveManager _liveManager = new LiveManager();
@@ -63,10 +65,10 @@ namespace TeacherClient.Pages
                         _this.frame.Content = _this._giftRecord;
                         break;
                     case 2:
-                        //_this.frame.Content = _this._liveManager;
+                        _this.frame.Content = _this._withDrawAdd;
                         break;
                     case 3:
-                        //_this.frame.Content = _this._requestLive;
+                        _this.frame.Content = _this._withdrawList;
                         break;
                 }
             }));

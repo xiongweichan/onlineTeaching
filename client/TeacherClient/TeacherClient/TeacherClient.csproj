@@ -65,6 +65,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\bankToBankNameConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\GiftToStringConverter.cs" />
     <Compile Include="Converters\IntToBoolConverter.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Converters\PathToImageConverter.cs" />
     <Compile Include="Converters\SexIntToStringConverter.cs" />
     <Compile Include="Converters\TextToVisibilityConverter.cs" />
+    <Compile Include="Converters\WithDrawStatusToStringConverter.cs" />
     <Compile Include="Extension\CacheHelper.cs" />
     <Compile Include="Extension\IChangeData.cs" />
     <Compile Include="Extension\INavigation.cs" />
@@ -109,11 +111,23 @@
     <Compile Include="Pages\MaryaneRecord.xaml.cs">
       <DependentUpon>MaryaneRecord.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\MyBankInfo.xaml.cs">
+      <DependentUpon>MyBankInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\OfflineCourse.xaml.cs">
       <DependentUpon>OfflineCourse.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\RewardCenter.xaml.cs">
       <DependentUpon>RewardCenter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\WithDrawAdd.xaml.cs">
+      <DependentUpon>WithDrawAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\WithDrawDescription.xaml.cs">
+      <DependentUpon>WithDrawDescription.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\withdrawList.xaml.cs">
+      <DependentUpon>withdrawList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\直播中心\LiveCenter.xaml.cs">
       <DependentUpon>LiveCenter.xaml</DependentUpon>
@@ -146,6 +160,7 @@
       <DependentUpon>SettingWIndow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SysConfig\Config.cs" />
+    <Compile Include="SystemInit.cs" />
     <Compile Include="WindowBase.cs" />
     <Page Include="Dictionary\DataGridDictionary.xaml">
       <SubType>Designer</SubType>
@@ -211,11 +226,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\MyBankInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\OfflineCourse.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\RewardCenter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\WithDrawAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\WithDrawDescription.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\withdrawList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

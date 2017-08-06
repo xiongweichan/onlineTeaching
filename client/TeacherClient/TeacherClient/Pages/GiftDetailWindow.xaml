@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeacherClient"
-        mc:Ignorable="d" Background="White"
+        mc:Ignorable="d" Background="White" Margin="0"
         Title="GiftDetailWindow" Height="320" Width="456">
     <Grid>
         <Grid.RowDefinitions>

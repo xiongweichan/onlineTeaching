@@ -40,7 +40,8 @@ namespace TeacherClient
         static void PropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var _this = d as MyPassword;
-            _this.passwordBox.Password = e.NewValue.ToString();
+            if (_this.passwordBox.Password != e.NewValue.ToString())
+                _this.passwordBox.Password = e.NewValue.ToString();
         }
 
         public string Watermark
@@ -55,7 +56,7 @@ namespace TeacherClient
 
         private void passwordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            Password = passwordBox.Password;
+            SetValue(MyPassword.PasswordProperty, passwordBox.Password);            
         }
     }
 }

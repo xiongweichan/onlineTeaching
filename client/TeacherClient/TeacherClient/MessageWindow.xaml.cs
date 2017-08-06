@@ -55,7 +55,9 @@ namespace TeacherClient
 
         public static bool? Alter(string title, string msg)
         {
-            MessageWindow win = new MessageWindow();            
+            MessageWindow win = new MessageWindow();
+            win.Title = title;
+            win.Message = msg;       
             return win.ShowDialog();
         }
     }

@@ -23,7 +23,8 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="8" Margin="{TemplateBinding Margin}"
-                            SnapsToDevicePixels="True" UseLayoutRounding="True">
+                            SnapsToDevicePixels="True" UseLayoutRounding="True"
+                                x:Name="border_root">
                             <Grid>
                                 <ContentPresenter/>
                                 <Grid HorizontalAlignment="Stretch" Height="36" Background="Transparent" VerticalAlignment="Top">

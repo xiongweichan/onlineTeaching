@@ -22,11 +22,10 @@ namespace TeacherClient
         {
             base.OnStartup(e);
             ConfigManagerHelper.Init(Config.SystemConfigPath, true);
-
-
-
+            
             SetAutoStartup();
             IPCHandle.Init();
+
         }
         /// <summary>
         /// 设置开机启动

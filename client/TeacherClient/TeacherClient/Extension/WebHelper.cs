@@ -37,7 +37,7 @@ namespace TeacherClient
             return sb.ToString();
         }
 
-        public async static Task<T1> doPost<T1,T2>(string address, T2 param)
+        public async static Task<T1> doPost<T1, T2>(string address, T2 param)
         {
             var t = await IPCHandle.doPost<Reponse.ResponseParam<T1>>(address, param.ReturnRequestParam());
             if (t == null || t.status != Config.SuccessCode)
@@ -46,7 +46,7 @@ namespace TeacherClient
                 {
                     MessageWindow win = new MessageWindow();
                     win.Title = "错误";
-                    win.Message = t.info;
+                    win.Message = t == null ? "服务器连接失败！" : t.info;
                     win.ShowDialog();
                 });
                 return default(T1);

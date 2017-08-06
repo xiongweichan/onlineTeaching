@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:TeacherClient.Pages"
              xmlns:client="clr-namespace:TeacherClient"    
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" Width="1000">
+             d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
     </UserControl.Resources>
     <Grid>
