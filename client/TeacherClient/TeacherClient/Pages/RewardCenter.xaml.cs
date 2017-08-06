@@ -44,6 +44,7 @@ namespace TeacherClient.Pages
         }
 
         MaryaneRecord _maryaneRecord = new MaryaneRecord();
+        GiftReward _giftRecord = new GiftReward();
         //MyLive _myLive = new MyLive();
         //RequestLive _requestLive = new RequestLive();
         //LiveManager _liveManager = new LiveManager();
@@ -59,7 +60,7 @@ namespace TeacherClient.Pages
                         _this.frame.Content = _this._maryaneRecord;
                         break;
                     case 1:
-                        //_this.frame.Content = _this._requestLive;
+                        _this.frame.Content = _this._giftRecord;
                         break;
                     case 2:
                         //_this.frame.Content = _this._liveManager;

@@ -5,6 +5,9 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using TeacherClient.Core;
+using Reponse = TeacherClient.Contract.Reponse;
+using Request = TeacherClient.Contract.Request;
 
 namespace TeacherClient
 {
@@ -32,6 +35,23 @@ namespace TeacherClient
                 sb.Append(item.ToString("x2"));
             }
             return sb.ToString();
+        }
+
+        public async static Task<T1> doPost<T1,T2>(string address, T2 param)
+        {
+            var t = await IPCHandle.doPost<Reponse.ResponseParam<T1>>(address, param.ReturnRequestParam());
+            if (t == null || t.status != Config.SuccessCode)
+            {
+                Telerik.Windows.Controls.ViewModelBase.InvokeOnUIThread(() =>
+                {
+                    MessageWindow win = new MessageWindow();
+                    win.Title = "错误";
+                    win.Message = t.info;
+                    win.ShowDialog();
+                });
+                return default(T1);
+            }
+            else return t.data;
         }
     }
 }

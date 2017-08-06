@@ -3,39 +3,43 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:TeacherClient.Pages"             
+             xmlns:local="clr-namespace:TeacherClient.Pages"
+             xmlns:client="clr-namespace:TeacherClient"    
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300" Width="1000">
     <UserControl.Resources>
-        <DataTemplate x:Key="gridviewHeadTemplate">
-            <TextBlock Text="{Binding }" Foreground="#697795"  VerticalAlignment="Center" Height="22"/>
-        </DataTemplate>
-        <DataTemplate x:Key="gridviewCellTemplate">
-            <TextBlock Text="{Binding }" Foreground="#3e3e3e"  VerticalAlignment="Center" Height="22"/>
-        </DataTemplate>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="42"/>
+            <RowDefinition Height="42"/>
         </Grid.RowDefinitions>
-        <ListView x:Name="listview">
-            <ListView.View>
-                <GridView>
-                    <GridView.Columns>
-                        <GridViewColumn Width="150" HeaderTemplate="{StaticResource gridviewHeadTemplate}" Header="时间" DisplayMemberBinding="{Binding time, Converter={StaticResource IntToTimeConverter}, ConverterParameter='yyyy-MM-dd HH:mm'}"
-                                         CellTemplate="{StaticResource gridviewCellTemplate}"/>
-                        <GridViewColumn Width="300" HeaderTemplate="{StaticResource gridviewHeadTemplate}" Header="课程名称" DisplayMemberBinding="{Binding title}" CellTemplate="{StaticResource gridviewCellTemplate}"/>
-                        <GridViewColumn Width="120" HeaderTemplate="{StaticResource gridviewHeadTemplate}" Header="课程时长" DisplayMemberBinding="{Binding }" CellTemplate="{StaticResource gridviewCellTemplate}"/>
-                        <GridViewColumn Width="120" HeaderTemplate="{StaticResource gridviewHeadTemplate}" Header="打赏人数" DisplayMemberBinding="{Binding user_count}" CellTemplate="{StaticResource gridviewCellTemplate}"/>
-                        <GridViewColumn Width="120" HeaderTemplate="{StaticResource gridviewHeadTemplate}" Header="打赏次数" DisplayMemberBinding="{Binding total_num}" CellTemplate="{StaticResource gridviewCellTemplate}"/>
-                        <GridViewColumn Width="120" HeaderTemplate="{StaticResource gridviewHeadTemplate}" Header="打赏金额" DisplayMemberBinding="{Binding total_money}" CellTemplate="{StaticResource gridviewCellTemplate}"/>
-                    </GridView.Columns>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <Grid Background="#f9fafc" Grid.Row="1">
-            <TextBlock Text="合计：" Foreground="#FF697795"/>
+        <DataGrid Background="White" HorizontalGridLinesBrush="#DFEEFE" VerticalGridLinesBrush="Transparent" RowHeaderWidth="0" RowHeight="42" x:Name="datagrid" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" Style="{DynamicResource DataGridStyle1}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="150" Header="时间" Binding="{Binding time, Converter={StaticResource IntToTimeConverter}, ConverterParameter='yyyy-MM-dd HH:mm'}" CellStyle="{DynamicResource DataGridCellStyle1}"/>
+                <DataGridTextColumn Width="300" Header="课程名称" Binding="{Binding title}" CellStyle="{DynamicResource DataGridCellStyle1}"/>
+                <DataGridTextColumn Width="120" Header="课程时长" Binding="{Binding end_long,StringFormat='{}{0}分钟'}" CellStyle="{DynamicResource DataGridCellStyle1}"/>
+                <DataGridTextColumn CanUserReorder="False" Width="120" Header="打赏人数" Binding="{Binding user_count}" CellStyle="{DynamicResource DataGridCellStyle1}"/>
+                <DataGridTextColumn CanUserReorder="False" Width="120" Header="打赏次数" Binding="{Binding total_num}" CellStyle="{DynamicResource DataGridCellStyle1}"/>
+                <DataGridTextColumn CanUserReorder="False" Width="120" Header="打赏金额" Binding="{Binding total_money}" CellStyle="{DynamicResource DataGridCellStyle1}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <client:MyDataPage Grid.Row="2"  x:Name="pagerData" PagerIndexChanged="pagerData_PagerIndexChanged"
+                           HorizontalAlignment="Right"/>
+        <Grid Background="#f9fafc" Grid.Row="1" Height="42" x:Name="grid_total">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="120"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="合计" Foreground="#FF697795" Margin="10,0,0,0"/>
+            <TextBlock Text="{Binding user_num}" Foreground="#3e3e3e" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding total_num}" Foreground="#3e3e3e" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding total_money,StringFormat='{}{0}元'}" Foreground="#3e3e3e" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
     </Grid>
 </UserControl>

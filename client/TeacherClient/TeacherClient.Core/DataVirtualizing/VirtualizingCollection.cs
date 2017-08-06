@@ -152,11 +152,11 @@ namespace TeacherClient.Core
                 RequestPage(pageIndex);
 
                 // if accessing upper 50% then request next page
-                if ( pageOffset > PageSize/2 && pageIndex < Count / PageSize)
+                if (pageOffset > PageSize / 2 && pageIndex < Count / PageSize)
                     RequestPage(pageIndex + 1);
 
                 // if accessing lower 50% then request prev page
-                if (pageOffset < PageSize/2 && pageIndex > 0)
+                if (pageOffset < PageSize / 2 && pageIndex > 0)
                     RequestPage(pageIndex - 1);
 
                 // remove stale pages
@@ -171,7 +171,7 @@ namespace TeacherClient.Core
             }
             set { throw new NotSupportedException(); }
         }
-        
+
         object IList.this[int index]
         {
             get { return this[index]; }
@@ -273,7 +273,7 @@ namespace TeacherClient.Core
 
         int IList.IndexOf(object value)
         {
-            return IndexOf((T) value);
+            return IndexOf((T)value);
         }
 
         /// <summary>
@@ -387,7 +387,7 @@ namespace TeacherClient.Core
         }
 
         #endregion
-        
+
         #region Misc
 
         /// <summary>
@@ -436,7 +436,7 @@ namespace TeacherClient.Core
         }
 
         #endregion
-        
+
         #endregion
 
         #region Paging
@@ -453,7 +453,7 @@ namespace TeacherClient.Core
             foreach (int key in keys)
             {
                 // page 0 is a special case, since WPF ItemsControl access the first item frequently
-                if ( key != 0 && (DateTime.Now - _pageTouchTimes[key]).TotalMilliseconds > PageTimeout )
+                if (key != 0 && (DateTime.Now - _pageTouchTimes[key]).TotalMilliseconds > PageTimeout)
                 {
                     _pages.Remove(key);
                     _pageTouchTimes.Remove(key);
@@ -469,8 +469,8 @@ namespace TeacherClient.Core
         /// <param name="page">The page.</param>
         protected virtual void PopulatePage(int pageIndex, IList<T> page)
         {
-            Trace.WriteLine("Page populated: "+pageIndex);
-            if ( _pages.ContainsKey(pageIndex) )
+            Trace.WriteLine("Page populated: " + pageIndex);
+            if (_pages.ContainsKey(pageIndex))
                 _pages[pageIndex] = page;
         }
 
@@ -526,7 +526,7 @@ namespace TeacherClient.Core
         /// <returns></returns>
         protected IList<T> FetchPage(int pageIndex)
         {
-            return ItemsProvider.FetchRange(pageIndex*PageSize, PageSize);
+            return ItemsProvider.FetchRange(pageIndex * PageSize, PageSize);
         }
 
         /// <summary>

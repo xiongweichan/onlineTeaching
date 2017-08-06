@@ -1,0 +1,38 @@
+﻿<local:WindowBase x:Class="TeacherClient.Pages.GiftDetailWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TeacherClient"
+        mc:Ignorable="d" Background="White"
+        Title="GiftDetailWindow" Height="320" Width="456">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Grid Background="#f9fafc">
+            <TextBlock Foreground="#697795" Text="查看礼物详情" FontSize="{StaticResource FontSize2}" VerticalAlignment="Center" Margin="20,0,0,0"/>
+        </Grid>
+        <ItemsControl ItemsSource="{Binding}" Grid.Row="1">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Width="200" Margin="0,10,0,0">
+                        <Image Source="{Binding gift_image, Converter={StaticResource PathToImageConverter}}" Height="32" Width="32" Stretch="Fill" Margin="20,0,20,0"/>
+                        <TextBlock Text="{Binding gift_title,StringFormat='{}{0}：'}" VerticalAlignment="Center" FontSize="12" Foreground="#3e3e3e"/>
+                        <TextBlock Text="{Binding gift_num}" VerticalAlignment="Center" FontSize="12" Foreground="#3e3e3e"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+        <Border BorderThickness="0,1,0,0" Grid.Row="2" BorderBrush="#dce0e2">
+            <Button Click="Button_Click" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0" Content="确定" Height="30" Width="80" Style="{StaticResource ButtonStyle3}"/>
+        </Border>
+    </Grid>
+</local:WindowBase>

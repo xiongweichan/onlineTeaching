@@ -19,11 +19,11 @@ using Request = TeacherClient.Contract.Request;
 namespace TeacherClient.Pages
 {
     /// <summary>
-    /// MaryaneRecord.xaml 的交互逻辑
+    /// GiftReward.xaml 的交互逻辑
     /// </summary>
-    public partial class MaryaneRecord : UserControl
+    public partial class GiftReward : UserControl
     {
-        public MaryaneRecord()
+        public GiftReward()
         {
             InitializeComponent();
             Init();
@@ -31,24 +31,23 @@ namespace TeacherClient.Pages
         async void Init()
         {
             MainWindow.Current.IsBusy = true;
-            Request.ParamBase l = new Request.ParamBase() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token};
-            var t = await WebHelper.doPost<Reponse.liveRewardIndex, Request.ParamBase>(Config.Interface_liveRewardIndex, l);
+            Request.ParamBase l = new Request.ParamBase() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token };
+            var t = await WebHelper.doPost<Reponse.liveGiftIndex, Request.ParamBase>(Config.Interface_liveGiftIndex, l);
             grid_total.DataContext = t;
-            MainWindow.Current.IsBusy = false;            
+            MainWindow.Current.IsBusy = false;
         }
 
         private void pagerData_PagerIndexChanged(object sender, EventArgs e)
         {
             GetData();
         }
-
         async void GetData()
         {
             MainWindow.Current.IsBusy = true;
             Request.PageParam l = new Request.PageParam() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, page = pagerData.PageIndex, pageSize = pagerData.PageSize };
 
-            var t = await WebHelper.doPost<Reponse.listData<Reponse.liveRewardList>, Request.PageParam>(Config.Interface_liveRewardList, l);
-            if(t != null)
+            var t = await WebHelper.doPost<Reponse.listData<Reponse.liveGiftList>, Request.PageParam>(Config.Interface_liveGiftList, l);
+            if (t != null)
             {
                 pagerData.TotalCount = t.totalCount;
                 datagrid.ItemsSource = t.list;
@@ -56,6 +55,14 @@ namespace TeacherClient.Pages
 
             MainWindow.Current.IsBusy = false;
 
+        }
+
+        private void datagrid_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            GiftDetailWindow win = new GiftDetailWindow();
+            win.DataContext = (datagrid.SelectedItem as Reponse.liveGiftList).gift_list;
+
+            win.ShowDialog();
         }
     }
 }

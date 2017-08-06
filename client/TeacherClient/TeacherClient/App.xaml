@@ -10,6 +10,7 @@
             <local:SexIntToStringConverter x:Key="SexIntToStringConverter"/>
             <local:IntToBoolConverter x:Key="IntToBoolConverter"/>
             <local:IntToTimeConverter x:Key="IntToTimeConverter"/>
+            <local:PathToImageConverter x:Key="PathToImageConverter"/>
 
             <Style TargetType="Image">
                 <Setter Property="Stretch" Value="None"/>
@@ -20,7 +21,8 @@
                 <ResourceDictionary Source="/Dictionary/ResourceDictionary.xaml"/>
                 <ResourceDictionary Source="/Dictionary/ButtonDictionary.xaml"/>
                 <ResourceDictionary Source="/Dictionary/TextBoxDictionary.xaml"/>
-                <ResourceDictionary Source="FrameDictionary.xaml"/>
+                <ResourceDictionary Source="/Dictionary/FrameDictionary.xaml"/>
+                <ResourceDictionary Source="/Dictionary/DataGridDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

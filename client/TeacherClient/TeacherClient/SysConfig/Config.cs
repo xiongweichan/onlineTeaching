@@ -26,6 +26,13 @@ namespace TeacherClient
         public static readonly string Interface_login = "Live/LecLogin/login";
         public static readonly string Interface_mainIndex = "Live/LecUser/mainIndex";
         public static readonly string Interface_userInfo = "Live/LecUser/userInfo";
+
+
+        //课酬中心
         public static readonly string Interface_liveRewardList = "Live/LecReward/liveRewardList";
+        public static readonly string Interface_liveRewardIndex = "Live/LecReward/liveRewardIndex";
+        public static readonly string Interface_liveGiftIndex = "Live/LecReward/liveGiftIndex";
+        public static readonly string Interface_liveGiftList = "Live/LecReward/liveGiftList";
+        
     }
 }
