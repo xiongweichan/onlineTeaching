@@ -53,5 +53,22 @@ namespace TeacherClient
             }
             else return t.data;
         }
+
+        public async static Task<bool> doPost<T2>(string address, T2 param)
+        {
+            var t = await IPCHandle.doPost<Reponse.ResponseParam<string>>(address, param.ReturnRequestParam());
+            if (t == null || t.status != Config.SuccessCode)
+            {
+                Telerik.Windows.Controls.ViewModelBase.InvokeOnUIThread(() =>
+                {
+                    MessageWindow win = new MessageWindow();
+                    win.Title = "错误";
+                    win.Message = t == null ? "服务器连接失败！" : t.info;
+                    win.ShowDialog();
+                });
+                return false;
+            }
+            else return true;
+        }
     }
 }

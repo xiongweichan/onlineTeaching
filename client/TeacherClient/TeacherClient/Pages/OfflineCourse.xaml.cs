@@ -41,9 +41,9 @@ namespace TeacherClient.Pages
             set { SetValue(TypeProperty, value); }
         }
 
-        //MyLive _myLive = new MyLive();
-        //RequestLive _requestLive = new RequestLive();
-        //LiveManager _liveManager = new LiveManager();
+        AllCourse _all = new AllCourse();
+        NotStartCourse _notstart = new NotStartCourse();
+        EndCourse _end = new EndCourse();
 
         // Using a DependencyProperty as the backing store for Type.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TypeProperty =
@@ -53,13 +53,13 @@ namespace TeacherClient.Pages
                 switch (_this.Type)
                 {
                     case 0:
-                        //_this.frame.Content = _this._liveManager;
+                        _this.frame.Content = _this._all;
                         break;
                     case 1:
-                        //_this.frame.Content = _this._requestLive;
+                        _this.frame.Content = _this._notstart;
                         break;
                     case 2:
-                        //_this.frame.Content = _this._requestLive;
+                        _this.frame.Content = _this._end;
                         break;
                 }
             }));

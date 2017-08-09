@@ -127,9 +127,10 @@ namespace TeacherClient
                 this.IsBusy = true;
                 var path = dialog.FileName;
                 var s = dialog.OpenFile();
-                if(s.Length > 50*1024)
+                if(false)//(s.Length > 50*1024)
                 {
                     MessageWindow.Alter("提示", "图片过大");
+                    this.IsBusy = false;
                     return string.Empty;
                 }
                 byte[] bys = new byte[s.Length];

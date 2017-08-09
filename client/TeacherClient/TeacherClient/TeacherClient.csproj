@@ -68,11 +68,13 @@
     <Compile Include="Converters\bankToBankNameConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\GiftToStringConverter.cs" />
+    <Compile Include="Converters\IntEqualParamToVisibilityConverter.cs" />
     <Compile Include="Converters\IntToBoolConverter.cs" />
     <Compile Include="Converters\IntToColorConverter.cs" />
     <Compile Include="Converters\IntToTimeConverter.cs" />
     <Compile Include="Converters\IntToVisibilityConverter.cs" />
     <Compile Include="Converters\LiveStatusOperationTemplateSelector.cs" />
+    <Compile Include="Converters\OfflineCourseStatusConverter.cs" />
     <Compile Include="Converters\PathToImageConverter.cs" />
     <Compile Include="Converters\SexIntToStringConverter.cs" />
     <Compile Include="Converters\TextToVisibilityConverter.cs" />
@@ -99,34 +101,46 @@
     <Compile Include="MyControls\MyPassword.xaml.cs">
       <DependentUpon>MyPassword.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AllCourse.xaml.cs">
+      <DependentUpon>AllCourse.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\CourseCenter.xaml.cs">
       <DependentUpon>CourseCenter.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\GiftDetailWindow.xaml.cs">
+    <Compile Include="Pages\EndCourse.xaml.cs">
+      <DependentUpon>EndCourse.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\NotStartCourse.xaml.cs">
+      <DependentUpon>NotStartCourse.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\StudentListWindow.xaml.cs">
+      <DependentUpon>StudentListWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\课酬中心\GiftDetailWindow.xaml.cs">
       <DependentUpon>GiftDetailWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\GiftReward.xaml.cs">
+    <Compile Include="Pages\课酬中心\GiftReward.xaml.cs">
       <DependentUpon>GiftReward.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\MaryaneRecord.xaml.cs">
+    <Compile Include="Pages\课酬中心\MaryaneRecord.xaml.cs">
       <DependentUpon>MaryaneRecord.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\MyBankInfo.xaml.cs">
+    <Compile Include="Pages\课酬中心\MyBankInfo.xaml.cs">
       <DependentUpon>MyBankInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\OfflineCourse.xaml.cs">
       <DependentUpon>OfflineCourse.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\RewardCenter.xaml.cs">
+    <Compile Include="Pages\课酬中心\RewardCenter.xaml.cs">
       <DependentUpon>RewardCenter.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\WithDrawAdd.xaml.cs">
+    <Compile Include="Pages\课酬中心\WithDrawAdd.xaml.cs">
       <DependentUpon>WithDrawAdd.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\WithDrawDescription.xaml.cs">
+    <Compile Include="Pages\课酬中心\WithDrawDescription.xaml.cs">
       <DependentUpon>WithDrawDescription.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\withdrawList.xaml.cs">
+    <Compile Include="Pages\课酬中心\withdrawList.xaml.cs">
       <DependentUpon>withdrawList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\直播中心\LiveCenter.xaml.cs">
@@ -210,23 +224,39 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\AllCourse.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\CourseCenter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\GiftDetailWindow.xaml">
+    <Page Include="Pages\EndCourse.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\GiftReward.xaml">
+    <Page Include="Pages\NotStartCourse.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\MaryaneRecord.xaml">
+    <Page Include="Pages\StudentListWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\MyBankInfo.xaml">
+    <Page Include="Pages\课酬中心\GiftDetailWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\课酬中心\GiftReward.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\课酬中心\MaryaneRecord.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\课酬中心\MyBankInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -234,19 +264,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\RewardCenter.xaml">
+    <Page Include="Pages\课酬中心\RewardCenter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\WithDrawAdd.xaml">
+    <Page Include="Pages\课酬中心\WithDrawAdd.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\WithDrawDescription.xaml">
+    <Page Include="Pages\课酬中心\WithDrawDescription.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\withdrawList.xaml">
+    <Page Include="Pages\课酬中心\withdrawList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -448,6 +478,7 @@
     <Resource Include="SysConfig\errorcode.xml" />
     <Resource Include="SysConfig\url.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,6 +47,7 @@
     <Compile Include="Reponse\bankcardDetail.cs" />
     <Compile Include="Reponse\bankinfo.cs" />
     <Compile Include="Reponse\imageUpLoad.cs" />
+    <Compile Include="Reponse\lessonList.cs" />
     <Compile Include="Reponse\listData.cs" />
     <Compile Include="Reponse\liveGiftIndex.cs" />
     <Compile Include="Reponse\liveGiftList.cs" />
@@ -51,6 +55,7 @@
     <Compile Include="Reponse\liveRewardList.cs" />
     <Compile Include="Reponse\Login.cs" />
     <Compile Include="Reponse\MainIndex.cs" />
+    <Compile Include="Reponse\offUserlist.cs" />
     <Compile Include="Reponse\region.cs" />
     <Compile Include="Reponse\ResponseParam.cs" />
     <Compile Include="Reponse\userInfo.cs" />
@@ -61,9 +66,12 @@
     <Compile Include="Request\checkCode.cs" />
     <Compile Include="Request\imageUpLoad.cs" />
     <Compile Include="Request\Login.cs" />
+    <Compile Include="Request\OffCourselist.cs" />
     <Compile Include="Request\ParamBase.cs" />
     <Compile Include="Request\phoneCode.cs" />
     <Compile Include="Request\register.cs" />
+    <Compile Include="Request\RequestID.cs" />
+    <Compile Include="Request\RequestListByID.cs" />
     <Compile Include="Request\resetPwd.cs" />
     <Compile Include="Request\withdrawAdd.cs" />
   </ItemGroup>

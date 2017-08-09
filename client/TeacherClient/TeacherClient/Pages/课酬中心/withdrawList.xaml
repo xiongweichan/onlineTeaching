@@ -14,7 +14,6 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="42"/>
-            <RowDefinition Height="42"/>
         </Grid.RowDefinitions>
         <DataGrid x:Name="datagrid" RowStyle="{DynamicResource DataGridRowStyle1}" 
                       ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
@@ -36,7 +35,7 @@
                 <DataGridTextColumn Width="120" Header="备注" Binding="{Binding remark}" CellStyle="{DynamicResource DataGridCellStyle1}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <local:MyDataPage Grid.Row="2"  x:Name="pagerData" PagerIndexChanged="pagerData_PagerIndexChanged"
+        <local:MyDataPage Grid.Row="1"  x:Name="pagerData" PagerIndexChanged="pagerData_PagerIndexChanged"
                            HorizontalAlignment="Right"/>
     </Grid>
 </UserControl>

@@ -36,14 +36,22 @@ namespace TeacherClient
         public static readonly string Interface_liveRewardIndex = "Live/LecReward/liveRewardIndex";
         public static readonly string Interface_liveGiftIndex = "Live/LecReward/liveGiftIndex";
         public static readonly string Interface_liveGiftList = "Live/LecReward/liveGiftList";
-
-
+        
         public static readonly string Interface_withdrawIndex = "Live/LecWithdraw/withdrawIndex";
         public static readonly string Interface_withdrawAdd = "Live/LecWithdraw/withdrawAdd";
         public static readonly string Interface_withdrawList = "Live/LecWithdraw/withdrawList";
         public static readonly string Interface_bankcardDetail = "Live/LecWithdraw/bankcardDetail";
         public static readonly string Interface_bankcardAdd = "Live/LecWithdraw/bankcardAdd";
         public static readonly string Interface_bankcardEdit = "Live/LecWithdraw/bankcardEdit";
+
+        //线下课程
+        public static readonly string Interface_lessonList = "Live/LecOfflineCourse/lessonList";
+        public static readonly string Interface_userList = "Live/LecOfflineCourse/userList";
+        public static readonly string Interface_userAgree = "Live/LecOfflineCourse/userAgree";
+        public static readonly string Interface_userDisagree = "Live/LecOfflineCourse/userDisagree";
+        public static readonly string Interface_courseDetail = "Live/LecOfflineCourse/courseDetail";
+        public static readonly string Interface_offlineCourseAdd = "Live/LecOfflineCourse/offlineCourseAdd";
+        public static readonly string Interface_offlineCourseUpdate = "Live/LecOfflineCourse/offlineCourseUpdate";
 
 
         public static readonly string Interface_bankList = "Live/Common/bankList";
