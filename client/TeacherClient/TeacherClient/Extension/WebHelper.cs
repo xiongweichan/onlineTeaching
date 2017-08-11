@@ -13,7 +13,7 @@ namespace TeacherClient
 {
     public static class WebHelper
     {
-        public static IEnumerable<KeyValuePair<string, string>> ReturnRequestParam<T>(this T request)
+        public static string ReturnRequestParam<T>(this T request)
         {
             var data = JsonConvert.SerializeObject(request);
             var s = "dbcf94929378b8a98bf7efb2d44d5c8a" + data;
@@ -21,10 +21,7 @@ namespace TeacherClient
             var ss = md5.ComputeHash(Encoding.UTF8.GetBytes(s));
             var apisign = ToHexString(md5.Hash);
 
-            return new List<KeyValuePair<string, string>>() {
-                new KeyValuePair<string, string>("data", data),
-                new KeyValuePair<string, string>("apisign", apisign),
-            };
+            return string.Format("data={0}&apisign={1}", data, apisign);
         }
 
         static string ToHexString(byte[] bys)

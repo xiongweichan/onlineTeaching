@@ -1,0 +1,85 @@
+﻿<UserControl x:Class="TeacherClient.Pages.AddOneOffCourse"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TeacherClient.Pages"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>
+                    <Run Text="*" Foreground="#ff0000"/>
+                    <Run Text="上课时间：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+            </TextBlock>
+            <TextBox Width="455" Height="28" VerticalContentAlignment="Center" Foreground="#424e67"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>
+                    <Run Text="*" Foreground="#ff0000"/>
+                    <Run Text="上课时长：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+            </TextBlock>
+            <TextBox Width="80" Height="28" VerticalContentAlignment="Center" Foreground="#424e67"/>
+            <TextBlock Text="分钟" Foreground="#999999"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>
+                    <Run Text="*" Foreground="#ff0000"/>
+                    <Run Text="上课学校：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+            </TextBlock>
+            <ComboBox Width="103" Height="28"/>
+            <ComboBox Width="103" Height="28" Margin="12,0"/>
+            <ComboBox Width="103" Height="28"/>
+            <TextBox Width="80" Height="28" Margin="12,0,0,0" VerticalContentAlignment="Center" Foreground="#424e67"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>
+                    <Run Text="*" Foreground="#ff0000"/>
+                    <Run Text="详细地址：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+            </TextBlock>
+            <TextBox Width="455" Height="28" VerticalContentAlignment="Center" Foreground="#424e67"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>
+                    <Run Text="*" Foreground="#ff0000"/>
+                    <Run Text="学校简介：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+            </TextBlock>
+            <TextBox Width="455" Height="88" AcceptsReturn="True" AcceptsTab="True" Foreground="#424e67"
+                         Style="{StaticResource TextBoxStyle2}" Tag="不少于10个字"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>
+                    <Run Text="学校图片：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+            </TextBlock>
+            <StackPanel>
+                <Image Width="64" Height="64"/>
+                <Button Content="点击上传"/>
+            </StackPanel>
+            <TextBlock>
+                <Run Text="图片要求：" Foreground="#999999" FontSize="{StaticResource FontSize3}"/>
+                <Run Text="支持JPG/PNG/BMP等格式图片" Foreground="#999999" FontSize="{StaticResource FontSize3}"/>
+                <Run Text="尺寸1080*608分辨率小于96dpi，大小小于2M" Foreground="#999999" FontSize="{StaticResource FontSize3}"/>
+            </TextBlock>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>
+                    <Run Text="*" Foreground="#ff0000"/>
+                    <Run Text="上课人数：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+            </TextBlock>
+            <TextBox Width="103" Height="88" AcceptsReturn="True" AcceptsTab="True" Foreground="#424e67"
+                         Style="{StaticResource TextBoxStyle2}" />
+            <TextBlock>
+                    <Run Text="*" Foreground="#ff0000"/>
+                    <Run Text="负责人联系电话：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+            </TextBlock>
+            <TextBox Width="103" Height="88" AcceptsReturn="True" AcceptsTab="True" Foreground="#424e67"
+                         Style="{StaticResource TextBoxStyle2}" />
+            <TextBlock>
+                    <Run Text="*" Foreground="#ff0000"/>
+                    <Run Text="负责人微信号：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+            </TextBlock>
+            <TextBox Width="103" Height="88" AcceptsReturn="True" AcceptsTab="True" Foreground="#424e67"
+                         Style="{StaticResource TextBoxStyle2}"/>
+        </StackPanel>        
+    </StackPanel>
+</UserControl>

@@ -26,6 +26,7 @@ namespace TeacherClient.Pages
         {
             _courseID = cid;
             InitializeComponent();
+            this.IsBusy = false;
         }
 
 
@@ -36,9 +37,9 @@ namespace TeacherClient.Pages
         async void GetData()
         {
             MainWindow.Current.IsBusy = true;
-            Request.RequestListByID l = new Request.RequestListByID() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, page = pagerData.PageIndex, pageSize = pagerData.PageSize, id = _courseID };
+            Request.courseid l = new Request.courseid() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, page = pagerData.PageIndex, pageSize = pagerData.PageSize, course_id = _courseID };
 
-            var t = await WebHelper.doPost<Reponse.listData<Reponse.offUserlist>, Request.RequestListByID>(Config.Interface_userList, l);
+            var t = await WebHelper.doPost<Reponse.listData<Reponse.offUserlist>, Request.courseid>(Config.Interface_userList, l);
             if (t != null)
             {
                 pagerData.TotalCount = t.totalCount;

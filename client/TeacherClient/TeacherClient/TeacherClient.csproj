@@ -101,6 +101,15 @@
     <Compile Include="MyControls\MyPassword.xaml.cs">
       <DependentUpon>MyPassword.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AddManyOffCourse.xaml.cs">
+      <DependentUpon>AddManyOffCourse.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AddOffCourseWindow.xaml.cs">
+      <DependentUpon>AddOffCourseWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AddOneOffCourse.xaml.cs">
+      <DependentUpon>AddOneOffCourse.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AllCourse.xaml.cs">
       <DependentUpon>AllCourse.xaml</DependentUpon>
     </Compile>
@@ -221,6 +230,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MyControls\MyPassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AddManyOffCourse.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AddOffCourseWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AddOneOffCourse.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -122,30 +122,30 @@ namespace TeacherClient.Core
         /// <param name="path">URL相对路径</param>
         /// <param name="body">字符串</param>
         /// <returns>返回一个反序列化的对象</returns>
-        public static async Task<T> doPost<T>(string path, string body) where T : class
-        {
-            HttpContent content = new StringContent(body);
-            T reslutInfo = null;
-            try
-            {
-                //await异步等待回应
-                var response = await ipc.PostAsync(path, content);
-                //确保>HTTP成功状态值
-                if (response.IsSuccessStatusCode)
-                {
-                    //await异步读取最后的JSON
-                    var reslut = await response.Content.ReadAsStringAsync();
-                    Log.DebugFormat("request path {0} response reslut {1}", path, reslut);
-                    reslutInfo = JsonHelper.DeserializeJsonToObject<T>(reslut);
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error(path + "请求异常:" + ex.Message);
-            }
+        //public static async Task<T> doPost<T>(string path, string body) where T : class
+        //{
+        //    HttpContent content = new StringContent(body);
+        //    T reslutInfo = null;
+        //    try
+        //    {
+        //        //await异步等待回应
+        //        var response = await ipc.PostAsync(path, content);
+        //        //确保>HTTP成功状态值
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            //await异步读取最后的JSON
+        //            var reslut = await response.Content.ReadAsStringAsync();
+        //            Log.DebugFormat("request path {0} response reslut {1}", path, reslut);
+        //            reslutInfo = JsonHelper.DeserializeJsonToObject<T>(reslut);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log.Error(path + "请求异常:" + ex.Message);
+        //    }
 
-            return reslutInfo;
-        }
+        //    return reslutInfo;
+        //}
 
         /// <summary>
         /// 获取数据（以map的形式为数据）
@@ -390,11 +390,9 @@ namespace TeacherClient.Core
         }
 
 
-        public static async Task<T1> doPost<T1>(string path, IEnumerable<KeyValuePair<string,string>> data) where T1 : class
+        public static async Task<T1> doPost<T1>(string path, string data) where T1 : class
         {
-            //string body = JsonConvert.SerializeObject(json);
-            HttpContent content = new FormUrlEncodedContent(data);//new StringContent(body);
-            content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/x-www-form-urlencoded") { CharSet = "utf-8" };
+            HttpContent content = new StringContent(data, Encoding.UTF8, "application/x-www-form-urlencoded");
             T1 reslutInfo = null;
             try
             {

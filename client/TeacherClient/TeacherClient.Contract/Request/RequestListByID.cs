@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace TeacherClient.Contract.Request
 {
-    public class RequestListByID : PageParam
+    public class courseid : PageParam
     {
-        public string id { get; set; }
+        public string course_id { get; set; }
     }
 }
