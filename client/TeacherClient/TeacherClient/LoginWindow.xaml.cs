@@ -41,7 +41,7 @@ namespace TeacherClient
             if (_model.RememblePwd)
             {
                 _model.UserAccount = ConfigManagerHelper.GetConfigByName(Config.UserAccount);
-                pwd.Password = ConfigManagerHelper.GetConfigByName(Config.Password);
+                pwd.Pwd = ConfigManagerHelper.GetConfigByName(Config.Password);
             }
 
             this.IsBusy = false;
@@ -85,7 +85,7 @@ namespace TeacherClient
         private async void Login_Click(object sender, RoutedEventArgs e)
         {
             //15989010000 123456
-            Request.Login l = new Request.Login() { phone = _model.UserAccount, password = pwd.Password, lec_id = string.Empty, token = string.Empty };
+            Request.Login l = new Request.Login() { phone = _model.UserAccount, password = pwd.Pwd, lec_id = string.Empty, token = string.Empty };
             var t = await IPCHandle.doPost<Reponse.ResponseParam<Reponse.Login>>(Config.Interface_login, l.ReturnRequestParam());
             if (t == null || t.status != Config.SuccessCode)
             {

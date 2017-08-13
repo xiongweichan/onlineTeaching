@@ -9,6 +9,7 @@ namespace TeacherClient.Contract.Reponse
     public class userInfo
     {
         public string id { get; set; }
+        public string lecturer_code { get; set; }
         public string phone { get; set; }
         public string email { get; set; }
         public string is_check { get; set; }

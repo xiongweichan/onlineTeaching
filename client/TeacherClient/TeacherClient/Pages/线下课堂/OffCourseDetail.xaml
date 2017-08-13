@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="TeacherClient.Pages.OffCourseDetail"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:page="clr-namespace:TeacherClient.Pages"
+             
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <StackPanel Margin="20,20,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>
+                    <Run Text="*" Foreground="#ff0000"/>
+                    <Run Text="课程名称：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+                    </TextBlock>
+                    <TextBox Width="455" Height="28" VerticalContentAlignment="Center" Foreground="#424e67"
+                         Text="{Binding Model.title}"/>
+                    <TextBlock Text="最多能输入45个字符" Foreground="#999999"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
+                    <TextBlock>
+                    <Run Text="*" Foreground="#ff0000"/>
+                    <Run Text="课程简介：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+                    </TextBlock>
+                    <TextBox Width="455" Height="88" AcceptsReturn="True" AcceptsTab="True" Foreground="#424e67"
+                         Style="{StaticResource TextBoxStyle2}" Tag="不少于10个字"
+                         Text="{Binding Model.intro}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
+                    <TextBlock>
+                    <Run Text="*" Foreground="#ff0000"/>
+                    <Run Text="课程数量：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+                    </TextBlock>
+                    <RadioButton x:Name="rb_one" Content="单节课程" GroupName="course" Margin="10,0" IsChecked="{Binding Model.course_type,Converter={StaticResource IntToBoolConverter}, ConverterParameter='0'}" Foreground="#FF3E3E3E" VerticalContentAlignment="Center"/>
+                    <RadioButton x:Name="rb_many" Content="多节课程" GroupName="course" IsChecked="{Binding Model.course_type,Converter={StaticResource IntToBoolConverter}, ConverterParameter='1'}" Foreground="#FF3E3E3E" VerticalContentAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+            <page:AddOneOffCourse Visibility="{Binding ElementName=rb_one,Path=IsChecked,Converter={StaticResource BoolToVisibilityConverter}}"
+                                          DataContext="{Binding Lesson}"/>
+            <page:AddManyOffCourse Visibility="{Binding ElementName=rb_many,Path=IsChecked,Converter={StaticResource BoolToVisibilityConverter}}"
+                                           DataContext="{Binding Lessons}"/>
+            <StackPanel Orientation="Horizontal" Margin="20,20,0,0">
+                <TextBlock>
+                <Run Text="*" Foreground="#ff0000"/>
+                <Run Text="课件图片：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+                </TextBlock>
+                <StackPanel Margin="0,20,0,0">
+                    <Image Width="64" Height="64"/>
+                    <Button Content="点击上传" Margin="0,10,0,0"/>
+                </StackPanel>
+                <TextBlock Margin="10,0,0,0">
+                <Line Height="22"/>
+                <Run Text="图片要求：" Foreground="#999999" FontSize="{StaticResource FontSize3}"/>
+                <LineBreak/>
+                <Line Height="22"/>
+                <Run Text="支持JPG/PNG/BMP等格式图片" Foreground="#999999" FontSize="{StaticResource FontSize3}"/>
+                <LineBreak/>
+                <Line Height="22"/>
+                <Run Text="尺寸1080*608分辨率小于96dpi，大小小于2M" Foreground="#999999" FontSize="{StaticResource FontSize3}"/>
+                </TextBlock>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+
+</UserControl>

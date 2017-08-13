@@ -63,8 +63,7 @@ namespace TeacherClient
         {
             if (firstpage.IsChecked.HasValue && firstpage.IsChecked.Value)
             {
-                Model.password = pwd_new.Password;
-                if (Model.password != pwd_repeat.Password)
+                if (Model.password != pwd_repeat.Pwd)
                     MessageWindow.Alter("提示", "两次密码输入不一致");
                 else
                     secondpage.IsChecked = true;

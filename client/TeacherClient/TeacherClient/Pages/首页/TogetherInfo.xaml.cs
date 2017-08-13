@@ -35,9 +35,9 @@ namespace TeacherClient.Pages
         {
             MainWindow.Current.IsBusy = true;
             Request.ParamBase l = new Request.ParamBase() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token };
-            var t = await IPCHandle.doPost<Reponse.ResponseParam<Reponse.MainIndex>>(Config.Interface_mainIndex, l.ReturnRequestParam());
-
-            this.DataContext = t.data;
+            var t = await WebHelper.doPost<Reponse.MainIndex, Request.ParamBase>(Config.Interface_mainIndex, l);
+            App.CurrentLogin.user.lecturer_code = t.userInfo.lecturer_code;
+            this.DataContext = t;
             MainWindow.Current.IsBusy = false;
         }
 

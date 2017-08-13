@@ -1,0 +1,193 @@
+﻿<UserControl x:Class="TeacherClient.Pages.CoursewareManager"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TeacherClient"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border BorderThickness="0,0,0,2" BorderBrush="#cccccc">
+            <TextBlock Text="上传课件" FontWeight="Bold" FontSize="{StaticResource FontSize3}" Foreground="#4d5861"/>
+        </Border>
+        <Button Grid.Row="1" Style="{StaticResource ButtonStyle1}" Height="26" Width="110" HorizontalAlignment="Left">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Images/课程中心/上传.png" Margin="6,0"/>
+                    <TextBlock Text="上传" Foreground="#fffefe" FontSize="{StaticResource FontSize3}"/>
+                </StackPanel>
+            </Button.Content>
+        </Button>
+        <TextBlock Grid.Row="2">
+            <Line Height="22"/>
+            <Run Text="上传要求：" FontSize="12" Foreground="#999999"/>
+            <LineBreak/>
+            <Line Height="22"/>
+            <Run Text="文件大小不得超过100M，支持视频、word文档，图片" FontSize="12" Foreground="#999999"/>
+            <LineBreak/><Line Height="22"/>
+            <Run Text="视频支持MP4、RMVB、AVI格式，图片支持JPG/PNG/BMP等格式" FontSize="12" Foreground="#999999"/>
+        </TextBlock>
+        <Border Grid.Row="3" BorderThickness="0,0,0,2" BorderBrush="#cccccc">
+            <StackPanel Orientation="Horizontal">
+                <RadioButton x:Name="courseManager" IsChecked="True" Content="课件管理" Style="{StaticResource RadioButtonStyle5}"/>
+                <RadioButton x:Name="courseCheck" Content="课件审核" Style="{StaticResource RadioButtonStyle5}"/>
+                <RadioButton x:Name="courseTransform" Content="传输列表" Style="{StaticResource RadioButtonStyle5}"/>
+            </StackPanel>
+        </Border>
+        <Grid Grid.Row="4" Visibility="{Binding ElementName=courseManager,Path=IsChecked,Converter={StaticResource BoolToVisibilityConverter}}">
+            <ListBox x:Name="lb_course" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <ListBox.Template>
+                    <ControlTemplate>
+                        <ItemsPresenter/>
+                    </ControlTemplate>
+                </ListBox.Template>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <Grid Margin="35,22,5,13">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ContextMenu>
+                                            <ContextMenu Width="114" Height="110" Style="{DynamicResource ContextMenuStyle1}" ItemContainerStyle="{DynamicResource MenuItemStyle1}">
+                                                <MenuItem Height="36" Header="打开课件" Click="OpenCourse_Click" Tag="{Binding id}"/>
+                                                <MenuItem Height="36" Header="删除" Click="DeleteCourse_Click" Tag="{Binding id}"/>
+                                                <MenuItem Height="36" Header="属性" Click="Property_Click" Tag="{Binding id}"/>
+                                            </ContextMenu>
+                                        </Grid.ContextMenu>
+                                        <Border x:Name="border" Background="#f1f5fa" BorderBrush="#dde0e4" Width="72" Height="72" BorderThickness="2"/>
+                                        <Image Source="{Binding image,Converter={StaticResource PathToImageConverter}}" Margin="1" Height="70" Width="70" Stretch="Fill"/>
+                                        <local:MyTextBox Grid.Row="1" Text="{Binding title}" Tag="{Binding id}" TextChanged="MyTextBox_TextChanged"/>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsSelected" Value="true">
+                                            <Setter Property="Panel.ZIndex" Value="2"/>
+                                            <Setter TargetName="border" Property="BorderBrush" Value="#4991fa"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+        </Grid>
+        <Grid Grid.Row="4" Visibility="{Binding ElementName=courseCheck,Path=IsChecked,Converter={StaticResource BoolToVisibilityConverter}}">
+            <DataGrid ColumnHeaderHeight="0" Style="{StaticResource DataGridStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding image}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Binding="{Binding FileName}" CellStyle="{StaticResource DataGridCellStyle1}"/>
+                    <DataGridTextColumn Binding="{Binding FileSize, StringFormat='文件大小：{0}'}" CellStyle="{StaticResource DataGridCellStyle1}"/>
+                    <DataGridTextColumn Binding="{Binding FileType, StringFormat='文件类型：{0}'}" CellStyle="{StaticResource DataGridCellStyle1}"/>
+                    <DataGridTextColumn Binding="{Binding UploadTime, StringFormat='上传时间：{0}'}" CellStyle="{StaticResource DataGridCellStyle1}"/>
+                    <DataGridTextColumn Binding="{Binding Status}" CellStyle="{StaticResource DataGridCellStyle1}"/>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Tag="{Binding id}" Click="DeleteCourse_Click">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="/Images/课程中心/删除课程.png"/>
+                                        <TextBlock Text="删除课程"/>
+                                    </StackPanel>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+        <Grid Grid.Row="4" Visibility="{Binding ElementName=courseTransform,Path=IsChecked,Converter={StaticResource BoolToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="上传总进度：" Foreground="#697795" FontSize="12"/>
+                <ProgressBar Minimum="0" Maximum="100" Style="{DynamicResource ProgressBarStyle1}" Width="605" Height="20" Value="{Binding Per}"
+                         Background="White" Foreground="#63a1ff" BorderBrush="#cccccc" BorderThickness="1"/>
+                <TextBlock Text="{Binding Speed}"/>
+                <Button Content="全部开始"/>
+                <Button Content="全部暂停"/>
+            </StackPanel>
+            <DataGrid Grid.Row="1" ColumnHeaderHeight="0" Style="{StaticResource DataGridStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding image}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Binding="{Binding FileName}" CellStyle="{StaticResource DataGridCellStyle1}"/>
+                    <DataGridTextColumn Binding="{Binding Per}" CellStyle="{StaticResource DataGridCellStyle1}"/>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ProgressBar Minimum="0" Maximum="100" Style="{DynamicResource ProgressBarStyle1}" Width="364" Height="20" Value="55" 
+                                         Background="White" Foreground="#63a1ff" BorderBrush="#cccccc" BorderThickness="1"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ToggleButton>
+                                    <ToggleButton.Template>
+                                        <ControlTemplate TargetType="ToggleButton">
+                                            <Grid>
+                                                <StackPanel Orientation="Horizontal"
+                                                    Visibility="{TemplateBinding IsChecked,Converter={StaticResource BoolToVisibilityConverter}}">
+                                                    <Image Source="/Images/课程中心/暂停.png"/>
+                                                    <TextBlock Text="暂停"/>
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal"
+                                                    Visibility="{TemplateBinding IsChecked,Converter={StaticResource BoolToVisibilityConverter2}}">
+                                                    <Image Source="/Images/课程中心/开始.png"/>
+                                                    <TextBlock Text="开始"/>
+                                                </StackPanel>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </ToggleButton.Template>
+                                </ToggleButton>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button >
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="/Images/课程中心/删除课程.png"/>
+                                        <TextBlock Text="取消上传"/>
+                                    </StackPanel>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</UserControl>

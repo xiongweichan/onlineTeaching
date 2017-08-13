@@ -6,12 +6,15 @@
     <Application.Resources>
         <ResourceDictionary>
             <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+            <local:BoolToVisibilityConverter2 x:Key="BoolToVisibilityConverter2"/>
             <local:TextToVisibilityConverter x:Key="TextToVisibilityConverter"/>
             <local:SexIntToStringConverter x:Key="SexIntToStringConverter"/>
             <local:IntToBoolConverter x:Key="IntToBoolConverter"/>
             <local:IntToTimeConverter x:Key="IntToTimeConverter"/>
             <local:PathToImageConverter x:Key="PathToImageConverter"/>
-
+            <local:IntEqualParamToVisibilityConverter x:Key="IntEqualParamToVisibilityConverter"/>
+            <local:IntEqualParamToVisibilityConverter2 x:Key="IntEqualParamToVisibilityConverter2"/>
+            <local:IntToIndexConverter x:Key="IntToIndexConverter"/>
             <Style TargetType="Image">
                 <Setter Property="Stretch" Value="None"/>
                 <Setter Property="UseLayoutRounding" Value="True"/>
@@ -21,8 +24,9 @@
                 <ResourceDictionary Source="/Dictionary/ResourceDictionary.xaml"/>
                 <ResourceDictionary Source="/Dictionary/ButtonDictionary.xaml"/>
                 <ResourceDictionary Source="/Dictionary/TextBoxDictionary.xaml"/>
-                <ResourceDictionary Source="/Dictionary/FrameDictionary.xaml"/>
+                <ResourceDictionary Source="/Dictionary/ContextMenuDictionary.xaml"/>
                 <ResourceDictionary Source="/Dictionary/DataGridDictionary.xaml"/>
+                <ResourceDictionary Source="ProcessDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

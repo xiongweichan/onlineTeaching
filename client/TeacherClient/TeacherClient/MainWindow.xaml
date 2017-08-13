@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeacherClient"
-        mc:Ignorable="d"
+        mc:Ignorable="d" AllowsTransparency="False"
         Title="MainWindow" Height="700" Width="1024">
     <Grid>
         <Grid.RowDefinitions>

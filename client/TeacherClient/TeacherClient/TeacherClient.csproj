@@ -46,6 +46,7 @@
     <Reference Include="PresentationFramework.Classic" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -71,6 +72,7 @@
     <Compile Include="Converters\IntEqualParamToVisibilityConverter.cs" />
     <Compile Include="Converters\IntToBoolConverter.cs" />
     <Compile Include="Converters\IntToColorConverter.cs" />
+    <Compile Include="Converters\IntToIndexConverter.cs" />
     <Compile Include="Converters\IntToTimeConverter.cs" />
     <Compile Include="Converters\IntToVisibilityConverter.cs" />
     <Compile Include="Converters\LiveStatusOperationTemplateSelector.cs" />
@@ -95,34 +97,67 @@
     <Compile Include="MessageWindow.xaml.cs">
       <DependentUpon>MessageWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MyControls\MyComboBox.xaml.cs">
+      <DependentUpon>MyComboBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MyControls\MyDataPage.xaml.cs">
       <DependentUpon>MyDataPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyControls\MyHtmlEditor.xaml.cs">
+      <DependentUpon>MyHtmlEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="MyControls\MyPassword.xaml.cs">
       <DependentUpon>MyPassword.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\AddManyOffCourse.xaml.cs">
+    <Compile Include="MyControls\MyTextBox.xaml.cs">
+      <DependentUpon>MyTextBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AddManyCourse.xaml.cs">
+      <DependentUpon>AddManyCourse.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AddOneCourse.xaml.cs">
+      <DependentUpon>AddOneCourse.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CourseEdit.xaml.cs">
+      <DependentUpon>CourseEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CourseManager.xaml.cs">
+      <DependentUpon>CourseManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CoursePropertyWindow.xaml.cs">
+      <DependentUpon>CoursePropertyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\线下课堂\AddManyOffCourse.xaml.cs">
       <DependentUpon>AddManyOffCourse.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\AddOffCourseWindow.xaml.cs">
+    <Compile Include="Pages\线下课堂\AddOffCourseWindow.xaml.cs">
       <DependentUpon>AddOffCourseWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\AddOneOffCourse.xaml.cs">
+    <Compile Include="Pages\线下课堂\AddOneOffCourse.xaml.cs">
       <DependentUpon>AddOneOffCourse.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\AllCourse.xaml.cs">
+    <Compile Include="Pages\线下课堂\AllCourse.xaml.cs">
       <DependentUpon>AllCourse.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\CourseCenter.xaml.cs">
       <DependentUpon>CourseCenter.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\EndCourse.xaml.cs">
+    <Compile Include="Pages\CoursewareManager.xaml.cs">
+      <DependentUpon>CoursewareManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\线下课堂\EndCourse.xaml.cs">
       <DependentUpon>EndCourse.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\NotStartCourse.xaml.cs">
+    <Compile Include="Pages\线下课堂\NotStartCourse.xaml.cs">
       <DependentUpon>NotStartCourse.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\StudentListWindow.xaml.cs">
+    <Compile Include="Pages\线下课堂\OffCourseDetail.xaml.cs">
+      <DependentUpon>OffCourseDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\线下课堂\OfflineCourseUpdate.xaml.cs">
+      <DependentUpon>OfflineCourseUpdate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\线下课堂\StudentListWindow.xaml.cs">
       <DependentUpon>StudentListWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\课酬中心\GiftDetailWindow.xaml.cs">
@@ -137,7 +172,7 @@
     <Compile Include="Pages\课酬中心\MyBankInfo.xaml.cs">
       <DependentUpon>MyBankInfo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\OfflineCourse.xaml.cs">
+    <Compile Include="Pages\线下课堂\OfflineCourse.xaml.cs">
       <DependentUpon>OfflineCourse.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\课酬中心\RewardCenter.xaml.cs">
@@ -201,7 +236,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Dictionary\FrameDictionary.xaml">
+    <Page Include="Dictionary\ContextMenuDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -225,7 +260,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MyControls\MyComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MyControls\MyDataPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyControls\MyHtmlEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -233,19 +276,43 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\AddManyOffCourse.xaml">
+    <Page Include="MyControls\MyTextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\AddOffCourseWindow.xaml">
+    <Page Include="Pages\AddManyCourse.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\AddOneOffCourse.xaml">
+    <Page Include="Pages\AddOneCourse.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\AllCourse.xaml">
+    <Page Include="Pages\CourseEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CourseManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CoursePropertyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\线下课堂\AddManyOffCourse.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\线下课堂\AddOffCourseWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\线下课堂\AddOneOffCourse.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\线下课堂\AllCourse.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -253,15 +320,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\EndCourse.xaml">
+    <Page Include="Pages\CoursewareManager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\NotStartCourse.xaml">
+    <Page Include="Pages\线下课堂\EndCourse.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\StudentListWindow.xaml">
+    <Page Include="Pages\线下课堂\NotStartCourse.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\线下课堂\OffCourseDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\线下课堂\OfflineCourseUpdate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\线下课堂\StudentListWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -281,7 +360,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\OfflineCourse.xaml">
+    <Page Include="Pages\线下课堂\OfflineCourse.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -330,6 +409,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\首页\TogetherInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProcessDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

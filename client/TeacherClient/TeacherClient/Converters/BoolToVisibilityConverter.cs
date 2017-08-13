@@ -33,4 +33,29 @@ namespace TeacherClient
             return false;
         }
     }
+
+    public class BoolToVisibilityConverter2 : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            try
+            {
+                if (value != null && value.ToString() == true.ToString())
+                    return Visibility.Collapsed;
+            }
+            catch (Exception) { }
+            return Visibility.Visible;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            try
+            {
+                if (value != null && value.ToString() == Visibility.Collapsed.ToString())
+                    return true;
+            }
+            catch (Exception) { }
+            return false;
+        }
+    }
 }

@@ -23,19 +23,18 @@ namespace TeacherClient
         public MyPassword()
         {
             InitializeComponent();
-            this.DataContext = this;
         }
 
 
-        public string Password
+        public string Pwd
         {
-            get { return (string)GetValue(PasswordProperty); }
-            set { SetValue(PasswordProperty, value); }
+            get { return (string)GetValue(PwdProperty); }
+            set { SetValue(PwdProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for Password.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty PasswordProperty =
-            DependencyProperty.Register("Password", typeof(string), typeof(MyPassword), new FrameworkPropertyMetadata(string.Empty, PropertyChangedCallback) { BindsTwoWayByDefault = true });
+        public static readonly DependencyProperty PwdProperty =
+            DependencyProperty.Register("Pwd", typeof(string), typeof(MyPassword), new FrameworkPropertyMetadata(PropertyChangedCallback) { BindsTwoWayByDefault = true });
 
         static void PropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -56,7 +55,7 @@ namespace TeacherClient
 
         private void passwordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            SetValue(MyPassword.PasswordProperty, passwordBox.Password);            
+            this.Pwd = passwordBox.Password;
         }
     }
 }

@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="TeacherClient.Pages.AddOneCourse"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TeacherClient.Pages"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>
+                    <Run Text="*" Foreground="#ff0000"/>
+                    <Run Text="课程售价：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+            </TextBlock>
+            <RadioButton Content="免费"/>
+            <RadioButton Content="收费"/>
+            <TextBox Width="50"/>
+            <TextBlock Text="元" Margin="8,0,0,0"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>
+                    <Run Text="*" Foreground="#ff0000"/>
+                    <Run Text="课程视频：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+            </TextBlock>
+            <Button Grid.Row="1" Style="{StaticResource ButtonStyle1}" Height="26" Width="110"
+                Click="UploadCourse_Click">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/课程中心/上传.png" Margin="6,0"/>
+                        <TextBlock Text="上传" Foreground="#fffefe" FontSize="{StaticResource FontSize3}"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+        </StackPanel>
+        <TextBlock Text="支持MP4、RMVB、AVI等视频格式，文件大小不得超过1000M" Foreground="#999999" FontSize="{StaticResource FontSize3}"/>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>
+                    <Run Text="*" Foreground="#ff0000"/>
+                    <Run Text="课程视频：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+            </TextBlock>
+            <Button Grid.Row="1" Style="{StaticResource ButtonStyle1}" Height="26" Width="110"
+                Click="UploadCourse_Click">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/课程中心/上传.png" Margin="6,0"/>
+                        <TextBlock Text="上传" Foreground="#fffefe" FontSize="{StaticResource FontSize3}"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+        </StackPanel>
+        <TextBlock Text="支持上传word文档、PPT、图片，文件大小不得超过10M" Foreground="#999999" FontSize="{StaticResource FontSize3}"/>
+    </StackPanel>
+</UserControl>

@@ -57,7 +57,9 @@ namespace TeacherClient
         public static readonly string Interface_bankList = "Live/Common/bankList";
         public static readonly string Interface_regionList = "Live/Common/regionList";
 
-        
+        public static readonly string Interface_categoryList = "Live/LecCourse/categoryList";
+
+
         public static readonly string Interface_imageUpLoad = "Live/Upload/imageUpLoad";
 
 

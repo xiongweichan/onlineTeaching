@@ -23,7 +23,7 @@ namespace TeacherClient
 
                 Regions = await WebHelper.doPost<List<Reponse.region>, Request.ParamBase>(Config.Interface_regionList, l);
 
-
+                CategoryList = await WebHelper.doPost<List<Reponse.category>, Request.ParamBase>(Config.Interface_categoryList, l);
             }
             catch(Exception ex)
             {
@@ -33,5 +33,7 @@ namespace TeacherClient
 
         public List<Reponse.bankinfo> BankInfos { get; private set; }
         public List<Reponse.region> Regions { get; private set; }
+
+        public List<Reponse.category> CategoryList { get; private set; }
     }
 }

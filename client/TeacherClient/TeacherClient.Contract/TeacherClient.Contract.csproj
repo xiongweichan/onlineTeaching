@@ -46,6 +46,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reponse\bankcardDetail.cs" />
     <Compile Include="Reponse\bankinfo.cs" />
+    <Compile Include="Reponse\category.cs" />
     <Compile Include="Reponse\imageUpLoad.cs" />
     <Compile Include="Reponse\lessonList.cs" />
     <Compile Include="Reponse\listData.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="Reponse\liveRewardList.cs" />
     <Compile Include="Reponse\Login.cs" />
     <Compile Include="Reponse\MainIndex.cs" />
+    <Compile Include="Reponse\offCourseDetail.cs" />
     <Compile Include="Reponse\offUserlist.cs" />
     <Compile Include="Reponse\region.cs" />
     <Compile Include="Reponse\ResponseParam.cs" />
@@ -67,6 +69,8 @@
     <Compile Include="Request\imageUpLoad.cs" />
     <Compile Include="Request\Login.cs" />
     <Compile Include="Request\OffCourselist.cs" />
+    <Compile Include="Request\offlineCourseAdd.cs" />
+    <Compile Include="Request\offlineCourseUpdate.cs" />
     <Compile Include="Request\ParamBase.cs" />
     <Compile Include="Request\phoneCode.cs" />
     <Compile Include="Request\register.cs" />

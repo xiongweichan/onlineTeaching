@@ -45,13 +45,13 @@ namespace TeacherClient
 
         private async void BtnOK_Click(object sender, RoutedEventArgs e)
         {
-            if (pwd_new.Password != pwd_newRepeat.Password)
+            if (pwd_new.Pwd != pwd_newRepeat.Pwd)
             {
                 MessageWindow.Alter("提示", "两次密码输入不一致");
                 return;
             }
             this.IsBusy = true;
-            Request.resetPwd l = new Request.resetPwd() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, phone = textBox.Text, password = pwd_new.Password, code = recvcode.Text };
+            Request.resetPwd l = new Request.resetPwd() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, phone = textBox.Text, password = pwd_new.Pwd, code = recvcode.Text };
             var t = await WebHelper.doPost<string, Request.resetPwd>(Config.Interface_phoneCode, l);
             if (t != null)
                 _model.ShowThirdPage = true;
