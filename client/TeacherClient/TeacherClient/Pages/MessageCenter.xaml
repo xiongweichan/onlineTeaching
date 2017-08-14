@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="TeacherClient.Pages.MessageCenter"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TeacherClient"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <local:MessageTypeConverter x:Key="MessageTypeConverter"/>
+    </UserControl.Resources>
+    <Grid Margin="16,8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="42"/>
+        </Grid.RowDefinitions>
+        <Border BorderThickness="0,0,0,2" BorderBrush="#cccccc">
+            <StackPanel Orientation="Horizontal" RadioButton.Checked="StackPanel_Checked">
+                <RadioButton x:Name="all"  Content="全部消息" Style="{StaticResource RadioButtonStyle5}" IsChecked="True"/>
+                <RadioButton x:Name="system" Content="系统消息" Style="{StaticResource RadioButtonStyle5}"/>
+                <RadioButton x:Name="student" Content="学员消息" Style="{StaticResource RadioButtonStyle5}"/>
+                <RadioButton x:Name="studentleave" Content="学员留言" Style="{StaticResource RadioButtonStyle5}" />
+            </StackPanel>
+        </Border>
+        <DataGrid x:Name="datagrid" RowStyle="{DynamicResource DataGridRowStyle1}" 
+                      ColumnHeaderHeight="0"
+                      Style="{DynamicResource DataGridStyle1}" Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding type, Converter={StaticResource MessageTypeConverter}}" Width="150" CellStyle="{DynamicResource DataGridCellStyle1}"/>
+                <DataGridTextColumn Binding="{Binding add_time, Converter={StaticResource IntToTimeConverter}, ConverterParameter='yyyy-MM-dd HH:mm'}" Width="200" CellStyle="{DynamicResource DataGridCellStyle1}"/>
+                <DataGridTextColumn Binding="{Binding title}" Width="*" CellStyle="{DynamicResource DataGridCellStyle1}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <local:MyDataPage Grid.Row="2"  x:Name="pagerData" PagerIndexChanged="pagerData_PagerIndexChanged"
+                           HorizontalAlignment="Right"/>
+    </Grid>
+</UserControl>

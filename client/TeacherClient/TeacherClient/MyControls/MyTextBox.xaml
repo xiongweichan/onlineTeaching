@@ -14,12 +14,12 @@
                      FontSize="{Binding ElementName=root,Path=FontSize}" Foreground="{Binding ElementName=root,Path=Foreground}"/>
             <Button HorizontalAlignment="Right" Margin="0,0,-26,0" Click="btnOKClick">
                 <Button.Content>
-                    <Image Width="16" Height="16"/>
+                    <Image Width="16" Height="16" Source="/Images/课程中心/确定修改名称.png"/>
                 </Button.Content>
             </Button>
             <Button HorizontalAlignment="Right" Margin="0,0,-52,0" Click="btnCancelClick">
                 <Button.Content>
-                    <Image Width="16" Height="16"/>
+                    <Image Width="16" Height="16" Source="/Images/课程中心/取消修改名称.png"/>
                 </Button.Content>
             </Button>
         </Grid>

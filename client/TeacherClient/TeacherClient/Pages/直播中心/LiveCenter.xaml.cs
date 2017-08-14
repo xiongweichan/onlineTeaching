@@ -41,7 +41,20 @@ namespace TeacherClient.Pages
             get { return (int)GetValue(TypeProperty); }
             set { SetValue(TypeProperty, value); }
         }
-        
+
+        bool _ShowMylive = true;
+        public bool ShowMylive
+        {
+            get { return _ShowMylive; }
+            set
+            {
+                _ShowMylive = value;
+                if (!value)
+                    _myLive = new MyLive();
+                ShowContent();
+            }
+        }
+
         MyLive _myLive = new MyLive();
         RequestLive _requestLive = new RequestLive();
         LiveManager _liveManager = new LiveManager();
@@ -51,16 +64,22 @@ namespace TeacherClient.Pages
             DependencyProperty.Register("Type", typeof(int), typeof(LiveCenter), new PropertyMetadata(-1, (obj, e) =>
             {
                 var _this = obj as LiveCenter;
-                switch (_this.Type)
-                {
-                    case 0:
-                        _this.frame.Content = _this._liveManager;
-                        break;
-                    case 1:
-                        _this.frame.Content = _this._requestLive;
-                        break;
-                }
+                _this.ShowContent();
             }));
-
+        private void ShowContent()
+        {
+            switch (Type)
+            {
+                case 0:
+                    if (ShowMylive)
+                        frame.Content = _liveManager;
+                    else
+                        frame.Content = _myLive;
+                    break;
+                case 1:
+                    frame.Content = _requestLive;
+                    break;
+            }
+        }
     }
 }

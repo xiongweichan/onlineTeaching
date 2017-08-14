@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Reponse = TeacherClient.Contract.Reponse;
+using Request = TeacherClient.Contract.Request;
 
 namespace TeacherClient.Pages
 {
@@ -23,6 +25,47 @@ namespace TeacherClient.Pages
         public LiveManager()
         {
             InitializeComponent();
+            Type = 1;
+            this.DataContext = this;
         }
-    }
+        public int Type
+        {
+            get { return (int)GetValue(TypeProperty); }
+            set { SetValue(TypeProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Type.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TypeProperty =
+            DependencyProperty.Register("Type", typeof(int), typeof(LiveManager), new PropertyMetadata(-1, (obj, e) =>
+            {
+                var _this = obj as LiveManager;
+                _this.ShowContent();
+            }));
+
+        private void ShowContent()
+        {
+            //0:全部,1:待直播,2:审核成功,3:待审核,4:已结束
+            GetData();
+        }
+
+        private void pagerData_PagerIndexChanged(object sender, EventArgs e)
+        {
+            GetData();
+        }
+        async void GetData()
+        {
+            MainWindow.Current.IsBusy = true;
+            Request.requestlivelist l = new Request.requestlivelist() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, page = pagerData.PageIndex, pageSize = pagerData.PageSize, list_type = Type.ToString() };
+
+            var t = await WebHelper.doPost<Reponse.listData<Reponse.live>, Request.requestlivelist>(Config.Interface_liveList, l);
+            if (t != null)
+            {
+                pagerData.TotalCount = t.totalCount;
+                datagrid.ItemsSource = t.list;
+            }
+
+            MainWindow.Current.IsBusy = false;
+
+        }
+    }    
 }

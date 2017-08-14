@@ -3,10 +3,64 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:TeacherClient.Pages"
+             xmlns:local="clr-namespace:TeacherClient"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
+    <UserControl.Resources>
+        <local:LiveStatusConverter x:Key="LiveStatusConverter"/>
+        <DataTemplate x:Key="CheckFailed">
+            <Button Content="修改申请"/>
+        </DataTemplate>
+        <DataTemplate x:Key="CheckSuccess">
+            <StackPanel Orientation="Horizontal">
+                <Button Content="修改时间"/>
+                <Button Content="取消申请"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="LiveEnd">
+            <Button Content="删除记录"/>
+        </DataTemplate>
+        <DataTemplate x:Key="WaitCheck">
+            <Button Content="修改时间"/>
+        </DataTemplate>
+        <DataTemplate x:Key="WaitLive">
+            <Button Content="开始直播"/>
+        </DataTemplate>
+        <local:LiveStatusOperationTemplateSelector x:Key="LiveStatusOperationTemplateSelector"
+                                                    CheckFailed="{StaticResource CheckFailed}"
+                                                    CheckSuccess="{StaticResource CheckSuccess}"
+                                                    LiveEnd="{StaticResource LiveEnd}"
+                                                    WaitCheck="{StaticResource WaitCheck}"
+                                                    WaitLive="{StaticResource WaitLive}"/>
+    </UserControl.Resources>
+    <Grid Margin="16,8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="42"/>
+        </Grid.RowDefinitions>
+        <Border BorderThickness="0,0,0,2" BorderBrush="#cccccc">
+            <StackPanel Orientation="Horizontal">
+                <RadioButton IsChecked="{Binding Type, Converter={StaticResource IntToBoolConverter}, ConverterParameter=1}"  Content="待直播" Style="{StaticResource RadioButtonStyle5}"/>
+                <RadioButton IsChecked="{Binding Type, Converter={StaticResource IntToBoolConverter}, ConverterParameter=2}" Content="审核成功" Style="{StaticResource RadioButtonStyle5}"/>
+                <RadioButton IsChecked="{Binding Type, Converter={StaticResource IntToBoolConverter}, ConverterParameter=3}" Content="待审核" Style="{StaticResource RadioButtonStyle5}"/>
+                <RadioButton IsChecked="{Binding Type, Converter={StaticResource IntToBoolConverter}, ConverterParameter=4}" Content="已结束" Style="{StaticResource RadioButtonStyle5}" />
+                <RadioButton IsChecked="{Binding Type, Converter={StaticResource IntToBoolConverter}, ConverterParameter=0}" Content="全部直播" Style="{StaticResource RadioButtonStyle5}" />
+            </StackPanel>
+        </Border>
+        <DataGrid x:Name="datagrid" RowStyle="{DynamicResource DataGridRowStyle1}" 
+                      ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle1}"
+                      Style="{DynamicResource DataGridStyle1}" Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="直播名称" Binding="{Binding title}" Width="200" CellStyle="{DynamicResource DataGridCellStyle1}"/>
+                <DataGridTextColumn Header="直播类型" Binding="{Binding cat_name}" Width="*" CellStyle="{DynamicResource DataGridCellStyle1}"/>
+                <DataGridTextColumn Header="开始时间" Binding="{Binding start_time, Converter={StaticResource IntToTimeConverter}, ConverterParameter='yyyy-MM-dd HH:mm'}" Width="200" CellStyle="{DynamicResource DataGridCellStyle1}"/>
+                <DataGridTextColumn Header="结束时间" Binding="{Binding end_time, Converter={StaticResource IntToTimeConverter}, ConverterParameter='yyyy-MM-dd HH:mm'}" Width="200" CellStyle="{DynamicResource DataGridCellStyle1}"/>
+                <DataGridTextColumn Header="状态" Binding="{Binding ., Converter={StaticResource LiveStatusConverter}}" Width="200" CellStyle="{DynamicResource DataGridCellStyle1}"/>
+                <DataGridTemplateColumn Header="操作" CellTemplateSelector="{StaticResource LiveStatusOperationTemplateSelector}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <local:MyDataPage Grid.Row="2"  x:Name="pagerData" PagerIndexChanged="pagerData_PagerIndexChanged"
+                           HorizontalAlignment="Right"/>
     </Grid>
 </UserControl>

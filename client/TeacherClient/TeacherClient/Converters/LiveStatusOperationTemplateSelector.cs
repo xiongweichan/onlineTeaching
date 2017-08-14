@@ -17,19 +17,22 @@ namespace TeacherClient
         public DataTemplate WaitLive { get; set; }
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
-            switch (item.ToString())
-            {
-                case "等待审核":
-                    return WaitCheck;
-                case "审核失败":
-                    return CheckFailed;
-                case "审核成功":
-                    return CheckSuccess;
-                case "直播结束":
-                    return LiveEnd;
-                case "等待直播":
-                    return WaitLive;
-            }
+            var live = item as Contract.Reponse.live;
+            if (live != null)
+                switch (live.status.ObjToString())
+                {
+                    case "0":
+                        return WaitCheck;
+                    case "2":
+                        return CheckFailed;
+                    case "1":
+                        if (live.start_time != null && live.start_time.GetTime().AddHours(48) > DateTime.Now)
+                            return WaitLive;
+                        else if(live.end_time != null && live.end_time.GetTime() > DateTime.Now)
+                            return LiveEnd;
+                        else
+                            return CheckSuccess;
+                }
             return base.SelectTemplate(item, container);
         }
     }

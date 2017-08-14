@@ -56,7 +56,15 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls, Version=2015.3.930.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Controls, Version=2015.3.930.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Controls.ImageEditor, Version=2015.3.930.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Controls.Input, Version=2015.3.930.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2015.3.930.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Controls.RibbonView, Version=2015.3.930.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Controls.RichTextBoxUI, Version=2015.3.930.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Documents, Version=2015.3.930.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Documents.Core, Version=2015.3.930.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Documents.FormatProviders.Html, Version=2015.3.930.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -75,7 +83,9 @@
     <Compile Include="Converters\IntToIndexConverter.cs" />
     <Compile Include="Converters\IntToTimeConverter.cs" />
     <Compile Include="Converters\IntToVisibilityConverter.cs" />
+    <Compile Include="Converters\LiveStatusConverter.cs" />
     <Compile Include="Converters\LiveStatusOperationTemplateSelector.cs" />
+    <Compile Include="Converters\MessageTypeConverter.cs" />
     <Compile Include="Converters\OfflineCourseStatusConverter.cs" />
     <Compile Include="Converters\PathToImageConverter.cs" />
     <Compile Include="Converters\SexIntToStringConverter.cs" />
@@ -87,6 +97,7 @@
     <Compile Include="Extension\PasswordBoxExtention.cs" />
     <Compile Include="Extension\StatusCode.cs" />
     <Compile Include="Extension\StringExtension.cs" />
+    <Compile Include="Extension\UploadFileHelper.cs" />
     <Compile Include="Extension\WebHelper.cs" />
     <Compile Include="FindPasswordWindow.xaml.cs">
       <DependentUpon>FindPasswordWindow.xaml</DependentUpon>
@@ -126,6 +137,12 @@
     </Compile>
     <Compile Include="Pages\CoursePropertyWindow.xaml.cs">
       <DependentUpon>CoursePropertyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CoursewareEdit.xaml.cs">
+      <DependentUpon>CoursewareEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MessageCenter.xaml.cs">
+      <DependentUpon>MessageCenter.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\线下课堂\AddManyOffCourse.xaml.cs">
       <DependentUpon>AddManyOffCourse.xaml</DependentUpon>
@@ -297,6 +314,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\CoursePropertyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CoursewareEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MessageCenter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -576,6 +601,8 @@
     <Resource Include="Images\首页\形状-3-拷贝.png" />
     <Resource Include="Images\首页\形状-3-拷贝_31.png" />
     <Resource Include="Images\首页\绑定成功.png" />
+    <Resource Include="Images\课程中心\取消修改名称.png" />
+    <Resource Include="Images\课程中心\确定修改名称.png" />
     <Content Include="SysConfig\SystemConfig.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

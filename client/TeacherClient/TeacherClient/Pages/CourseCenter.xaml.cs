@@ -59,6 +59,7 @@ namespace TeacherClient.Pages
         CourseEdit _courseEdit = new CourseEdit();
         CourseManager _courseManager = new CourseManager();
         CoursewareManager _coursewareManager = new CoursewareManager();
+        MessageCenter _messageCenter = new MessageCenter();
 
         // Using a DependencyProperty as the backing store for Type.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TypeProperty =
@@ -82,7 +83,7 @@ namespace TeacherClient.Pages
                     frame.Content = _coursewareManager;
                     break;
                 case 2:
-                    //_this.frame.Content = _this._requestLive;
+                    frame.Content = _messageCenter;
                     break;
             }
         }

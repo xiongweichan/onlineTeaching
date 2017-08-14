@@ -4,11 +4,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TeacherClient"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
              mc:Ignorable="d" x:Name="root"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <WebBrowser x:Name="webBrowser" Loaded="MyHtmlEditor_Loaded" 
+        <!--<WebBrowser x:Name="webBrowser" Loaded="MyHtmlEditor_Loaded" 
                     Width="{Binding ElementName=root, Path=ActualWidth}"
+                    Height="{Binding ElementName=root,Path=ActualHeight}"/>-->
+        <telerik:HtmlDataProvider x:Name="xamlDataProvider"
+            Html="{Binding ElementName=textBox, Path=Text, Mode=TwoWay}"
+            RichTextBox="{Binding ElementName=radRichTextBox}" />
+        <telerik:RadRichTextBox x:Name="radRichTextBox" 
+                                Width="{Binding ElementName=root, Path=ActualWidth}"
                     Height="{Binding ElementName=root,Path=ActualHeight}"/>
     </Grid>
 </UserControl>

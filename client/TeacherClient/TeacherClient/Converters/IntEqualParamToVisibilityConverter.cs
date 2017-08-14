@@ -18,7 +18,7 @@ namespace TeacherClient
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            return value.ObjToString() == Visibility.Visible.ToString() ? parameter.ObjToString() : string.Empty;
         }
     }
     public class IntEqualParamToVisibilityConverter2 : IValueConverter

@@ -52,16 +52,19 @@ namespace TeacherClient
         public static readonly string Interface_courseDetail = "Live/LecOfflineCourse/courseDetail";
         public static readonly string Interface_offlineCourseAdd = "Live/LecOfflineCourse/offlineCourseAdd";
         public static readonly string Interface_offlineCourseUpdate = "Live/LecOfflineCourse/offlineCourseUpdate";
-
+        
 
         public static readonly string Interface_bankList = "Live/Common/bankList";
         public static readonly string Interface_regionList = "Live/Common/regionList";
 
         public static readonly string Interface_categoryList = "Live/LecCourse/categoryList";
+        public static readonly string Interface_messageList = "Live/LecCourse/messageList";
 
 
         public static readonly string Interface_imageUpLoad = "Live/Upload/imageUpLoad";
 
+        public static readonly string Interface_liveList = "Live/LecLive/liveList";
+        
 
         public class phoneCode
         {

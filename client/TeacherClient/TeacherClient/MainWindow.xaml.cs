@@ -112,6 +112,11 @@ namespace TeacherClient
             Model.MenuIndex = findex;
             (frame.Content as INavigation).NavigateToPage(sindex, data);
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigateToPage(2, 2, null);
+        }
     }
 
     public class UserModel : ViewModelBase
