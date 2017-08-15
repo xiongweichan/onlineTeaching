@@ -24,5 +24,10 @@ namespace TeacherClient.Pages
         {
             InitializeComponent();
         }
+
+        private void OutLive_Click(object sender, RoutedEventArgs e)
+        {
+            LiveCenter.Current.ShowMylive = false;
+        }
     }
 }

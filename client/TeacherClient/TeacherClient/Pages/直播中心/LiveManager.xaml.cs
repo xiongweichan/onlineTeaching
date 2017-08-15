@@ -67,5 +67,36 @@ namespace TeacherClient.Pages
             MainWindow.Current.IsBusy = false;
 
         }
+
+        private void EditRequest_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void StartLive_Click(object sender, RoutedEventArgs e)
+        {
+            LiveCenter.Current.ShowMylive = true;
+        }
+
+        private void EditTime_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DelRecord_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageWindow.Alter("删除确认", "您确定要删除记录吗？") == true)
+            {
+
+            }
+        }
+
+        private void CancelRequest_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageWindow.Alter("确认取消", "确认要取消直播吗？取消后不可恢复") == true)
+            {
+
+            }
+        }
     }    
 }

@@ -42,14 +42,14 @@ namespace TeacherClient.Pages
             set { SetValue(TypeProperty, value); }
         }
 
-        bool _ShowMylive = true;
+        bool _ShowMylive;
         public bool ShowMylive
         {
             get { return _ShowMylive; }
             set
             {
                 _ShowMylive = value;
-                if (!value)
+                if (value)
                     _myLive = new MyLive();
                 ShowContent();
             }
@@ -71,7 +71,7 @@ namespace TeacherClient.Pages
             switch (Type)
             {
                 case 0:
-                    if (ShowMylive)
+                    if (!ShowMylive)
                         frame.Content = _liveManager;
                     else
                         frame.Content = _myLive;

@@ -3,11 +3,223 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:TeacherClient.Pages"
+             xmlns:local="clr-namespace:TeacherClient"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <TextBlock Text="RequestLive"/>
-            
+    <Grid Margin="16">
+        <Grid Visibility="Collapsed">
+            <RadioButton x:Name="firstpage" GroupName="page" IsChecked="True"/>
+            <RadioButton x:Name="secondpage" GroupName="page"/>
+            <RadioButton x:Name="thirdpage" GroupName="page"/>
+            <RadioButton x:Name="fourthpage" GroupName="page"/>
+        </Grid>
+        <StackPanel Visibility="{Binding IsChecked, ElementName=firstpage, Converter={StaticResource BoolToVisibilityConverter}}">
+            <StackPanel Orientation="Horizontal">
+                <Grid>
+                    <Image Source="/Images/登录注册/形状-3 (2).png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="1.填写直播概况" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Forground1}"/>
+                </Grid>
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="/Images/登录注册/形状-3-拷贝.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="2.编写直播详情" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Forground34}"/>
+                </Grid>
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="/Images/登录注册/形状-3-拷贝.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="3.安排直播时间" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Forground34}"/>
+                </Grid>
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="/Images/登录注册/形状-3-拷贝.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="4.等待平台审核" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Forground34}"/>
+                </Grid>
+            </StackPanel>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>
+                    <Run Text="*" Foreground="#ff0000"/>
+                    <Run Text="直播名称：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+                    </TextBlock>
+                    <TextBox Width="200" Height="28" VerticalContentAlignment="Center" Foreground="#424e67"
+                         Text="{Binding Model.title}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="20,20,0,0">
+                    <TextBlock>
+                        <Run Text="*" Foreground="#ff0000"/>
+                        <Run Text="课程封面：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+                    </TextBlock>
+                    <StackPanel Margin="0,20,0,0">
+                        <Image Width="200" Height="114"/>
+                        <Button Content="点击上传" Margin="0,10,0,0"/>
+                    </StackPanel>
+                    <TextBlock Margin="10,0,0,0">
+                        <Line Height="22"/>
+                        <Run Text="图片要求：" Foreground="#999999" FontSize="{StaticResource FontSize3}"/>
+                        <LineBreak/>
+                        <Line Height="22"/>
+                        <Run Text="支持JPG/PNG/BMP等格式图片" Foreground="#999999" FontSize="{StaticResource FontSize3}"/>
+                        <LineBreak/>
+                        <Line Height="22"/>
+                        <Run Text="尺寸1080*608分辨率小于96dpi，大小小于2M" Foreground="#999999" FontSize="{StaticResource FontSize3}"/>
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>
+                    <Run Text="*" Foreground="#ff0000"/>
+                    <Run Text="直播次数：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+                    </TextBlock>
+                    <RadioButton x:Name="rb_one" Content="首播" Foreground="#FF3E3E3E" VerticalContentAlignment="Center"/>
+                    <RadioButton x:Name="rb_many" Content="多节" Foreground="#FF3E3E3E" VerticalContentAlignment="Center"/>
+                </StackPanel>
+                <Button Content="下一步" Width="130" Height="30" Background="#0096ff" Foreground="#ffffff" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Left"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Visibility="{Binding IsChecked, ElementName=secondpage, Converter={StaticResource BoolToVisibilityConverter}}">
+            <StackPanel Orientation="Horizontal">
+                <Grid>
+                    <Image Source="/Images/登录注册/形状-3 (2).png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="1.填写直播概况" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Forground1}"/>
+                </Grid>
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="/Images/登录注册/形状-3-拷贝_31.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="2.编写直播详情" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Forground34}"/>
+                </Grid>
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="/Images/登录注册/形状-3-拷贝.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="3.安排直播时间" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Forground34}"/>
+                </Grid>
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="/Images/登录注册/形状-3-拷贝.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="4.等待平台审核" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Forground34}"/>
+                </Grid>
+            </StackPanel>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>
+                    <Run Text="*" Foreground="#ff0000"/>
+                    <Run Text="直播类型：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+                    </TextBlock>
+                    <local:MyComboBox cat_id="{Binding cat_id}" cat_id_1="{Binding cat_id_1}" cat_id_2="{Binding cat_id_2}"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock>                    
+                    <Run Text="关联直播：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+                </TextBlock>
+                <ComboBox Width="200"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock>
+                    <Run Text="*" Foreground="#ff0000"/>
+                    <Run Text="直播描述：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+                </TextBlock>
+                <TextBox Width="456" Height="88" Tag="不少于10个字" AcceptsReturn="True" AcceptsTab="True"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock>
+                    <Run Text="直播大纲：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+                </TextBlock>
+                <TextBox Width="456" Height="88" Tag="不少于10个字" AcceptsReturn="True" AcceptsTab="True"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock>
+                    <Run Text="*" Foreground="#ff0000"/>
+                    <Run Text="上传课件：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+                </TextBlock>
+                <Button Grid.Row="1" Style="{StaticResource ButtonStyle1}" Height="26" Width="110"
+                Click="UploadCourse_Click">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/Images/课程中心/上传.png" Margin="6,0"/>
+                            <TextBlock Text="上传" Foreground="#fffefe" FontSize="{StaticResource FontSize3}"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+            <TextBlock Text="支持上传word文档、ppt、图片，文件大小不得超过10M" Foreground="#999999" FontSize="{StaticResource FontSize3}"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock>
+                    <Run Text="*" Foreground="#ff0000"/>
+                    <Run Text="直播售价：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+                </TextBlock>
+                <RadioButton Content="免费"/>
+                <RadioButton Content="收费"/>
+                <TextBox Width="50"/>
+                <TextBlock Text="元" Margin="8,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock>
+                    <Run Text="*" Foreground="#ff0000"/>
+                    <Run Text="直播详情：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+                </TextBlock>
+                <local:MyHtmlEditor Width="803" Height="200"/>
+            </StackPanel>
+            <Button Content="下一步" Width="130" Height="30" Background="#0096ff" Foreground="#ffffff" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Left"/>
+        </StackPanel>
+        <StackPanel Visibility="{Binding IsChecked, ElementName=thirdpage, Converter={StaticResource BoolToVisibilityConverter}}">
+            <StackPanel Orientation="Horizontal">
+                <Grid>
+                    <Image Source="/Images/登录注册/形状-3 (2).png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="1.填写直播概况" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Forground1}"/>
+                </Grid>
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="/Images/登录注册/形状-3-拷贝_31.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="2.编写直播详情" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Forground34}"/>
+                </Grid>
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="/Images/登录注册/形状-3-拷贝_31.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="3.安排直播时间" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Forground34}"/>
+                </Grid>
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="/Images/登录注册/形状-3-拷贝.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="4.等待平台审核" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Forground34}"/>
+                </Grid>
+            </StackPanel>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>
+                    <Run Text="*" Foreground="#ff0000"/>
+                    <Run Text="开始时间：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+                    </TextBlock>
+                    <telerik:RadDateTimePicker Width="433" Height="200"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>
+                    <Run Text="*" Foreground="#ff0000"/>
+                    <Run Text="结束时间：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+                    </TextBlock>
+                    <telerik:RadDateTimePicker Width="433" Height="200"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Visibility="{Binding IsChecked, ElementName=fourthpage, Converter={StaticResource BoolToVisibilityConverter}}">
+            <StackPanel Orientation="Horizontal">
+                <Grid>
+                    <Image Source="/Images/登录注册/形状-3 (2).png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="1.填写直播概况" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Forground1}"/>
+                </Grid>
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="/Images/登录注册/形状-3-拷贝_31.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="2.编写直播详情" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Forground34}"/>
+                </Grid>
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="/Images/登录注册/形状-3-拷贝_31.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="3.安排直播时间" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Forground34}"/>
+                </Grid>
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="/Images/登录注册/形状-3-拷贝_31.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="4.等待平台审核" HorizontalAlignment="Center" d:LayoutOverrides="Height" VerticalAlignment="Center" FontSize="14" Foreground="{DynamicResource Forground34}"/>
+                </Grid>
+            </StackPanel>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Image/>
+                    <TextBlock Text="您的直播申请已提交！"/>
+                </StackPanel>
+                <TextBlock Text="请您耐心等候，系统会在两个工作日内审核完毕。"/>
+                <TextBlock Text="5秒后会自动为您跳回“我的直播”，或者点击下方确定按钮跳转"/>
+
+                <Button Content="确定" Width="130" Height="30" Background="#0096ff" Foreground="#ffffff" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Left"/>
+            </StackPanel>            
+        </StackPanel>
     </Grid>
 </UserControl>

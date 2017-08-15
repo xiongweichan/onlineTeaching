@@ -24,5 +24,10 @@ namespace TeacherClient.Pages
         {
             InitializeComponent();
         }
+
+        private void UploadCourse_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

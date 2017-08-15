@@ -9,22 +9,22 @@
     <UserControl.Resources>
         <local:LiveStatusConverter x:Key="LiveStatusConverter"/>
         <DataTemplate x:Key="CheckFailed">
-            <Button Content="修改申请"/>
+            <Button Content="修改申请" Click="EditRequest_Click"/>
         </DataTemplate>
         <DataTemplate x:Key="CheckSuccess">
             <StackPanel Orientation="Horizontal">
-                <Button Content="修改时间"/>
-                <Button Content="取消申请"/>
+                <Button Content="修改时间" Click="EditTime_Click"/>
+                <Button Content="取消申请" Click="CancelRequest_Click"/>
             </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="LiveEnd">
-            <Button Content="删除记录"/>
+            <Button Content="删除记录" Click="DelRecord_Click"/>
         </DataTemplate>
         <DataTemplate x:Key="WaitCheck">
-            <Button Content="修改时间"/>
+            <Button Content="修改时间" Click="EditTime_Click"/>
         </DataTemplate>
         <DataTemplate x:Key="WaitLive">
-            <Button Content="开始直播"/>
+            <Button Content="开始直播" Click="StartLive_Click"/>
         </DataTemplate>
         <local:LiveStatusOperationTemplateSelector x:Key="LiveStatusOperationTemplateSelector"
                                                     CheckFailed="{StaticResource CheckFailed}"
