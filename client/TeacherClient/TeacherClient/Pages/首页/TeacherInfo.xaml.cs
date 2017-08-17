@@ -29,21 +29,48 @@ namespace TeacherClient.Pages
             Init();
         }
 
+
+        public Reponse.userInfo UserInfo
+        {
+            get { return (Reponse.userInfo)GetValue(UserInfoProperty); }
+            set { SetValue(UserInfoProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for UserInfo.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty UserInfoProperty =
+            DependencyProperty.Register("UserInfo", typeof(Reponse.userInfo), typeof(TeacherInfo), new PropertyMetadata());
+
+
+
+        public string HeadPath
+        {
+            get { return (string)GetValue(HeadPathProperty); }
+            set { SetValue(HeadPathProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for HeadPath.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty HeadPathProperty =
+            DependencyProperty.Register("HeadPath", typeof(string), typeof(TeacherInfo), new PropertyMetadata());
+
         async void Init()
         {
             (App.Current.MainWindow as MainWindow).IsBusy = true;
             Request.ParamBase l = new Request.ParamBase() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token };
             var t = await IPCHandle.doPost<Reponse.ResponseParam<Reponse.userInfo>>(Config.Interface_userInfo, l.ReturnRequestParam());
+
+            (App.Current.MainWindow as MainWindow).IsBusy = false;
             if (t != null && t.status == Config.SuccessCode)
             {
                 SetBirthDay(t.data.birth);
-                (App.Current.MainWindow as MainWindow).IsBusy = false;
+                UserInfo = t.data;
+                HeadPath = t.data.head;
             }
             else
             {
                 MessageWindow.Alter("错误提示", t != null ? t.info : "获取讲师信息失败，请检查服务是否正常");
             }
-
+            cb_province.ItemsSource = SystemInit.Instance.Regions;
+            this.DataContext = this;
         }
 
         void SetBirthDay(string birth)
@@ -104,6 +131,37 @@ namespace TeacherClient.Pages
             else if (rb_mcompleted.IsChecked.HasValue && rb_mcompleted.IsChecked.Value)
             {
                 rb_medit.IsChecked = true;
+            }
+        }
+
+        async void BtnChangedImage_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Current.IsBusy = true;
+            HeadPath = await UploadImageHelper.UploadImage();
+            if(!string.IsNullOrEmpty(HeadPath) && HeadPath != UserInfo.head)
+            {
+                Request.userHeadSet l = new Contract.Request.userHeadSet() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, head = HeadPath };
+                if (!await WebHelper.doPost<Request.userHeadSet>(Config.Interface_userHeadSet, l))
+                    HeadPath = UserInfo.head;
+            }
+            MainWindow.Current.IsBusy = false;
+        }
+
+        private void cb_province_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cb_province.SelectedItem is Reponse.region)
+            {
+                cb_city.ItemsSource = (cb_province.SelectedItem as Reponse.region).data;
+                //cb_city.SelectedIndex = 0;
+            }
+        }
+
+        private void cb_city_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cb_city.SelectedItem is Reponse.region)
+            {
+                cb_district.ItemsSource = (cb_city.SelectedItem as Reponse.region).data;
+                //cb_district.SelectedIndex = 0;
             }
         }
     }

@@ -51,5 +51,23 @@ namespace TeacherClient.Pages
         {
             MainIndex.Current.NavigateToPage(1, null);
         }
+
+        private void SPWaitLive_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow.Current.NavigateToPage(1, 0, 0);
+
+        }
+
+        private void SPWaitCheck_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow.Current.NavigateToPage(1, 0, 2);
+
+        }
+
+        private void SPWaitReward_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow.Current.NavigateToPage(4, 0, null);
+
+        }
     }
 }

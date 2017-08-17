@@ -29,7 +29,7 @@ namespace TeacherClient
 
         public static readonly string Interface_mainIndex = "Live/LecUser/mainIndex";
         public static readonly string Interface_userInfo = "Live/LecUser/userInfo";
-
+        public static readonly string Interface_userHeadSet = "Live/LecUser/userHeadSet";
 
         //课酬中心
         public static readonly string Interface_liveRewardList = "Live/LecReward/liveRewardList";

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeacherClient"
         mc:Ignorable="d" CanMinimize="False"
-        Title="SettingWIndow" Height="395" Width="470">
+        Title="邻居学院-设置" Height="395" Width="470">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>

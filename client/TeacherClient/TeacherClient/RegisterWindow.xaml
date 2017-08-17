@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeacherClient" 
         WindowStartupLocation="CenterScreen"
+                  Title="邻居学院-账号注册"
         mc:Ignorable="d" Height="500" Width="700">
     <Canvas>
         <StackPanel Orientation="Horizontal" Canvas.Left="9" Canvas.Top="13">

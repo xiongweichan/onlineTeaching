@@ -20,7 +20,7 @@ namespace TeacherClient.Pages
     /// <summary>
     /// LiveManager.xaml 的交互逻辑
     /// </summary>
-    public partial class LiveManager : UserControl
+    public partial class LiveManager : UserControl, IChangeData
     {
         public LiveManager()
         {
@@ -97,6 +97,11 @@ namespace TeacherClient.Pages
             {
 
             }
+        }
+
+        public void ChangeData(object data)
+        {
+            this.Type = int.Parse(data.ObjToString());
         }
     }    
 }

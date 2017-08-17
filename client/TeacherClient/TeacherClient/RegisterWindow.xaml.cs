@@ -96,52 +96,56 @@ namespace TeacherClient
 
         async void btn_UploadImage(object sender, RoutedEventArgs e)
         {
-            switch((sender as Control).Tag.ObjToString())
+            this.IsBusy = true;
+
+            switch ((sender as Control).Tag.ObjToString())
             {
                 case "1":
-                    Model.body_photo = await UploadImage();
+                    Model.body_photo = await UploadImageHelper.UploadImage();
                     break;
                 case "2":
-                    Model.id_card_front = await UploadImage();
+                    Model.id_card_front = await UploadImageHelper.UploadImage();
                     break;
                 case "3":
-                    Model.id_card_back = await UploadImage();
+                    Model.id_card_back = await UploadImageHelper.UploadImage();
                     break;
                 case "4":
-                    Model.qualification_cert = await UploadImage();
+                    Model.qualification_cert = await UploadImageHelper.UploadImage();
                     break;
 
             }
             this.DataContext = null;
             this.DataContext = this;
+            this.IsBusy = false;
+
         }
 
-        private async Task<string> UploadImage()
-        {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Multiselect = false;
-            dialog.Filter = "图片文件|*.png;*.bmp;*.jpg";
-            if (dialog.ShowDialog() == true)
-            {
-                this.IsBusy = true;
-                var path = dialog.FileName;
-                var s = dialog.OpenFile();
-                if(false)//(s.Length > 50*1024)
-                {
-                    MessageWindow.Alter("提示", "图片过大");
-                    this.IsBusy = false;
-                    return string.Empty;
-                }
-                byte[] bys = new byte[s.Length];
-                s.Read(bys, 0, (int)s.Length);
-                var str = Convert.ToBase64String(bys);
-                Request.imageUpLoad l = new Request.imageUpLoad() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, upload = str };
-                var t = await WebHelper.doPost<Reponse.imageUpLoad, Request.imageUpLoad>(Config.Interface_imageUpLoad, l);
+        //private async Task<string> UploadImage()
+        //{
+        //    OpenFileDialog dialog = new OpenFileDialog();
+        //    dialog.Multiselect = false;
+        //    dialog.Filter = "图片文件|*.png;*.bmp;*.jpg";
+        //    if (dialog.ShowDialog() == true)
+        //    {
+        //        this.IsBusy = true;
+        //        var path = dialog.FileName;
+        //        var s = dialog.OpenFile();
+        //        if(s.Length > 50*1024)
+        //        {
+        //            MessageWindow.Alter("提示", "图片过大");
+        //            this.IsBusy = false;
+        //            return string.Empty;
+        //        }
+        //        byte[] bys = new byte[s.Length];
+        //        s.Read(bys, 0, (int)s.Length);
+        //        var str = Convert.ToBase64String(bys);
+        //        Request.imageUpLoad l = new Request.imageUpLoad() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, upload = str };
+        //        var t = await WebHelper.doPost<Reponse.imageUpLoad, Request.imageUpLoad>(Config.Interface_imageUpLoad, l);
 
-                this.IsBusy = false;
-                return t.url;
-            }
-            return string.Empty;
-        }
+        //        this.IsBusy = false;
+        //        return t.url;
+        //    }
+        //    return string.Empty;
+        //}
     }
 }

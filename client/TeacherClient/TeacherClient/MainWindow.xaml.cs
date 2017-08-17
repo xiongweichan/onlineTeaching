@@ -117,6 +117,11 @@ namespace TeacherClient
         {
             this.NavigateToPage(2, 2, null);
         }
+
+        private void BtnToRequestLive_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigateToPage(1, 1, null);
+        }
     }
 
     public class UserModel : ViewModelBase

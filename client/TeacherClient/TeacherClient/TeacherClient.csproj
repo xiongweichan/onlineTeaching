@@ -98,6 +98,7 @@
     <Compile Include="Extension\StatusCode.cs" />
     <Compile Include="Extension\StringExtension.cs" />
     <Compile Include="Extension\UploadFileHelper.cs" />
+    <Compile Include="Extension\UploadImageHelper.cs" />
     <Compile Include="Extension\WebHelper.cs" />
     <Compile Include="FindPasswordWindow.xaml.cs">
       <DependentUpon>FindPasswordWindow.xaml</DependentUpon>
@@ -123,25 +124,25 @@
     <Compile Include="MyControls\MyTextBox.xaml.cs">
       <DependentUpon>MyTextBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\AddManyCourse.xaml.cs">
+    <Compile Include="Pages\课程中心\AddManyCourse.xaml.cs">
       <DependentUpon>AddManyCourse.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\AddOneCourse.xaml.cs">
+    <Compile Include="Pages\课程中心\AddOneCourse.xaml.cs">
       <DependentUpon>AddOneCourse.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\CourseEdit.xaml.cs">
+    <Compile Include="Pages\课程中心\CourseEdit.xaml.cs">
       <DependentUpon>CourseEdit.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\CourseManager.xaml.cs">
+    <Compile Include="Pages\课程中心\CourseManager.xaml.cs">
       <DependentUpon>CourseManager.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\CoursePropertyWindow.xaml.cs">
+    <Compile Include="Pages\课程中心\CoursePropertyWindow.xaml.cs">
       <DependentUpon>CoursePropertyWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\CoursewareEdit.xaml.cs">
+    <Compile Include="Pages\课程中心\CoursewareEdit.xaml.cs">
       <DependentUpon>CoursewareEdit.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\MessageCenter.xaml.cs">
+    <Compile Include="Pages\课程中心\MessageCenter.xaml.cs">
       <DependentUpon>MessageCenter.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\线下课堂\AddManyOffCourse.xaml.cs">
@@ -156,10 +157,10 @@
     <Compile Include="Pages\线下课堂\AllCourse.xaml.cs">
       <DependentUpon>AllCourse.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\CourseCenter.xaml.cs">
+    <Compile Include="Pages\课程中心\CourseCenter.xaml.cs">
       <DependentUpon>CourseCenter.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\CoursewareManager.xaml.cs">
+    <Compile Include="Pages\课程中心\CoursewareManager.xaml.cs">
       <DependentUpon>CoursewareManager.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\线下课堂\EndCourse.xaml.cs">
@@ -297,31 +298,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\AddManyCourse.xaml">
+    <Page Include="Pages\课程中心\AddManyCourse.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\AddOneCourse.xaml">
+    <Page Include="Pages\课程中心\AddOneCourse.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\CourseEdit.xaml">
+    <Page Include="Pages\课程中心\CourseEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\CourseManager.xaml">
+    <Page Include="Pages\课程中心\CourseManager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\CoursePropertyWindow.xaml">
+    <Page Include="Pages\课程中心\CoursePropertyWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\CoursewareEdit.xaml">
+    <Page Include="Pages\课程中心\CoursewareEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\MessageCenter.xaml">
+    <Page Include="Pages\课程中心\MessageCenter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -341,11 +342,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\CourseCenter.xaml">
+    <Page Include="Pages\课程中心\CourseCenter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\CoursewareManager.xaml">
+    <Page Include="Pages\课程中心\CoursewareManager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

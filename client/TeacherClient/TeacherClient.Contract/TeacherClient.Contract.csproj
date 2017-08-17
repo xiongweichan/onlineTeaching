@@ -81,6 +81,7 @@
     <Compile Include="Request\requestlivelist.cs" />
     <Compile Include="Request\requestType.cs" />
     <Compile Include="Request\resetPwd.cs" />
+    <Compile Include="Request\userHeadSet.cs" />
     <Compile Include="Request\withdrawAdd.cs" />
   </ItemGroup>
   <ItemGroup />

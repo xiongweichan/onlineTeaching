@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeacherClient"
         mc:Ignorable="d" AllowsTransparency="False"
-        Title="MainWindow" Height="700" Width="1024">
+        Title="邻居学院" Height="700" Width="1024">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -39,7 +39,8 @@
                 <Button Style="{StaticResource ButtonStyle2}" Foreground="{StaticResource Forground3}"
                         Content="使用帮助"/>
             </StackPanel>
-            <Button HorizontalAlignment="Right" Margin="0,0,97,0" Style="{StaticResource ButtonStyle1}" Content="我要直播" Width="126" Height="30"/>
+            <Button HorizontalAlignment="Right" Margin="0,0,97,0" Style="{StaticResource ButtonStyle1}" Content="我要直播" Width="126" Height="30"
+                    Click="BtnToRequestLive_Click"/>
         </Grid>
         <Border Grid.Row="1" Margin="1,0" BorderThickness="0,1" Height="42" Background="{StaticResource Background11}"
                 BorderBrush="{StaticResource Border3}">
