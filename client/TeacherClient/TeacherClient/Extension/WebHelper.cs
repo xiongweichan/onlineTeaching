@@ -53,7 +53,7 @@ namespace TeacherClient
 
         public async static Task<bool> doPost<T2>(string address, T2 param)
         {
-            var t = await IPCHandle.doPost<Reponse.ResponseParam<string>>(address, param.ReturnRequestParam());
+            var t = await IPCHandle.doPost<Reponse.ResponseParam<object>>(address, param.ReturnRequestParam());
             if (t == null || t.status != Config.SuccessCode)
             {
                 Telerik.Windows.Controls.ViewModelBase.InvokeOnUIThread(() =>

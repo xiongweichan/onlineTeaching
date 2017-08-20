@@ -19,22 +19,40 @@
         <StackPanel Orientation="Horizontal" Margin="0,18,0,0">
             <StackPanel>
                 <TextBlock Text="持身份证正面头部照" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground35}"/>
-                <Image Margin="0,10,0,0" Source="/Images/登录注册/上传图片.png" Stretch="None"/>
-                <Button Margin="0,8,0,0" Width="60" Height="20">
+                <Grid HorizontalAlignment="Center" Margin="0,10,0,0">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/Images/登录注册/上传图片.png"/>
+                    </Grid.Background>
+                    <Image Source="{Binding body_photo, Converter={StaticResource PathToImageConverter}}" Stretch="None"/>
+                </Grid>
+                <Button Margin="0,8,0,0" Width="60" Height="20" Style="{StaticResource ButtonStyle4}"
+                        Click="btn_UploadImage1">
                     <TextBlock Text="点击上传" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground21}"/>
                 </Button>
             </StackPanel>
             <StackPanel Margin="32,0,0,0">
                 <TextBlock Text="身份证正面照片" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground35}"/>
-                <Image Margin="0,10,0,0" Source="/Images/登录注册/上传图片.png" Stretch="None"/>
-                <Button Margin="0,8,0,0" Width="60" Height="20">
+                <Grid HorizontalAlignment="Center" Margin="0,10,0,0">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/Images/登录注册/上传图片.png"/>
+                    </Grid.Background>
+                    <Image Source="{Binding id_card_front, Converter={StaticResource PathToImageConverter}}" Stretch="None"/>
+                </Grid>
+                <Button Margin="0,8,0,0" Width="60" Height="20" Style="{StaticResource ButtonStyle4}"
+                        Click="btn_UploadImage2">
                     <TextBlock Text="点击上传" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground21}"/>
                 </Button>
             </StackPanel>
             <StackPanel Margin="26,0,0,0">
                 <TextBlock Text="身份证反面照片" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground35}"/>
-                <Image Margin="0,10,0,0" Source="/Images/登录注册/上传图片.png" Stretch="None"/>
-                <Button Margin="0,8,0,0" Width="60" Height="20">
+                <Grid HorizontalAlignment="Center" Margin="0,10,0,0">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/Images/登录注册/上传图片.png"/>
+                    </Grid.Background>
+                    <Image Source="{Binding id_card_back, Converter={StaticResource PathToImageConverter}}" Stretch="None"/>
+                </Grid>
+                <Button Margin="0,8,0,0" Width="60" Height="20" Style="{StaticResource ButtonStyle4}"
+                        Click="btn_UploadImage3">
                     <TextBlock Text="点击上传" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground21}"/>
                 </Button>
             </StackPanel>
@@ -49,20 +67,28 @@
             <Border Width="526" Height="1" BorderBrush="#dce0e2" BorderThickness="0,1,0,0" Margin="8,0,0,0"/>
         </StackPanel>
         <StackPanel HorizontalAlignment="Left" Margin="25,20,0,20">
-            <Image Source="/Images/登录注册/上传图片.png" Stretch="None"/>
-            <Button Margin="0,8,0,0" Width="60" Height="20">
+            <Grid HorizontalAlignment="Center">
+                <Grid.Background>
+                    <ImageBrush ImageSource="/Images/登录注册/上传图片.png"/>
+                </Grid.Background>
+                <Image Source="{Binding qualification_cert, Converter={StaticResource PathToImageConverter}}" Stretch="None"/>
+            </Grid>
+            <Button Margin="0,8,0,0" Width="60" Height="20" Style="{StaticResource ButtonStyle4}"
+                    Click="btn_UploadImage4">
                 <TextBlock Text="点击上传" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground21}"/>
             </Button>
         </StackPanel>
 
         <Border Width="630" Height="1" BorderBrush="#dce0e2" BorderThickness="0,1,0,0" Margin="0,0,0,20" HorizontalAlignment="Left"/>
         <StackPanel Orientation="Horizontal">
-            <Button Content="确定" Style="{DynamicResource ButtonStyle3}" Width="60" Height="24">
+            <Button Content="确定" Style="{DynamicResource ButtonStyle3}" Width="60" Height="24"
+                    Click="btnOk_Click">
                 <Button.Background>
                     <SolidColorBrush Color="{DynamicResource Forground3Color}"/>
                 </Button.Background>
             </Button>
-            <Button Content="取消" Style="{DynamicResource ButtonStyle3}" Width="60" Height="24" HorizontalAlignment="Left" Margin="10,0,0,0">
+            <Button Content="取消" Style="{DynamicResource ButtonStyle3}" Width="60" Height="24" HorizontalAlignment="Left" Margin="10,0,0,0"
+                    Click="btnCancel_Click">
                 <Button.Background>
                     <SolidColorBrush Color="{DynamicResource Forground3Color}"/>
                 </Button.Background>

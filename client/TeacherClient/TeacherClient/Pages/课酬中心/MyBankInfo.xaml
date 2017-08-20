@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeacherClient"
         mc:Ignorable="d" Background="White" Margin="0"
-        Title="MyBankInfo" Height="420" Width="456">
+        Title="银行账号信息" Height="420" Width="456">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
@@ -29,9 +29,8 @@
                     <Run Text="开户网点：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
                 </TextBlock>
                 <ComboBox x:Name="cb_province" SelectionChanged="cb_province_SelectionChanged" SelectedValue="{Binding Model.province}" SelectedValuePath="id" DisplayMemberPath="name" Width="72" Foreground="#333333" FontSize="{StaticResource FontSize3}" Height="28"/>
-                <ComboBox x:Name="cb_city" SelectionChanged="cb_city_SelectionChanged" SelectedValue="{Binding Model.city}" SelectedValuePath="id" DisplayMemberPath="name" Width="72" Foreground="#333333" FontSize="{StaticResource FontSize3}" Height="28" Margin="7,0,0,0"/>
-                <!--<ComboBox x:Name="cb_district" SelectedValue="{Binding Model.district}" SelectedValuePath="id" DisplayMemberPath="name" Width="166" Foreground="#333333" FontSize="{StaticResource FontSize3}" Height="28" Margin="7,0,0,0"/>-->
-                <TextBox Text="{Binding Model.address}" Width="166" Foreground="#333333" FontSize="{StaticResource FontSize3}" Height="28" VerticalContentAlignment="Center" Margin="7,0,0,0"/>
+                <ComboBox x:Name="cb_city" SelectedValue="{Binding Model.city}" SelectedValuePath="id" DisplayMemberPath="name" Width="72" Foreground="#333333" FontSize="{StaticResource FontSize3}" Height="28" Margin="7,0,0,0"/>
+                <TextBox Text="{Binding Model.bank_site}" Width="166" Foreground="#333333" FontSize="{StaticResource FontSize3}" Height="28" VerticalContentAlignment="Center" Margin="7,0,0,0"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="10,20,0,0">
                 <TextBlock Width="100" TextAlignment="Right">
@@ -59,8 +58,9 @@
                     <Run Text="*" Foreground="#ff0844"/>
                     <Run Text="手机验证码：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
                 </TextBlock>
-                <TextBox Width="220" Foreground="#333333" FontSize="{StaticResource FontSize3}" Height="28" VerticalContentAlignment="Center"/>
-                <Button Margin="8,0,0,0" Content="获取验证码" Style="{StaticResource ButtonStyle1}" Width="90" Height="28"/>
+                <TextBox x:Name="tb_Code" Width="220" Foreground="#333333" FontSize="{StaticResource FontSize3}" Height="28" VerticalContentAlignment="Center"/>
+                <Button Margin="8,0,0,0" Content="获取验证码" Style="{StaticResource ButtonStyle1}" Width="90" Height="28"
+                        Click="btnGetCode_Click"/>
             </StackPanel>
         </StackPanel>
         <Border Grid.Row="2" BorderBrush="{StaticResource BasicBorder}" BorderThickness="0,1,0,0">

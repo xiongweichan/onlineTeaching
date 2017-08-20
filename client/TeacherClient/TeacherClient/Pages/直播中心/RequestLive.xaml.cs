@@ -29,5 +29,15 @@ namespace TeacherClient.Pages
         {
 
         }
+
+        private void btnNext_Click(object sender, RoutedEventArgs e)
+        {
+            if (firstpage.IsChecked == true)
+                secondpage.IsChecked = true;
+            else if (secondpage.IsChecked == true)
+                thirdpage.IsChecked = true;
+            else if (thirdpage.IsChecked == true)
+                fourthpage.IsChecked = true;
+        }
     }
 }

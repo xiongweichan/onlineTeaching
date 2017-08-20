@@ -27,10 +27,13 @@ namespace TeacherClient.Pages
         public TogetherInfo()
         {
             InitializeComponent();
-            Init();
+            //Init();
 
         }
-
+        public void RefreshData()
+        {
+            Init();
+        }
         async void Init()
         {
             MainWindow.Current.IsBusy = true;
@@ -54,13 +57,13 @@ namespace TeacherClient.Pages
 
         private void SPWaitLive_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            MainWindow.Current.NavigateToPage(1, 0, 0);
+            MainWindow.Current.NavigateToPage(1, 0, 1);
 
         }
 
         private void SPWaitCheck_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            MainWindow.Current.NavigateToPage(1, 0, 2);
+            MainWindow.Current.NavigateToPage(1, 0, 3);
 
         }
 

@@ -16,10 +16,12 @@
         <Border CornerRadius="8,8,0,0" Background="#f9fafc">
             <TextBlock Margin="20,0,0,0" Text="添加线下课程" FontSize="{StaticResource FontSize2}" Foreground="#697795"/>
         </Border>
-        <page:OffCourseDetail DataContext="{Binding}" Grid.Row="1"/>
+        <page:OffCourseDetail x:Name="pagedetail" DataContext="{Binding}" Grid.Row="1"/>
         <StackPanel Orientation="Horizontal" Margin="20,20,0,20" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <Button Content="确定" Style="{StaticResource ButtonStyle1}" Margin="10,0" Width="128" HorizontalAlignment="Left" Height="30" VerticalAlignment="Center"/>
-            <Button Content="取消" Style="{StaticResource ButtonStyle1}" Background="#c2cad2" HorizontalAlignment="Left" VerticalAlignment="Center" Width="128" Height="30" />
+            <Button Content="确定" Style="{StaticResource ButtonStyle1}" Margin="10,0" Width="128" HorizontalAlignment="Left" Height="30" VerticalAlignment="Center"
+                    Click="btnOk_Click"/>
+            <Button Content="取消" Style="{StaticResource ButtonStyle1}" Background="#c2cad2" HorizontalAlignment="Left" VerticalAlignment="Center" Width="128" Height="30" 
+                    Click="btnCancel_Click"/>
         </StackPanel>
     </Grid>
 </local:WindowBase>

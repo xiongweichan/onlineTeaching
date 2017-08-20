@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TeacherClient.Core;
 using Reponse = TeacherClient.Contract.Reponse;
 using Request = TeacherClient.Contract.Request;
 
@@ -27,15 +28,17 @@ namespace TeacherClient.Pages
 
         public Reponse.offCourseDetail Model { get; set; }
 
-        public OfflineCourseUpdate(string id, bool canupdate=true)
+        public OfflineCourseUpdate(string id, bool canupdate = true)
         {
             InitializeComponent();
-            content.IsEnabled = canupdate;
+            content.sp.IsEnabled = canupdate;
             if (!canupdate)
             {
                 sp_operation.Visibility = Visibility.Collapsed;
-                this.Title = "查看线下课程";                
+                this.Title = "查看线下课程";
             }
+            Lessons = new ObservableCollection<Reponse.lesson>(new List<Contract.Reponse.lesson> { new Contract.Reponse.lesson() });
+            Lesson = new Reponse.lesson();
             Init(id);
         }
 
@@ -47,21 +50,56 @@ namespace TeacherClient.Pages
             if (t != null)
             {
                 Model = t;
-                if (t.course_type == "0")
-                    Lesson = t.lessonList[0];
-                else
-                    Lessons = new ObservableCollection<Contract.Reponse.lesson>(t.lessonList ?? new List<Contract.Reponse.lesson>());
+                if(t.lessonList != null)
+                {
+                    if (t.course_type == "0" && t.lessonList.Count > 0)
+                        Lesson = t.lessonList[0];
+                    else if (t.course_type == "1")
+                        Lessons = new ObservableCollection<Contract.Reponse.lesson>(t.lessonList);
+                }
+                
             }
             this.DataContext = this;
             this.IsBusy = false;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        async void Button_Click(object sender, RoutedEventArgs e)
         {
-
-
-            this.DialogResult = true;
-            this.Close();
+            var l = new Request.offlineCourseUpdate()
+            {
+                content = Model.content,
+                course_type = Model.course_type,
+                id = Model.id,
+                image = Model.image,
+                intro = Model.intro,
+                lec_id = App.CurrentLogin.lec_id,
+                title = Model.title,
+                token = App.CurrentLogin.token
+            };
+            if (Model.course_type == "0")
+            {
+                Lesson.lesson_number = "1";
+                Lesson.id = "1";
+                Lesson.end_time = Lesson.start_time.GetTime().AddMinutes(double.Parse(Lesson.Long)).ConvertDateTimeInt().ToString();
+                l.lessonList = new List<Contract.Reponse.lesson>() { Lesson }.ToJson();
+            }
+            else
+            {
+                var list = Lessons.ToList();
+                list.ForEach(T =>
+                {
+                    T.lesson_number = (list.IndexOf(T) + 1).ToString();
+                    T.end_time = T.start_time.GetTime().AddMinutes(double.Parse(T.Long)).ConvertDateTimeInt().ToString();
+                    T.id = (list.IndexOf(T) + 1).ToString();
+                });
+                l.lessonList = list.ToJson();
+            }
+            if (await WebHelper.doPost<Request.offlineCourseUpdate>(Config.Interface_offlineCourseUpdate, l))
+            {
+                MessageWindow.Alter("提示", "修改成功");
+                this.DialogResult = true;
+                this.Close();
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

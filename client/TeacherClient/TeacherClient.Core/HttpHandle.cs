@@ -156,7 +156,7 @@ namespace TeacherClient.Core
         /// <returns></returns>
         public static async Task<T> doPost<T>(string path, Dictionary<string, object> map) where T : class
         {
-            string Jsonstr = JsonHelper.SerializeObject(map);
+            string Jsonstr = JsonHelper.ToJson(map);
             return await doPost<T>(path, Jsonstr);
         }
 

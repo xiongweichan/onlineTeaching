@@ -10,7 +10,7 @@
         <Border BorderBrush="{StaticResource Border4}" Height="120" Width="1000" HorizontalAlignment="Center"
                 BorderThickness="1" UseLayoutRounding="True" SnapsToDevicePixels="True">
             <StackPanel Orientation="Horizontal">
-                <Image Height="90" Width="90" Source="{Binding userInfo.head}" Margin="16,0,0,0"/>
+                <Image Height="90" Width="90" Source="{Binding userInfo.head, Converter={StaticResource PathToImageConverter}}" Margin="16,0,0,0"/>
                 <StackPanel VerticalAlignment="Center" Margin="16,0,0,0">
                     <TextBlock VerticalAlignment="Center"><Run Text="昵称：" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground39}"/>
                         <Run Text="{Binding userInfo.nickname}" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground3}"/></TextBlock>

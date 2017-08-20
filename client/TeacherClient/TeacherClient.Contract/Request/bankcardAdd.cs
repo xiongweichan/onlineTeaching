@@ -15,8 +15,7 @@ namespace TeacherClient.Contract.Request
         public string mobile { get; set; }
         public string province { get; set; }
         public string city { get; set; }
-        public string district { get; set; }
-        public string address { get; set; }
+        public string bank_site { get; set; }
         public string code { get; set; }
     }
 }

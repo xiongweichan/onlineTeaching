@@ -18,7 +18,6 @@ namespace TeacherClient.Contract.Reponse
         public string is_default { get; set; }
         public string province { get; set; }
         public string city { get; set; }
-        public string district { get; set; }
-        public string address { get; set; }
+        public string bank_site { get; set; }
     }
 }

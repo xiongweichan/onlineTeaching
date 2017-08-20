@@ -26,7 +26,30 @@ namespace TeacherClient
             SetAutoStartup();
             IPCHandle.Init();
 
+            App.Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
+            TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
+
         }
+
+        private void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
+        {
+            try
+            {
+                Log.Error("异步操作异常", e.Exception);
+            }
+            catch (Exception) { }
+        }
+
+        private void Current_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            try
+            {
+                Log.Error("程序崩溃", e.Exception);
+                MessageWindow.Alter("错误", "程序出现未知异常，请联系管理员处理！");
+            }
+            catch (Exception) { }
+        }
+
         /// <summary>
         /// 设置开机启动
         /// </summary>

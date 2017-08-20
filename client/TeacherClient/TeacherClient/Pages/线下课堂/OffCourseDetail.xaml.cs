@@ -20,9 +20,29 @@ namespace TeacherClient.Pages
     /// </summary>
     public partial class OffCourseDetail : UserControl
     {
+        public string CourseImage
+        {
+            get { return (string)GetValue(CourseImageProperty); }
+            set { SetValue(CourseImageProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for CourseImage.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CourseImageProperty =
+            DependencyProperty.Register("CourseImage", typeof(string), typeof(OffCourseDetail), new PropertyMetadata(PropertyChangedCallback));
+        static void PropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((d as OffCourseDetail).DataContext as dynamic).Model.image = (d as OffCourseDetail).CourseImage;
+        }
         public OffCourseDetail()
         {
             InitializeComponent();
+        }
+
+        async void btnUpload_Click(object sender, RoutedEventArgs e)
+        {
+            var str = await UploadImageHelper.UploadImage();
+            if (!string.IsNullOrEmpty(str))
+                CourseImage = str;
         }
     }
 }

@@ -4,11 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:page="clr-namespace:TeacherClient.Pages"
-             
+             x:Name="root"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-        <StackPanel>
+        <StackPanel x:Name="sp">
             <StackPanel Margin="20,20,0,0">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock>
@@ -44,11 +44,14 @@
             <StackPanel Orientation="Horizontal" Margin="20,20,0,0">
                 <TextBlock>
                 <Run Text="*" Foreground="#ff0000"/>
-                <Run Text="课件图片：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+                <Run Text="课程图片：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
                 </TextBlock>
                 <StackPanel Margin="0,20,0,0">
-                    <Image Width="64" Height="64"/>
-                    <Button Content="点击上传" Margin="0,10,0,0"/>
+                    <Image Width="64" Height="64" Source="{Binding CourseImage,ElementName=root, Converter={StaticResource PathToImageConverter}}"/>
+                    <Button Margin="0,10,0,0" Style="{StaticResource ButtonStyle4}"
+                            Click="btnUpload_Click">
+                        <TextBlock Text="点击上传" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground3}"/>
+                    </Button>
                 </StackPanel>
                 <TextBlock Margin="10,0,0,0">
                 <Line Height="22"/>

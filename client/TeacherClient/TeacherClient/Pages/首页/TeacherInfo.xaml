@@ -29,7 +29,8 @@
                             </StackPanel>
                         </RadioButton.Content>
                     </RadioButton>
-                    <RadioButton x:Name="rb_Binding" Margin="0,10,0,0" Style="{StaticResource RadioButtonStyle4}" Height="32" Width="150">
+                    <RadioButton x:Name="rb_Binding" Margin="0,10,0,0" Style="{StaticResource RadioButtonStyle4}" Height="32" Width="150"
+                                 Checked="rb_Binding_Checked">
                         <RadioButton.Content>
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="/Images/首页/账号绑定.png"/>
@@ -49,12 +50,12 @@
                                 <Setter Property="Foreground" Value="#333333"/>
                             </Style>
                         </StackPanel.Resources>
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
                             <TextBlock Style="{StaticResource text}" Text="{Binding UserInfo.phone, StringFormat='账号：{0}'}"/>
                             <TextBlock Style="{StaticResource text}" Margin="60,0,0,0" Text="{Binding UserInfo.lecturer_code, StringFormat='讲师ID：{0}'}"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Style="{StaticResource text}" Text="个人简介："/>
+                            <TextBlock Style="{StaticResource text}" Text="个人简介：" VerticalAlignment="Top"/>
                             <TextBox AcceptsReturn="True" AcceptsTab="True" Height="88" Width="455"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,8">
@@ -63,7 +64,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                             <TextBlock Text="姓       名：" Style="{StaticResource text}" Width="65"/>
-                            <TextBox Height="24" Width="120" Text="{Binding UserInfo.realname}"/>
+                            <TextBox Height="24" Width="120" Text="{Binding UserInfo.realname}" VerticalContentAlignment="Center"/>
                             <TextBlock Text="性       别：" Style="{StaticResource text}" Width="65" Margin="70,0,0,0"/>
                             <ComboBox Height="24" Width="120" SelectedIndex="{Binding UserInfo.sex}">
                                 <ComboBoxItem Content="保密"/>
@@ -73,25 +74,25 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                             <TextBlock Text="年       龄：" Style="{StaticResource text}" Width="65"/>
-                            <TextBox Height="24" Width="120" Text="{Binding UserInfo.age}"/>
+                            <TextBox Height="24" Width="120" Text="{Binding UserInfo.age}" VerticalContentAlignment="Center"/>
                             <TextBlock Text="生       日：" Style="{StaticResource text}" Width="65" Margin="70,0,0,0"/>
-                            <ComboBox x:Name="months" SelectionChanged="months_SelectionChanged" Width="55"/>
-                            <ComboBox x:Name="days" Width="55" Margin="10,0,0,0"/>
+                            <ComboBox x:Name="months" SelectionChanged="months_SelectionChanged" Width="55" VerticalContentAlignment="Center"/>
+                            <ComboBox x:Name="days" Width="55" Margin="10,0,0,0" VerticalContentAlignment="Center"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                             <TextBlock Text="讲师类型：" Style="{StaticResource text}" Width="65"/>
-                            <ComboBox  Height="24" Width="120" Text="{Binding UserInfo.lecturer_type}"/>
+                            <ComboBox  Height="24" Width="120" Text="{Binding UserInfo.lecturer_type}" VerticalContentAlignment="Center"/>
                             <TextBlock Text="擅长领域：" Style="{StaticResource text}" Width="65" Margin="70,0,0,0"/>
-                            <ComboBox Height="24" Width="120" Text="{Binding UserInfo.good_at}"/>
+                            <ComboBox Height="24" Width="120" Text="{Binding UserInfo.good_at}" VerticalContentAlignment="Center"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                             <TextBlock Text="所  在  地：" Style="{StaticResource text}" Width="65"/>
                             <ComboBox  Height="24" Width="120" x:Name="cb_province" Text="{Binding UserInfo.province_name}"
-                                        SelectionChanged="cb_province_SelectionChanged" SelectedValue="{Binding UserInfo.province}" SelectedValuePath="id" DisplayMemberPath="name"/>
+                                        SelectionChanged="cb_province_SelectionChanged" SelectedValue="{Binding UserInfo.province}" SelectedValuePath="id" DisplayMemberPath="name" VerticalContentAlignment="Center"/>
                             <ComboBox Height="24" Width="120" x:Name="cb_city" Margin="8,0,0,0" Text="{Binding UserInfo.city_name}"
-                                       SelectionChanged="cb_city_SelectionChanged" SelectedValue="{Binding UserInfo.city}" SelectedValuePath="id" DisplayMemberPath="name"/>
+                                       SelectionChanged="cb_city_SelectionChanged" SelectedValue="{Binding UserInfo.city}" SelectedValuePath="id" DisplayMemberPath="name" VerticalContentAlignment="Center"/>
                             <ComboBox Height="24" Width="120" x:Name="cb_district" Margin="8,0,0,0" Text="{Binding UserInfo.district_name}"
-                                       SelectedValue="{Binding UserInfo.district}" SelectedValuePath="id" DisplayMemberPath="name"/>
+                                       SelectedValue="{Binding UserInfo.district}" SelectedValuePath="id" DisplayMemberPath="name" VerticalContentAlignment="Center"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,10">
                             <TextBlock FontSize="12" Foreground="#4d5861" FontWeight="Bold" Text="联系方式"/>
@@ -147,12 +148,13 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="10,30,0,0">
                                     <TextBlock Text="已验证手机号码：" Foreground="#666666" FontSize="12"/>
-                                    <TextBlock Text="{Binding phone}" Foreground="#333333" FontSize="12"/>
-                                    <Button Content="发送验证码" Foreground="#333333" FontSize="12" Style="{DynamicResource ButtonStyle3}" Height="22" Width="66"/>
+                                    <TextBlock Text="{Binding ChangePhone.phone}" Foreground="#333333" FontSize="12"/>
+                                    <Button Margin="6,0,0,0" Content="发送验证码" Foreground="#333333" FontSize="12" Style="{DynamicResource ButtonStyle3}" Height="22" Width="66"
+                                            Click="btnGetCode_Click"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="10,15,0,0">
                                     <TextBlock Text="验证码：" Foreground="#666666" FontSize="12"/>
-                                    <TextBox Text="{Binding valid}" Width="110" Foreground="#333333" FontSize="12" Height="22"/>
+                                    <TextBox Text="{Binding ChangePhone.code}" Width="110" Foreground="#333333" FontSize="12" Height="22"/>
                                 </StackPanel>
                                 <Button Content="下一步" Click="phoneNext_Click" Foreground="#333333" FontSize="12" Style="{DynamicResource ButtonStyle3}" Width="60" Height="25" HorizontalAlignment="Left" Margin="10,15,0,0"/>
                             </StackPanel>
@@ -177,12 +179,13 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="10,30,0,0">
                                     <TextBlock Text="新手机号：" Foreground="#666666" FontSize="12"/>
-                                    <TextBox Text="{Binding newphone}" Width="110" Foreground="#333333" FontSize="12"/>
-                                    <Button Content="发送验证码" Foreground="#333333" FontSize="12" Width="66" Height="22" Margin="6,0,0,0" Style="{DynamicResource ButtonStyle3}"/>
+                                    <TextBox Text="{Binding ChangePhone.phone_new}" Width="110" Foreground="#333333" FontSize="12"/>
+                                    <Button Content="发送验证码" Foreground="#333333" FontSize="12" Width="66" Height="22" Margin="6,0,0,0" Style="{DynamicResource ButtonStyle3}"
+                                            Click="btnGetCode_Click2"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="10,15,0,0" Height="22">
                                     <TextBlock Text="验证码：" Foreground="#666666" FontSize="12"/>
-                                    <TextBox Text="{Binding newvalid}" Width="100" Foreground="#333333" FontSize="12" Margin="12,0,0,0"/>
+                                    <TextBox Text="{Binding ChangePhone.code_new}" Width="100" Foreground="#333333" FontSize="12" Margin="12,0,0,0"/>
                                 </StackPanel>
                                 <Button Content="提交" Click="phoneNext_Click" Foreground="#333333" FontSize="12" Width="60" Height="22" HorizontalAlignment="Left" Margin="10,15,0,0" Style="{DynamicResource ButtonStyle3}"/>
                             </StackPanel>
@@ -208,7 +211,7 @@
                                             <SolidColorBrush Color="{DynamicResource Forground3Color}"/>
                                         </TextBlock.Foreground>
                                     </TextBlock>
-                                    <TextBlock Text="{Binding newphone}">
+                                    <TextBlock Text="{Binding ChangePhone.phone_new}">
                                         <TextBlock.Foreground>
                                             <SolidColorBrush Color="{DynamicResource Forground3Color}"/>
                                         </TextBlock.Foreground>
@@ -254,12 +257,13 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="10,30,0,0">
                                     <TextBlock Text="已验证邮箱：" Foreground="#666666" FontSize="12"/>
-                                    <TextBlock Text="{Binding email}" Foreground="#333333" FontSize="12"/>
-                                    <Button Content="发送验证码" Foreground="#333333" FontSize="12" Style="{DynamicResource ButtonStyle3}" Height="22" Width="66"/>
+                                    <TextBlock Text="{Binding ChangeEmail.email}" Foreground="#333333" FontSize="12"/>
+                                    <Button Margin="6,0,0,0" Content="发送验证码" Foreground="#333333" FontSize="12" Style="{DynamicResource ButtonStyle3}" Height="22" Width="66"
+                                            Click="btnGetOldEmailCode_Click"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="10,15,0,0">
                                     <TextBlock Text="验证码：" Foreground="#666666" FontSize="12"/>
-                                    <TextBox Text="{Binding mvalid}" Width="110" Foreground="#333333" FontSize="12" Height="22"/>
+                                    <TextBox Text="{Binding ChangeEmail.code}" Width="110" Foreground="#333333" FontSize="12" Height="22"/>
                                 </StackPanel>
                                 <Button Content="下一步" Foreground="#333333" FontSize="12" Click="emailNext_Click" Style="{DynamicResource ButtonStyle3}" Margin="10,15,0,0" HorizontalAlignment="Left" Height="24" Width="60"/>
                             </StackPanel>
@@ -284,12 +288,13 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="10,30,0,0">
                                     <TextBlock Text="新邮箱：" Foreground="#666666" FontSize="12"/>
-                                    <TextBox Text="{Binding newemail}" Width="100" Foreground="#333333" FontSize="12"/>
-                                    <Button Content="发送验证码" Foreground="#333333" FontSize="12" Width="66" Height="22" Margin="6,0,0,0" Style="{DynamicResource ButtonStyle3}"/>
+                                    <TextBox Text="{Binding ChangeEmail.email_new}" Width="100" Foreground="#333333" FontSize="12"/>
+                                    <Button Content="发送验证码" Foreground="#333333" FontSize="12" Width="66" Height="22" Margin="6,0,0,0" Style="{DynamicResource ButtonStyle3}"
+                                            Click="btnGetNewEmailCode_Click"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="10,15,0,0" Height="22">
                                     <TextBlock Text="验证码：" Foreground="#666666" FontSize="12"/>
-                                    <TextBox Text="{Binding newmvalid}" Width="100" Foreground="#333333" FontSize="12"/>
+                                    <TextBox Text="{Binding ChangeEmail.code_new}" Width="100" Foreground="#333333" FontSize="12"/>
                                 </StackPanel>
                                 <Button Content="提交" Foreground="#333333" FontSize="12" Click="emailNext_Click" Height="22" Margin="10,15,0,0" HorizontalAlignment="Left" Width="60" Style="{DynamicResource ButtonStyle3}"/>
                             </StackPanel>
@@ -330,8 +335,10 @@
             <Grid Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom"
                   Visibility="{Binding ElementName=rb_PersonInfo,Path=IsChecked,Converter={StaticResource BoolToVisibilityConverter}}">
                 <StackPanel Orientation="Horizontal" Margin="0,0,35,12">
-                    <Button Content="保存" Width="60" Height="24" Foreground="#FF566F74" Style="{DynamicResource ButtonStyle3}"/>
-                    <Button Content="取消" Width="60" Margin="8,0" Foreground="#FF566F74" Style="{DynamicResource ButtonStyle3}" Height="24"/>
+                    <Button Content="保存" Width="60" Height="24" Foreground="#FF566F74" Style="{DynamicResource ButtonStyle3}"
+                            Click="btnSave_Click"/>
+                    <Button Content="取消" Width="60" Margin="8,0" Foreground="#FF566F74" Style="{DynamicResource ButtonStyle3}" Height="24"
+                            Click="btnCancel_Click"/>
                     <Button Content="应用" Width="60" Foreground="#FF566F74" Style="{DynamicResource ButtonStyle3}" Height="24"/>
                 </StackPanel>
             </Grid>

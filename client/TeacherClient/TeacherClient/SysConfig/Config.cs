@@ -24,12 +24,17 @@ namespace TeacherClient
 
 
         public static readonly string Interface_login = "Live/LecLogin/login";       
-        public static readonly string Interface_phoneCode = "Live/LecLogin/phoneCode"; 
+        public static readonly string Interface_phoneCode = "Live/LecLogin/phoneCode";
+        public static readonly string Interface_emailCode = "Live/LecLogin/emailCode";
         public static readonly string Interface_register = "Live/LecLogin/register";
 
         public static readonly string Interface_mainIndex = "Live/LecUser/mainIndex";
         public static readonly string Interface_userInfo = "Live/LecUser/userInfo";
         public static readonly string Interface_userHeadSet = "Live/LecUser/userHeadSet";
+        public static readonly string Interface_userPhotoSet = "Live/LecUser/userPhotoSet";
+        public static readonly string Interface_userSet = "Live/LecUser/userSet";
+        public static readonly string Interface_changePhone = "Live/LecUser/changePhone";
+        public static readonly string Interface_changeEmail = "Live/LecUser/changeEmail";
 
         //课酬中心
         public static readonly string Interface_liveRewardList = "Live/LecReward/liveRewardList";
@@ -43,6 +48,7 @@ namespace TeacherClient
         public static readonly string Interface_bankcardDetail = "Live/LecWithdraw/bankcardDetail";
         public static readonly string Interface_bankcardAdd = "Live/LecWithdraw/bankcardAdd";
         public static readonly string Interface_bankcardEdit = "Live/LecWithdraw/bankcardEdit";
+        public static readonly string Interface_withdrawCharge = "Live/LecWithdraw/withdrawCharge";
 
         //线下课程
         public static readonly string Interface_lessonList = "Live/LecOfflineCourse/lessonList";
@@ -72,7 +78,12 @@ namespace TeacherClient
             public static readonly string resetPassword = "51";
             public static readonly string editOldPhone = "52";
             public static readonly string editNewPhone = "53";
-            //public static readonly string registerAccount = "54";
+            public static readonly string registerBank = "54";
+        }
+        public class emailCode
+        {
+            public static readonly string editOldEmail = "52";
+            public static readonly string editNewEmail = "53";
         }
     }
 

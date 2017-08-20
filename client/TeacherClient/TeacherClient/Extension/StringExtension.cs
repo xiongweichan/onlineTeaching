@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TeacherClient.Core;
 
 namespace TeacherClient
 {
@@ -32,7 +33,7 @@ namespace TeacherClient
         /// </summary>
         /// <param name=”time”></param>
         /// <returns></returns>
-        private static int ConvertDateTimeInt(this DateTime time)
+        public static int ConvertDateTimeInt(this DateTime time)
         {
             DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1));
             return (int)(time - startTime).TotalSeconds;

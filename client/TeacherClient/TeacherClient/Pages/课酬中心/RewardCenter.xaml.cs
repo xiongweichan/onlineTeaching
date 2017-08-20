@@ -66,6 +66,7 @@ namespace TeacherClient.Pages
                         break;
                     case 2:
                         _this.frame.Content = _this._withDrawAdd;
+                        _this._withDrawAdd.RefreshData();
                         break;
                     case 3:
                         _this.frame.Content = _this._withdrawList;

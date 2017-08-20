@@ -16,9 +16,9 @@ namespace TeacherClient
             {
                 return value.ObjToString().GetTime().ToString(parameter.ObjToString());
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                TeacherClient.Core.Log.Error("解析时间失败",ex);
+                TeacherClient.Core.Log.Error("解析时间失败", ex);
                 return "";
             }
 
@@ -26,7 +26,16 @@ namespace TeacherClient
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            try
+            {
+                DateTime time;
+                return DateTime.TryParse(value.ObjToString(), out time) ? time.ConvertDateTimeInt() : 0;
+            }
+            catch (Exception ex)
+            {
+                TeacherClient.Core.Log.Error("解析时间失败", ex);
+                return value;
+            }
         }
 
 

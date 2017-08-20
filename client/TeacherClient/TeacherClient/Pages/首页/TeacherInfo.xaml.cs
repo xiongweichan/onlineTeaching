@@ -26,9 +26,12 @@ namespace TeacherClient.Pages
         public TeacherInfo()
         {
             InitializeComponent();
-            Init();
         }
 
+        public void RefreshData()
+        {
+            Init();
+        }
 
         public Reponse.userInfo UserInfo
         {
@@ -40,7 +43,7 @@ namespace TeacherClient.Pages
         public static readonly DependencyProperty UserInfoProperty =
             DependencyProperty.Register("UserInfo", typeof(Reponse.userInfo), typeof(TeacherInfo), new PropertyMetadata());
 
-
+        public string _copy;
 
         public string HeadPath
         {
@@ -51,6 +54,32 @@ namespace TeacherClient.Pages
         // Using a DependencyProperty as the backing store for HeadPath.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty HeadPathProperty =
             DependencyProperty.Register("HeadPath", typeof(string), typeof(TeacherInfo), new PropertyMetadata());
+
+
+
+        public Request.changePhone ChangePhone
+        {
+            get { return (Request.changePhone)GetValue(ChangePhoneProperty); }
+            set { SetValue(ChangePhoneProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ChangePhone.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ChangePhoneProperty =
+            DependencyProperty.Register("ChangePhone", typeof(Request.changePhone), typeof(TeacherInfo), new PropertyMetadata());
+
+
+        public Request.changeEmail ChangeEmail
+        {
+            get { return (Request.changeEmail)GetValue(ChangeEmailProperty); }
+            set { SetValue(ChangeEmailProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ChangeEmail.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ChangeEmailProperty =
+            DependencyProperty.Register("ChangeEmail", typeof(Request.changeEmail), typeof(TeacherInfo), new PropertyMetadata());
+
+
+
 
         async void Init()
         {
@@ -64,6 +93,10 @@ namespace TeacherClient.Pages
                 SetBirthDay(t.data.birth);
                 UserInfo = t.data;
                 HeadPath = t.data.head;
+
+                ChangePhone = new Contract.Request.changePhone { phone = t.data.phone };
+                ChangeEmail = new Contract.Request.changeEmail { email = t.data.email };
+                _copy = t.data.ToJson();
             }
             else
             {
@@ -92,6 +125,10 @@ namespace TeacherClient.Pages
                 days.SelectedIndex = 0;
             }
         }
+        string GetBirthDay()
+        {
+            return string.Format("{0}{1}", months.SelectedItem, days.SelectedItem);
+        }
 
         private void months_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -102,7 +139,7 @@ namespace TeacherClient.Pages
             days.ItemsSource = list;
         }
 
-        private void phoneNext_Click(object sender, RoutedEventArgs e)
+        async void phoneNext_Click(object sender, RoutedEventArgs e)
         {
             if(rb_pcheck.IsChecked.HasValue && rb_pcheck.IsChecked.Value)
             {
@@ -110,7 +147,13 @@ namespace TeacherClient.Pages
             }
             else if(rb_pedit.IsChecked.HasValue && rb_pedit.IsChecked.Value)
             {
-                rb_pcompleted.IsChecked = true;
+                //提交电话号码修改
+                if (await WebHelper.doPost<Request.changePhone>(Config.Interface_changePhone, ChangePhone))
+                {
+                    UserInfo.phone = ChangePhone.phone_new;
+                    ChangePhone = new Contract.Request.changePhone() { phone = UserInfo.phone };
+                    rb_pcompleted.IsChecked = true;
+                }
             }
             else if(rb_pcompleted.IsChecked.HasValue && rb_pcompleted.IsChecked.Value)
             {
@@ -118,7 +161,7 @@ namespace TeacherClient.Pages
             }
         }
 
-        private void emailNext_Click(object sender, RoutedEventArgs e)
+        async void emailNext_Click(object sender, RoutedEventArgs e)
         {
             if (rb_mcheck.IsChecked.HasValue && rb_mcheck.IsChecked.Value)
             {
@@ -126,7 +169,13 @@ namespace TeacherClient.Pages
             }
             else if (rb_medit.IsChecked.HasValue && rb_medit.IsChecked.Value)
             {
-                rb_mcompleted.IsChecked = true;
+                //提交邮箱修改
+                if (await WebHelper.doPost<Request.changeEmail>(Config.Interface_changeEmail, ChangeEmail))
+                {
+                    UserInfo.email = ChangeEmail.email_new;
+                    ChangeEmail = new Contract.Request.changeEmail() { email = UserInfo.email };
+                    rb_mcompleted.IsChecked = true;
+                }
             }
             else if (rb_mcompleted.IsChecked.HasValue && rb_mcompleted.IsChecked.Value)
             {
@@ -137,12 +186,15 @@ namespace TeacherClient.Pages
         async void BtnChangedImage_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.Current.IsBusy = true;
-            HeadPath = await UploadImageHelper.UploadImage();
-            if(!string.IsNullOrEmpty(HeadPath) && HeadPath != UserInfo.head)
+            var str = await UploadImageHelper.UploadImage();
+            if(!string.IsNullOrEmpty(str) && str != UserInfo.head)
             {
+                HeadPath = str;
                 Request.userHeadSet l = new Contract.Request.userHeadSet() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, head = HeadPath };
                 if (!await WebHelper.doPost<Request.userHeadSet>(Config.Interface_userHeadSet, l))
                     HeadPath = UserInfo.head;
+                else
+                    UserInfo.head = HeadPath;
             }
             MainWindow.Current.IsBusy = false;
         }
@@ -163,6 +215,66 @@ namespace TeacherClient.Pages
                 cb_district.ItemsSource = (cb_city.SelectedItem as Reponse.region).data;
                 //cb_district.SelectedIndex = 0;
             }
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.UserInfo = _copy.FromJson<Reponse.userInfo>();
+            this.HeadPath = this.UserInfo.head;
+        }
+
+        async void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            UserInfo.birth = GetBirthDay();
+            Request.userSet l = new Contract.Request.userSet();
+            l.lec_id = App.CurrentLogin.lec_id;
+            l.token = App.CurrentLogin.token;
+            l.intro = this.UserInfo.intro;
+            l.nickname = UserInfo.nickname;
+            l.sex = UserInfo.sex;
+            l.age = UserInfo.age;
+            l.birth = UserInfo.birth;
+            l.province = UserInfo.province;
+            l.city = UserInfo.city;
+            l.district = UserInfo.district;
+            l.lecturer_type = UserInfo.lecturer_type;
+            l.good_at = UserInfo.good_at;
+            l.wechat = UserInfo.wechat;
+            l.job = UserInfo.job;
+            l.phone = UserInfo.phone;
+            l.mail = UserInfo.email;
+            if (await WebHelper.doPost<Request.userSet>(Config.Interface_userSet, l))
+                MessageWindow.Alter("提示","保存成功！");
+        }
+
+        async void btnGetCode_Click(object sender, RoutedEventArgs e)
+        {
+            Request.phoneCode l = new Contract.Request.phoneCode() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, phone = ChangePhone.phone, type = Config.phoneCode.editOldPhone };
+            await WebHelper.doPost<Request.phoneCode>(Config.Interface_phoneCode, l);
+        }
+
+        async void btnGetCode_Click2(object sender, RoutedEventArgs e)
+        {
+            Request.phoneCode l = new Contract.Request.phoneCode() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, phone = ChangePhone.phone_new, type = Config.phoneCode.editNewPhone };
+            await WebHelper.doPost<Request.phoneCode>(Config.Interface_phoneCode, l);
+        }
+
+        async void btnGetOldEmailCode_Click(object sender, RoutedEventArgs e)
+        {
+            Request.emailCode l = new Contract.Request.emailCode() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, email = ChangeEmail.email, type = Config.emailCode.editOldEmail };
+            await WebHelper.doPost<Request.emailCode>(Config.Interface_emailCode, l);
+        }
+
+        async void btnGetNewEmailCode_Click(object sender, RoutedEventArgs e)
+        {
+            Request.emailCode l = new Contract.Request.emailCode() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, email = ChangeEmail.email_new, type = Config.emailCode.editNewEmail };
+            await WebHelper.doPost<Request.emailCode>(Config.Interface_emailCode, l);
+        }
+
+        private void rb_Binding_Checked(object sender, RoutedEventArgs e)
+        {
+            rb_pcheck.IsChecked = true;
+            rb_mcheck.IsChecked = true;
         }
     }
 }

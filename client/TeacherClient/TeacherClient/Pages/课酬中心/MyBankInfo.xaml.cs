@@ -35,7 +35,12 @@ namespace TeacherClient.Pages
             if (t == null)
             {
                 isnew = true;
-                Model = new Contract.Reponse.bankcardDetail();
+                Model = new Contract.Reponse.bankcardDetail()
+                {
+                    mobile = App.CurrentLogin.user.phone,
+                    real_name = App.CurrentLogin.user.realname,
+
+                };
             }
             else
                 Model = t;
@@ -55,24 +60,52 @@ namespace TeacherClient.Pages
             }
         }
 
-        private void cb_city_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (cb_city.SelectedItem is Reponse.region)
-            {
-                //cb_district.ItemsSource = (cb_city.SelectedItem as Reponse.region).data;
-                //cb_district.SelectedIndex = 0;
-            }
-        }
-
-        private void BtnOk_Click(object sender, RoutedEventArgs e)
+        async void BtnOk_Click(object sender, RoutedEventArgs e)
         {
             if (isnew)
             {
-
+                Request.bankcardAdd l = new Contract.Request.bankcardAdd()
+                {
+                    bank_card = Model.bank_card,
+                    bank_site = Model.bank_site,
+                    bank_type = Model.bank_type,
+                    city = Model.city,
+                    code = tb_Code.Text,
+                    id_card = Model.id_card,
+                    lec_id = App.CurrentLogin.lec_id,
+                    mobile = Model.mobile,
+                    province = Model.province,
+                    real_name = Model.real_name,
+                    token = App.CurrentLogin.token
+                };
+                if (await WebHelper.doPost<Request.bankcardAdd>(Config.Interface_bankcardAdd, l))
+                {
+                    MessageWindow.Alter("提示", "添加成功！");
+                    this.Close();
+                }
             }
             else
             {
-
+                Request.bankcardEdit l = new Request.bankcardEdit()
+                {
+                    bank_card = Model.bank_card,
+                    bank_site = Model.bank_site,
+                    bank_type = Model.bank_type,
+                    city = Model.city,
+                    code = tb_Code.Text,
+                    id_card = Model.id_card,
+                    lec_id = App.CurrentLogin.lec_id,
+                    mobile = Model.mobile,
+                    province = Model.province,
+                    real_name = Model.real_name,
+                    token = App.CurrentLogin.token,
+                    id = Model.id,
+                };
+                if (await WebHelper.doPost<Request.bankcardEdit>(Config.Interface_bankcardEdit, l))
+                {
+                    MessageWindow.Alter("提示", "修改成功！");
+                    this.Close();
+                }
             }
 
         }
@@ -80,6 +113,12 @@ namespace TeacherClient.Pages
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        async void btnGetCode_Click(object sender, RoutedEventArgs e)
+        {
+            Request.phoneCode l = new Contract.Request.phoneCode() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, phone = Model.mobile, type = Config.phoneCode.registerBank };
+            await WebHelper.doPost<Request.phoneCode>(Config.Interface_phoneCode, l);
         }
     }
 }

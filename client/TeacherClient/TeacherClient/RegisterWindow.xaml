@@ -110,21 +110,21 @@
                             <StackPanel>
                                 <TextBlock Text="持身份证正面头部照" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground35}"/>
                                 <Image Width="64" Height="64" Margin="0,10,0,0" Source="{Binding Model.body_photo, Converter={StaticResource PathToImageConverter}}" Stretch="Fill"/>
-                                <Button Margin="0,8,0,0" Width="60" Height="20" Click="btn_UploadImage" Tag="1">
+                                <Button Margin="0,8,0,0" Width="60" Height="20" Click="btn_UploadImage" Tag="1" Style="{StaticResource ButtonStyle4}">
                                     <TextBlock Text="点击上传" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground21}"/>
                                 </Button>
                             </StackPanel>
                             <StackPanel Margin="32,0,0,0">
                                 <TextBlock Text="身份证正面照片" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground35}"/>
                                 <Image Margin="0,10,0,0" Source="{Binding Model.id_card_front, Converter={StaticResource PathToImageConverter}}" Stretch="Fill"/>
-                                <Button Margin="0,8,0,0" Width="60" Height="20" Click="btn_UploadImage" Tag="2">
+                                <Button Margin="0,8,0,0" Width="60" Height="20" Click="btn_UploadImage" Tag="2" Style="{StaticResource ButtonStyle4}">
                                     <TextBlock Text="点击上传" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground21}"/>
                                 </Button>
                             </StackPanel>
                             <StackPanel Margin="26,0,0,0">
                                 <TextBlock Text="身份证反面照片" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground35}"/>
                                 <Image Margin="0,10,0,0" Source="{Binding Model.id_card_back, Converter={StaticResource PathToImageConverter}}" Stretch="Fill"/>
-                                <Button Margin="0,8,0,0" Width="60" Height="20" Click="btn_UploadImage" Tag="3">
+                                <Button Margin="0,8,0,0" Width="60" Height="20" Click="btn_UploadImage" Tag="3" Style="{StaticResource ButtonStyle4}">
                                     <TextBlock Text="点击上传" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground21}"/>
                                 </Button>
                             </StackPanel>
@@ -147,7 +147,7 @@
                             <StackPanel Orientation="Horizontal" Margin="0,18,0,0">
                                 <StackPanel>
                                     <Image Source="{Binding Model.qualification_cert, Converter={StaticResource PathToImageConverter}}" Stretch="Fill"/>
-                                    <Button Margin="0,8,0,0" Width="60" Height="20" Click="btn_UploadImage" Tag="4">
+                                    <Button Margin="0,8,0,0" Width="60" Height="20" Click="btn_UploadImage" Tag="4" Style="{StaticResource ButtonStyle4}">
                                         <TextBlock Text="点击上传" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground21}"/>
                                     </Button>
                                 </StackPanel>

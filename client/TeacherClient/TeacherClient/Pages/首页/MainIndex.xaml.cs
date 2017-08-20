@@ -53,12 +53,15 @@ namespace TeacherClient.Pages
                 {
                     case 0:
                         _this.frame.Content = _this._togetherInfo;
+                        _this._togetherInfo.RefreshData();
                         break;
                     case 1:
                         _this.frame.Content = _this._teacherInfo;
+                        _this._teacherInfo.RefreshData();
                         break;
                     case 2:
                         _this.frame.Content = _this._certificateInfo;
+                        _this._certificateInfo.RefreshData();
                         break;
                 }
             }));

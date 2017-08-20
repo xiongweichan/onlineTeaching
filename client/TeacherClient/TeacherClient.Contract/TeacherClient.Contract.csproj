@@ -63,11 +63,15 @@
     <Compile Include="Reponse\region.cs" />
     <Compile Include="Reponse\ResponseParam.cs" />
     <Compile Include="Reponse\userInfo.cs" />
+    <Compile Include="Reponse\withdrawCharge.cs" />
     <Compile Include="Reponse\withdrawIndex.cs" />
     <Compile Include="Reponse\withdrawList.cs" />
     <Compile Include="Request\bankcardAdd.cs" />
     <Compile Include="Request\bankcardEdit.cs" />
+    <Compile Include="Request\changeEmail.cs" />
+    <Compile Include="Request\changePhone.cs" />
     <Compile Include="Request\checkCode.cs" />
+    <Compile Include="Request\emailCode.cs" />
     <Compile Include="Request\imageUpLoad.cs" />
     <Compile Include="Request\Login.cs" />
     <Compile Include="Request\OffCourselist.cs" />
@@ -82,7 +86,10 @@
     <Compile Include="Request\requestType.cs" />
     <Compile Include="Request\resetPwd.cs" />
     <Compile Include="Request\userHeadSet.cs" />
+    <Compile Include="Request\userPhotoSet.cs" />
+    <Compile Include="Request\userSet.cs" />
     <Compile Include="Request\withdrawAdd.cs" />
+    <Compile Include="Request\withdrawCharge.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
