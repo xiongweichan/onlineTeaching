@@ -94,6 +94,7 @@
     <Compile Include="Extension\CacheHelper.cs" />
     <Compile Include="Extension\IChangeData.cs" />
     <Compile Include="Extension\INavigation.cs" />
+    <Compile Include="Extension\MyLocalizationManager.cs" />
     <Compile Include="Extension\PasswordBoxExtention.cs" />
     <Compile Include="Extension\StatusCode.cs" />
     <Compile Include="Extension\StringExtension.cs" />
@@ -604,6 +605,24 @@
     <Resource Include="Images\首页\绑定成功.png" />
     <Resource Include="Images\课程中心\取消修改名称.png" />
     <Resource Include="Images\课程中心\确定修改名称.png" />
+    <Resource Include="Images\线下课堂\中划线.png" />
+    <Resource Include="Images\线下课堂\字体背景.png" />
+    <Resource Include="Images\线下课堂\左对齐.png" />
+    <Resource Include="Images\线下课堂\左对齐_选中.png" />
+    <Resource Include="Images\线下课堂\右对齐.png" />
+    <Resource Include="Images\线下课堂\右对齐_选中.png" />
+    <Resource Include="Images\线下课堂\下划线.png" />
+    <Resource Include="Images\线下课堂\文字颜色.png" />
+    <Resource Include="Images\线下课堂\斜体.png" />
+    <Resource Include="Images\线下课堂\加粗.png" />
+    <Resource Include="Images\线下课堂\居中.png" />
+    <Resource Include="Images\线下课堂\居中_选中.png" />
+    <Resource Include="Images\线下课堂\添加图片.png" />
+    <Resource Include="Images\线下课堂\表格.png" />
+    <Resource Include="Images\线下课堂\超链接.png" />
+    <Resource Include="Images\线下课堂\剪切.png" />
+    <Resource Include="Images\线下课堂\复制.png" />
+    <Resource Include="Images\线下课堂\粘贴.png" />
     <Content Include="SysConfig\SystemConfig.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
