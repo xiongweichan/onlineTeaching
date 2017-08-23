@@ -15,10 +15,10 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Border BorderThickness="0,0,0,2" BorderBrush="#cccccc">
-            <TextBlock Text="上传课程" FontWeight="Bold" FontSize="{StaticResource FontSize3}" Foreground="#4d5861"/>
+            <TextBlock Text="上传课程" FontWeight="Bold" FontSize="{StaticResource FontSize3}" Foreground="#4d5861" Margin="0,8"/>
         </Border>
         <Button Grid.Row="1" Style="{StaticResource ButtonStyle1}" Height="26" Width="110"
-                Click="UploadCourse_Click" HorizontalAlignment="Left">
+                Click="UploadCourse_Click" HorizontalAlignment="Left" Margin="0,16,0,0">
             <Button.Content>
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/Images/课程中心/上传.png" Margin="6,0"/>
@@ -35,7 +35,7 @@
             <LineBreak/><Line Height="22"/>
             <Run Text="视频支持MP4、RMVB、AVI格式，图片支持JPG/PNG/BMP等格式" FontSize="12" Foreground="#999999"/>
         </TextBlock>
-        <Border Grid.Row="3" BorderThickness="0,0,0,2" BorderBrush="#cccccc">
+        <Border Grid.Row="3" BorderThickness="0,0,0,2" BorderBrush="#cccccc" Margin="0,16,0,0">
             <StackPanel Orientation="Horizontal">
                 <RadioButton x:Name="courseManager" IsChecked="True" Content="课程管理" Style="{StaticResource RadioButtonStyle5}"/>
                 <RadioButton x:Name="courseCheck" Content="课程审核" Style="{StaticResource RadioButtonStyle5}"/>

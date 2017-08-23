@@ -5,40 +5,40 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TeacherClient"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <StackPanel>
-        <StackPanel Orientation="Horizontal">
+             d:DesignHeight="600" d:DesignWidth="1000">
+    <StackPanel Margin="10,16,0,0">
+        <StackPanel Orientation="Horizontal" Margin="0">
             <TextBlock>
                     <Run Text="*" Foreground="#ff0000"/>
                     <Run Text="课件名称：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
             </TextBlock>
             <TextBox Width="455" Height="28" VerticalContentAlignment="Center" Foreground="#424e67"
-                         Text="{Binding Model.title}"/>
+                         Text="{Binding Model.title}" Margin="4,0,0,0"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
             <TextBlock>
                     <Run Text="*" Foreground="#ff0000"/>
                     <Run Text="课件类型：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
             </TextBlock>
-            <local:MyComboBox cat_id="{Binding cat_id}" cat_id_1="{Binding cat_id_1}" cat_id_2="{Binding cat_id_2}"/>
+            <local:MyComboBox cat_id="{Binding Model.cat_id}" cat_id_1="{Binding Model.cat_id_1}" cat_id_2="{Binding Model.cat_id_2}" Margin="4,0,0,0"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock>
+        <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
+            <TextBlock VerticalAlignment="Center">
                     <Run Text="*" Foreground="#ff0000"/>
                     <Run Text="课件售价：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
             </TextBlock>
-            <RadioButton Content="免费"/>
-            <RadioButton Content="收费"/>
-            <TextBox Width="50"/>
-            <TextBlock Text="元" Margin="8,0,0,0"/>
+            <RadioButton Foreground="#3e3e3e" Content="免费" Margin="4,0,0,0" VerticalAlignment="Center"/>
+            <RadioButton Foreground="#3e3e3e" Content="收费" Margin="4,0,0,0" VerticalAlignment="Center"/>
+            <TextBox Text="{Binding Model.price}" Foreground="#3e3e3e" Width="50" Margin="4,0,0,0" VerticalAlignment="Center"/>
+            <TextBlock Foreground="#3e3e3e" Text="元" Margin="8,0,0,0" VerticalAlignment="Center"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
             <TextBlock>
                     <Run Text="*" Foreground="#ff0000"/>
                     <Run Text="上传课件：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
             </TextBlock>
             <Button Grid.Row="1" Style="{StaticResource ButtonStyle1}" Height="26" Width="110"
-                Click="UploadCourse_Click">
+                Click="UploadCourse_Click" Margin="4,0,0,0">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Images/课程中心/上传.png" Margin="6,0"/>
@@ -47,14 +47,22 @@
                 </Button.Content>
             </Button>
         </StackPanel>
-        <TextBlock Text="文件大小不得超过10M" Foreground="#999999" FontSize="{StaticResource FontSize3}"/>
-        <TextBlock Text="支持上传jpg、png、txt、word、xls、pptx等办公文件格式" Foreground="#999999" FontSize="{StaticResource FontSize3}"/>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock>
+        <TextBlock Text="文件大小不得超过10M" Foreground="#999999" FontSize="{StaticResource FontSize3}" Margin="0,8,0,0"/>
+        <TextBlock Text="支持上传jpg、png、txt、word、xls、pptx等办公文件格式" Foreground="#999999" FontSize="{StaticResource FontSize3}" Margin="0,8,0,0"/>
+        <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
+            <TextBlock VerticalAlignment="Top">
                     <Run Text="*" Foreground="#ff0000"/>
                     <Run Text="课件详情：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
             </TextBlock>
             <local:MyHtmlEditor Width="803" Height="200"/>
+        </StackPanel>
+
+
+        <StackPanel Orientation="Horizontal" Margin="20,20,0,20" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Button Content="确定" Style="{StaticResource ButtonStyle1}" Margin="10,0" Width="128" HorizontalAlignment="Left" Height="30" VerticalAlignment="Center"
+                    Click="Button_Click"/>
+            <Button Content="取消" Style="{StaticResource ButtonStyle1}" Background="#c2cad2" HorizontalAlignment="Left" VerticalAlignment="Center" Width="128" Height="30" 
+                    Click="Button_Click_1"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

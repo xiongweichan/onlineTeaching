@@ -64,6 +64,8 @@ namespace TeacherClient
         public static readonly string Interface_regionList = "Live/Common/regionList";
 
         public static readonly string Interface_categoryList = "Live/LecCourse/categoryList";
+        public static readonly string Interface_coursewareAdd = "Live/LecCourse/coursewareAdd";
+        public static readonly string Interface_coursewareList = "Live/LecCourse/coursewareList";
         public static readonly string Interface_messageList = "Live/LecCourse/messageList";
 
 

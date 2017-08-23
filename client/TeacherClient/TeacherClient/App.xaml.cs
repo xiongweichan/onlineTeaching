@@ -24,6 +24,7 @@ namespace TeacherClient
         {
             base.OnStartup(e);
             LocalizationManager.Manager = new MyLocalizationManager();
+            StyleManager.ApplicationTheme = new Windows8Theme();
             //Windows8 Resources
             //Windows8Palette.Palette.MainColor = Colors.Black;
             //Windows8Palette.Palette.AccentColor = Colors.Orange;

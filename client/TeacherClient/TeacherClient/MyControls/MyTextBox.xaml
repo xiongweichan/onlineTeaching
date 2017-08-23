@@ -8,16 +8,17 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Background="Transparent" PreviewMouseLeftButtonDown="Grid_PreviewMouseLeftButtonDown">
         <TextBlock Text="{Binding ElementName=root,Path=Text}" FontSize="{Binding ElementName=root,Path=FontSize}" Foreground="{Binding ElementName=root,Path=Foreground}"
-                   Visibility="{Binding ElementName=root,Path=IsEdit, Converter={StaticResource BoolToVisibilityConverter2}}"/>
+                   Visibility="{Binding ElementName=root,Path=IsEdit, Converter={StaticResource BoolToVisibilityConverter2}}"
+                   HorizontalAlignment="{Binding ElementName=root, Path=HorizontalContentAlignment}"/>
         <Grid Visibility="{Binding ElementName=root,Path=IsEdit, Converter={StaticResource BoolToVisibilityConverter}}">
             <TextBox Text="{Binding ElementName=root,Path=Text}"
                      FontSize="{Binding ElementName=root,Path=FontSize}" Foreground="{Binding ElementName=root,Path=Foreground}"/>
-            <Button HorizontalAlignment="Right" Margin="0,0,-26,0" Click="btnOKClick">
+            <Button HorizontalAlignment="Right" Margin="0,0,-26,0" Click="btnOKClick" BorderThickness="0">
                 <Button.Content>
                     <Image Width="16" Height="16" Source="/Images/课程中心/确定修改名称.png"/>
                 </Button.Content>
             </Button>
-            <Button HorizontalAlignment="Right" Margin="0,0,-52,0" Click="btnCancelClick">
+            <Button HorizontalAlignment="Right" Margin="0,0,-52,0" Click="btnCancelClick" BorderThickness="0">
                 <Button.Content>
                     <Image Width="16" Height="16" Source="/Images/课程中心/取消修改名称.png"/>
                 </Button.Content>
