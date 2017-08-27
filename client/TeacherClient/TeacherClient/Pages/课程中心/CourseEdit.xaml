@@ -30,7 +30,10 @@
                     </TextBlock>
                     <StackPanel Margin="0">
                         <Image Width="210" Height="120"/>
-                        <Button Content="点击上传" Margin="0,10,0,0" Style="{StaticResource ButtonStyle4}" HorizontalAlignment="Left"/>
+                        <Button Margin="0,10,0,0" Style="{StaticResource ButtonStyle4}" HorizontalAlignment="Left"
+                                Click="UploadImage_Click" >
+                            <TextBlock Text="点击上传" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground21}"/>
+                        </Button>
                     </StackPanel>
                     <TextBlock Margin="10,0,0,0" VerticalAlignment="Top">
                 <Line Height="22"/>
@@ -62,7 +65,7 @@
                     <Run Text="*" Foreground="#ff0000"/>
                     <Run Text="课程数量：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
                     </TextBlock>
-                    <RadioButton x:Name="rb_one" Content="单节课程" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}" VerticalAlignment="Center"/>
+                    <RadioButton x:Name="rb_one" IsChecked="True" Content="单节课程" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}" VerticalAlignment="Center"/>
                     <RadioButton x:Name="rb_many" Content="多节课程" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}" VerticalAlignment="Center" Margin="6,0,0,0"/>
                 </StackPanel>
                 <page:AddOneCourse Visibility="{Binding ElementName=rb_one,Path=IsChecked,Converter={StaticResource BoolToVisibilityConverter}}"

@@ -36,13 +36,17 @@
             <Run Text="视频支持MP4、RMVB、AVI格式，图片支持JPG/PNG/BMP等格式" FontSize="12" Foreground="#999999"/>
         </TextBlock>
         <Border Grid.Row="3" BorderThickness="0,0,0,2" BorderBrush="#cccccc" Margin="0,16,0,0">
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" RadioButton.Checked="StackPanel_Checked">
                 <RadioButton x:Name="courseManager" IsChecked="True" Content="课程管理" Style="{StaticResource RadioButtonStyle5}"/>
                 <RadioButton x:Name="courseCheck" Content="课程审核" Style="{StaticResource RadioButtonStyle5}"/>
                 <RadioButton x:Name="courseTransform" Content="传输列表" Style="{StaticResource RadioButtonStyle5}"/>
             </StackPanel>
         </Border>
         <Grid Grid.Row="4" Visibility="{Binding ElementName=courseManager,Path=IsChecked,Converter={StaticResource BoolToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
             <ListBox x:Name="lb_course" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <ListBox.Template>
                     <ControlTemplate>
@@ -73,7 +77,7 @@
                                         </Grid.ContextMenu>
                                         <Border x:Name="border" Background="#f1f5fa" BorderBrush="#dde0e4" Width="72" Height="72" BorderThickness="2"/>
                                         <Image Source="{Binding image,Converter={StaticResource PathToImageConverter}}" Margin="1" Height="70" Width="70" Stretch="Fill"/>
-                                        <local:MyTextBox Grid.Row="1" Text="{Binding title}" Tag="{Binding id}" TextChanged="MyTextBox_TextChanged"/>
+                                        <local:MyTextBox Foreground="#424e67" HorizontalContentAlignment="Center" Grid.Row="1" Text="{Binding title}" Tag="{Binding id}" TextChanged="MyTextBox_TextChanged"/>
                                     </Grid>
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsSelected" Value="true">
@@ -87,9 +91,16 @@
                     </Style>
                 </ListBox.ItemContainerStyle>
             </ListBox>
+
+            <local:MyDataPage Grid.Row="1"  x:Name="pagerData" PagerIndexChanged="pagerData_PagerIndexChanged"
+                           HorizontalAlignment="Right"/>
         </Grid>
         <Grid Grid.Row="4" Visibility="{Binding ElementName=courseCheck,Path=IsChecked,Converter={StaticResource BoolToVisibilityConverter}}">
-            <DataGrid ColumnHeaderHeight="0" Style="{StaticResource DataGridStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <DataGrid x:Name="dataGrid" ColumnHeaderHeight="0" Style="{StaticResource DataGridStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
@@ -117,7 +128,8 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-
+            <local:MyDataPage Grid.Row="1"  x:Name="pagerData2" PagerIndexChanged="pagerData2_PagerIndexChanged"
+                           HorizontalAlignment="Right"/>
         </Grid>
         <Grid Grid.Row="4" Visibility="{Binding ElementName=courseTransform,Path=IsChecked,Converter={StaticResource BoolToVisibilityConverter}}">
             <Grid.RowDefinitions>

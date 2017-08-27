@@ -75,27 +75,47 @@ namespace TeacherClient.Pages
 
         private void StartLive_Click(object sender, RoutedEventArgs e)
         {
-            LiveCenter.Current.ShowMylive = true;
+            var live = (sender as Control).Tag as Contract.Reponse.live;
+            if (live.start_time != null && live.start_time.GetTime().AddHours(1) > DateTime.Now)
+            {
+                LiveCenter.Current.ShowMylive = true;
+            }
         }
 
         private void EditTime_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void DelRecord_Click(object sender, RoutedEventArgs e)
-        {
-            if (MessageWindow.Alter("删除确认", "您确定要删除记录吗？") == true)
+            var live = (sender as Control).Tag as Contract.Reponse.live;
+            EditLiveTime win = new EditLiveTime(live.id);
+            win.liveStartTime.SelectedValue = live.start_time != null ? live.start_time.GetTime() : DateTime.Now;
+            win.liveEndTime.SelectedValue = live.end_time != null ? live.end_time.GetTime() : DateTime.Now;
+            win.ShowDialog();
+            if(win.DialogResult == true)
             {
-
+                GetData();
             }
         }
 
-        private void CancelRequest_Click(object sender, RoutedEventArgs e)
+        async void DelRecord_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageWindow.Alter("删除确认", "您确定要删除记录吗？") == true)
+            {
+                var live = (sender as Control).Tag as Contract.Reponse.live;
+                Request.RequestID l = new Request.RequestID() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, id = live.id };
+                var t = await WebHelper.doPost<Request.RequestID>(Config.Interface_liveDel, l);
+                if(t)
+                    GetData();
+            }
+        }
+
+        async void CancelLive_Click(object sender, RoutedEventArgs e)
         {
             if (MessageWindow.Alter("确认取消", "确认要取消直播吗？取消后不可恢复") == true)
             {
-
+                var live = (sender as Control).Tag as Contract.Reponse.live;
+                Request.RequestID l = new Request.RequestID() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, id = live.id };
+                var t = await WebHelper.doPost<Request.RequestID>(Config.Interface_liveCancel, l);
+                if (t)
+                    GetData();
             }
         }
 

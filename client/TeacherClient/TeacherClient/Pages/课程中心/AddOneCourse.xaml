@@ -7,17 +7,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock>
+        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+            <TextBlock VerticalAlignment="Center">
                     <Run Text="*" Foreground="#ff0000"/>
                     <Run Text="课程售价：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
             </TextBlock>
-            <RadioButton Content="免费"/>
-            <RadioButton Content="收费"/>
-            <TextBox Width="50"/>
-            <TextBlock Text="元" Margin="8,0,0,0"/>
+            <RadioButton Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}" Content="免费" VerticalAlignment="Center" Margin="6,0"/>
+            <RadioButton Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}" Content="收费" VerticalAlignment="Center"/>
+            <TextBox Width="50" VerticalAlignment="Center" Margin="6,0,0,0"/>
+            <TextBlock Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}" Text="元" Margin="8,0,0,0" VerticalAlignment="Center"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
             <TextBlock>
                     <Run Text="*" Foreground="#ff0000"/>
                     <Run Text="课程视频：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
@@ -32,8 +32,8 @@
                 </Button.Content>
             </Button>
         </StackPanel>
-        <TextBlock Text="支持MP4、RMVB、AVI等视频格式，文件大小不得超过1000M" Foreground="#999999" FontSize="{StaticResource FontSize3}"/>
-        <StackPanel Orientation="Horizontal">
+        <TextBlock Text="支持MP4、RMVB、AVI等视频格式，文件大小不得超过1000M" Foreground="#999999" FontSize="{StaticResource FontSize3}" Margin="0,6,0,0"/>
+        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
             <TextBlock>
                     <Run Text="*" Foreground="#ff0000"/>
                     <Run Text="上传课程：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
@@ -48,6 +48,6 @@
                 </Button.Content>
             </Button>
         </StackPanel>
-        <TextBlock Text="支持上传word文档、PPT、图片，文件大小不得超过10M" Foreground="#999999" FontSize="{StaticResource FontSize3}"/>
+        <TextBlock Text="支持上传word文档、PPT、图片，文件大小不得超过10M" Foreground="#999999" FontSize="{StaticResource FontSize3}" Margin="0,6,0,0"/>
     </StackPanel>
 </UserControl>

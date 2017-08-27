@@ -125,6 +125,9 @@
     <Compile Include="MyControls\MyTextBox.xaml.cs">
       <DependentUpon>MyTextBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\直播中心\EditLiveTime.xaml.cs">
+      <DependentUpon>EditLiveTime.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\课程中心\AddManyCourse.xaml.cs">
       <DependentUpon>AddManyCourse.xaml</DependentUpon>
     </Compile>
@@ -296,6 +299,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MyControls\MyTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\直播中心\EditLiveTime.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

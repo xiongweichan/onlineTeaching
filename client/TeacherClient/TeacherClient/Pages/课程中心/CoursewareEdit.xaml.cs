@@ -54,8 +54,8 @@ namespace TeacherClient.Pages
             Model.lec_id = App.CurrentLogin.lec_id;
             Model.token = App.CurrentLogin.token;
             var b = await WebHelper.doPost<Request.coursewareAdd>(Config.Interface_coursewareAdd, Model);
-
-            CourseCenter.Current.ShowCoursewareManager = true;
+            if (b)
+                CourseCenter.Current.ShowCoursewareManager = true;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

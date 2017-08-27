@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Request = TeacherClient.Contract.Request;
+using Reponse = TeacherClient.Contract.Reponse;
 
 namespace TeacherClient.Pages
 {
@@ -23,13 +25,23 @@ namespace TeacherClient.Pages
         public CourseManager()
         {
             InitializeComponent();
-            lb_course.ItemsSource = new List<test>
-            {
-                new test { id="1", image="/Public/test.png", title=DateTime.Now.ToString() },
-                new test { id="2", image="/Public/test.png", title=DateTime.Now.ToString() },
-                new test { id="3", image="/Public/test.png", title=DateTime.Now.ToString() }
-            };
+        }
 
+        public void RefreshData()
+        {
+            courseManager.IsChecked = true;
+        }
+        async void GetCheckedData()
+        {
+            MainWindow.Current.IsBusy = true;
+            Request.course l = new Request.course() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, page = pagerData.PageIndex, pageSize = pagerData.PageSize, check = "0" };
+            var t = await WebHelper.doPost<Reponse.listData<Reponse.course>, Request.course>(Config.Interface_courseList, l);
+            if (t != null)
+            {
+                pagerData.TotalCount = t.totalCount;
+                lb_course.ItemsSource = t.list;
+            }
+            MainWindow.Current.IsBusy = false;
         }
 
         private void MyTextBox_TextChanged(object sender, RoutedEventArgs e)
@@ -54,14 +66,43 @@ namespace TeacherClient.Pages
             win.ShowDialog();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void UploadCourse_Click(object sender, RoutedEventArgs e)
         {
             CourseCenter.Current.ShowCourseManager = false;
+        }
+
+
+        private void pagerData_PagerIndexChanged(object sender, EventArgs e)
+        {
+            GetCheckedData();
+        }
+
+        private void pagerData2_PagerIndexChanged(object sender, EventArgs e)
+        {
+            GetUnCheckedData();
+        }
+        async void GetUnCheckedData()
+        {
+            MainWindow.Current.IsBusy = true;
+            Request.course l = new Request.course() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, page = pagerData.PageIndex, pageSize = pagerData.PageSize, check = "1" };
+            var t = await WebHelper.doPost<Reponse.listData<Reponse.course>, Request.course>(Config.Interface_coursewareList, l);
+            if (t != null)
+            {
+                pagerData2.TotalCount = t.totalCount;
+                dataGrid.ItemsSource = t.list;
+            }
+            MainWindow.Current.IsBusy = false;
+        }
+
+        private void StackPanel_Checked(object sender, RoutedEventArgs e)
+        {
+            if (pagerData == null || pagerData2 == null) return;
+            if (courseManager.IsChecked == true)
+                GetCheckedData();
+            else if (courseCheck.IsChecked == true)
+                GetUnCheckedData();
+            else
+                ;
         }
     }
     public class test

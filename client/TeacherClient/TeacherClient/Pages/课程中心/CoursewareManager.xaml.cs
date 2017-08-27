@@ -51,11 +51,6 @@ namespace TeacherClient.Pages
             MainWindow.Current.IsBusy = false;
         }
 
-        private void MyTextBox_TextChanged(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void OpenCourse_Click(object sender, RoutedEventArgs e)
         {
 
@@ -64,7 +59,10 @@ namespace TeacherClient.Pages
         private void DeleteCourse_Click(object sender, RoutedEventArgs e)
         {
             var id = (sender as Control).Tag.ToString();
-            MessageWindow.Alter("确认删除", "确认要删除该课件吗？删除后不可恢复");
+            if(MessageWindow.Alter("确认删除", "确认要删除该课件吗？删除后不可恢复") == true)
+            {
+
+            }
         }
 
         private void Property_Click(object sender, RoutedEventArgs e)
@@ -72,12 +70,7 @@ namespace TeacherClient.Pages
             CoursePropertyWindow win = new CoursePropertyWindow();
             win.ShowDialog();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
+        
         private void BtnUploadCourseware_Click(object sender, RoutedEventArgs e)
         {
             CourseCenter.Current.ShowCoursewareManager = false;
@@ -110,11 +103,16 @@ namespace TeacherClient.Pages
         {
             if (pagerData == null || pagerData2 == null) return;
             if (courseManager.IsChecked == true)
-                pagerData.PageIndex = 0;
+                GetCheckedData();
             else if (courseCheck.IsChecked == true)
-                pagerData2.PageIndex = 0;
+                GetUnCheckedData();
             else
                 ;
+        }
+
+        private void MyTextBox_TextChanged(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
