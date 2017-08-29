@@ -75,8 +75,10 @@
     <Compile Include="Request\checkCode.cs" />
     <Compile Include="Request\course.cs" />
     <Compile Include="Request\courseAdd.cs" />
+    <Compile Include="Request\courseChangeTitle.cs" />
     <Compile Include="Request\courseware.cs" />
     <Compile Include="Request\coursewareAdd.cs" />
+    <Compile Include="Request\coursewareChangeTitle.cs" />
     <Compile Include="Request\emailCode.cs" />
     <Compile Include="Request\imageUpLoad.cs" />
     <Compile Include="Request\liveChangeTime.cs" />

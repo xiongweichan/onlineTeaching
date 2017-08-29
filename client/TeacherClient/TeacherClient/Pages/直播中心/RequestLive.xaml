@@ -6,13 +6,13 @@
              xmlns:local="clr-namespace:TeacherClient"
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="800" d:DesignWidth="1000">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid Margin="16">
             <Grid Visibility="Collapsed">
-                <RadioButton x:Name="firstpage" GroupName="page" IsChecked="True"/>
-                <RadioButton x:Name="secondpage" GroupName="page"/>
+                <RadioButton x:Name="firstpage" GroupName="page"/>
+                <RadioButton x:Name="secondpage" GroupName="page" IsChecked="True"/>
                 <RadioButton x:Name="thirdpage" GroupName="page"/>
                 <RadioButton x:Name="fourthpage" GroupName="page"/>
             </Grid>
@@ -51,7 +51,9 @@
                         </TextBlock>
                         <StackPanel Margin="0">
                             <Image Width="200" Height="114"/>
-                            <Button Content="点击上传" Margin="0,6,0,0" Style="{StaticResource ButtonStyle4}"/>
+                            <Button Margin="0,6,0,0" Style="{StaticResource ButtonStyle4}">
+                                <TextBlock Text="点击上传" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground21}"/>
+                            </Button>
                         </StackPanel>
                         <TextBlock Margin="10,0,0,0">
                         <Line Height="22"/>
@@ -96,37 +98,37 @@
                     </Grid>
                 </StackPanel>
                 <StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock>
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <TextBlock FontSize="12">
                     <Run Text="*" Foreground="#ff0000"/>
-                    <Run Text="直播类型：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+                    <Run Text="直播类型：" Foreground="#3e3e3e"/>
                         </TextBlock>
                         <local:MyComboBox cat_id="{Binding cat_id}" cat_id_1="{Binding cat_id_1}" cat_id_2="{Binding cat_id_2}"/>
                     </StackPanel>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock>                    
-                    <Run Text="关联直播：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <TextBlock Margin="10,0,0,0" FontSize="12">                    
+                    <Run Text="关联直播：" Foreground="#3e3e3e"/>
                     </TextBlock>
                     <ComboBox Width="200"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <TextBlock VerticalAlignment="Top" FontSize="12">
                     <Run Text="*" Foreground="#ff0000"/>
-                    <Run Text="直播描述：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+                    <Run Text="直播描述：" Foreground="#3e3e3e"/>
                     </TextBlock>
                     <TextBox Width="456" Height="88" Tag="不少于10个字" AcceptsReturn="True" AcceptsTab="True"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock>
-                    <Run Text="直播大纲：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <TextBlock VerticalAlignment="Top" Margin="10,0,0,0" FontSize="12">
+                    <Run Text="直播大纲：" Foreground="#3e3e3e"/>
                     </TextBlock>
                     <TextBox Width="456" Height="88" Tag="不少于10个字" AcceptsReturn="True" AcceptsTab="True"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <TextBlock FontSize="12">
                     <Run Text="*" Foreground="#ff0000"/>
-                    <Run Text="上传课件：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+                    <Run Text="上传课件：" Foreground="#3e3e3e"/>
                     </TextBlock>
                     <Button Grid.Row="1" Style="{StaticResource ButtonStyle1}" Height="26" Width="110"
                 Click="UploadCourse_Click">
@@ -138,26 +140,26 @@
                         </Button.Content>
                     </Button>
                 </StackPanel>
-                <TextBlock Text="支持上传word文档、ppt、图片，文件大小不得超过10M" Foreground="#999999" FontSize="{StaticResource FontSize3}"/>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock>
+                <TextBlock Text="支持上传word文档、ppt、图片，文件大小不得超过10M" Foreground="#999999" FontSize="{StaticResource FontSize3}" Margin="0,10,0,0"/>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <TextBlock VerticalAlignment="Center" FontSize="12">
                     <Run Text="*" Foreground="#ff0000"/>
-                    <Run Text="直播售价：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+                    <Run Text="直播售价：" Foreground="#3e3e3e"/>
                     </TextBlock>
-                    <RadioButton Content="免费"/>
-                    <RadioButton Content="收费"/>
-                    <TextBox Width="50"/>
-                    <TextBlock Text="元" Margin="8,0,0,0"/>
+                    <RadioButton Foreground="#646464" Content="免费" VerticalAlignment="Center"/>
+                    <RadioButton Foreground="#646464" Content="收费" VerticalAlignment="Center" Margin="6,0"/>
+                    <TextBox Foreground="#646464" Width="50" VerticalAlignment="Center"/>
+                    <TextBlock Foreground="#646464" Text="元" Margin="8,0,0,0" VerticalAlignment="Center" FontSize="12"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <TextBlock VerticalAlignment="Top" FontSize="12">
                     <Run Text="*" Foreground="#ff0000"/>
-                    <Run Text="直播详情：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+                    <Run Text="直播详情：" Foreground="#3e3e3e"/>
                     </TextBlock>
                     <local:MyHtmlEditor Width="803" Height="200"/>
                 </StackPanel>
                 <Button Content="下一步" Width="130" Height="30" Background="#0096ff" Foreground="#ffffff" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Left"
-                    Click="btnNext_Click"/>
+                    Click="btnNext_Click" Margin="0,20,0,0"/>
             </StackPanel>
             <StackPanel Visibility="{Binding IsChecked, ElementName=thirdpage, Converter={StaticResource BoolToVisibilityConverter}}">
                 <StackPanel Orientation="Horizontal">
@@ -179,14 +181,14 @@
                     </Grid>
                 </StackPanel>
                 <StackPanel>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
                         <TextBlock>
                     <Run Text="*" Foreground="#ff0000"/>
                     <Run Text="开始时间：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
                         </TextBlock>
                         <telerik:RadDateTimePicker Width="433" Height="20"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
                         <TextBlock>
                     <Run Text="*" Foreground="#ff0000"/>
                     <Run Text="结束时间：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
@@ -194,7 +196,7 @@
                         <telerik:RadDateTimePicker Width="433" Height="20"/>
                     </StackPanel>
                     <Button Content="提交" Width="130" Height="30" Background="#0096ff" Foreground="#ffffff" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Left"
-                    Click="btnNext_Click"/>
+                    Click="btnNext_Click" Margin="0,30,0,0"/>
 
                 </StackPanel>
             </StackPanel>
@@ -218,14 +220,20 @@
                     </Grid>
                 </StackPanel>
                 <StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Image/>
-                        <TextBlock Text="您的直播申请已提交！"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                        <Image Source="/Images/登录注册/注册申请提交成功.png"/>
+                        <TextBlock Margin="10,0,0,0" Text="您的直播申请已提交！" FontSize="{StaticResource FontSize2}" Foreground="#333333" FontWeight="Bold"/>
                     </StackPanel>
-                    <TextBlock Text="请您耐心等候，系统会在两个工作日内审核完毕。"/>
-                    <TextBlock Text="5秒后会自动为您跳回“我的直播”，或者点击下方确定按钮跳转"/>
+                    <TextBlock Text="请您耐心等候，系统会在两个工作日内审核完毕。" Margin="35,10,0,0" FontSize="{StaticResource FontSize3}" Foreground="#333333"/>
+                    <TextBlock Margin="35,10,0,0">
+                        <Run Text="5秒后会自动为您跳回" FontSize="{StaticResource FontSize3}" Foreground="#b8b8b8"/>
+                        <Run Text="“我的直播”" FontSize="{StaticResource FontSize3}" Foreground="#0096ff"/>
+                        <Run Text="，或者点击下方" FontSize="{StaticResource FontSize3}" Foreground="#b8b8b8"/>
+                        <Run Text="确定按钮跳转" FontSize="{StaticResource FontSize3}" Foreground="#0096ff"/>
+                    </TextBlock>
 
-                    <Button Content="确定" Width="130" Height="30" Background="#0096ff" Foreground="#ffffff" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Left"/>
+                    <Button Content="确定" Width="130" Height="30" Background="#0096ff" Foreground="#ffffff" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Left" Margin="0,30,0,0"
+                            Click="Button_Click"/>
                 </StackPanel>
             </StackPanel>
         </Grid>

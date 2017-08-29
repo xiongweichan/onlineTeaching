@@ -78,6 +78,7 @@ namespace TeacherClient.Pages
                     break;
                 case 1:
                     frame.Content = _requestLive;
+                    _requestLive.firstpage.IsChecked = true;
                     break;
             }
         }

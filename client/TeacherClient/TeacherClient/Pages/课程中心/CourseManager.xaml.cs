@@ -44,8 +44,19 @@ namespace TeacherClient.Pages
             MainWindow.Current.IsBusy = false;
         }
 
-        private void MyTextBox_TextChanged(object sender, RoutedEventArgs e)
+        async void MyTextBox_TextChanged(object sender, RoutedEventArgs e)
         {
+            var tb = (sender as MyTextBox);
+            var id = tb.Tag.ToString();
+            Request.courseChangeTitle l = new Request.courseChangeTitle() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, id = id, title = tb.Text };
+            var t = await WebHelper.doPost<Request.courseChangeTitle>(Config.Interface_courseChangeTitle, l);
+            if (t)
+            {
+                if (courseManager.IsChecked == true)
+                    GetCheckedData();
+                else
+                    GetUnCheckedData();
+            }
 
         }
 
@@ -54,10 +65,21 @@ namespace TeacherClient.Pages
 
         }
 
-        private void DeleteCourse_Click(object sender, RoutedEventArgs e)
+        async void DeleteCourse_Click(object sender, RoutedEventArgs e)
         {
             var id = (sender as Control).Tag.ToString();
-            MessageWindow.Alter("确认删除", "确认要删除该课程文件吗？删除后文件不可恢复");
+            if (MessageWindow.Alter("确认删除", "确认要删除该课程文件吗？删除后文件不可恢复") == true)
+            {
+                Request.RequestID l = new Request.RequestID() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, id = id };
+                var t = await WebHelper.doPost<Request.RequestID>(Config.Interface_courseDel, l);
+                if (t)
+                {
+                    if (courseManager.IsChecked == true)
+                        GetCheckedData();
+                    else
+                        GetUnCheckedData();
+                }
+            }
         }
 
         private void Property_Click(object sender, RoutedEventArgs e)

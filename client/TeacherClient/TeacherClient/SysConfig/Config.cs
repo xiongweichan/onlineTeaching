@@ -66,8 +66,12 @@ namespace TeacherClient
         public static readonly string Interface_categoryList = "Live/LecCourse/categoryList";
         public static readonly string Interface_courseList = "Live/LecCourse/courseList";
         public static readonly string Interface_courseAdd = "Live/LecCourse/courseAdd";
+        public static readonly string Interface_courseDel = "Live/LecCourse/courseDel";
+        public static readonly string Interface_courseChangeTitle = "Live/LecCourse/courseChangeTitle";
         public static readonly string Interface_coursewareAdd = "Live/LecCourse/coursewareAdd";
         public static readonly string Interface_coursewareList = "Live/LecCourse/coursewareList";
+        public static readonly string Interface_coursewareDel = "Live/LecCourse/coursewareDel";
+        public static readonly string Interface_coursewareChangeTitle = "Live/LecCourse/coursewareChangeTitle";
         public static readonly string Interface_messageList = "Live/LecCourse/messageList";
 
 

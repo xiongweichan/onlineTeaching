@@ -56,12 +56,20 @@ namespace TeacherClient.Pages
 
         }
 
-        private void DeleteCourse_Click(object sender, RoutedEventArgs e)
+        async void DeleteCourse_Click(object sender, RoutedEventArgs e)
         {
             var id = (sender as Control).Tag.ToString();
             if(MessageWindow.Alter("确认删除", "确认要删除该课件吗？删除后不可恢复") == true)
             {
-
+                Request.RequestID l = new Request.RequestID() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, id = id };
+                var t = await WebHelper.doPost<Request.RequestID>(Config.Interface_coursewareDel, l);
+                if (t)
+                {
+                    if (courseManager.IsChecked == true)
+                        GetCheckedData();
+                    else
+                        GetUnCheckedData();
+                }
             }
         }
 
@@ -110,8 +118,19 @@ namespace TeacherClient.Pages
                 ;
         }
 
-        private void MyTextBox_TextChanged(object sender, RoutedEventArgs e)
+        async void MyTextBox_TextChanged(object sender, RoutedEventArgs e)
         {
+            var tb = (sender as MyTextBox);
+            var id = tb.Tag.ToString();
+            Request.coursewareChangeTitle l = new Request.coursewareChangeTitle() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, id = id, title = tb.Text };
+            var t = await WebHelper.doPost<Request.coursewareChangeTitle>(Config.Interface_coursewareChangeTitle, l);
+            if (t)
+            {
+                if (courseManager.IsChecked == true)
+                    GetCheckedData();
+                else
+                    GetUnCheckedData();
+            }
 
         }
     }
