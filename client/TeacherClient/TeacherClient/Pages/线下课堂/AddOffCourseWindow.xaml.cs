@@ -65,7 +65,11 @@ namespace TeacherClient.Pages
                 Model.lessonList = list;
             }
             if (await WebHelper.doPost<Request.offlineCourseAdd>(Config.Interface_offlineCourseAdd, Model))
+            {
                 MessageWindow.Alter("提示", "添加成功");
+                this.DialogResult = true;
+                this.Close();
+            }
         }
     }
 }

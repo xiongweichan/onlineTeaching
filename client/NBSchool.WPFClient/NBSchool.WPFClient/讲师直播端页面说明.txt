@@ -1,6 +1,0 @@
- 1.    LoginView                  登陆窗口
- 2.    MainView                   主窗口
- 3.    RegisterView               注册窗口
- 3.1   RegisterInfoView           注册信息 
- 3.2   CertificationView          注册认证
- 3.3   RegisterCompletedView      注册成功

@@ -181,7 +181,7 @@ namespace TeacherClient
         [DllImport("libMedia.dll", EntryPoint = "Media_DeletePtr", CallingConvention = CallingConvention.Cdecl)]
         private static extern void Media_DeletePtr(IntPtr m);
         [DllImport("libMedia.dll", EntryPoint = "Media_Init", CallingConvention = CallingConvention.Cdecl)]
-        private static extern int Media_Init(IntPtr m,int frameRate,int sendBitRate,int sendWidth,int sendHeight,int localWidth,int localHeight,int localSmallWidth,int localSmallHeight);
+        private static extern int Media_Init(IntPtr m, int frameRate, int sendBitRate, int sendWidth, int sendHeight, int localWidth, int localHeight, int localSmallWidth, int localSmallHeight);
         [DllImport("libMedia.dll", EntryPoint = "Media_StartPushStream", CallingConvention = CallingConvention.Cdecl)]
         private static extern int Media_StartPushStream(IntPtr m, string url);
         [DllImport("libMedia.dll", EntryPoint = "Media_StopPushStream", CallingConvention = CallingConvention.Cdecl)]

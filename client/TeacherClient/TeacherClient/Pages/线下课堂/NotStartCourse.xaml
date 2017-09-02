@@ -26,16 +26,16 @@
                 <DataGridTextColumn Header="课程时长" Binding="{Binding long, StringFormat='{}{0}分钟'}" Width="100" CellStyle="{DynamicResource DataGridCellStyle1}"/>
                 <DataGridTextColumn Header="报名人数" Binding="{Binding user_num}" Width="100" CellStyle="{DynamicResource DataGridCellStyle1}"/>
                 <DataGridTextColumn Header="当前状态" Binding="{Binding time_status, Converter={StaticResource OfflineCourseStatusConverter}}" Width="100" CellStyle="{DynamicResource DataGridCellStyle1}"/>
-                <DataGridTemplateColumn Header="操作" Width="100" CellStyle="{DynamicResource DataGridCellStyle1}">
+                <DataGridTemplateColumn Header="操作" Width="250" CellStyle="{DynamicResource DataGridCellStyle1}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <Button Foreground="#424e67" Width="90" Height="24" Style="{StaticResource ButtonStyle3}" Content="修改课程详情"
                                         Visibility="{Binding time_status, Converter={StaticResource IntEqualParamToVisibilityConverter},ConverterParameter='1'}"
-                                        Click="btnModify_Click" Tag="{Binding course_id}"/>
+                                        Click="btnModify_Click" Tag="{Binding course_id}" Margin="10,0"/>
                                 <Button Foreground="#424e67" Width="90" Height="24" Style="{StaticResource ButtonStyle3}" Content="查看报名列表"
-                                        Visibility="{Binding time_status, Converter={StaticResource IntEqualParamToVisibilityConverter2},ConverterParameter='1'}"
-                                        Click="btnShowStudent_Click" Tag="{Binding course_id}" Margin="10,0,0,0"/>
+                                        Visibility="{Binding time_status, Converter={StaticResource IntEqualParamToVisibilityConverter},ConverterParameter='1'}"
+                                        Click="btnShowStudent_Click" Tag="{Binding course_id}"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
