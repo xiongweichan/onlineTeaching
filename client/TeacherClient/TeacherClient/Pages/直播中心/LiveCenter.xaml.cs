@@ -50,12 +50,14 @@ namespace TeacherClient.Pages
             {
                 _ShowMylive = value;
                 if (value)
-                    _myLive = new MyLive();
+                {
+                    _myLive = new MyLive(_liveManager.CurrentLive);
+                }
                 ShowContent();
             }
         }
 
-        MyLive _myLive = new MyLive();
+        MyLive _myLive;
         RequestLive _requestLive = new RequestLive();
         LiveManager _liveManager = new LiveManager();
 

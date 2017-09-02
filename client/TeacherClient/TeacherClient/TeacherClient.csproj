@@ -24,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\TeacherClient.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -94,8 +95,10 @@
     <Compile Include="Extension\CacheHelper.cs" />
     <Compile Include="Extension\IChangeData.cs" />
     <Compile Include="Extension\INavigation.cs" />
+    <Compile Include="Extension\MediaInterface.cs" />
     <Compile Include="Extension\MyLocalizationManager.cs" />
     <Compile Include="Extension\PasswordBoxExtention.cs" />
+    <Compile Include="Extension\MediaHelper.cs" />
     <Compile Include="Extension\StatusCode.cs" />
     <Compile Include="Extension\StringExtension.cs" />
     <Compile Include="Extension\UploadFileHelper.cs" />
@@ -630,6 +633,8 @@
     <Resource Include="Images\线下课堂\剪切.png" />
     <Resource Include="Images\线下课堂\复制.png" />
     <Resource Include="Images\线下课堂\粘贴.png" />
+    <Resource Include="Images\直播中心\录像时长.png" />
+    <Resource Include="Images\直播中心\直播已开始.png" />
     <Content Include="SysConfig\SystemConfig.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

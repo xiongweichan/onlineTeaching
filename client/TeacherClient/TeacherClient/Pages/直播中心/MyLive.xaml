@@ -4,32 +4,44 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TeacherClient.Pages"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             mc:Ignorable="d" x:Name="root"
+             d:DesignHeight="600" d:DesignWidth="1000">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="223"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <StackPanel Width="200">
-            <Image Width="200" Height="114"/>
-            <TextBlock TextWrapping="Wrap" MaxHeight="44" FontSize="{StaticResource FontSize3}" Foreground="#333333" TextTrimming="CharacterEllipsis"/>
-            <StackPanel Orientation="Horizontal">
+        <Grid Width="200" Margin="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Image Width="200" Height="114" x:Name="img_Index"
+                   Source="{Binding Live.image, Converter={StaticResource PathToImageConverter}}"/>
+            <TextBlock Grid.Row="1" TextWrapping="Wrap" MaxHeight="44" FontSize="{StaticResource FontSize3}" Foreground="#333333" TextTrimming="CharacterEllipsis"
+                       x:Name="tbl_Name"
+                       Text="{Binding Live.title}"/>
+            <StackPanel Grid.Row="2" Orientation="Horizontal">
                 <Image Source="/Images/直播中心/学员.png"/>
                 <TextBlock Text="学员：" FontSize="{StaticResource FontSize3}" Foreground="#333333"/>
-                <TextBlock Text="{Binding .,StringFormat='{}{0}位'}" FontSize="{StaticResource FontSize3}" Foreground="#333333"/>
+                <TextBlock x:Name="tbl_studentcount" FontSize="{StaticResource FontSize3}" Foreground="#333333"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Grid.Row="3" Orientation="Horizontal">
                 <Image Source="/Images/直播中心/形状-59.png"/>
                 <TextBlock Text="礼物：" FontSize="{StaticResource FontSize3}" Foreground="#333333"/>
-                <TextBlock Text="{Binding .,StringFormat='{}{0}个'}" FontSize="{StaticResource FontSize3}" Foreground="#333333"/>
+                <TextBlock x:Name="tbl_giftcount" FontSize="{StaticResource FontSize3}" Foreground="#333333"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Grid.Row="4" Orientation="Horizontal">
                 <Image Source="/Images/直播中心/形状-60.png"/>
                 <TextBlock Text="打赏：" FontSize="{StaticResource FontSize3}" Foreground="#333333"/>
-                <TextBlock Text="{Binding .,StringFormat='{}{0}元'}" FontSize="{StaticResource FontSize3}" Foreground="#333333"/>
+                <TextBlock x:Name="tbl_moneycount" FontSize="{StaticResource FontSize3}" Foreground="#333333"/>
             </StackPanel>
-            <ItemsControl Height="185" Width="200">
+            <ItemsControl Grid.Row="5" Height="185" Width="200">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
@@ -42,19 +54,20 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-            <Button Style="{StaticResource ButtonStyle1}" Content="退出直播" Height="30" Width="200" FontSize="{StaticResource FontSize2}"
+            <Button Grid.Row="6" Style="{StaticResource ButtonStyle1}" Content="退出直播" Height="30" Width="200" FontSize="{StaticResource FontSize2}"
                     Click="OutLive_Click"/>
-        </StackPanel>
+        </Grid>
         <Grid Grid.Column="1" Background="#515151">
-            <StackPanel Orientation="Horizontal"
-                        Visibility="{Binding Model.Status,Converter={StaticResource IntEqualParamToVisibilityConverter},ConverterParameter='0'}">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                        Visibility="{Binding ElementName=root, Path=Status,Converter={StaticResource IntEqualParamToVisibilityConverter},ConverterParameter='0'}">
                 <Image Source="/Images/直播中心/形状-66.png"/>
-                <TextBlock VerticalAlignment="Center" Margin="6,0,0,0" Text="{Binding Model.LeaveTime,StringFormat='距离您的直播开始时间还有{0:HH:mm:ss}'}"
+                <TextBlock x:Name="tbl_CountDown" VerticalAlignment="Center" Margin="6,0,0,0"
                            Foreground="#ffffff" FontSize="{StaticResource FontSize2}"/>
             </StackPanel>
-            <StackPanel Visibility="{Binding Model.Status,Converter={StaticResource IntEqualParamToVisibilityConverter},ConverterParameter='1'}">
+            <StackPanel Visibility="{Binding  ElementName=root, Path=Status,Converter={StaticResource IntEqualParamToVisibilityConverter},ConverterParameter='1'}"
+                        HorizontalAlignment="Center" VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="/Images/直播中心/形状-66.png"/>
+                    <Image Source="/Images/直播中心/直播已开始.png"/>
                     <TextBlock VerticalAlignment="Center" Margin="6,0,0,0" 
                                Text="您的直播时间已开始，请尽快开启您的直播"
                            Foreground="#f1aa02" FontSize="{StaticResource FontSize2}"/>
@@ -76,28 +89,32 @@
             </StackPanel>
 
             <Grid>
-                <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Fill"/>
+                <Image x:Name="img_main" Tag="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Fill"/>
 
-                <Grid Width="158" Height="118" Margin="12" HorizontalAlignment="Right" VerticalAlignment="Top">
-                    <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Fill"/>
+                <Grid Width="158" Height="118" Margin="12" HorizontalAlignment="Right" VerticalAlignment="Top"
+                      Background="Transparent" PreviewMouseLeftButtonUp="Grid_PreviewMouseLeftButtonUp">
+                    <Image x:Name="img_thumbnail1" Tag="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Fill"/>
                     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="24"
                           Background="#000000" Opacity="0.1"/>
                     <TextBlock FontSize="{StaticResource FontSize3}" Height="24" Foreground="#ffffff"
-                               VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                               VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                               x:Name="tbl_thumbnail1"/>
                 </Grid>
-                <Grid Width="158" Height="118" Margin="0,142,12,0" HorizontalAlignment="Right" VerticalAlignment="Top">
-                    <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Fill"/>
+                <Grid Width="158" Height="118" Margin="0,142,12,0" HorizontalAlignment="Right" VerticalAlignment="Top"
+                      Background="Transparent" PreviewMouseLeftButtonUp="Grid_PreviewMouseLeftButtonUp2">
+                    <Image x:Name="img_thumbnail2" Tag="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Fill"/>
                     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="24"
                           Background="#000000" Opacity="0.1"/>
                     <TextBlock FontSize="{StaticResource FontSize3}" Height="24" Foreground="#ffffff"
-                               VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                               VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                               x:Name="tbl_thumbnail2"/>
                 </Grid>
             </Grid>
             
             
-            <Grid Background="#000000" Opacity="0.1" VerticalAlignment="Bottom" Height="48" HorizontalAlignment="Stretch"/>
+            <Grid Background="#000000" Opacity="0.5" VerticalAlignment="Bottom" Height="48" HorizontalAlignment="Stretch"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Height="48" VerticalAlignment="Bottom" Margin="10,0,0,0">
-                <ToggleButton Style="{DynamicResource ToggleButtonStyle2}">
+                <ToggleButton x:Name="tbtn_LB" Style="{DynamicResource ToggleButtonStyle2}">
                     <ToggleButton.Content>
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Images/直播中心/开启录屏直播.png" UseLayoutRounding="True" SnapsToDevicePixels="True" Stretch="Fill" Width="24" Height="24"/>
@@ -105,7 +122,7 @@
                         </StackPanel>
                     </ToggleButton.Content>
                 </ToggleButton>
-                <ToggleButton Style="{DynamicResource ToggleButtonStyle2}" Margin="10,0">
+                <ToggleButton x:Name="tbtn_LX" Style="{DynamicResource ToggleButtonStyle2}" Margin="10,0">
                     <ToggleButton.Content>
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Images/直播中心/开启录像直播.png" UseLayoutRounding="True" SnapsToDevicePixels="True" Stretch="Fill" Width="24" Height="24"/>
@@ -113,7 +130,7 @@
                         </StackPanel>
                     </ToggleButton.Content>
                 </ToggleButton>
-                <ToggleButton Style="{DynamicResource ToggleButtonStyle2}">
+                <ToggleButton x:Name="tbtn_CJ" Style="{DynamicResource ToggleButtonStyle2}">
                     <ToggleButton.Content>
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Images/直播中心/开启场景直播.png" UseLayoutRounding="True" SnapsToDevicePixels="True" Stretch="Fill" Width="24" Height="24"/>
@@ -122,9 +139,9 @@
                     </ToggleButton.Content>
                 </ToggleButton>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Image/>
-                <TextBlock/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,100,15">
+                <Image Source="/Images/直播中心/录像时长.png"/>
+                <TextBlock Margin="6,0,0,0" x:Name="tbl_livelong" FontSize="{StaticResource FontSize3}" Foreground="White"/>
             </StackPanel>
         </Grid>
     </Grid>
