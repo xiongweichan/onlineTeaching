@@ -36,6 +36,7 @@ namespace TeacherClient.Pages
         public OffCourseDetail()
         {
             InitializeComponent();
+            this.SetBinding(OffCourseDetail.CourseImageProperty, new Binding("Model.image") { Mode = BindingMode.OneTime });
         }
 
         async void btnUpload_Click(object sender, RoutedEventArgs e)

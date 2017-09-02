@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="lesson.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reponse\bankcardDetail.cs" />
     <Compile Include="Reponse\bankinfo.cs" />

@@ -41,6 +41,8 @@ namespace TeacherClient.Pages
         {
             InitializeComponent();
             Init();
+            this.SetBinding(AddOneOffCourse.SchoolImageProperty, new Binding("school_image") { Mode = BindingMode.OneTime });
+
         }
 
         private void Init()

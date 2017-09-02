@@ -14,6 +14,6 @@ namespace TeacherClient.Contract.Request
         public string course_type { get; set; }
         public string image { get; set; }
         public string content { get; set; }
-        public string lessonList { get; set; }
+        public List<lesson> lessonList { get; set; }
     }
 }

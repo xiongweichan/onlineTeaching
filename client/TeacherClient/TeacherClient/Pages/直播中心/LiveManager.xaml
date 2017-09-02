@@ -48,7 +48,7 @@
                 <RadioButton IsChecked="{Binding Type, Converter={StaticResource IntToBoolConverter}, ConverterParameter=0}" Content="全部直播" Style="{StaticResource RadioButtonStyle5}" />
             </StackPanel>
         </Border>
-        <DataGrid x:Name="datagrid" RowStyle="{DynamicResource DataGridRowStyle1}" 
+        <DataGrid x:Name="datagrid" RowStyle="{StaticResource DataGridRowStyle1}" 
                       ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle1}"
                       Style="{DynamicResource DataGridStyle1}" Grid.Row="1">
             <DataGrid.Columns>

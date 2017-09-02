@@ -47,7 +47,7 @@
                 <Run Text="课程图片：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
                 </TextBlock>
                 <StackPanel Margin="0,20,0,0">
-                    <Image Width="64" Height="64" Source="{Binding CourseImage,ElementName=root, Converter={StaticResource PathToImageConverter}}"/>
+                    <Image Width="64" Height="64" Stretch="Fill" Source="{Binding CourseImage,ElementName=root, Converter={StaticResource PathToImageConverter}}"/>
                     <Button Margin="0,10,0,0" Style="{StaticResource ButtonStyle4}"
                             Click="btnUpload_Click">
                         <TextBlock Text="点击上传" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground3}"/>

@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TeacherClient.Contract;
 using Reponse = TeacherClient.Contract.Reponse;
 using Request = TeacherClient.Contract.Request;
 
@@ -30,14 +31,14 @@ namespace TeacherClient.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var list = this.DataContext as ObservableCollection<Request.lesson>;
-            list.Add(new Contract.Request.lesson());
+            var list = this.DataContext as ObservableCollection<lesson>;
+            list.Add(new Contract.lesson());
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            var source = icCourses.ItemsSource as ObservableCollection<Request.lesson>;
-            var tag = (sender as Control).Tag as Request.lesson;
+            var source = icCourses.ItemsSource as ObservableCollection<lesson>;
+            var tag = (sender as Control).Tag as lesson;
             source.Remove(tag);
         }
     }

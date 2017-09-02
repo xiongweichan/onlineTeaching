@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TeacherClient.Contract;
 using TeacherClient.Core;
 using Reponse = TeacherClient.Contract.Reponse;
 using Request = TeacherClient.Contract.Request;
@@ -23,8 +24,8 @@ namespace TeacherClient.Pages
     /// </summary>
     public partial class OfflineCourseUpdate : WindowBase
     {
-        public Reponse.lesson Lesson { get; set; }
-        public ObservableCollection<Reponse.lesson> Lessons { get; set; }
+        public lesson Lesson { get; set; }
+        public ObservableCollection<lesson> Lessons { get; set; }
 
         public Reponse.offCourseDetail Model { get; set; }
 
@@ -37,8 +38,8 @@ namespace TeacherClient.Pages
                 sp_operation.Visibility = Visibility.Collapsed;
                 this.Title = "查看线下课程";
             }
-            Lessons = new ObservableCollection<Reponse.lesson>(new List<Contract.Reponse.lesson> { new Contract.Reponse.lesson() });
-            Lesson = new Reponse.lesson();
+            Lessons = new ObservableCollection<lesson>(new List<Contract.lesson> { new Contract.lesson() });
+            Lesson = new lesson();
             Init(id);
         }
 
@@ -55,7 +56,7 @@ namespace TeacherClient.Pages
                     if (t.course_type == "0" && t.lessonList.Count > 0)
                         Lesson = t.lessonList[0];
                     else if (t.course_type == "1")
-                        Lessons = new ObservableCollection<Contract.Reponse.lesson>(t.lessonList);
+                        Lessons = new ObservableCollection<Contract.lesson>(t.lessonList);
                 }
                 
             }
@@ -81,7 +82,7 @@ namespace TeacherClient.Pages
                 Lesson.lesson_number = "1";
                 Lesson.id = "1";
                 Lesson.end_time = Lesson.start_time.GetTime().AddMinutes(double.Parse(Lesson.Long)).ConvertDateTimeInt().ToString();
-                l.lessonList = new List<Contract.Reponse.lesson>() { Lesson }.ToJson();
+                l.lessonList = new List<Contract.lesson>() { Lesson };
             }
             else
             {
@@ -92,7 +93,7 @@ namespace TeacherClient.Pages
                     T.end_time = T.start_time.GetTime().AddMinutes(double.Parse(T.Long)).ConvertDateTimeInt().ToString();
                     T.id = (list.IndexOf(T) + 1).ToString();
                 });
-                l.lessonList = list.ToJson();
+                l.lessonList = list;
             }
             if (await WebHelper.doPost<Request.offlineCourseUpdate>(Config.Interface_offlineCourseUpdate, l))
             {

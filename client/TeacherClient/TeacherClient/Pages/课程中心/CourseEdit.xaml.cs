@@ -34,9 +34,22 @@ namespace TeacherClient.Pages
 
 
 
+        public string ImagePath
+        {
+            get { return (string)GetValue(ImagePathProperty); }
+            set { SetValue(ImagePathProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ImagePath.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ImagePathProperty =
+            DependencyProperty.Register("ImagePath", typeof(string), typeof(CourseEdit), new PropertyMetadata());
+
+
+
         public CourseEdit()
         {
             InitializeComponent();
+            Model = new Contract.Request.courseAdd();
         }
 
         async void Button_Click(object sender, RoutedEventArgs e)
@@ -63,7 +76,7 @@ namespace TeacherClient.Pages
             var str = await UploadImageHelper.UploadImage();
             if (!string.IsNullOrEmpty(str))
             {
-                Model.image = str;
+                this.ImagePath = Model.image = str;
             }
         }
     }
