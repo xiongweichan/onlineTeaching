@@ -27,13 +27,13 @@
                 <DataGridTextColumn Header="姓名" Binding="{Binding name}" Width="80" CellStyle="{DynamicResource DataGridCellStyle1}"/>
                 <DataGridTextColumn Header="联系电话" Binding="{Binding phone}" Width="100" CellStyle="{DynamicResource DataGridCellStyle1}"/>
                 <DataGridTextColumn Header="申请说明" Binding="{Binding desc}" Width="200" CellStyle="{DynamicResource DataGridCellStyle1}"/>
-                <DataGridTemplateColumn Header="操作" Width="100" CellStyle="{DynamicResource DataGridCellStyle1}">
+                <DataGridTemplateColumn Header="操作" Width="210" CellStyle="{DynamicResource DataGridCellStyle1}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <Button Foreground="#424e67" Width="90" Height="24" Style="{StaticResource ButtonStyle3}" Content="同意申请"
                                         Visibility="{Binding status, Converter={StaticResource IntEqualParamToVisibilityConverter},ConverterParameter='0'}"
-                                        Click="btnAgree_Click" Tag="{Binding id}"/>
+                                        Click="btnAgree_Click" Tag="{Binding id}" Margin="10,0"/>
                                 <Button Foreground="#424e67" Width="90" Height="24" Style="{StaticResource ButtonStyle3}" Content="拒绝申请"
                                         Visibility="{Binding status, Converter={StaticResource IntEqualParamToVisibilityConverter},ConverterParameter='0'}"
                                         Click="btnRefuse_Click" Tag="{Binding id}"/>

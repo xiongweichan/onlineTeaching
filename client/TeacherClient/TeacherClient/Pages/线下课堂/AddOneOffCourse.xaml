@@ -46,7 +46,7 @@
             <TextBox Text="{Binding address}" Width="455" Height="28" VerticalContentAlignment="Center" Foreground="#424e67"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
-            <TextBlock Width="70" TextAlignment="Right">
+            <TextBlock Width="70" TextAlignment="Right" VerticalAlignment="Top">
                     <Run Text="*" Foreground="#ff0000"/>
                     <Run Text="学校简介：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
             </TextBlock>

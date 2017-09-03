@@ -27,6 +27,9 @@ namespace TeacherClient
         public static readonly string Interface_phoneCode = "Live/LecLogin/phoneCode";
         public static readonly string Interface_emailCode = "Live/LecLogin/emailCode";
         public static readonly string Interface_register = "Live/LecLogin/register";
+        public static readonly string Interface_checkCode = "Live/LecLogin/checkCode";
+        public static readonly string Interface_resetPwd = "Live/LecLogin/resetPwd";
+
 
         public static readonly string Interface_mainIndex = "Live/LecUser/mainIndex";
         public static readonly string Interface_userInfo = "Live/LecUser/userInfo";
@@ -35,6 +38,8 @@ namespace TeacherClient
         public static readonly string Interface_userSet = "Live/LecUser/userSet";
         public static readonly string Interface_changePhone = "Live/LecUser/changePhone";
         public static readonly string Interface_changeEmail = "Live/LecUser/changeEmail";
+        public static readonly string Interface_lecturerTypeList = "Live/LecUser/lecturerTypeList";
+        public static readonly string Interface_lecturerGoodAtList = "Live/LecUser/lecturerGoodAtList";
 
         //课酬中心
         public static readonly string Interface_liveRewardList = "Live/LecReward/liveRewardList";

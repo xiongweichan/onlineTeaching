@@ -45,16 +45,12 @@ namespace TeacherClient.Pages
         //RequestLive _requestLive = new RequestLive();
         //LiveManager _liveManager = new LiveManager();
         bool _ShowCourseManager = true;
-        public bool ShowCourseManager
+        public void ShowCourseManager(bool value, bool isNew = true, string id = null)
         {
-            get { return _ShowCourseManager; }
-            set
-            {
-                _ShowCourseManager = value;
-                if (!value)
-                    _courseEdit = new CourseEdit();
-                ShowContent();
-            }
+            _ShowCourseManager = value;
+            if (!value)
+                _courseEdit = new CourseEdit(isNew, id);
+            ShowContent();
         }
         bool _ShowCoursewareManager = true;
         public bool ShowCoursewareManager
@@ -69,7 +65,7 @@ namespace TeacherClient.Pages
             }
         }
 
-        CourseEdit _courseEdit = new CourseEdit();
+        CourseEdit _courseEdit = new CourseEdit(true);
         CourseManager _courseManager = new CourseManager();
         CoursewareManager _coursewareManager = new CoursewareManager();
         CoursewareEdit _coursewareEdit = new CoursewareEdit();
@@ -88,7 +84,7 @@ namespace TeacherClient.Pages
             switch (Type)
             {
                 case 0:
-                    if (ShowCourseManager)
+                    if (_ShowCourseManager)
                         frame.Content = _courseManager;
                     else
                         frame.Content = _courseEdit;

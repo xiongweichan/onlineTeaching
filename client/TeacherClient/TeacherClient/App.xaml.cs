@@ -25,31 +25,12 @@ namespace TeacherClient
             base.OnStartup(e);
             LocalizationManager.Manager = new MyLocalizationManager();
             StyleManager.ApplicationTheme = new Windows8Theme();
-            //Windows8 Resources
-            //Windows8Palette.Palette.MainColor = Colors.Black;
-            //Windows8Palette.Palette.AccentColor = Colors.Orange;
-            //Windows8Palette.Palette.BasicColor = Colors.DarkGray;
-            //Windows8Palette.Palette.StrongColor = Colors.Gray;
-            //Windows8Palette.Palette.MarkerColor = Colors.LightGray;
-            //Windows8Palette.Palette.ValidationColor = Colors.Red;
-
-            //Windows8Palette.Palette.FontSizeXS = 10;
-            //Windows8Palette.Palette.FontSizeS = 11;
-            //Windows8Palette.Palette.FontSize = 12;
-            //Windows8Palette.Palette.FontSizeL = 14;
-            //Windows8Palette.Palette.FontSizeXL = 16;
-            //Windows8Palette.Palette.FontSizeXXL = 19;
-            //Windows8Palette.Palette.FontSizeXXXL = 24;
-            //Windows8Palette.Palette.FontFamily = new FontFamily("Microsoft YaHei UI");
-            //Windows8Palette.Palette.FontFamilyLight = new FontFamily("Microsoft YaHei UI Light");
-            //Windows8Palette.Palette.FontFamilyStrong = new FontFamily("Microsoft YaHei UI");
-
 
             ConfigManagerHelper.Init(Config.SystemConfigPath, true);
             
             SetAutoStartup();
             IPCHandle.Init();
-
+            
             App.Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
             TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
 

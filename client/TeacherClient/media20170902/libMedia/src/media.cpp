@@ -71,9 +71,9 @@ void Media::getMediaDeviceName()
 	avformat_network_init();
 	avdevice_register_all();
 
-	show_dshow_device();
-	show_dshow_device_option();
-	show_vfw_device();
+	//show_dshow_device();
+	//show_dshow_device_option();
+	//show_vfw_device();
 
 	getVideoDeviceNames(videoDeviceName, videoDeviceNum);
 	getAudioDeviceNames(audioDeviceName, audioDeviceNum);

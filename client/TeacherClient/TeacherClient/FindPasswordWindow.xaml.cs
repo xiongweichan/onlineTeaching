@@ -32,12 +32,13 @@ namespace TeacherClient
 
         private void ToNewPassword_Click(object sender, RoutedEventArgs e)
         {
+            CheckOldPhone();
         }
         async void CheckOldPhone()
         {
             this.IsBusy = true;
             Request.checkCode l = new Request.checkCode() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, phone = textBox.Text, type = Config.phoneCode.resetPassword, code = recvcode.Text };
-            var t = await WebHelper.doPost<string, Request.checkCode>(Config.Interface_phoneCode, l);
+            var t = await WebHelper.doPost<string, Request.checkCode>(Config.Interface_checkCode, l);
             if (t != null)
                 _model.ShowSecondPage = true;
             this.IsBusy = false;
@@ -52,8 +53,8 @@ namespace TeacherClient
             }
             this.IsBusy = true;
             Request.resetPwd l = new Request.resetPwd() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, phone = textBox.Text, password = pwd_new.Pwd, code = recvcode.Text };
-            var t = await WebHelper.doPost<string, Request.resetPwd>(Config.Interface_phoneCode, l);
-            if (t != null)
+            var t = await WebHelper.doPost<Request.resetPwd>(Config.Interface_resetPwd, l);
+            if (t)
                 _model.ShowThirdPage = true;
             this.IsBusy = false;            
         }

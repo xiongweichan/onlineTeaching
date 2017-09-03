@@ -16,6 +16,8 @@
             <local:IntEqualParamToVisibilityConverter x:Key="IntEqualParamToVisibilityConverter"/>
             <local:IntEqualParamToVisibilityConverter2 x:Key="IntEqualParamToVisibilityConverter2"/>
             <local:IntToIndexConverter x:Key="IntToIndexConverter"/>
+            <local:lecturerGoodAtConverter x:Key="lecturerGoodAtConverter"/>
+            <local:lecturerTypeConverter x:Key="lecturerTypeConverter"/>
             <Style TargetType="Image">
                 <Setter Property="Stretch" Value="None"/>
                 <Setter Property="UseLayoutRounding" Value="True"/>

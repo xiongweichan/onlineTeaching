@@ -13,8 +13,8 @@
                     <Run Text="课程售价：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
             </TextBlock>
             <RadioButton Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}" Content="免费" VerticalAlignment="Center" Margin="6,0"/>
-            <RadioButton Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}" Content="收费" VerticalAlignment="Center"/>
-            <TextBox Width="50" VerticalAlignment="Center" Margin="6,0,0,0"/>
+            <RadioButton Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}" Content="收费" VerticalAlignment="Center" IsChecked="True"/>
+            <TextBox Width="50" VerticalAlignment="Center" Margin="6,0,0,0" Text="{Binding Price}"/>
             <TextBlock Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}" Text="元" Margin="8,0,0,0" VerticalAlignment="Center"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
@@ -23,7 +23,8 @@
                     <Run Text="课程视频：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
             </TextBlock>
             <Button Grid.Row="1" Style="{StaticResource ButtonStyle1}" Height="26" Width="110"
-                Click="UploadCourse_Click">
+                Click="UploadCourse_Click"
+                    Visibility="{Binding Vedio,Converter={StaticResource TextToVisibilityConverter}}">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Images/课程中心/上传.png" Margin="6,0"/>
@@ -31,6 +32,7 @@
                     </StackPanel>
                 </Button.Content>
             </Button>
+            <TextBlock Text="{Binding VedioName}" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
         </StackPanel>
         <TextBlock Text="支持MP4、RMVB、AVI等视频格式，文件大小不得超过1000M" Foreground="#999999" FontSize="{StaticResource FontSize3}" Margin="0,6,0,0"/>
         <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
@@ -39,7 +41,8 @@
                     <Run Text="上传课程：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
             </TextBlock>
             <Button Grid.Row="1" Style="{StaticResource ButtonStyle1}" Height="26" Width="110"
-                Click="UploadCourse_Click">
+                Click="UploadDocument_Click"
+                    Visibility="{Binding Document,Converter={StaticResource TextToVisibilityConverter}}">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Images/课程中心/上传.png" Margin="6,0"/>
@@ -47,6 +50,7 @@
                     </StackPanel>
                 </Button.Content>
             </Button>
+            <TextBlock Text="{Binding DocumentName}" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
         </StackPanel>
         <TextBlock Text="支持上传word文档、PPT、图片，文件大小不得超过10M" Foreground="#999999" FontSize="{StaticResource FontSize3}" Margin="0,6,0,0"/>
     </StackPanel>

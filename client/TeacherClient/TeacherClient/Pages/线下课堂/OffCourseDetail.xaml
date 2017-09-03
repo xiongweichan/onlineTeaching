@@ -6,7 +6,7 @@
              xmlns:page="clr-namespace:TeacherClient.Pages"
              x:Name="root"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="600" d:DesignWidth="1000">
     <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
         <StackPanel x:Name="sp">
             <StackPanel Margin="20,20,0,0">
@@ -20,7 +20,7 @@
                     <TextBlock Text="最多能输入45个字符" Foreground="#999999"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
-                    <TextBlock>
+                    <TextBlock VerticalAlignment="Top">
                     <Run Text="*" Foreground="#ff0000"/>
                     <Run Text="课程简介：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
                     </TextBlock>

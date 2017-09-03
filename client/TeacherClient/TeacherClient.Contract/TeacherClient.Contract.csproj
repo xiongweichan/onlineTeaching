@@ -51,6 +51,8 @@
     <Compile Include="Reponse\course.cs" />
     <Compile Include="Reponse\coursewareList.cs" />
     <Compile Include="Reponse\imageUpLoad.cs" />
+    <Compile Include="Reponse\lecturerGoodAt.cs" />
+    <Compile Include="Reponse\lecturerType.cs" />
     <Compile Include="Reponse\lessonList.cs" />
     <Compile Include="Reponse\listData.cs" />
     <Compile Include="Reponse\live.cs" />

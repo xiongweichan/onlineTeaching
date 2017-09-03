@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TeacherClient.Core;
 using Reponse = TeacherClient.Contract.Reponse;
 using Request = TeacherClient.Contract.Request;
 
@@ -40,6 +41,35 @@ namespace TeacherClient.Pages
             Request.courseid l = new Request.courseid() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, page = pagerData.PageIndex, pageSize = pagerData.PageSize, course_id = _courseID };
 
             var t = await WebHelper.doPost<Reponse.listData<Reponse.offUserlist>, Request.courseid>(Config.Interface_userList, l);
+            //t = new Contract.Reponse.listData<Contract.Reponse.offUserlist>()
+            //{
+            //    list = new List<Contract.Reponse.offUserlist> {
+            //         new Contract.Reponse.offUserlist
+            //         {
+            //              id = 1, add_time = DateTime.Now.ConvertDateTimeInt().ToString(),
+            //               desc="hellokittle", lesson_number="1", name="长征", phone="13812345678", status="0"
+            //               , course_id="1", user_id="1"
+            //         },
+            //         new Contract.Reponse.offUserlist
+            //         {
+            //              id = 2, add_time = DateTime.Now.ConvertDateTimeInt().ToString(),
+            //               desc="hellokittle", lesson_number="1", name="长征", phone="13812345678", status="1"
+            //               , course_id="1", user_id="1"
+            //         },
+            //         new Contract.Reponse.offUserlist
+            //         {
+            //              id = 3, add_time = DateTime.Now.ConvertDateTimeInt().ToString(),
+            //               desc="hellokittle", lesson_number="1", name="长征", phone="13812345678", status="2"
+            //               , course_id="1", user_id="1"
+            //         },
+            //         new Contract.Reponse.offUserlist
+            //         {
+            //              id = 4, add_time = DateTime.Now.ConvertDateTimeInt().ToString(),
+            //               desc="hellokittle", lesson_number="1", name="长征", phone="13812345678", status="3"
+            //               , course_id="1", user_id="1"
+            //         }
+            //     }
+            //};
             if (t != null)
             {
                 pagerData.TotalCount = t.totalCount;

@@ -58,7 +58,6 @@
                     <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                         <TextBlock Text="密码：" Width="90" TextAlignment="Right" Foreground="{StaticResource Forground35}"/>
                         <local:MyPassword x:Name="pwd_new" Pwd="{Binding Model.password}" Height="30" Width="260"  Tag="输入密码"/>
-                        <TextBox Text="{Binding Model.password}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                         <TextBlock Text="重复密码：" Width="90" TextAlignment="Right" Foreground="{StaticResource Forground35}"/>

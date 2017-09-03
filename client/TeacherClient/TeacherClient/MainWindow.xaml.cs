@@ -32,8 +32,6 @@ namespace TeacherClient
             InitializeComponent();
             Init();
 
-            //进入主窗口就开始初始化基础数据
-            SystemInit.Instance.Init();
         }
         async void Init()
         {
@@ -46,13 +44,17 @@ namespace TeacherClient
             Model.MessageCount = t.data.unreadCount;
             Model.Version = App.CurrentVersion;
 
+
+            //进入主窗口就开始初始化基础数据
+            SystemInit.Instance.Init();
+
             this.DataContext = this;
             this.IsBusy = false;
         }
 
         public UserModel Model { get; set; }
 
-        private void Logout_Click(object sender, RoutedEventArgs e)
+        public void Logout_Click(object sender, RoutedEventArgs e)
         {
             LoginWindow win = new LoginWindow(true);
             win.Show();

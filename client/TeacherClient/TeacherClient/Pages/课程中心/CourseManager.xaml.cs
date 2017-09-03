@@ -34,7 +34,7 @@ namespace TeacherClient.Pages
         async void GetCheckedData()
         {
             MainWindow.Current.IsBusy = true;
-            Request.course l = new Request.course() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, page = pagerData.PageIndex, pageSize = pagerData.PageSize, check = "0" };
+            Request.course l = new Request.course() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, page = pagerData.PageIndex, pageSize = pagerData.PageSize, check = "1" };
             var t = await WebHelper.doPost<Reponse.listData<Reponse.course>, Request.course>(Config.Interface_courseList, l);
             if (t != null)
             {
@@ -62,7 +62,7 @@ namespace TeacherClient.Pages
 
         private void OpenCourse_Click(object sender, RoutedEventArgs e)
         {
-
+            CourseCenter.Current.ShowCourseManager(false, false, (sender as Control).Tag.ObjToString());
         }
 
         async void DeleteCourse_Click(object sender, RoutedEventArgs e)
@@ -90,7 +90,7 @@ namespace TeacherClient.Pages
 
         private void UploadCourse_Click(object sender, RoutedEventArgs e)
         {
-            CourseCenter.Current.ShowCourseManager = false;
+            CourseCenter.Current.ShowCourseManager(false);
         }
 
 
@@ -106,7 +106,7 @@ namespace TeacherClient.Pages
         async void GetUnCheckedData()
         {
             MainWindow.Current.IsBusy = true;
-            Request.course l = new Request.course() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, page = pagerData.PageIndex, pageSize = pagerData.PageSize, check = "1" };
+            Request.course l = new Request.course() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, page = pagerData.PageIndex, pageSize = pagerData.PageSize, check = "0" };
             var t = await WebHelper.doPost<Reponse.listData<Reponse.course>, Request.course>(Config.Interface_coursewareList, l);
             if (t != null)
             {

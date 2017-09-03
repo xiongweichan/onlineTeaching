@@ -103,6 +103,8 @@ namespace TeacherClient.Pages
                 MessageWindow.Alter("错误提示", t != null ? t.info : "获取讲师信息失败，请检查服务是否正常");
             }
             cb_province.ItemsSource = SystemInit.Instance.Regions;
+            cb_lecturerType.ItemsSource = SystemInit.Instance.LecturerTypeList;
+            cb_lecturerGoodAt.ItemsSource = SystemInit.Instance.LecturerGoodAtList;
             this.DataContext = this;
         }
 
@@ -153,11 +155,13 @@ namespace TeacherClient.Pages
                     UserInfo.phone = ChangePhone.phone_new;
                     ChangePhone = new Contract.Request.changePhone() { phone = UserInfo.phone };
                     rb_pcompleted.IsChecked = true;
+                    MainWindow.Current.Logout_Click(null, null);
                 }
             }
             else if(rb_pcompleted.IsChecked.HasValue && rb_pcompleted.IsChecked.Value)
             {
                 rb_pcheck.IsChecked = true;
+                //MainWindow.Current.Logout_Click(null, null);
             }
         }
 
@@ -175,6 +179,8 @@ namespace TeacherClient.Pages
                     UserInfo.email = ChangeEmail.email_new;
                     ChangeEmail = new Contract.Request.changeEmail() { email = UserInfo.email };
                     rb_mcompleted.IsChecked = true;
+
+                    MainWindow.Current.Logout_Click(null, null);
                 }
             }
             else if (rb_mcompleted.IsChecked.HasValue && rb_mcompleted.IsChecked.Value)

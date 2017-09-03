@@ -16,7 +16,7 @@
                 <StackPanel>
                     <Border CornerRadius="10" Width="102" Height="102" Background="White"
                             BorderBrush="#dce0e2" BorderThickness="1" Margin="0,16,0,0" SnapsToDevicePixels="True" UseLayoutRounding="True">
-                        <Image Width="90" Height="90" x:Name="img_head" Source="{Binding HeadPath,Converter={StaticResource PathToImageConverter}}"/>
+                        <Image Width="90" Height="90" Stretch="Fill" x:Name="img_head" Source="{Binding HeadPath,Converter={StaticResource PathToImageConverter}}"/>
                     </Border>
                     <Button Margin="0,16,0,0" Content="修改头像" Width="62" Height="22" Foreground="#566f74" FontSize="12" Style="{DynamicResource ButtonStyle3}"
                             Click="BtnChangedImage_Click"/>
@@ -54,7 +54,7 @@
                             <TextBlock Style="{StaticResource text}" Text="{Binding UserInfo.phone, StringFormat='账号：{0}'}"/>
                             <TextBlock Style="{StaticResource text}" Margin="60,0,0,0" Text="{Binding UserInfo.lecturer_code, StringFormat='讲师ID：{0}'}"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
                             <TextBlock Style="{StaticResource text}" Text="个人简介：" VerticalAlignment="Top"/>
                             <TextBox AcceptsReturn="True" AcceptsTab="True" Height="88" Width="455"/>
                         </StackPanel>
@@ -81,9 +81,9 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                             <TextBlock Text="讲师类型：" Style="{StaticResource text}" Width="65"/>
-                            <ComboBox  Height="24" Width="120" Text="{Binding UserInfo.lecturer_type}" VerticalContentAlignment="Center"/>
+                            <ComboBox x:Name="cb_lecturerType" Height="24" Width="120" SelectedValue="{Binding UserInfo.lecturer_type}" SelectedValuePath="id" DisplayMemberPath="lecturer_type_name" VerticalContentAlignment="Center"/>
                             <TextBlock Text="擅长领域：" Style="{StaticResource text}" Width="65" Margin="70,0,0,0"/>
-                            <ComboBox Height="24" Width="120" Text="{Binding UserInfo.good_at}" VerticalContentAlignment="Center"/>
+                            <ComboBox x:Name="cb_lecturerGoodAt" Height="24" Width="120" SelectedValue="{Binding UserInfo.good_at}" SelectedValuePath="id" DisplayMemberPath="good_at_name" VerticalContentAlignment="Center"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                             <TextBlock Text="所  在  地：" Style="{StaticResource text}" Width="65"/>
@@ -100,9 +100,9 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                             <TextBlock Text="手       机：" Style="{StaticResource text}" Width="65"/>
-                            <TextBox Height="24" Width="120" Text="{Binding UserInfo.phone}"/>
+                            <TextBox Height="24" Width="120" Text="{Binding UserInfo.phone}" IsReadOnly="True"/>
                             <TextBlock Text="微       信：" Style="{StaticResource text}" Width="65" Margin="70,0,0,0"/>
-                            <TextBox Height="24" Width="120" Text="{Binding UserInfo.wechat}"/>
+                            <TextBox Height="24" Width="120" Text="{Binding UserInfo.wechat}" IsReadOnly="True"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                             <TextBlock Text="邮       箱：" Style="{StaticResource text}" Width="65"/>
