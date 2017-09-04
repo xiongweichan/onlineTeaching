@@ -50,6 +50,7 @@
     <Compile Include="Reponse\category.cs" />
     <Compile Include="Reponse\course.cs" />
     <Compile Include="Reponse\coursewareList.cs" />
+    <Compile Include="Reponse\getToken.cs" />
     <Compile Include="Reponse\imageUpLoad.cs" />
     <Compile Include="Reponse\lecturerGoodAt.cs" />
     <Compile Include="Reponse\lecturerType.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Request\changeEmail.cs" />
     <Compile Include="Request\changePhone.cs" />
     <Compile Include="Request\checkCode.cs" />
+    <Compile Include="Request\checkEmailCode.cs" />
     <Compile Include="Request\course.cs" />
     <Compile Include="Request\courseAdd.cs" />
     <Compile Include="Request\courseChangeTitle.cs" />
@@ -83,6 +85,7 @@
     <Compile Include="Request\coursewareAdd.cs" />
     <Compile Include="Request\coursewareChangeTitle.cs" />
     <Compile Include="Request\emailCode.cs" />
+    <Compile Include="Request\getToken.cs" />
     <Compile Include="Request\imageUpLoad.cs" />
     <Compile Include="Request\liveChangeTime.cs" />
     <Compile Include="Request\Login.cs" />

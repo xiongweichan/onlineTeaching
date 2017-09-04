@@ -25,6 +25,10 @@ namespace TeacherClient.Contract.Reponse
         public string user_id { get; set; }
         public string url { get; set; }
         public string course_id { get; set; }
+        public string file_name { get; set; }
+        public string file_size { get; set; }
+        public string is_upload { get; set; }
+        public string upload_time { get; set; }
 
     }
 }

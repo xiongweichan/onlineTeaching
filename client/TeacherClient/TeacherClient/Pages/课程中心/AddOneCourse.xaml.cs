@@ -26,7 +26,6 @@ namespace TeacherClient.Pages
         {
             InitializeComponent();
         }
-        UploadFileHelper.FileModel _vedio;
         private void UploadCourse_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
@@ -40,17 +39,18 @@ namespace TeacherClient.Pages
                     MessageWindow.Alter("提示", "文件过大");
                     return;
                 }
-                _vedio = UploadFileHelper.Instance.Add("", UploadFileHelper.EnFileType.Course);
+
+                (DataContext as CourseModel).Vedio = path;
+                (DataContext as CourseModel).VedioName = dialog.SafeFileName;
             }
 
         }
-
-        UploadFileHelper.FileModel _doc;
+        
         private void UploadDocument_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Multiselect = false;
-            dialog.Filter = "课件文件|*.dox;*.docx;*.ppt;*.pptx;*.png;*.bmp;*.jpg";
+            dialog.Filter = "课件文件|*.dox;*.docx;*.ppt;*.pptx;*.png;*.bmp;*.jpg;*.txt;*.xls;*.xlsx";
             if (dialog.ShowDialog() == true)
             {
                 var path = dialog.FileName;
@@ -59,7 +59,8 @@ namespace TeacherClient.Pages
                     MessageWindow.Alter("提示", "文件过大");
                     return;
                 }
-                _doc = UploadFileHelper.Instance.Add(path, UploadFileHelper.EnFileType.Course);
+                (DataContext as CourseModel).Document = path;
+                (DataContext as CourseModel).DocumentName = dialog.SafeFileName;
             }
         }
     }

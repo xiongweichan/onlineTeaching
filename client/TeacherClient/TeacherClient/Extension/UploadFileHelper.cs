@@ -19,9 +19,16 @@ namespace TeacherClient
         public static readonly UploadFileHelper Instance = new UploadFileHelper();
         public static readonly string _path = AppDomain.CurrentDomain.BaseDirectory + "uplodingfiles.12345";
 
+        public static string GetPath(string dir, string name)
+        {
+            if (!Directory.Exists(dir))
+                Directory.CreateDirectory(dir);
+            return dir + "\\" + name;
+        }
+
         public void Run()
         {
-            if(File.Exists(_path))
+            if (File.Exists(_path))
             {
                 var str = File.ReadAllText(_path);
                 if (!string.IsNullOrWhiteSpace(str))
@@ -45,22 +52,26 @@ namespace TeacherClient
             }
         }
 
-        public FileModel Add(string path, EnFileType type)
+        public FileModel Add(string path, string token, string domain, string key, EnFileType type)
         {
             if (_WaittingFiles.Any(T => T.LocalFile == path))
-                return _WaittingFiles.FirstOrDefault(T=>T.LocalFile == path);
+                return _WaittingFiles.FirstOrDefault(T => T.LocalFile == path);
 
             FileModel model = new FileModel();
             FileInfo info = new FileInfo(path);
+            model.ID = Guid.NewGuid().ToString();
+            model.SaveKey = key;
+            model.Token = token;
             model.Type = type;
             model.Extension = info.Extension;
             model.FileName = info.Name;
             model.FileSize = info.Length;
             model.LocalFile = path;
-            model.RecordFile = string.Format("{0}\\{1}\\{2}.12345", CacheHelper.CacheFilePath, model.ID, info.Name);
+            model.RecordFile = GetPath(string.Format("{0}\\{1}", CacheHelper.CacheFilePath, model.ID), info.Name + ".12345");
             _WaittingFiles.Add(model);
             model.Started += Model_Started;
             model.Complated += Item_Complated;
+            model.Start();
             return model;
         }
 
@@ -112,7 +123,7 @@ namespace TeacherClient
                     this.OnPropertyChanged("Hash");
                 }
             }
-
+            
             public async void Start()
             {
                 if (!string.IsNullOrWhiteSpace(ID) && !string.IsNullOrWhiteSpace(Token) && File.Exists(LocalFile))
@@ -140,7 +151,7 @@ namespace TeacherClient
                         Log.Error(result);
                         MessageWindow.Alter("提示", "上传失败");
                     }
-                }                
+                }
                 if (Complated != null)
                     Complated(this, new EventArgs());
             }
@@ -174,8 +185,8 @@ namespace TeacherClient
                     this.OnPropertyChanged("UploadedBytes");
                 }
             }
-            string _Per;
-            public string Per
+            double _Per;
+            public double Per
             {
                 get { return _Per; }
                 set
@@ -207,7 +218,7 @@ namespace TeacherClient
             void UploadProgress(long uploadedBytes, long totalBytes)
             {
                 UploadedBytes = uploadedBytes;
-                Per = (uploadedBytes / totalBytes).ToString("p0");
+                Per = (double)uploadedBytes / totalBytes;
             }
         }
         public enum EnFileType

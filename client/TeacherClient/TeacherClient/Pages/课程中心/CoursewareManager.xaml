@@ -101,25 +101,26 @@
             </Grid.RowDefinitions>
             <DataGrid x:Name="dataGrid" ColumnHeaderHeight="0" Style="{StaticResource DataGridStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}">
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="50" CellStyle="{StaticResource DataGridCellStyle1}">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding image}"/>
+                                <Image Source="/Images/课程中心/图层-5-拷贝.png" Stretch="Fill" Width="16" Height="16"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Binding="{Binding FileName}" CellStyle="{StaticResource DataGridCellStyle1}"/>
-                    <DataGridTextColumn Binding="{Binding FileSize, StringFormat='文件大小：{0}'}" CellStyle="{StaticResource DataGridCellStyle1}"/>
-                    <DataGridTextColumn Binding="{Binding FileType, StringFormat='文件类型：{0}'}" CellStyle="{StaticResource DataGridCellStyle1}"/>
-                    <DataGridTextColumn Binding="{Binding UploadTime, StringFormat='上传时间：{0}'}" CellStyle="{StaticResource DataGridCellStyle1}"/>
-                    <DataGridTextColumn Binding="{Binding Status}" CellStyle="{StaticResource DataGridCellStyle1}"/>
-                    <DataGridTemplateColumn>
+                    <DataGridTextColumn Binding="{Binding file_name}" Width="*" CellStyle="{StaticResource DataGridCellStyle1}"/>
+                    <DataGridTextColumn Binding="{Binding file_size, Converter={StaticResource FileSizeConverter}, StringFormat='文件大小：{0}'}" Width="130" CellStyle="{StaticResource DataGridCellStyle1}"/>
+                    <DataGridTextColumn Binding="{Binding FileType, StringFormat='文件类型：{0}'}" Width="100" CellStyle="{StaticResource DataGridCellStyle1}"/>
+                    <DataGridTextColumn Binding="{Binding upload_time, Converter={StaticResource IntToTimeConverter}, StringFormat='上传时间：{0}'}" Width="200" CellStyle="{StaticResource DataGridCellStyle1}"/>
+                    <DataGridTextColumn Binding="{Binding status, Converter={StaticResource coursewareStatusConverter}}" Width="130" CellStyle="{StaticResource DataGridCellStyle1}"
+                                        Foreground="{Binding status, Converter={StaticResource coursewareStatus2ForegroundConverter}}"/>
+                    <DataGridTemplateColumn Width="150" CellStyle="{StaticResource DataGridCellStyle1}">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Tag="{Binding id}" Click="DeleteCourse_Click">
+                                <Button Tag="{Binding id}" Click="DeleteCourse_Click" Style="{StaticResource ButtonStyle2}">
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="/Images/课程中心/删除课程.png"/>
-                                        <TextBlock Text="删除课程"/>
+                                        <TextBlock Text="删除课程" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
                                     </StackPanel>
                                 </Button>
                             </DataTemplate>
@@ -137,27 +138,37 @@
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="上传总进度：" Foreground="#697795" FontSize="12"/>
-                <ProgressBar Minimum="0" Maximum="100" Style="{DynamicResource ProgressBarStyle1}" Width="605" Height="20" Value="{Binding Per}"
+                <ProgressBar x:Name="pb_all" Minimum="0" Maximum="100" Style="{DynamicResource ProgressBarStyle1}" Width="605" Height="20"
                          Background="White" Foreground="#63a1ff" BorderBrush="#cccccc" BorderThickness="1"/>
-                <TextBlock Text="{Binding Speed}"/>
-                <Button Content="全部开始"/>
-                <Button Content="全部暂停"/>
+                <TextBlock x:Name="tbl_allspeed" />
+                <Button Content="全部开始" Click="btnStartAll_Click"/>
+                <Button Content="全部暂停" Click="btn_StopAll_Click"/>
             </StackPanel>
-            <DataGrid Grid.Row="1" ColumnHeaderHeight="0" Style="{StaticResource DataGridStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}">
+            <DataGrid x:Name="dg_upload" Grid.Row="1" ColumnHeaderHeight="0" Style="{StaticResource DataGridStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding image}"/>
+                                <Image Source="/Images/课程中心/图层-5-拷贝.png"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTextColumn Binding="{Binding FileName}" CellStyle="{StaticResource DataGridCellStyle1}"/>
-                    <DataGridTextColumn Binding="{Binding Per}" CellStyle="{StaticResource DataGridCellStyle1}"/>
+                    <DataGridTemplateColumn CellStyle="{StaticResource DataGridCellStyle1}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding UploadedBytes, Converter={StaticResource FileSizeConverter}}" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
+                                    <TextBlock Text="/" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
+                                    <TextBlock Text="{Binding FileSize, Converter={StaticResource FileSizeConverter}}" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
+                                </StackPanel>                
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <ProgressBar Minimum="0" Maximum="100" Style="{DynamicResource ProgressBarStyle1}" Width="364" Height="20" Value="55" 
+                                <ProgressBar Minimum="0" Maximum="100" Style="{DynamicResource ProgressBarStyle1}" Width="364" Height="20" Value="{Binding Per}" 
                                          Background="White" Foreground="#63a1ff" BorderBrush="#cccccc" BorderThickness="1"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -165,7 +176,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <ToggleButton>
+                                <ToggleButton Checked="btnStart_Click" Unchecked="btnStop_Click" Tag="{Binding}">
                                     <ToggleButton.Template>
                                         <ControlTemplate TargetType="ToggleButton">
                                             <Grid>
@@ -189,7 +200,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button >
+                                <Button Click="btnCancel_Click" Tag="{Binding .}">
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="/Images/课程中心/删除课程.png"/>
                                         <TextBlock Text="取消上传"/>

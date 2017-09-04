@@ -21,7 +21,7 @@ namespace TeacherClient
             {
                 var path = dialog.FileName;
                 var s = dialog.OpenFile();
-                if (s.Length > 50 * 1024)
+                if (s.Length > 2 * 1024 * 1024)
                 {
                     MessageWindow.Alter("提示", "图片过大");
                     return string.Empty;

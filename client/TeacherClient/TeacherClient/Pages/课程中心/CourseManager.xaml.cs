@@ -82,11 +82,11 @@ namespace TeacherClient.Pages
             }
         }
 
-        private void Property_Click(object sender, RoutedEventArgs e)
-        {
-            CoursePropertyWindow win = new CoursePropertyWindow();
-            win.ShowDialog();
-        }
+        //private void Property_Click(object sender, RoutedEventArgs e)
+        //{
+        //    CoursePropertyWindow win = new CoursePropertyWindow();
+        //    win.ShowDialog();
+        //}
 
         private void UploadCourse_Click(object sender, RoutedEventArgs e)
         {

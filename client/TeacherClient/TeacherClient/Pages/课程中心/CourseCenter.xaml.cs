@@ -53,22 +53,18 @@ namespace TeacherClient.Pages
             ShowContent();
         }
         bool _ShowCoursewareManager = true;
-        public bool ShowCoursewareManager
+        public void ShowCoursewareManager(bool value, bool isNew = true, string id = null)
         {
-            get { return _ShowCoursewareManager; }
-            set
-            {
-                _ShowCoursewareManager = value;
-                if (!value)
-                    _coursewareEdit = new CoursewareEdit();
-                ShowContent();
-            }
+            _ShowCoursewareManager = value;
+            if (!value)
+                _coursewareEdit = new CoursewareEdit(isNew, id);
+            ShowContent();
         }
 
         CourseEdit _courseEdit = new CourseEdit(true);
         CourseManager _courseManager = new CourseManager();
         CoursewareManager _coursewareManager = new CoursewareManager();
-        CoursewareEdit _coursewareEdit = new CoursewareEdit();
+        CoursewareEdit _coursewareEdit = new CoursewareEdit(true);
         MessageCenter _messageCenter = new MessageCenter();
 
         // Using a DependencyProperty as the backing store for Type.  This enables animation, styling, binding, etc...
@@ -90,7 +86,7 @@ namespace TeacherClient.Pages
                         frame.Content = _courseEdit;
                     break;
                 case 1:
-                    if (ShowCoursewareManager)
+                    if (_ShowCoursewareManager)
                     {
                         frame.Content = _coursewareManager;
                         _coursewareManager.RefreshData();

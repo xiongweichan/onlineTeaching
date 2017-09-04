@@ -26,6 +26,7 @@ namespace TeacherClient
         public static readonly string Interface_login = "Live/LecLogin/login";
         public static readonly string Interface_phoneCode = "Live/LecLogin/phoneCode";
         public static readonly string Interface_emailCode = "Live/LecLogin/emailCode";
+        public static readonly string Interface_checkEmailCode = "Live/LecLogin/checkEmailCode";
         public static readonly string Interface_register = "Live/LecLogin/register";
         public static readonly string Interface_checkCode = "Live/LecLogin/checkCode";
         public static readonly string Interface_resetPwd = "Live/LecLogin/resetPwd";
@@ -74,6 +75,7 @@ namespace TeacherClient
         public static readonly string Interface_courseDel = "Live/LecCourse/courseDel";
         public static readonly string Interface_courseChangeTitle = "Live/LecCourse/courseChangeTitle";
         public static readonly string Interface_coursewareAdd = "Live/LecCourse/coursewareAdd";
+        public static readonly string Interface_coursewareUpload = "Live/LecCourse/coursewareUpload";
         public static readonly string Interface_coursewareList = "Live/LecCourse/coursewareList";
         public static readonly string Interface_coursewareDel = "Live/LecCourse/coursewareDel";
         public static readonly string Interface_coursewareChangeTitle = "Live/LecCourse/coursewareChangeTitle";
@@ -81,9 +83,10 @@ namespace TeacherClient
 
 
         public static readonly string Interface_imageUpLoad = "Live/Upload/imageUpLoad";
+        public static readonly string Interface_getToken = "Live/Upload/getToken";
 
         public static readonly string Interface_liveList = "Live/LecLive/liveList";
-        public static readonly string Interface_liveChangeTime = " Live/LecLive/liveChangeTime"; 
+        public static readonly string Interface_liveChangeTime = " Live/LecLive/liveChangeTime";
         public static readonly string Interface_liveDel = " Live/LecLive/liveDel";
         public static readonly string Interface_liveCancel = " Live/LecLive/liveCancel";
 

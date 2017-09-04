@@ -87,6 +87,9 @@
     </ApplicationDefinition>
     <Compile Include="Converters\bankToBankNameConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\coursewareStatus2ForegroundConverter.cs" />
+    <Compile Include="Converters\coursewareStatusConverter.cs" />
+    <Compile Include="Converters\FileSizeConverter.cs" />
     <Compile Include="Converters\GiftToStringConverter.cs" />
     <Compile Include="Converters\IntEqualParamToVisibilityConverter.cs" />
     <Compile Include="Converters\IntToBoolConverter.cs" />

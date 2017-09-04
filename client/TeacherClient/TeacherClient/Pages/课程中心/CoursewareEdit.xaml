@@ -28,8 +28,10 @@
                     <Run Text="*" Foreground="#ff0000"/>
                     <Run Text="课件售价：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
                 </TextBlock>
-                <RadioButton Foreground="#3e3e3e" Content="免费" Margin="4,0,0,0" VerticalAlignment="Center"/>
-                <RadioButton Foreground="#3e3e3e" Content="收费" Margin="4,0,0,0" VerticalAlignment="Center"/>
+                <RadioButton Foreground="#3e3e3e" Content="免费" Margin="4,0,0,0" VerticalAlignment="Center"
+                             IsChecked="{Binding Model.price,Converter={StaticResource IntToBoolConverter}, ConverterParameter='0'}"/>
+                <RadioButton Foreground="#3e3e3e" Content="收费" Margin="4,0,0,0" VerticalAlignment="Center"
+                             IsChecked="{Binding Model.price,Converter={StaticResource IntToBoolConverter2}, ConverterParameter='0'}"/>
                 <TextBox Text="{Binding Model.price}" Foreground="#3e3e3e" Width="50" Margin="4,0,0,0" VerticalAlignment="Center"/>
                 <TextBlock Foreground="#3e3e3e" Text="元" Margin="8,0,0,0" VerticalAlignment="Center"/>
             </StackPanel>
@@ -47,6 +49,7 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
+                <TextBlock Text="{Binding Model.url}" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
             </StackPanel>
             <TextBlock Text="文件大小不得超过10M" Foreground="#999999" FontSize="{StaticResource FontSize3}" Margin="0,8,0,0"/>
             <TextBlock Text="支持上传jpg、png、txt、word、xls、pptx等办公文件格式" Foreground="#999999" FontSize="{StaticResource FontSize3}" Margin="0,8,0,0"/>

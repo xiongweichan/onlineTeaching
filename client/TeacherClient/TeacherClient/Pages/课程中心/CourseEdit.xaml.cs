@@ -42,6 +42,7 @@ namespace TeacherClient.Pages
             Model = new CourseEditModel();
             _isNew = isNew;
             _id = id;
+            this.DataContext = this;
         }
 
         async void ButtonOK_Click(object sender, RoutedEventArgs e)

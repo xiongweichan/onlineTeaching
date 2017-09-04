@@ -143,11 +143,14 @@ namespace TeacherClient.Pages
 
         async void phoneNext_Click(object sender, RoutedEventArgs e)
         {
-            if(rb_pcheck.IsChecked.HasValue && rb_pcheck.IsChecked.Value)
+            if (rb_pcheck.IsChecked.HasValue && rb_pcheck.IsChecked.Value)
             {
-                rb_pedit.IsChecked = true;
+                Request.checkCode l = new Request.checkCode() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, phone = ChangePhone.phone, type = Config.phoneCode.resetPassword, code = ChangePhone.code };
+                var t = await WebHelper.doPost<Request.checkCode>(Config.Interface_checkCode, l);
+                if (t)
+                    rb_pedit.IsChecked = true;
             }
-            else if(rb_pedit.IsChecked.HasValue && rb_pedit.IsChecked.Value)
+            else if (rb_pedit.IsChecked.HasValue && rb_pedit.IsChecked.Value)
             {
                 //提交电话号码修改
                 if (await WebHelper.doPost<Request.changePhone>(Config.Interface_changePhone, ChangePhone))
@@ -158,7 +161,7 @@ namespace TeacherClient.Pages
                     MainWindow.Current.Logout_Click(null, null);
                 }
             }
-            else if(rb_pcompleted.IsChecked.HasValue && rb_pcompleted.IsChecked.Value)
+            else if (rb_pcompleted.IsChecked.HasValue && rb_pcompleted.IsChecked.Value)
             {
                 rb_pcheck.IsChecked = true;
                 //MainWindow.Current.Logout_Click(null, null);
@@ -169,7 +172,10 @@ namespace TeacherClient.Pages
         {
             if (rb_mcheck.IsChecked.HasValue && rb_mcheck.IsChecked.Value)
             {
-                rb_medit.IsChecked = true;
+                Request.checkEmailCode l = new Request.checkEmailCode() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, email = ChangeEmail.email, type = Config.phoneCode.resetPassword, code = ChangeEmail.code };
+                var t = await WebHelper.doPost<Request.checkEmailCode>(Config.Interface_checkEmailCode, l);
+                if (t)
+                    rb_medit.IsChecked = true;
             }
             else if (rb_medit.IsChecked.HasValue && rb_medit.IsChecked.Value)
             {
@@ -193,7 +199,7 @@ namespace TeacherClient.Pages
         {
             MainWindow.Current.IsBusy = true;
             var str = await UploadImageHelper.UploadImage();
-            if(!string.IsNullOrEmpty(str) && str != UserInfo.head)
+            if (!string.IsNullOrEmpty(str) && str != UserInfo.head)
             {
                 HeadPath = str;
                 Request.userHeadSet l = new Contract.Request.userHeadSet() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, head = HeadPath };
@@ -237,6 +243,7 @@ namespace TeacherClient.Pages
             l.token = App.CurrentLogin.token;
             l.intro = this.UserInfo.intro;
             l.nickname = UserInfo.nickname;
+            l.realname = UserInfo.realname;
             l.sex = UserInfo.sex;
             l.age = UserInfo.age;
             l.birth = UserInfo.birth;
@@ -250,7 +257,7 @@ namespace TeacherClient.Pages
             l.phone = UserInfo.phone;
             l.mail = UserInfo.email;
             if (await WebHelper.doPost<Request.userSet>(Config.Interface_userSet, l))
-                MessageWindow.Alter("提示","保存成功！");
+                MessageWindow.Alter("提示", "保存成功！");
         }
 
         async void btnGetCode_Click(object sender, RoutedEventArgs e)

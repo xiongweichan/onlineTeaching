@@ -10,6 +10,7 @@ namespace TeacherClient.Contract.Request
     {
         public string intro { get; set; }
         public string nickname { get; set; }
+        public string realname { get; set; }
         public string sex { get; set; }
         public string age { get; set; }
         public string birth { get; set; }

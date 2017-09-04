@@ -23,7 +23,8 @@
                     <Grid.Background>
                         <ImageBrush ImageSource="/Images/登录注册/上传图片.png"/>
                     </Grid.Background>
-                    <Image Source="{Binding body_photo, Converter={StaticResource PathToImageConverter}}" Stretch="None"/>
+                    <Image Source="{Binding body_photo, Converter={StaticResource PathToImageConverter}}" Stretch="Fill"
+                           Width="60" Height="60"/>
                 </Grid>
                 <Button Margin="0,8,0,0" Width="60" Height="20" Style="{StaticResource ButtonStyle4}"
                         Click="btn_UploadImage1">
@@ -36,7 +37,8 @@
                     <Grid.Background>
                         <ImageBrush ImageSource="/Images/登录注册/上传图片.png"/>
                     </Grid.Background>
-                    <Image Source="{Binding id_card_front, Converter={StaticResource PathToImageConverter}}" Stretch="None"/>
+                    <Image Source="{Binding id_card_front, Converter={StaticResource PathToImageConverter}}" Stretch="Fill"
+                           Width="60" Height="60"/>
                 </Grid>
                 <Button Margin="0,8,0,0" Width="60" Height="20" Style="{StaticResource ButtonStyle4}"
                         Click="btn_UploadImage2">
@@ -49,7 +51,8 @@
                     <Grid.Background>
                         <ImageBrush ImageSource="/Images/登录注册/上传图片.png"/>
                     </Grid.Background>
-                    <Image Source="{Binding id_card_back, Converter={StaticResource PathToImageConverter}}" Stretch="None"/>
+                    <Image Source="{Binding id_card_back, Converter={StaticResource PathToImageConverter}}"  Stretch="Fill"
+                           Width="60" Height="60"/>
                 </Grid>
                 <Button Margin="0,8,0,0" Width="60" Height="20" Style="{StaticResource ButtonStyle4}"
                         Click="btn_UploadImage3">
@@ -71,7 +74,8 @@
                 <Grid.Background>
                     <ImageBrush ImageSource="/Images/登录注册/上传图片.png"/>
                 </Grid.Background>
-                <Image Source="{Binding qualification_cert, Converter={StaticResource PathToImageConverter}}" Stretch="None"/>
+                <Image Source="{Binding qualification_cert, Converter={StaticResource PathToImageConverter}}" Stretch="Fill"
+                           Width="60" Height="60"/>
             </Grid>
             <Button Margin="0,8,0,0" Width="60" Height="20" Style="{StaticResource ButtonStyle4}"
                     Click="btn_UploadImage4">

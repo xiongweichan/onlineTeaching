@@ -56,7 +56,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
                             <TextBlock Style="{StaticResource text}" Text="个人简介：" VerticalAlignment="Top"/>
-                            <TextBox AcceptsReturn="True" AcceptsTab="True" Height="88" Width="455"/>
+                            <TextBox Text="{Binding UserInfo.intro}" AcceptsReturn="True" AcceptsTab="True" Height="88" Width="455"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,8">
                             <TextBlock FontSize="12" Foreground="#4d5861" FontWeight="Bold" Text="基本资料"/>
@@ -102,11 +102,11 @@
                             <TextBlock Text="手       机：" Style="{StaticResource text}" Width="65"/>
                             <TextBox Height="24" Width="120" Text="{Binding UserInfo.phone}" IsReadOnly="True"/>
                             <TextBlock Text="微       信：" Style="{StaticResource text}" Width="65" Margin="70,0,0,0"/>
-                            <TextBox Height="24" Width="120" Text="{Binding UserInfo.wechat}" IsReadOnly="True"/>
+                            <TextBox Height="24" Width="120" Text="{Binding UserInfo.wechat}"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                             <TextBlock Text="邮       箱：" Style="{StaticResource text}" Width="65"/>
-                            <TextBox Height="24" Width="120" Text="{Binding UserInfo.email}"/>
+                            <TextBox Height="24" Width="120" Text="{Binding UserInfo.email}" IsReadOnly="True"/>
                             <TextBlock Text="职       业：" Style="{StaticResource text}" Width="65" Margin="70,0,0,0"/>
                             <TextBox Height="24" Width="120" Text="{Binding UserInfo.job}"/>
                         </StackPanel>

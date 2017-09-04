@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Reponse = TeacherClient.Contract.Reponse;
 
 namespace TeacherClient.Pages
 {
@@ -19,9 +20,12 @@ namespace TeacherClient.Pages
     /// </summary>
     public partial class CoursePropertyWindow : WindowBase
     {
-        public CoursePropertyWindow()
+        public CoursePropertyWindow(Reponse.courseware cw)
         {
             InitializeComponent();
+            run_filename.Text = cw.file_name;
+            run_filesize.Text = (int.Parse(cw.file_size)/1024.0/1024.0).ToString("f2")+ "MB";
+            run_uploadtime.Text = cw.upload_time.GetTime().ToString("yyyy年MM月dd日 HH:mm:ss");
             this.IsBusy = false;
         }
 
