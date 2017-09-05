@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Request = TeacherClient.Contract.Request;
 using Reponse = TeacherClient.Contract.Reponse;
 using System.Threading;
+using System.Windows.Controls.Primitives;
 
 namespace TeacherClient.Pages
 {
@@ -129,21 +130,21 @@ namespace TeacherClient.Pages
                 bool b = true;
                 while (b)
                 {
-                    var list = UploadFileHelper.Instance.GetList(UploadFileHelper.EnFileType.Courseware);                    
+                    var list = UploadFileHelper.Instance.GetList(UploadFileHelper.EnFileType.Courseware);
                     var size2 = list.Sum(T => T.UploadedBytes);
                     this.Dispatcher.Invoke(() =>
                     {
                         dg_upload.ItemsSource = list;
-                        tbl_allspeed.Text = ((size2 - size) / 1024d / 1024d / (DateTime.Now - _time).TotalSeconds).ToString("f2") + "MB/s";
+                        tbl_allspeed.Text = ((size2 - size) / (1024d * 1024d * (DateTime.Now - _time).TotalSeconds)).ToString("f2") + "MB/s";
                         var total = list.Sum(T => T.FileSize);
                         pb_all.Value = total == 0 ? 0 : size2 * 100 / total;
                         b = courseTransform.IsChecked == true;
                     });
-                    
+
                     size = size2;
                     Thread.Sleep(5 * 1000);
                 }
-            });            
+            });
         }
 
         async void MyTextBox_TextChanged(object sender, RoutedEventArgs e)
@@ -177,15 +178,9 @@ namespace TeacherClient.Pages
             ((sender as Control).Tag as UploadFileHelper.FileModel).Cancel();
         }
 
-        private void btnStart_Click(object sender, RoutedEventArgs e)
+        private void ToggleButton_Click(object sender, RoutedEventArgs e)
         {
-            ((sender as Control).Tag as UploadFileHelper.FileModel).Pause = false;
-        }
-
-        private void btnStop_Click(object sender, RoutedEventArgs e)
-        {
-            ((sender as Control).Tag as UploadFileHelper.FileModel).Pause = true;
-
+            ((sender as Control).DataContext as UploadFileHelper.FileModel).Pause = (sender as ToggleButton).IsChecked.Value;
         }
     }
 }

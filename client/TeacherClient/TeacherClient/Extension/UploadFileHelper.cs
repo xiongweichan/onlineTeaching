@@ -28,18 +28,25 @@ namespace TeacherClient
 
         public void Run()
         {
-            if (File.Exists(_path))
+            try
             {
-                var str = File.ReadAllText(_path);
-                if (!string.IsNullOrWhiteSpace(str))
+                if (File.Exists(_path))
                 {
-                    _WaittingFiles = str.FromJson<List<FileModel>>();
-                    foreach (var item in _WaittingFiles)
+                    var str = File.ReadAllText(_path);
+                    if (!string.IsNullOrWhiteSpace(str))
                     {
-                        item.Complated += Item_Complated;
-                        item.Start();
+                        _WaittingFiles = str.FromJson<List<FileModel>>();
+                        foreach (var item in _WaittingFiles)
+                        {
+                            item.Complated += Item_Complated;
+                            item.Start();
+                        }
                     }
                 }
+            }
+            catch(Exception ex)
+            {
+                Log.Error(ex);
             }
         }
 
@@ -123,7 +130,7 @@ namespace TeacherClient
                     this.OnPropertyChanged("Hash");
                 }
             }
-            
+
             public async void Start()
             {
                 if (!string.IsNullOrWhiteSpace(ID) && !string.IsNullOrWhiteSpace(Token) && File.Exists(LocalFile))
@@ -133,7 +140,7 @@ namespace TeacherClient
                     // 包含两个参数，并且都有默认值
                     // 参数1(bool): uploadFromCDN是否从CDN加速上传，默认否
                     // 参数2(enum): chunkUnit上传分片大小，可选值128KB,256KB,512KB,1024KB,2048KB,4096KB
-                    ResumableUploader ru = new ResumableUploader(false, ChunkUnit.U1024K);
+                    ResumableUploader ru = new ResumableUploader(false, ChunkUnit.U128K);
                     //最大尝试次数(有效值1~20)，在上传过程中(如mkblk或者bput操作)如果发生错误，它将自动重试，如果没有错误则无需重试
                     int maxTry = 10;
                     // 使用默认进度处理，使用自定义上传控制            
@@ -203,8 +210,6 @@ namespace TeacherClient
             {
                 if (_cancel)
                     return UPTS.Aborted;
-                // 这个函数只是作为一个演示，实际当中请根据需要来设置
-                // 这个演示的实际效果是“走走停停”，也就是停一下又继续，如此重复直至上传结束
                 if (Pause)
                 {
                     return UPTS.Suspended;
@@ -218,7 +223,7 @@ namespace TeacherClient
             void UploadProgress(long uploadedBytes, long totalBytes)
             {
                 UploadedBytes = uploadedBytes;
-                Per = (double)uploadedBytes / totalBytes;
+                Per = (double)uploadedBytes * 100 / totalBytes;
             }
         }
         public enum EnFileType

@@ -47,7 +47,7 @@
                                 </Rectangle.RenderTransform>
                             </Rectangle>
                         </Grid>
-                        <TextBlock Text="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, StringFormat='{}{0:p0}'}" Foreground="{TemplateBinding Background}"
+                        <TextBlock Text="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, StringFormat='{}{0:f0}%'}" Foreground="{TemplateBinding Background}"
                                    HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="{StaticResource FontSize3}" Width="{Binding ElementName=PART_Indicator, Path=ActualWidth}" TextAlignment="Center"/>
                     </Grid>
                     <ControlTemplate.Triggers>

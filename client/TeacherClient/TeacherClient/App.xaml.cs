@@ -27,7 +27,7 @@ namespace TeacherClient
             StyleManager.ApplicationTheme = new Windows8Theme();
 
             ConfigManagerHelper.Init(Config.SystemConfigPath, true);
-            
+            UploadFileHelper.Instance.Run();
             SetAutoStartup();
             IPCHandle.Init();
             

@@ -87,6 +87,7 @@
     <Compile Include="Request\emailCode.cs" />
     <Compile Include="Request\getToken.cs" />
     <Compile Include="Request\imageUpLoad.cs" />
+    <Compile Include="Request\liveAdd.cs" />
     <Compile Include="Request\liveChangeTime.cs" />
     <Compile Include="Request\Login.cs" />
     <Compile Include="Request\OffCourselist.cs" />

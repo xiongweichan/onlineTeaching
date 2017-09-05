@@ -42,7 +42,7 @@
                     <Run Text="直播名称：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
                         </TextBlock>
                         <TextBox Width="200" Height="28" VerticalContentAlignment="Center" Foreground="#424e67"
-                         Text="{Binding Model.title}"/>
+                         Text="{Binding Model.Title}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                         <TextBlock VerticalAlignment="Top">
@@ -50,8 +50,9 @@
                         <Run Text="课程封面：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
                         </TextBlock>
                         <StackPanel Margin="0">
-                            <Image Width="200" Height="114"/>
-                            <Button Margin="0,6,0,0" Style="{StaticResource ButtonStyle4}">
+                            <Image Width="200" Height="114" Stretch="Fill"
+                                   Source="{Binding Model.Image, Converter={StaticResource PathToImageConverter}}"/>
+                            <Button Margin="0,6,0,0" Style="{StaticResource ButtonStyle4}" Click="UploadImage_Click">
                                 <TextBlock Text="点击上传" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground21}"/>
                             </Button>
                         </StackPanel>
@@ -71,8 +72,10 @@
                     <Run Text="*" Foreground="#ff0000"/>
                     <Run Text="直播次数：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
                         </TextBlock>
-                        <RadioButton x:Name="rb_one" Content="首播" Foreground="#FF3E3E3E" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="6,0"/>
-                        <RadioButton x:Name="rb_many" Content="多节" Foreground="#FF3E3E3E" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
+                        <RadioButton x:Name="rb_one" Content="首播" Foreground="#FF3E3E3E" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="6,0"
+                                     IsChecked="{Binding Model.IsFirst, Converter={StaticResource IntToBoolConverter}, ConverterParameter='0'}"/>
+                        <RadioButton x:Name="rb_many" Content="多节" Foreground="#FF3E3E3E" VerticalContentAlignment="Center" VerticalAlignment="Center"
+                                     IsChecked="{Binding Model.IsFirst, Converter={StaticResource IntToBoolConverter}, ConverterParameter='1'}"/>
                     </StackPanel>
                     <Button Content="下一步" Width="130" Height="30" Background="#0096ff" Foreground="#ffffff" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Left"
                         Click="btnNext_Click" Margin="0,10,0,0"/>
@@ -103,35 +106,36 @@
                     <Run Text="*" Foreground="#ff0000"/>
                     <Run Text="直播类型：" Foreground="#3e3e3e"/>
                         </TextBlock>
-                        <local:MyComboBox cat_id="{Binding cat_id}" cat_id_1="{Binding cat_id_1}" cat_id_2="{Binding cat_id_2}"/>
+                        <local:MyComboBox cat_id="{Binding Model.CatID}" cat_id_1="{Binding Model.CatID1}" cat_id_2="{Binding Model.CatID2}"/>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                     <TextBlock Margin="10,0,0,0" FontSize="12">                    
                     <Run Text="关联直播：" Foreground="#3e3e3e"/>
                     </TextBlock>
-                    <ComboBox Width="200"/>
+                    <ComboBox x:Name="cb_relatelive" Width="200" DisplayMemberPath="title" SelectedValuePath="id" SelectedValue="{Binding Model.RelateLiveID}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                     <TextBlock VerticalAlignment="Top" FontSize="12">
                     <Run Text="*" Foreground="#ff0000"/>
                     <Run Text="直播描述：" Foreground="#3e3e3e"/>
                     </TextBlock>
-                    <TextBox Width="456" Height="88" Tag="不少于10个字" AcceptsReturn="True" AcceptsTab="True"/>
+                    <TextBox Width="456" Height="88" Tag="不少于10个字" AcceptsReturn="True" AcceptsTab="True"
+                             Text="{Binding Model.Intro}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                     <TextBlock VerticalAlignment="Top" Margin="10,0,0,0" FontSize="12">
                     <Run Text="直播大纲：" Foreground="#3e3e3e"/>
                     </TextBlock>
-                    <TextBox Width="456" Height="88" Tag="不少于10个字" AcceptsReturn="True" AcceptsTab="True"/>
+                    <TextBox Width="456" Height="88" Tag="不少于10个字" AcceptsReturn="True" AcceptsTab="True"
+                             Text="{Binding Model.Syllabus}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                     <TextBlock FontSize="12">
                     <Run Text="*" Foreground="#ff0000"/>
                     <Run Text="上传课件：" Foreground="#3e3e3e"/>
                     </TextBlock>
-                    <Button Grid.Row="1" Style="{StaticResource ButtonStyle1}" Height="26" Width="110"
-                Click="UploadCourse_Click">
+                    <Button Grid.Row="1" Style="{StaticResource ButtonStyle1}" Height="26" Width="110" Click="UploadCourse_Click">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="/Images/课程中心/上传.png" Margin="6,0"/>
@@ -146,9 +150,11 @@
                     <Run Text="*" Foreground="#ff0000"/>
                     <Run Text="直播售价：" Foreground="#3e3e3e"/>
                     </TextBlock>
-                    <RadioButton Foreground="#646464" Content="免费" VerticalAlignment="Center"/>
-                    <RadioButton Foreground="#646464" Content="收费" VerticalAlignment="Center" Margin="6,0"/>
-                    <TextBox Foreground="#646464" Width="50" VerticalAlignment="Center"/>
+                    <RadioButton Foreground="#646464" Content="免费" VerticalAlignment="Center"
+                                 IsChecked="{Binding Model.Price,Converter={StaticResource IntToBoolConverter}, ConverterParameter='0'}"/>
+                    <RadioButton Foreground="#646464" Content="收费" VerticalAlignment="Center" Margin="6,0"
+                                 IsChecked="{Binding Model.Price,Converter={StaticResource IntToBoolConverter2}, ConverterParameter='0'}"/>
+                    <TextBox Text="{Binding Model.Price}" Foreground="#646464" Width="50" VerticalAlignment="Center"/>
                     <TextBlock Foreground="#646464" Text="元" Margin="8,0,0,0" VerticalAlignment="Center" FontSize="12"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
@@ -156,7 +162,7 @@
                     <Run Text="*" Foreground="#ff0000"/>
                     <Run Text="直播详情：" Foreground="#3e3e3e"/>
                     </TextBlock>
-                    <local:MyHtmlEditor Width="803" Height="200"/>
+                    <local:MyHtmlEditor Width="803" Height="200" Text="{Binding Model.Intro}"/>
                 </StackPanel>
                 <Button Content="下一步" Width="130" Height="30" Background="#0096ff" Foreground="#ffffff" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Left"
                     Click="btnNext_Click" Margin="0,20,0,0"/>
@@ -186,14 +192,14 @@
                     <Run Text="*" Foreground="#ff0000"/>
                     <Run Text="开始时间：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
                         </TextBlock>
-                        <telerik:RadDateTimePicker Width="433" Height="20"/>
+                        <telerik:RadDateTimePicker Width="433" Height="20" SelectedValue="{Binding Model.StartTime}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
                         <TextBlock>
                     <Run Text="*" Foreground="#ff0000"/>
                     <Run Text="结束时间：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
                         </TextBlock>
-                        <telerik:RadDateTimePicker Width="433" Height="20"/>
+                        <telerik:RadDateTimePicker Width="433" Height="20" SelectedValue="{Binding Model.EndTime}"/>
                     </StackPanel>
                     <Button Content="提交" Width="130" Height="30" Background="#0096ff" Foreground="#ffffff" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Left"
                     Click="btnNext_Click" Margin="0,30,0,0"/>

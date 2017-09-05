@@ -120,7 +120,7 @@
                                 <Button Tag="{Binding id}" Click="DeleteCourse_Click" Style="{StaticResource ButtonStyle2}">
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="/Images/课程中心/删除课程.png"/>
-                                        <TextBlock Text="删除课程" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
+                                        <TextBlock Text="删除课件" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
                                     </StackPanel>
                                 </Button>
                             </DataTemplate>
@@ -136,25 +136,25 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                 <TextBlock Text="上传总进度：" Foreground="#697795" FontSize="12"/>
                 <ProgressBar x:Name="pb_all" Minimum="0" Maximum="100" Style="{DynamicResource ProgressBarStyle1}" Width="605" Height="20"
-                         Background="White" Foreground="#63a1ff" BorderBrush="#cccccc" BorderThickness="1"/>
-                <TextBlock x:Name="tbl_allspeed" />
-                <Button Content="全部开始" Click="btnStartAll_Click"/>
-                <Button Content="全部暂停" Click="btn_StopAll_Click"/>
+                         Background="White" Foreground="#63a1ff" BorderBrush="#cccccc" BorderThickness="1" Margin="10,0,0,0"/>
+                <TextBlock x:Name="tbl_allspeed" Margin="10,0,0,0"/>
+                <Button Content="全部开始" Foreground="#697795" FontSize="12" Click="btnStartAll_Click" Margin="10,0,0,0" Style="{StaticResource ButtonStyle3}"/>
+                <Button Content="全部暂停" Foreground="#697795" FontSize="12" Click="btn_StopAll_Click" Margin="10,0,0,0" Style="{StaticResource ButtonStyle3}"/>
             </StackPanel>
             <DataGrid x:Name="dg_upload" Grid.Row="1" ColumnHeaderHeight="0" Style="{StaticResource DataGridStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}">
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="50" CellStyle="{StaticResource DataGridCellStyle1}">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Image Source="/Images/课程中心/图层-5-拷贝.png"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Binding="{Binding FileName}" CellStyle="{StaticResource DataGridCellStyle1}"/>
-                    <DataGridTemplateColumn CellStyle="{StaticResource DataGridCellStyle1}">
+                    <DataGridTextColumn Binding="{Binding FileName}" CellStyle="{StaticResource DataGridCellStyle1}" Width="240"/>
+                    <DataGridTemplateColumn CellStyle="{StaticResource DataGridCellStyle1}" Width="100">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -165,7 +165,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="*" CellStyle="{StaticResource DataGridCellStyle1}">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <ProgressBar Minimum="0" Maximum="100" Style="{DynamicResource ProgressBarStyle1}" Width="364" Height="20" Value="{Binding Per}" 
@@ -173,22 +173,23 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="100" CellStyle="{StaticResource DataGridCellStyle1}">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <ToggleButton Checked="btnStart_Click" Unchecked="btnStop_Click" Tag="{Binding}">
+                                <ToggleButton HorizontalAlignment="Center" IsChecked="{Binding Pause}"
+                                              Click="ToggleButton_Click">
                                     <ToggleButton.Template>
                                         <ControlTemplate TargetType="ToggleButton">
                                             <Grid>
                                                 <StackPanel Orientation="Horizontal"
-                                                    Visibility="{TemplateBinding IsChecked,Converter={StaticResource BoolToVisibilityConverter}}">
+                                                    Visibility="{TemplateBinding IsChecked,Converter={StaticResource BoolToVisibilityConverter2}}">
                                                     <Image Source="/Images/课程中心/暂停.png"/>
-                                                    <TextBlock Text="暂停"/>
+                                                    <TextBlock Text="暂停" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
                                                 </StackPanel>
                                                 <StackPanel Orientation="Horizontal"
-                                                    Visibility="{TemplateBinding IsChecked,Converter={StaticResource BoolToVisibilityConverter2}}">
+                                                    Visibility="{TemplateBinding IsChecked,Converter={StaticResource BoolToVisibilityConverter}}">
                                                     <Image Source="/Images/课程中心/开始.png"/>
-                                                    <TextBlock Text="开始"/>
+                                                    <TextBlock Text="开始" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
                                                 </StackPanel>
                                             </Grid>
                                         </ControlTemplate>
@@ -197,13 +198,13 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="100" CellStyle="{StaticResource DataGridCellStyle1}">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Click="btnCancel_Click" Tag="{Binding .}">
+                                <Button HorizontalAlignment="Center" Click="btnCancel_Click" Tag="{Binding .}" Style="{StaticResource ButtonStyle2}">
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="/Images/课程中心/删除课程.png"/>
-                                        <TextBlock Text="取消上传"/>
+                                        <TextBlock Text="取消上传" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
                                     </StackPanel>
                                 </Button>
                             </DataTemplate>

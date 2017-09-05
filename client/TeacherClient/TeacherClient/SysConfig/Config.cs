@@ -83,12 +83,13 @@ namespace TeacherClient
 
 
         public static readonly string Interface_imageUpLoad = "Live/Upload/imageUpLoad";
-        public static readonly string Interface_getToken = "Live/Upload/getToken";
+        public static readonly string Interface_upload = "Live/Upload/upload";
 
         public static readonly string Interface_liveList = "Live/LecLive/liveList";
         public static readonly string Interface_liveChangeTime = " Live/LecLive/liveChangeTime";
         public static readonly string Interface_liveDel = " Live/LecLive/liveDel";
         public static readonly string Interface_liveCancel = " Live/LecLive/liveCancel";
+        public static readonly string Interface_liveAdd = " Live/LecLive/liveAdd";
 
         public class phoneCode
         {
