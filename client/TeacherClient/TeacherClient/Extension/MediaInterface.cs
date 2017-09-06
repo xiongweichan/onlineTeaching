@@ -11,15 +11,14 @@ namespace TeacherClient
     // libMedia.dll interface class
     //  v1.00 for 2017.08.28
 
-    class MediaInterface
+    class MediaInterface:IDisposable
     {
         private IntPtr media;
         public MediaInterface()
         {
             media = Media_CreatePtr();
         }
-
-        ~MediaInterface()
+        public void Dispose()
         {
             Media_DeletePtr(media);
         }
@@ -45,7 +44,7 @@ namespace TeacherClient
         //      |                                                                           |                       |
         //      |                                                                           -------------------------
         //      |                                                                           |                       |
-        //  localSmallHeight                                                                |                 localSmallHeight
+        //  localHeight                                                                     |                 localSmallHeight
         //      |                                                                           |                       |
         //      |                                                                           ----localSmallWidth -----
         //      |                                                                                                   |
@@ -203,5 +202,7 @@ namespace TeacherClient
         private static extern void Media_SetShowSmallStream(IntPtr m, int needShowA, int needShowB);
         [DllImport("libMedia.dll", EntryPoint = "Media_GetShowSmallStream", CallingConvention = CallingConvention.Cdecl)]
         private static extern void Media_GetShowSmallStream(IntPtr m, out int needShowA, out int needShowB);
+
+
     }
 }

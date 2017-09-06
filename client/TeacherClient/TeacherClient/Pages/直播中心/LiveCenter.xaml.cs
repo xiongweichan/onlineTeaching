@@ -43,18 +43,14 @@ namespace TeacherClient.Pages
         }
 
         bool _ShowMylive;
-        public bool ShowMylive
+        public void ShowMylive(bool value, Contract.Reponse.live l = null)
         {
-            get { return _ShowMylive; }
-            set
+            _ShowMylive = value;
+            if (value)
             {
-                _ShowMylive = value;
-                if (value)
-                {
-                    _myLive = new MyLive(_liveManager.CurrentLive);
-                }
-                ShowContent();
+                _myLive = new MyLive(l);
             }
+            ShowContent();
         }
 
         MyLive _myLive;
@@ -73,7 +69,7 @@ namespace TeacherClient.Pages
             switch (Type)
             {
                 case 0:
-                    if (!ShowMylive)
+                    if (!_ShowMylive)
                         frame.Content = _liveManager;
                     else
                         frame.Content = _myLive;

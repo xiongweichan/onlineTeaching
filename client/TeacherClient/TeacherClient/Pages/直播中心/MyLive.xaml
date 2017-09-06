@@ -89,9 +89,10 @@
             </StackPanel>
 
             <Grid>
-                <Image x:Name="img_main" Tag="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Fill"/>
+                <Image x:Name="img_main" Tag="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Fill"
+                       PreviewMouseLeftButtonUp="img_main_PreviewMouseLeftButtonUp"/>
 
-                <Grid Width="158" Height="118" Margin="12" HorizontalAlignment="Right" VerticalAlignment="Top"
+                <!--<Grid Width="158" Height="118" Margin="12" HorizontalAlignment="Right" VerticalAlignment="Top"
                       Background="Transparent" PreviewMouseLeftButtonUp="Grid_PreviewMouseLeftButtonUp">
                     <Image x:Name="img_thumbnail1" Tag="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Fill"/>
                     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="24"
@@ -108,7 +109,7 @@
                     <TextBlock FontSize="{StaticResource FontSize3}" Height="24" Foreground="#ffffff"
                                VerticalAlignment="Bottom" HorizontalAlignment="Center"
                                x:Name="tbl_thumbnail2"/>
-                </Grid>
+                </Grid>-->
             </Grid>
             
             

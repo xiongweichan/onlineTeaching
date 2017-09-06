@@ -72,20 +72,17 @@ namespace TeacherClient.Pages
         {
 
         }
-        public Reponse.live CurrentLive { get; private set; }
         private void StartLive_Click(object sender, RoutedEventArgs e)
         {
-            CurrentLive = (sender as Control).Tag as Contract.Reponse.live;
-            //if (CurrentLive.start_time != null && CurrentLive.start_time.GetTime().AddHours(1) > DateTime.Now)
+            var l = (sender as Control).Tag as Contract.Reponse.live;
+            if (l.start_time != null && l.start_time.GetTime().AddHours(1) > DateTime.Now)
             {
-                LiveCenter.Current.ShowMylive = true;
+                LiveCenter.Current.ShowMylive(true,l);
             }
         }
 
         private void EditTime_Click(object sender, RoutedEventArgs e)
         {
-            StartLive_Click(sender, e);return;
-
             var live = (sender as Control).Tag as Contract.Reponse.live;
             EditLiveTime win = new EditLiveTime(live.id);
             win.liveStartTime.SelectedValue = live.start_time != null ? live.start_time.GetTime() : DateTime.Now;

@@ -9,22 +9,52 @@
     <UserControl.Resources>
         <local:LiveStatusConverter x:Key="LiveStatusConverter"/>
         <DataTemplate x:Key="CheckFailed">
-            <Button Content="修改申请" Style="{StaticResource ButtonStyle2}" Click="EditRequest_Click"/>
+            <Button Style="{StaticResource ButtonStyle2}" Click="EditRequest_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Stretch="Fill" Width="16" Height="16" Source="/Images/直播中心/修改时间.png"/>
+                    <TextBlock Text="修改申请" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
+                </StackPanel>
+            </Button>
         </DataTemplate>
         <DataTemplate x:Key="CheckSuccess">
             <StackPanel Orientation="Horizontal">
-                <Button Content="修改时间" Style="{StaticResource ButtonStyle2}" Click="EditTime_Click" Tag="{Binding}"/>
-                <Button Content="取消直播" Style="{StaticResource ButtonStyle2}" Click="CancelLive_Click" Tag="{Binding}"/>
+                <Button Style="{StaticResource ButtonStyle2}" Click="EditTime_Click" Tag="{Binding}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Stretch="Fill" Width="16" Height="16" Source="/Images/直播中心/修改时间.png"/>
+                        <TextBlock Text="修改时间" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
+                    </StackPanel>
+                </Button>
+                <Button Style="{StaticResource ButtonStyle2}" Click="CancelLive_Click" Tag="{Binding}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Stretch="Fill" Width="16" Height="16" Source="/Images/直播中心/修改时间.png"/>
+                        <TextBlock Text="取消直播" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
+                    </StackPanel>                    
+                </Button>
             </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="LiveEnd">
-            <Button Content="删除直播" Style="{StaticResource ButtonStyle2}" Click="DelRecord_Click" Tag="{Binding}"/>
+            <Button Style="{StaticResource ButtonStyle2}" Click="DelRecord_Click" Tag="{Binding}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Stretch="Fill" Width="16" Height="16" Source="/Images/直播中心/修改时间.png"/>
+                    <TextBlock Text="删除直播" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
+                </StackPanel>
+            </Button>
         </DataTemplate>
         <DataTemplate x:Key="WaitCheck">
-            <Button Content="修改时间" Style="{StaticResource ButtonStyle2}" Click="EditTime_Click" Tag="{Binding}"/>
+            <Button Style="{StaticResource ButtonStyle2}" Click="EditTime_Click" Tag="{Binding}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Stretch="Fill" Width="16" Height="16" Source="/Images/直播中心/修改时间.png"/>
+                    <TextBlock Text="修改时间" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
+                </StackPanel>
+            </Button>
         </DataTemplate>
         <DataTemplate x:Key="WaitLive">
-            <Button Content="开始直播" Style="{StaticResource ButtonStyle2}" Click="StartLive_Click" Tag="{Binding}"/>
+            <Button Style="{StaticResource ButtonStyle2}" Click="StartLive_Click" Tag="{Binding}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Stretch="Fill" Width="16" Height="16" Source="/Images/直播中心/修改时间.png"/>
+                    <TextBlock Text="开始直播" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
+                </StackPanel>
+            </Button>
         </DataTemplate>
         <local:LiveStatusOperationTemplateSelector x:Key="LiveStatusOperationTemplateSelector"
                                                     CheckFailed="{StaticResource CheckFailed}"
