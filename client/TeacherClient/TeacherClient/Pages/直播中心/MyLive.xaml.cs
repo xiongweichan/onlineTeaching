@@ -67,7 +67,7 @@ namespace TeacherClient.Pages
         int msgCounter = 0;
         private void callback(object sender, EventArgs e)
         {
-            if (true)//(_live.start_time.GetTime() >= DateTime.Now)
+            if (Live.start_time.GetTime() >= DateTime.Now)
             {
                 Status = 1;
                 //直播结束时间已经到了
@@ -133,6 +133,7 @@ namespace TeacherClient.Pages
             bi.EndInit();
             return bi;
         }
+        //大屏、上、下 0：桌面；1：摄像头；2：场景
         int[] _catch = new int[] { 0, 1, 2 };
         private void img_main_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -158,6 +159,28 @@ namespace TeacherClient.Pages
                 }
             }
         }
+
+        private void tbtn_Click(object sender, RoutedEventArgs e)
+        {
+            var a = GetIsOpen(_catch[0]);
+            var b = GetIsOpen(_catch[1]);
+            var c = GetIsOpen(_catch[2]);
+            MediaHelper.Instance.SetShowSmallStream(a, b, c);
+        }
+        bool GetIsOpen(int i)
+        {
+            switch (i)
+            {
+                case 0:
+                    return tbtn_LB.IsChecked == true;
+                case 1:
+                    return tbtn_LX.IsChecked == true;
+                case 2:
+                    return tbtn_CJ.IsChecked == true;
+            }
+            return false;
+        }
+
         //ImageSource GetImage(object tag)
         //{
         //if (tbtn_LB.IsChecked == true && tag.ObjToString() == "1")

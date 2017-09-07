@@ -143,6 +143,7 @@
                             </StackPanel>
                         </Button.Content>
                     </Button>
+                    <TextBlock Text="{Binding Model.Courseware}" Foreground="#999999" FontSize="{StaticResource FontSize3}"/>
                 </StackPanel>
                 <TextBlock Text="支持上传word文档、ppt、图片，文件大小不得超过10M" Foreground="#999999" FontSize="{StaticResource FontSize3}" Margin="0,10,0,0"/>
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0">

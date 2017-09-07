@@ -115,7 +115,8 @@
             
             <Grid Background="#000000" Opacity="0.5" VerticalAlignment="Bottom" Height="48" HorizontalAlignment="Stretch"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Height="48" VerticalAlignment="Bottom" Margin="10,0,0,0">
-                <ToggleButton x:Name="tbtn_LB" Style="{DynamicResource ToggleButtonStyle2}">
+                <ToggleButton x:Name="tbtn_LB" Style="{DynamicResource ToggleButtonStyle2}"
+                              Click="tbtn_Click">
                     <ToggleButton.Content>
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Images/直播中心/开启录屏直播.png" UseLayoutRounding="True" SnapsToDevicePixels="True" Stretch="Fill" Width="24" Height="24"/>
@@ -123,7 +124,8 @@
                         </StackPanel>
                     </ToggleButton.Content>
                 </ToggleButton>
-                <ToggleButton x:Name="tbtn_LX" Style="{DynamicResource ToggleButtonStyle2}" Margin="10,0">
+                <ToggleButton x:Name="tbtn_LX" Style="{DynamicResource ToggleButtonStyle2}" Margin="10,0"
+                              Click="tbtn_Click">
                     <ToggleButton.Content>
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Images/直播中心/开启录像直播.png" UseLayoutRounding="True" SnapsToDevicePixels="True" Stretch="Fill" Width="24" Height="24"/>
@@ -131,7 +133,8 @@
                         </StackPanel>
                     </ToggleButton.Content>
                 </ToggleButton>
-                <ToggleButton x:Name="tbtn_CJ" Style="{DynamicResource ToggleButtonStyle2}">
+                <ToggleButton x:Name="tbtn_CJ" Style="{DynamicResource ToggleButtonStyle2}"
+                              Click="tbtn_Click">
                     <ToggleButton.Content>
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Images/直播中心/开启场景直播.png" UseLayoutRounding="True" SnapsToDevicePixels="True" Stretch="Fill" Width="24" Height="24"/>

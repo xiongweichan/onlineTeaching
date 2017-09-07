@@ -11,13 +11,14 @@ namespace TeacherClient
     // libMedia.dll interface class
     //  v1.00 for 2017.08.28
 
-    class MediaInterface:IDisposable
+    class MediaInterface : IDisposable
     {
         private IntPtr media;
         public MediaInterface()
         {
             media = Media_CreatePtr();
         }
+
         public void Dispose()
         {
             Media_DeletePtr(media);
@@ -44,7 +45,7 @@ namespace TeacherClient
         //      |                                                                           |                       |
         //      |                                                                           -------------------------
         //      |                                                                           |                       |
-        //  localHeight                                                                     |                 localSmallHeight
+        //  localSmallHeight                                                                |                 localSmallHeight
         //      |                                                                           |                       |
         //      |                                                                           ----localSmallWidth -----
         //      |                                                                                                   |
@@ -151,28 +152,31 @@ namespace TeacherClient
         //usage: 
         //set local show or hide small video stream
         //para:
+        //[in] needShowMain(0 隐藏, 非0 显示，对象是本地播放视频中，主画面)
         //[in] needShowA(0 隐藏, 非0 显示，对象是本地播放视频中，最右上角的小画面)
         //[in] needShowB(0 隐藏, 非0 显示，对象是本地播放视频中，右上角的第二个小画面)
         //return:                                    
         //**********************************************************************************************************************
-        public void setShowSmallStream(int needShowA, int needShowB)
+        public void setShowSmallStream(int needShowMain, int needShowA, int needShowB)
         {
-            Media_SetShowSmallStream(media, needShowA, needShowB);
+            Media_SetShowSmallStream(media, needShowMain, needShowA, needShowB);
         }
 
         //**********************************************************************************************************************
         //usage: 
         //get local show or hide small video stream
         //para:
+        //[out] needShowMain(0 隐藏, 非0 显示，对象是本地播放视频中，主画面)
         //[out] needShowA(0 隐藏, 非0 显示，对象是本地播放视频中，最右上角的小画面)
         //[out] needShowB(0 隐藏, 非0 显示，对象是本地播放视频中，右上角的第二个小画面)
         //return:                                 
         //**********************************************************************************************************************
-        public void getShowSmallStream(out int needShowA, out int needShowB)
+        public void getShowSmallStream(out int needShowMain, out int needShowA, out int needShowB)
         {
+            needShowMain = 0;
             needShowA = 0;
             needShowB = 0;
-            Media_GetShowSmallStream(media, out needShowA, out needShowB);
+            Media_GetShowSmallStream(media, out needShowMain, out needShowA, out needShowB);
         }
 
         [DllImport("libMedia.dll", EntryPoint = "Media_CreatePtr", CallingConvention = CallingConvention.Cdecl)]
@@ -199,10 +203,8 @@ namespace TeacherClient
         private static extern int Media_GetPlayData(IntPtr m, byte[] data);
 
         [DllImport("libMedia.dll", EntryPoint = "Media_SetShowSmallStream", CallingConvention = CallingConvention.Cdecl)]
-        private static extern void Media_SetShowSmallStream(IntPtr m, int needShowA, int needShowB);
+        private static extern void Media_SetShowSmallStream(IntPtr m, int needShowMain, int needShowA, int needShowB);
         [DllImport("libMedia.dll", EntryPoint = "Media_GetShowSmallStream", CallingConvention = CallingConvention.Cdecl)]
-        private static extern void Media_GetShowSmallStream(IntPtr m, out int needShowA, out int needShowB);
-
-
+        private static extern void Media_GetShowSmallStream(IntPtr m, out int needShowMain, out int needShowA, out int needShowB);
     }
 }

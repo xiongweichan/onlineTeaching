@@ -30,10 +30,10 @@ namespace TeacherClient
             ret2 = m.startPushStream("rtmp://incastyun.cn/live/media");
             idx = m.getLocalStreamIndex();
             idx2 = m.getSendStreamIndex();
-            m.setShowSmallStream(1, 1);
-            int a = 0, b = 0;
-            m.getShowSmallStream(out a, out b);
-            Console.WriteLine("getLocalStreamIndex:{0}, {1}, {2}, {3}, {4}, {5}", ret, ret2, idx, idx2, a, b);
+            m.setShowSmallStream(1, 1, 1);
+            //int a = 0, b = 0;
+            //m.getShowSmallStream(out a, out b);
+            //Console.WriteLine("getLocalStreamIndex:{0}, {1}, {2}, {3}, {4}, {5}", ret, ret2, idx, idx2, a, b);
 
         }
         static MediaHelper _instance;
@@ -66,6 +66,11 @@ namespace TeacherClient
         public bool SetLocalStreamIndex(int index)
         {
             return m.setLocalStreamIndex(index) == 0;
+        }
+
+        public void SetShowSmallStream(bool needShowMain, bool needShowA, bool needShowB)
+        {
+            m.setShowSmallStream(needShowMain ? 1 : 0, needShowA ? 1 : 0, needShowB ? 1 : 0);
         }
 
         static void cmdThread(Object media)

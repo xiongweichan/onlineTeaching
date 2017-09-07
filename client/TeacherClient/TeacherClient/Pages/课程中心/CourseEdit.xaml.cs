@@ -16,6 +16,7 @@ using Request = TeacherClient.Contract.Request;
 using Reponse = TeacherClient.Contract.Reponse;
 using Telerik.Windows.Controls;
 using System.Collections.ObjectModel;
+using TeacherClient.Contract;
 
 namespace TeacherClient.Pages
 {
@@ -58,11 +59,60 @@ namespace TeacherClient.Pages
                 request.cat_id_2 = Model.CatID3;
                 request.image = Model.Image;
                 request.intro = Model.Detail;
-                var b = await WebHelper.doPost<Request.courseAdd>(Config.Interface_courseAdd, request);
-                if (b)
+                request.course_type = Model.CourseType;
+                request.lessonList = Model.CourseType == "0" ?
+                    new List<courselesson> { new courselesson
+                    {
+                        lesson_number = Model.OneCourse.CourseNumber,
+                        price = Model.OneCourse.Price,
+                        courseware_file_name = Model.OneCourse.DocumentName,
+                        video_file_name = Model.OneCourse.VedioName,
+                    } } :
+                    Model.ManyCourse.Select(T => new courselesson
+                    {
+                        lesson_number = (1 + Model.ManyCourse.IndexOf(T)).ToString(),
+                        price = T.Price,
+                        courseware_file_name = T.DocumentName,
+                        video_file_name = T.VedioName,
+                    }).ToList();
+                var b = await WebHelper.doPost<string, Request.courseAdd>(Config.Interface_courseAdd, request);
+                if (b != null)
                 {
-                    MessageWindow.Alter("提示", "添加成功");
-                    CourseCenter.Current.ShowCourseManager( true);
+                    if (Model.CourseType == "0")
+                    {
+                        Request.courseLessonUpload t = new Contract.Request.courseLessonUpload()
+                        {
+                            lec_id = App.CurrentLogin.lec_id,
+                            token = App.CurrentLogin.token,
+                            file_name = System.IO.Path.GetFileName(Model.OneCourse.Vedio),
+                            id = b,
+                            type = "1"
+                        };
+                        Request.courseLessonUpload t1 = new Contract.Request.courseLessonUpload()
+                        {
+                            lec_id = App.CurrentLogin.lec_id,
+                            token = App.CurrentLogin.token,
+                            file_name = System.IO.Path.GetFileName(Model.OneCourse.Document),
+                            id = b,
+                            type = "0"
+                        };
+                        var data = await WebHelper.doPost<Reponse.getToken, Request.courseLessonUpload>(Config.Interface_courseLessonUpload, t);
+
+                        var data1 = await WebHelper.doPost<Reponse.getToken, Request.courseLessonUpload>(Config.Interface_courseLessonUpload, t1);
+                        if (data != null && data1 != null)
+                        {
+                            UploadFileHelper.Instance.Add(Model.OneCourse.Vedio, data.token, data.domain, data.key, UploadFileHelper.EnFileType.Course);
+                            UploadFileHelper.Instance.Add(Model.OneCourse.Document, data.token, data.domain, data.key, UploadFileHelper.EnFileType.Course);
+
+                            CourseCenter.Current.ShowCourseManager(true);
+                        }
+                    }
+                    else
+                    {
+                        //多节
+                    }
+
+
                 }
             }
             else
@@ -74,11 +124,6 @@ namespace TeacherClient.Pages
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
             CourseCenter.Current.ShowCourseManager(true);
-        }
-
-        private void UploadCourse_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         async void UploadImage_Click(object sender, RoutedEventArgs e)
@@ -173,7 +218,7 @@ namespace TeacherClient.Pages
                 this.OnPropertyChanged("CourseType");
             }
         }
-        ObservableCollection<CourseModel> _ManyCourse;
+        ObservableCollection<CourseModel> _ManyCourse = new ObservableCollection<CourseModel>();
         public ObservableCollection<CourseModel> ManyCourse
         {
             get { return _ManyCourse; }
@@ -183,7 +228,7 @@ namespace TeacherClient.Pages
                 this.OnPropertyChanged("ManyCourse");
             }
         }
-        CourseModel _OneCourse;
+        CourseModel _OneCourse = new CourseModel();
         public CourseModel OneCourse
         {
             get { return _OneCourse; }
@@ -216,7 +261,7 @@ namespace TeacherClient.Pages
                 this.OnPropertyChanged("CourseID");
             }
         }
-        string _CourseNumber;
+        string _CourseNumber = "0";
         public string CourseNumber
         {
             get { return _CourseNumber; }
@@ -226,7 +271,7 @@ namespace TeacherClient.Pages
                 this.OnPropertyChanged("CourseNumber");
             }
         }
-        string _Price;
+        string _Price = "0";
         public string Price
         {
             get { return _Price; }

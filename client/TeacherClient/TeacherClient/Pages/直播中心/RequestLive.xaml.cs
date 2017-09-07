@@ -62,7 +62,7 @@ namespace TeacherClient.Pages
             MainWindow.Current.IsBusy = false;
         }
 
-        async void UploadCourse_Click(object sender, RoutedEventArgs e)
+        void UploadCourse_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Multiselect = false;
@@ -76,12 +76,8 @@ namespace TeacherClient.Pages
                     MessageWindow.Alter("提示", "文件过大");
                     return;
                 }
-                byte[] bys = new byte[s.Length];
-                s.Read(bys, 0, (int)s.Length);
-                var str = Convert.ToBase64String(bys);
-                Request.imageUpLoad l = new Request.imageUpLoad() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, upload = str };
-                var t = await WebHelper.doPost<Reponse.imageUpLoad, Request.imageUpLoad>(Config.Interface_upload, l);
-                Model.Courseware = t.url;
+
+                Model.Courseware = dialog.FileName;
             }
         }
         CancellationTokenSource _token;
@@ -110,24 +106,36 @@ namespace TeacherClient.Pages
                 l.syllabus = Model.Syllabus;
                 l.title = Model.Title;
                 l.token = App.CurrentLogin.token;
-                var t = await WebHelper.doPost<Request.liveAdd>(Config.Interface_liveAdd, l);
-                if (t)
+                var t = await WebHelper.doPost<string, Request.liveAdd>(Config.Interface_liveAdd, l);
+                if (t != null)
                 {
-                    fourthpage.IsChecked = true;
-                    _token = new CancellationTokenSource();
-                    await Task.Factory.StartNew(new Action(() =>
+                    Request.getToken gt = new Contract.Request.getToken()
                     {
-                        for (int i = 0; i < 5; i++)
+                        lec_id = App.CurrentLogin.lec_id,
+                        token = App.CurrentLogin.token,
+                        file_name = System.IO.Path.GetFileName(Model.Courseware),
+                        id = t
+                    };
+                    var data = await WebHelper.doPost<Reponse.getToken, Request.getToken>(Config.Interface_liveWareUpload, gt);
+                    if (data != null)
+                    {
+                        UploadFileHelper.Instance.Add(Model.Courseware, data.token, data.domain, data.key, UploadFileHelper.EnFileType.Courseware);
+                        fourthpage.IsChecked = true;
+                        _token = new CancellationTokenSource();
+                        await Task.Factory.StartNew(new Action(() =>
                         {
+                            for (int i = 0; i < 5; i++)
+                            {
+                                _token.Token.ThrowIfCancellationRequested();
+                                Thread.Sleep(1000);
+                            }
                             _token.Token.ThrowIfCancellationRequested();
-                            Thread.Sleep(1000);
-                        }
-                        _token.Token.ThrowIfCancellationRequested();
-                        this.Dispatcher.Invoke(new Action(() =>
-                        {
-                            LiveCenter.Current.Type = 0;
-                        }));
-                    }), _token.Token);
+                            this.Dispatcher.Invoke(new Action(() =>
+                            {
+                                LiveCenter.Current.Type = 0;
+                            }));
+                        }), _token.Token);
+                    }
                 }
 
                 MainWindow.Current.IsBusy = false;

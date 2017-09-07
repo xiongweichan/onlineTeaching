@@ -83,6 +83,8 @@ namespace TeacherClient.Pages
 
         private void EditTime_Click(object sender, RoutedEventArgs e)
         {
+            StartLive_Click(sender, e);
+
             var live = (sender as Control).Tag as Contract.Reponse.live;
             EditLiveTime win = new EditLiveTime(live.id);
             win.liveStartTime.SelectedValue = live.start_time != null ? live.start_time.GetTime() : DateTime.Now;

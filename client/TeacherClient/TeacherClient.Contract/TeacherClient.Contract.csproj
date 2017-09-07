@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="courselesson.cs" />
     <Compile Include="lesson.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reponse\bankcardDetail.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Request\course.cs" />
     <Compile Include="Request\courseAdd.cs" />
     <Compile Include="Request\courseChangeTitle.cs" />
+    <Compile Include="Request\courseLessonUpload.cs" />
     <Compile Include="Request\courseware.cs" />
     <Compile Include="Request\coursewareAdd.cs" />
     <Compile Include="Request\coursewareChangeTitle.cs" />
