@@ -47,6 +47,7 @@ namespace TeacherClient.Pages
             if (!_isNew)
             {
                 Init();
+                this.IsEnabled = false;
             }
         }
 

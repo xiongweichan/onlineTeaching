@@ -127,52 +127,59 @@ namespace TeacherClient.Pages
             else if (thirdpage.IsChecked == true)
             {
                 MainWindow.Current.IsBusy = true;
-                Request.liveAdd l = new Request.liveAdd();
-                l.cat_id = Model.CatID;
-                l.cat_id_1 = Model.CatID1;
-                l.cat_id_2 = Model.CatID2;
-                l.courseware = Model.Courseware;
-                l.end_time = Model.EndTime.ConvertDateTimeInt().ToString();
-                l.image = Model.Image;
-                l.intro = Model.Intro;
-                l.is_first = Model.IsFirst;
-                l.lec_id = App.CurrentLogin.lec_id;
-                l.price = Model.Price;
-                l.relate_live_id = Model.RelateLiveID;
-                l.start_time = Model.StartTime.ConvertDateTimeInt().ToString();
-                l.syllabus = Model.Syllabus;
-                l.title = Model.Title;
-                l.token = App.CurrentLogin.token;
-                var t = await WebHelper.doPost<string, Request.liveAdd>(Config.Interface_liveAdd, l);
-                if (t != null)
+                if (IsNew)
                 {
-                    Request.getToken gt = new Contract.Request.getToken()
+                    Request.liveAdd l = new Request.liveAdd();
+                    l.cat_id = Model.CatID;
+                    l.cat_id_1 = Model.CatID1;
+                    l.cat_id_2 = Model.CatID2;
+                    l.courseware = Model.Courseware;
+                    l.end_time = Model.EndTime.ConvertDateTimeInt().ToString();
+                    l.image = Model.Image;
+                    l.intro = Model.Intro;
+                    l.is_first = Model.IsFirst;
+                    l.lec_id = App.CurrentLogin.lec_id;
+                    l.price = Model.Price;
+                    l.relate_live_id = Model.RelateLiveID;
+                    l.start_time = Model.StartTime.ConvertDateTimeInt().ToString();
+                    l.syllabus = Model.Syllabus;
+                    l.title = Model.Title;
+                    l.token = App.CurrentLogin.token;
+                    var t = await WebHelper.doPost<string, Request.liveAdd>(Config.Interface_liveAdd, l);
+                    if (t != null)
                     {
-                        lec_id = App.CurrentLogin.lec_id,
-                        token = App.CurrentLogin.token,
-                        file_name = System.IO.Path.GetFileName(Model.Courseware),
-                        id = t
-                    };
-                    var data = await WebHelper.doPost<Reponse.getToken, Request.getToken>(Config.Interface_liveWareUpload, gt);
-                    if (data != null)
-                    {
-                        UploadFileHelper.Instance.Add(Model.Courseware, data.token, data.domain, data.key, UploadFileHelper.EnFileType.Courseware);
-                        fourthpage.IsChecked = true;
-                        _token = new CancellationTokenSource();
-                        await Task.Factory.StartNew(new Action(() =>
+                        Request.getToken gt = new Contract.Request.getToken()
                         {
-                            for (int i = 0; i < 5; i++)
+                            lec_id = App.CurrentLogin.lec_id,
+                            token = App.CurrentLogin.token,
+                            file_name = System.IO.Path.GetFileName(Model.Courseware),
+                            id = t
+                        };
+                        var data = await WebHelper.doPost<Reponse.getToken, Request.getToken>(Config.Interface_liveWareUpload, gt);
+                        if (data != null)
+                        {
+                            UploadFileHelper.Instance.Add(Model.Courseware, data.token, data.domain, data.key, UploadFileHelper.EnFileType.Courseware);
+                            fourthpage.IsChecked = true;
+                            _token = new CancellationTokenSource();
+                            await Task.Factory.StartNew(new Action(() =>
                             {
+                                for (int i = 0; i < 5; i++)
+                                {
+                                    _token.Token.ThrowIfCancellationRequested();
+                                    Thread.Sleep(1000);
+                                }
                                 _token.Token.ThrowIfCancellationRequested();
-                                Thread.Sleep(1000);
-                            }
-                            _token.Token.ThrowIfCancellationRequested();
-                            this.Dispatcher.Invoke(new Action(() =>
-                            {
-                                LiveCenter.Current.Type = 0;
-                            }));
-                        }), _token.Token);
+                                this.Dispatcher.Invoke(new Action(() =>
+                                {
+                                    LiveCenter.Current.Type = 0;
+                                }));
+                            }), _token.Token);
+                        }
                     }
+                }
+                else
+                {
+                    MessageWindow.Alter("提示", "接口未实现");
                 }
 
                 MainWindow.Current.IsBusy = false;
