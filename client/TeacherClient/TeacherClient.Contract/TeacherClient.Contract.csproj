@@ -58,8 +58,10 @@
     <Compile Include="Reponse\lessonList.cs" />
     <Compile Include="Reponse\listData.cs" />
     <Compile Include="Reponse\live.cs" />
+    <Compile Include="Reponse\liveDetail.cs" />
     <Compile Include="Reponse\liveGiftIndex.cs" />
     <Compile Include="Reponse\liveGiftList.cs" />
+    <Compile Include="Reponse\liveReward.cs" />
     <Compile Include="Reponse\liveRewardIndex.cs" />
     <Compile Include="Reponse\liveRewardList.cs" />
     <Compile Include="Reponse\Login.cs" />
@@ -82,6 +84,7 @@
     <Compile Include="Request\course.cs" />
     <Compile Include="Request\courseAdd.cs" />
     <Compile Include="Request\courseChangeTitle.cs" />
+    <Compile Include="Reponse\courseDetail.cs" />
     <Compile Include="Request\courseLessonUpload.cs" />
     <Compile Include="Request\courseware.cs" />
     <Compile Include="Request\coursewareAdd.cs" />

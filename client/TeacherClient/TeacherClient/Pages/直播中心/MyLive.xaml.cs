@@ -14,6 +14,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using TeacherClient.Core;
+using Reponse = TeacherClient.Contract.Reponse;
+using Request = TeacherClient.Contract.Request;
 
 namespace TeacherClient.Pages
 {
@@ -22,6 +25,15 @@ namespace TeacherClient.Pages
     /// </summary>
     public partial class MyLive : UserControl
     {
+        public LiveModel Live
+        {
+            get { return (LiveModel)GetValue(ModelProperty); }
+            set { SetValue(ModelProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Model.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ModelProperty =
+            DependencyProperty.Register("Live", typeof(LiveModel), typeof(RequestLive), new PropertyMetadata());
 
 
         public int Status
@@ -47,31 +59,57 @@ namespace TeacherClient.Pages
             }
         }
 
-        public Contract.Reponse.live Live { get; set; }
+        async void RefreshData(string id)
+        {
+            MainWindow.Current.IsBusy = true;
+            Request.RequestID l = new Request.RequestID();
+            l.lec_id = App.CurrentLogin.lec_id;
+            l.token = App.CurrentLogin.token;
+            l.id = id;
+            var d = await WebHelper.doPost<Reponse.liveDetail, Request.RequestID>(Config.Interface_liveDetail, l);
+            Live.CatID = d.cat_id;
+            Live.CatID1 = d.cat_id_1;
+            Live.CatID2 = d.cat_id_2;
+            Live.Courseware = d.courseware;
+            Live.EndTime = d.end_time.GetTime();
+            Live.ID = d.id;
+            Live.Image = d.image;
+            Live.Intro = d.intro;
+            Live.IsFirst = d.is_first;
+            Live.Price = d.price;
+            Live.RelateLiveID = d.relate_live_id;
+            Live.StartTime = d.start_time.GetTime();
+            Live.Syllabus = d.syllabus;
+            Live.Title = d.title;
+            this.DataContext = this;
+
+            MediaHelper.Instance.PushStream(d.publishUrl);
+            _timer.Start();
+
+            MainWindow.Current.IsBusy = false;
+        }
 
         DispatcherTimer _timer;
-        public MyLive(Contract.Reponse.live live)
+        public MyLive(string id)
         {
-            Live = live;
             InitializeComponent();
+            _timer = new DispatcherTimer(new TimeSpan(0, 0, 0, 0, 40), DispatcherPriority.Send, callback, this.Dispatcher);
 
             this.Loaded += MyLive_Loaded;
-            this.DataContext = this;
+            RefreshData(id);
         }
 
         private void MyLive_Loaded(object sender, RoutedEventArgs e)
         {
-            _timer = new DispatcherTimer(new TimeSpan(0, 0, 0, 0, 40), DispatcherPriority.Send, callback, this.Dispatcher);
-            _timer.Start();
         }
         int msgCounter = 0;
         private void callback(object sender, EventArgs e)
         {
-            if (Live.start_time.GetTime() >= DateTime.Now)
+            if (Live.StartTime >= DateTime.Now)
             {
                 Status = 1;
                 //直播结束时间已经到了
-                if (Live.end_time.GetTime() < DateTime.Now)
+                if (Live.EndTime < DateTime.Now)
                 {
                     MessageWindow.Alter("提示", "直播结束！");
                     _timer.Stop();
@@ -83,21 +121,32 @@ namespace TeacherClient.Pages
                 //tbl_thumbnail1.Text = GetName(img_thumbnail1.Tag);
                 //img_thumbnail2.Source = GetImage(img_thumbnail2.Tag);
                 //tbl_thumbnail2.Text = GetName(img_thumbnail2.Tag);
-                tbl_livelong.Text = (DateTime.Now - Live.start_time.GetTime()).ToString(@"hh\:mm\:ss");
+                tbl_livelong.Text = (DateTime.Now - Live.StartTime).ToString(@"hh\:mm\:ss");
 
                 msgCounter++;
                 if (40 * msgCounter > 1000 * 10)
                 {
+                    GetLiveWoard();
                     msgCounter = 0;
-                    tbl_studentcount.Text = string.Format("{0}位", 148);
-                    tbl_giftcount.Text = string.Format("{0}个", 52);
-                    tbl_moneycount.Text = string.Format("{0}元", 24);
                 }
             }
             else
             {
                 Status = 0;
-                tbl_CountDown.Text = string.Format("距离您的直播开始时间还有{0}", (Live.start_time.GetTime() - DateTime.Now).ToString(@"hh\:mm\:ss"));
+                tbl_CountDown.Text = string.Format("距离您的直播开始时间还有{0}", (Live.StartTime - DateTime.Now).ToString(@"hh\:mm\:ss"));
+            }
+        }
+
+        async void GetLiveWoard()
+        {
+            Request.RequestID l = new Contract.Request.RequestID() { id = Live.ID, lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token };
+            var r = await WebHelper.doPost<Reponse.liveReward, Request.RequestID>(Config.Interface_liveReward, l);
+            if(r != null)
+            {
+                tbl_studentcount.Text = string.Format("{0}位", r.user_num);
+                tbl_giftcount.Text = string.Format("{0}个", r.gift_num);
+                tbl_moneycount.Text = string.Format("{0}元", r.reward_money);
+                icComment.ItemsSource = r.commentList;
             }
         }
 

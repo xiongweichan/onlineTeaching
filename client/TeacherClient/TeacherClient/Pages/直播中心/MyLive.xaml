@@ -41,15 +41,15 @@
                 <TextBlock Text="打赏：" FontSize="{StaticResource FontSize3}" Foreground="#333333"/>
                 <TextBlock x:Name="tbl_moneycount" FontSize="{StaticResource FontSize3}" Foreground="#333333"/>
             </StackPanel>
-            <ItemsControl Grid.Row="5" Height="185" Width="200">
+            <ItemsControl x:Name="icComment" Grid.Row="5" Height="185" Width="200">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="" FontSize="{StaticResource FontSize3}" Foreground="#666666"/>
-                                <TextBlock Text="" FontSize="{StaticResource FontSize3}" Foreground="#999999"/>
+                                <TextBlock Text="{Binding nickname}" FontSize="{StaticResource FontSize3}" Foreground="#666666"/>
+                                <TextBlock Text="{Binding add_time,Converter={StaticResource IntToTimeConverter}}" FontSize="{StaticResource FontSize3}" Foreground="#999999"/>
                             </StackPanel>
-                            <TextBlock TextWrapping="Wrap" FontSize="{StaticResource FontSize3}" Foreground="#666666"/>
+                            <TextBlock Text="{Binding comment}" TextWrapping="Wrap" FontSize="{StaticResource FontSize3}" Foreground="#666666"/>
                         </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

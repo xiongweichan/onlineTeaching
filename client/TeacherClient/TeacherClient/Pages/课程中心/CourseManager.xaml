@@ -105,11 +105,11 @@
                     <DataGridTemplateColumn Width="50" CellStyle="{StaticResource DataGridCellStyle1}">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding image}" Stretch="Fill" Width="16" Height="16"/>
+                                <Image Source="{Binding image, Converter={StaticResource PathToImageConverter}}" Stretch="Fill" Width="16" Height="16"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Binding="{Binding file_name}" Width="*" CellStyle="{StaticResource DataGridCellStyle1}"/>
+                    <DataGridTextColumn Binding="{Binding title}" Width="*" CellStyle="{StaticResource DataGridCellStyle1}"/>
                     <DataGridTextColumn Binding="{Binding file_size, Converter={StaticResource FileSizeConverter}, StringFormat='文件大小：{0}'}" Width="130" CellStyle="{StaticResource DataGridCellStyle1}"/>
                     <DataGridTextColumn Binding="{Binding FileType, StringFormat='文件类型：{0}'}" Width="100" CellStyle="{StaticResource DataGridCellStyle1}"/>
                     <DataGridTextColumn Binding="{Binding upload_time, Converter={StaticResource IntToTimeConverter}, StringFormat='上传时间：{0}'}" Width="200" CellStyle="{StaticResource DataGridCellStyle1}"/>

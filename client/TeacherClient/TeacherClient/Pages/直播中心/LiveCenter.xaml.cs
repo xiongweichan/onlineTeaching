@@ -43,14 +43,25 @@ namespace TeacherClient.Pages
         }
 
         bool _ShowMylive;
-        public void ShowMylive(bool value, Contract.Reponse.live l = null)
+        public void ShowMylive(bool value, string id = null)
         {
             _ShowMylive = value;
             if (value)
             {
-                _myLive = new MyLive(l);
+                _myLive = new MyLive(id);
             }
             ShowContent();
+        }
+
+        public void ModifyRequestLive(string id)
+        {
+            _requestLive = new RequestLive();
+            _requestLive.IsNew = false;
+            _requestLive.ID = id;
+            if (Type != 1)
+                Type = 1;
+            else
+                ShowContent();
         }
 
         MyLive _myLive;

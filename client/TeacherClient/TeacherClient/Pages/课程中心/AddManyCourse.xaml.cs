@@ -30,15 +30,15 @@ namespace TeacherClient.Pages
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
 
-            var source = icCourses.ItemsSource as ObservableCollection<Request.course>;
-            var tag = (sender as Control).Tag as Request.course;
+            var source = icCourses.ItemsSource as ObservableCollection<CourseModel>;
+            var tag = (sender as Control).Tag as CourseModel;
             source.Remove(tag);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var list = this.DataContext as ObservableCollection<Request.course>;
-            list.Add(new Request.course());
+            var list = this.DataContext as ObservableCollection<CourseModel>;
+            list.Add(new CourseModel());
         }
     }
 }

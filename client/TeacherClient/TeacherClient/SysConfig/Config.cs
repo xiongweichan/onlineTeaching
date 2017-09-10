@@ -72,6 +72,7 @@ namespace TeacherClient
         public static readonly string Interface_categoryList = "Live/LecCourse/categoryList";
         public static readonly string Interface_courseList = "Live/LecCourse/courseList";
         public static readonly string Interface_courseAdd = "Live/LecCourse/courseAdd";
+        public static readonly string Interface_courseDetail_LecCourse = "Live/LecCourse/courseDetail";
         public static readonly string Interface_courseDel = "Live/LecCourse/courseDel";
         public static readonly string Interface_courseChangeTitle = "Live/LecCourse/courseChangeTitle";
         public static readonly string Interface_courseLessonUpload = "Live/LecCourse/courseLessonUpload";
@@ -88,10 +89,12 @@ namespace TeacherClient
         public static readonly string Interface_upload = "Live/Upload/upload";
 
         public static readonly string Interface_liveList = "Live/LecLive/liveList";
-        public static readonly string Interface_liveChangeTime = " Live/LecLive/liveChangeTime";
-        public static readonly string Interface_liveDel = " Live/LecLive/liveDel";
-        public static readonly string Interface_liveCancel = " Live/LecLive/liveCancel";
-        public static readonly string Interface_liveAdd = " Live/LecLive/liveAdd";
+        public static readonly string Interface_liveChangeTime = "Live/LecLive/liveChangeTime";
+        public static readonly string Interface_liveDel = "Live/LecLive/liveDel";
+        public static readonly string Interface_liveCancel = "Live/LecLive/liveCancel"; 
+        public static readonly string Interface_liveAdd = "Live/LecLive/liveAdd";
+        public static readonly string Interface_liveDetail = "Live/LecLive/liveDetail";
+        public static readonly string Interface_liveReward = "Live/LecLive/liveReward";
 
         public class phoneCode
         {

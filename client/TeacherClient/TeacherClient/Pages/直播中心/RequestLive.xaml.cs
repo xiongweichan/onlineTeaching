@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Telerik.Windows.Controls;
+using TeacherClient.Core;
 using Reponse = TeacherClient.Contract.Reponse;
 using Request = TeacherClient.Contract.Request;
 
@@ -37,10 +38,46 @@ namespace TeacherClient.Pages
         public static readonly DependencyProperty ModelProperty =
             DependencyProperty.Register("Model", typeof(LiveModel), typeof(RequestLive), new PropertyMetadata());
 
+        public bool IsNew { get; set; }
+        string _ID;
+        public string ID
+        {
+            get { return _ID; }
+            set
+            {
+                _ID = value;
+                RefreshData();
+            }
+        }
 
+        async void RefreshData()
+        {
+            MainWindow.Current.IsBusy = true;
+            Request.RequestID l = new Request.RequestID();
+            l.lec_id = App.CurrentLogin.lec_id;
+            l.token = App.CurrentLogin.token;
+            l.id = _ID;
+            var d = await WebHelper.doPost<Reponse.liveDetail, Request.RequestID>(Config.Interface_liveDetail, l);
+            Model.CatID = d.cat_id;
+            Model.CatID1 = d.cat_id_1;
+            Model.CatID2 = d.cat_id_2;
+            Model.Courseware = d.courseware;
+            Model.EndTime = d.end_time.GetTime();
+            Model.ID = d.id;
+            Model.Image = d.image;
+            Model.Intro = d.intro;
+            Model.IsFirst = d.is_first;
+            Model.Price = d.price;
+            Model.RelateLiveID = d.relate_live_id;
+            Model.StartTime = d.start_time.GetTime();
+            Model.Syllabus = d.syllabus;
+            Model.Title = d.title;
+            MainWindow.Current.IsBusy = false;
+        }
 
         public RequestLive()
         {
+            IsNew = true;
             InitializeComponent();
             Model = new LiveModel() { Price = "0", RelateLiveID = "0" };
             this.DataContext = this;

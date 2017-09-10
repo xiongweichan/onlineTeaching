@@ -24,10 +24,9 @@ namespace TeacherClient
         MediaHelper()
         {
             int ret;
-            int ret2, idx, idx2;
+            int idx, idx2;
             m = new MediaInterface();
             ret = m.init(frameRate, sendBitRate, sendWidth, sendHeight, localWidth, localHeight, localSmallWidth, localSmallHeight);
-            ret2 = m.startPushStream("rtmp://incastyun.cn/live/media");
             idx = m.getLocalStreamIndex();
             idx2 = m.getSendStreamIndex();
             m.setShowSmallStream(1, 1, 1);
@@ -35,6 +34,10 @@ namespace TeacherClient
             //m.getShowSmallStream(out a, out b);
             //Console.WriteLine("getLocalStreamIndex:{0}, {1}, {2}, {3}, {4}, {5}", ret, ret2, idx, idx2, a, b);
 
+        }
+        public void PushStream(string address)
+        {//"rtmp://incastyun.cn/live/media"
+            int ret2 = m.startPushStream(address);
         }
         static MediaHelper _instance;
         public static MediaHelper Instance

@@ -44,6 +44,53 @@ namespace TeacherClient.Pages
             _isNew = isNew;
             _id = id;
             this.DataContext = this;
+            if (!_isNew)
+            {
+                Init();
+            }
+        }
+
+        async void Init()
+        {
+            MainWindow.Current.IsBusy = true;
+            Request.RequestID l = new Request.RequestID() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, id = _id };
+            var detail = await WebHelper.doPost<Reponse.courseDetail, Request.RequestID>(Config.Interface_courseDetail_LecCourse, l);
+            if (detail != null)
+            {
+                Model.CatID1 = detail.cat_id;
+                Model.CatID2 = detail.cat_id_1;
+                Model.CatID3 = detail.cat_id_2;
+                Model.CourseType = detail.course_type;
+                Model.Detail = detail.intro;
+                Model.id = detail.id;
+                Model.Image = detail.image;
+                Model.Name = detail.title;
+                if (Model.CourseType == "0")
+                    Model.OneCourse = Transfer(detail.lessonList[0], 1);
+                else
+                {
+                    for (int i = 0; i < Model.ManyCourse.Count; i++)
+                    {
+                        Model.ManyCourse.Add(Transfer(detail.lessonList[i], i + 1));
+                    }
+                }
+            }
+
+
+            MainWindow.Current.IsBusy = false;
+        }
+
+        CourseModel Transfer(Reponse.courseDetailLesson d, int i)
+        {
+            CourseModel m = new CourseModel();
+            m.CourseID = d.course_id;
+            m.CourseNumber = (i + 1).ToString();
+            m.Document = d.courseware;
+            m.DocumentName = d.courseware_file_name;
+            m.Price = d.price;
+            m.Vedio = d.video;
+            m.VedioName = d.video_file_name;
+            return m;
         }
 
         async void ButtonOK_Click(object sender, RoutedEventArgs e)
@@ -61,14 +108,14 @@ namespace TeacherClient.Pages
                 request.intro = Model.Detail;
                 request.course_type = Model.CourseType;
                 request.lessonList = Model.CourseType == "0" ?
-                    new List<courselesson> { new courselesson
+                    new List<courseAddlesson> { new courseAddlesson
                     {
                         lesson_number = Model.OneCourse.CourseNumber,
                         price = Model.OneCourse.Price,
                         courseware_file_name = Model.OneCourse.DocumentName,
                         video_file_name = Model.OneCourse.VedioName,
                     } } :
-                    Model.ManyCourse.Select(T => new courselesson
+                    Model.ManyCourse.Select(T => new courseAddlesson
                     {
                         lesson_number = (1 + Model.ManyCourse.IndexOf(T)).ToString(),
                         price = T.Price,
@@ -78,22 +125,31 @@ namespace TeacherClient.Pages
                 var b = await WebHelper.doPost<string, Request.courseAdd>(Config.Interface_courseAdd, request);
                 if (b != null)
                 {
+                    //
+                    List<CourseModel> f = new List<CourseModel>();
                     if (Model.CourseType == "0")
+                        f.Add(Model.OneCourse);
+                    else f.AddRange(Model.ManyCourse);
+
+                    Request.RequestID l = new Request.RequestID() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, id = b };
+                    var detail = await WebHelper.doPost<Reponse.courseDetail, Request.RequestID>(Config.Interface_courseDetail_LecCourse, l);
+                    if (detail == null) return;
+                    foreach (var item in detail.lessonList)
                     {
                         Request.courseLessonUpload t = new Contract.Request.courseLessonUpload()
                         {
                             lec_id = App.CurrentLogin.lec_id,
                             token = App.CurrentLogin.token,
-                            file_name = System.IO.Path.GetFileName(Model.OneCourse.Vedio),
-                            id = b,
+                            file_name = item.video_file_name,
+                            id = item.id,
                             type = "1"
                         };
                         Request.courseLessonUpload t1 = new Contract.Request.courseLessonUpload()
                         {
                             lec_id = App.CurrentLogin.lec_id,
                             token = App.CurrentLogin.token,
-                            file_name = System.IO.Path.GetFileName(Model.OneCourse.Document),
-                            id = b,
+                            file_name = item.courseware_file_name,
+                            id = item.id,
                             type = "0"
                         };
                         var data = await WebHelper.doPost<Reponse.getToken, Request.courseLessonUpload>(Config.Interface_courseLessonUpload, t);
@@ -101,18 +157,16 @@ namespace TeacherClient.Pages
                         var data1 = await WebHelper.doPost<Reponse.getToken, Request.courseLessonUpload>(Config.Interface_courseLessonUpload, t1);
                         if (data != null && data1 != null)
                         {
-                            UploadFileHelper.Instance.Add(Model.OneCourse.Vedio, data.token, data.domain, data.key, UploadFileHelper.EnFileType.Course);
-                            UploadFileHelper.Instance.Add(Model.OneCourse.Document, data.token, data.domain, data.key, UploadFileHelper.EnFileType.Course);
+                            var v = f.FirstOrDefault(T => T.VedioName == item.video_file_name).Vedio;
+                            var d = f.FirstOrDefault(T => T.DocumentName == item.courseware_file_name).Document;
 
-                            CourseCenter.Current.ShowCourseManager(true);
+                            UploadFileHelper.Instance.Add(v, data.token, data.domain, data.key, UploadFileHelper.EnFileType.Course);
+                            UploadFileHelper.Instance.Add(d, data.token, data.domain, data.key, UploadFileHelper.EnFileType.Course);
+
                         }
                     }
-                    else
-                    {
-                        //多节
-                    }
 
-
+                    CourseCenter.Current.ShowCourseManager(true);
                 }
             }
             else
