@@ -67,6 +67,7 @@ namespace TeacherClient.Pages
             l.token = App.CurrentLogin.token;
             l.id = id;
             var d = await WebHelper.doPost<Reponse.liveDetail, Request.RequestID>(Config.Interface_liveDetail, l);
+            Live = new LiveModel();
             Live.CatID = d.cat_id;
             Live.CatID1 = d.cat_id_1;
             Live.CatID2 = d.cat_id_2;
@@ -105,30 +106,27 @@ namespace TeacherClient.Pages
         int msgCounter = 0;
         private void callback(object sender, EventArgs e)
         {
+            if (Live == null) return;
+#if DEBUG
+            if (true)
+#else
             if (Live.StartTime >= DateTime.Now)
+#endif
             {
                 Status = 1;
                 //直播结束时间已经到了
+#if DEBUG
+            if (false)
+#else
                 if (Live.EndTime < DateTime.Now)
+#endif
                 {
                     MessageWindow.Alter("提示", "直播结束！");
                     _timer.Stop();
-                    MediaHelper.Instance.Close();
                     return;
                 }
-<<<<<<< HEAD
-                MediaHelper.Instance.Open();
-                if (msgCounter % 5 == 0)
-                {
-                    var img = GetImage();
-                    if(img != null)
-                    {
-                        img_main.Source = img;
-                    }
-                }
-=======
-                img_main.Source = GetImage();
->>>>>>> parent of 9f093c4... 修改bug
+                if (msgCounter % 10 == 0)
+                    img_main.Source = GetImage();
                 //img_main.Source = GetImage(img_main.Tag);
                 //img_thumbnail1.Source = GetImage(img_thumbnail1.Tag);
                 //tbl_thumbnail1.Text = GetName(img_thumbnail1.Tag);
@@ -154,7 +152,7 @@ namespace TeacherClient.Pages
         {
             Request.RequestID l = new Contract.Request.RequestID() { id = Live.ID, lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token };
             var r = await WebHelper.doPost<Reponse.liveReward, Request.RequestID>(Config.Interface_liveReward, l);
-            if(r != null)
+            if (r != null)
             {
                 tbl_studentcount.Text = string.Format("{0}位", r.user_num);
                 tbl_giftcount.Text = string.Format("{0}个", r.gift_num);
@@ -201,24 +199,47 @@ namespace TeacherClient.Pages
         {
             var img = sender as Image;
             var p = e.GetPosition(img);
-            if (p.X / img.ActualWidth > (MediaHelper.Instance.localWidth - MediaHelper.Instance.localSmallWidth) / MediaHelper.Instance.localWidth)
+            if (p.X / img.ActualWidth > (double)(MediaHelper.Instance.localWidth - MediaHelper.Instance.localSmallWidth) / MediaHelper.Instance.localWidth)
             {
-                if (p.Y / img.ActualHeight < MediaHelper.Instance.localSmallHeight / MediaHelper.Instance.localHeight)
+                if (p.Y / img.ActualHeight < (double)MediaHelper.Instance.localSmallHeight / MediaHelper.Instance.localHeight)
                 //切换1
                 {
                     var i = _catch[0];
-                    _catch[0] = _catch[1];
-                    _catch[1] = i;
+                    //_catch[0] = _catch[1];
+                    //_catch[1] = i;
+                    ChangeCatch(i);
                     MediaHelper.Instance.SetLocalStreamIndex(_catch[0]);
                 }
-                else if (p.Y / img.ActualHeight < 2 * MediaHelper.Instance.localSmallHeight / MediaHelper.Instance.localHeight)
+                else if (p.Y / img.ActualHeight < 2 * (double)MediaHelper.Instance.localSmallHeight / MediaHelper.Instance.localHeight)
                 //切换2
                 {
                     var i = _catch[0];
-                    _catch[0] = _catch[2];
-                    _catch[2] = i;
+                    //_catch[0] = _catch[2];
+                    //_catch[2] = i;
+                    ChangeCatch(i);
                     MediaHelper.Instance.SetLocalStreamIndex(_catch[0]);
                 }
+            }
+        }
+        void ChangeCatch(int i)
+        {
+            switch (i)
+            {
+                case 0:
+                    _catch[0] = i;
+                    _catch[1] = 1;
+                    _catch[1] = 2;
+                    break;
+                case 1:
+                    _catch[0] = i;
+                    _catch[1] = 0;
+                    _catch[1] = 2;
+                    break;
+                case 2:
+                    _catch[0] = i;
+                    _catch[1] = 0;
+                    _catch[1] = 1;
+                    break;
             }
         }
 

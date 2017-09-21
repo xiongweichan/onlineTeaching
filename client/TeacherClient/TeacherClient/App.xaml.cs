@@ -99,7 +99,7 @@ namespace TeacherClient
             }
             set
             {
-                ConfigManagerHelper.SetConfigByName(Config.IsAutoStart, false.ToString());
+                ConfigManagerHelper.SetConfigByName(Config.IsAutoStart, value.ToString());
                 SetAutoStartup();
             }
         }

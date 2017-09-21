@@ -76,7 +76,11 @@ namespace TeacherClient.Pages
         private void StartLive_Click(object sender, RoutedEventArgs e)
         {
             var l = (sender as Control).Tag as Contract.Reponse.live;
+#if DEBUG
+            if(true)
+#else
             if (l.start_time != null && l.start_time.GetTime().AddHours(1) > DateTime.Now)
+#endif
             {
                 LiveCenter.Current.ShowMylive(true,l.id);
             }
@@ -84,7 +88,10 @@ namespace TeacherClient.Pages
 
         private void EditTime_Click(object sender, RoutedEventArgs e)
         {
+#if DEBUG
             StartLive_Click(sender, e);
+#else
+#endif
 
             var live = (sender as Control).Tag as Contract.Reponse.live;
             EditLiveTime win = new EditLiveTime(live.id);

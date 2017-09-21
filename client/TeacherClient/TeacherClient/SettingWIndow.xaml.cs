@@ -35,11 +35,12 @@ namespace TeacherClient
         {
             Model.IsAutoStart = App.IsAutoStartup;
             Model.CachePath = CacheHelper.CacheFilePath;
-            Model.CacheCount = CacheHelper.GetCacheCount();
+            Model.CacheCount = CacheHelper.GetCacheCount().ToString("f1") + "M";
         }
 
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
+            if (MessageWindow.Alter("询问", "是否确定退出？") != true) return;
             var wins = App.Current.Windows;
             LoginWindow win = new LoginWindow(true);
             win.Show();
@@ -52,7 +53,7 @@ namespace TeacherClient
         {
             App.IsAutoStartup = Model.IsAutoStart;
             CacheHelper.CacheFilePath = Model.CachePath;
-            Model.CacheCount = CacheHelper.GetCacheCount();
+            Model.CacheCount = CacheHelper.GetCacheCount().ToString("f1") + "M";
         }
 
         private void CancelSetting_Click(object sender, RoutedEventArgs e)
@@ -63,6 +64,11 @@ namespace TeacherClient
         private void CheckNewVersion_Click(object sender, RoutedEventArgs e)
         {
             //TODO:检查更新
+        }
+
+        private void Btn_ClearCacheClick(object sender, RoutedEventArgs e)
+        {
+            CacheHelper.ClearCache();
         }
     }
     public class SettingModel : ViewModelBase
@@ -98,8 +104,8 @@ namespace TeacherClient
                 this.OnPropertyChanged("CachePath");
             }
         }
-        double _CacheCount;
-        public double CacheCount
+        string _CacheCount;
+        public string CacheCount
         {
             get { return _CacheCount; }
             set

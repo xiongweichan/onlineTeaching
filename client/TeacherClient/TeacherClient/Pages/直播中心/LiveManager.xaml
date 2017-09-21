@@ -11,7 +11,7 @@
         <DataTemplate x:Key="CheckFailed">
             <Button Style="{StaticResource ButtonStyle2}" Click="EditRequest_Click">
                 <StackPanel Orientation="Horizontal">
-                    <Image Stretch="Fill" Width="16" Height="16" Source="/Images/直播中心/修改时间.png"/>
+                    <Image Stretch="Fill" Width="16" Height="16" Source="/Images/直播中心/修改申请.png"/>
                     <TextBlock Text="修改申请" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
                 </StackPanel>
             </Button>
@@ -26,7 +26,7 @@
                 </Button>
                 <Button Style="{StaticResource ButtonStyle2}" Click="CancelLive_Click" Tag="{Binding}" Margin="8,0,0,0">
                     <StackPanel Orientation="Horizontal">
-                        <Image Stretch="Fill" Width="16" Height="16" Source="/Images/直播中心/修改时间.png"/>
+                        <Image Stretch="Fill" Width="16" Height="16" Source="/Images/直播中心/取消申请.png"/>
                         <TextBlock Text="取消直播" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
                     </StackPanel>                    
                 </Button>
@@ -35,7 +35,7 @@
         <DataTemplate x:Key="LiveEnd">
             <Button Style="{StaticResource ButtonStyle2}" Click="DelRecord_Click" Tag="{Binding}">
                 <StackPanel Orientation="Horizontal">
-                    <Image Stretch="Fill" Width="16" Height="16" Source="/Images/直播中心/修改时间.png"/>
+                    <Image Stretch="Fill" Width="16" Height="16" Source="/Images/直播中心/删除.png"/>
                     <TextBlock Text="删除直播" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
                 </StackPanel>
             </Button>
@@ -51,7 +51,7 @@
         <DataTemplate x:Key="WaitLive">
             <Button Style="{StaticResource ButtonStyle2}" Click="StartLive_Click" Tag="{Binding}">
                 <StackPanel Orientation="Horizontal">
-                    <Image Stretch="Fill" Width="16" Height="16" Source="/Images/直播中心/修改时间.png"/>
+                    <Image Stretch="Fill" Width="16" Height="16" Source="/Images/直播中心/形状-54.png"/>
                     <TextBlock Text="开始直播" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
                 </StackPanel>
             </Button>

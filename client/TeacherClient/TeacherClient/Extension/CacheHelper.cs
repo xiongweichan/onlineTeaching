@@ -25,8 +25,18 @@ namespace TeacherClient
                     path = _defaultpath;
                     ConfigManagerHelper.SetConfigByName(Config.CacheFilePath, _defaultpath);
                 }
-                if (!Directory.Exists(path))
-                    Directory.CreateDirectory(path);
+                try
+                {
+                    if (!Directory.Exists(path))
+                        Directory.CreateDirectory(path);
+                }
+                catch(Exception)
+                {
+                    path = _defaultpath;
+                    ConfigManagerHelper.SetConfigByName(Config.CacheFilePath, _defaultpath);
+                    if (!Directory.Exists(path))
+                        Directory.CreateDirectory(path);
+                }
                 return path;
             }
             set
