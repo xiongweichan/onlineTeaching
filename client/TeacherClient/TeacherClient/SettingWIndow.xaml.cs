@@ -69,6 +69,7 @@ namespace TeacherClient
         private void Btn_ClearCacheClick(object sender, RoutedEventArgs e)
         {
             CacheHelper.ClearCache();
+            Model.CacheCount = CacheHelper.GetCacheCount().ToString("f1") + "M";
         }
     }
     public class SettingModel : ViewModelBase
