@@ -24,7 +24,7 @@
                         <TextBlock Text="修改时间" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
                     </StackPanel>
                 </Button>
-                <Button Style="{StaticResource ButtonStyle2}" Click="CancelLive_Click" Tag="{Binding}">
+                <Button Style="{StaticResource ButtonStyle2}" Click="CancelLive_Click" Tag="{Binding}" Margin="8,0,0,0">
                     <StackPanel Orientation="Horizontal">
                         <Image Stretch="Fill" Width="16" Height="16" Source="/Images/直播中心/修改时间.png"/>
                         <TextBlock Text="取消直播" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
@@ -87,7 +87,7 @@
                 <DataGridTextColumn Header="开始时间" Binding="{Binding start_time, Converter={StaticResource IntToTimeConverter}, ConverterParameter='yyyy-MM-dd HH:mm'}" Width="200" CellStyle="{DynamicResource DataGridCellStyle1}"/>
                 <DataGridTextColumn Header="结束时间" Binding="{Binding end_time, Converter={StaticResource IntToTimeConverter}, ConverterParameter='yyyy-MM-dd HH:mm'}" Width="200" CellStyle="{DynamicResource DataGridCellStyle1}"/>
                 <DataGridTextColumn Header="状态" Binding="{Binding ., Converter={StaticResource LiveStatusConverter}}" Width="200" CellStyle="{DynamicResource DataGridCellStyle1}"/>
-                <DataGridTemplateColumn Header="操作" CellTemplateSelector="{StaticResource LiveStatusOperationTemplateSelector}"/>
+                <DataGridTemplateColumn Header="操作" CellTemplateSelector="{StaticResource LiveStatusOperationTemplateSelector}" CellStyle="{DynamicResource DataGridCellStyle1}"/>
             </DataGrid.Columns>
         </DataGrid>
         <local:MyDataPage Grid.Row="2"  x:Name="pagerData" PagerIndexChanged="pagerData_PagerIndexChanged"

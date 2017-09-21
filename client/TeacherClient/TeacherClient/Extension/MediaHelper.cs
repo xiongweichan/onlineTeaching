@@ -50,10 +50,14 @@ namespace TeacherClient
             }
         }
 
+        public void Open()
+        {
+            _instance.m.Start();
+        }
+
         public void Close()
         {
-            _instance.m.Dispose();
-            _instance = null;
+            _instance.m.Stop();
         }
 
         public Stream GetImage()

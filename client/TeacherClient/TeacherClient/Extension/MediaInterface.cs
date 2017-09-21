@@ -24,6 +24,16 @@ namespace TeacherClient
             Media_DeletePtr(media);
         }
 
+        public void Stop()
+        {
+            setRun(0);
+        }
+
+        public void Start()
+        {
+            setRun(1);
+        }
+
         //**********************************************************************************************************************
         //usage: init media module
         //para:
@@ -178,6 +188,17 @@ namespace TeacherClient
             needShowB = 0;
             Media_GetShowSmallStream(media, out needShowMain, out needShowA, out needShowB);
         }
+        //**********************************************************************************************************************
+        //usage: 
+        //设置运行状态
+        //para:
+        //[in] needRun(0 停止一切直播行为，非0 开始直播行为)
+        //return:                                 
+        //**********************************************************************************************************************
+        public void setRun(int needRun)
+        {
+            Media_SetRun(media, needRun);
+        }
 
         [DllImport("libMedia.dll", EntryPoint = "Media_CreatePtr", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr Media_CreatePtr();
@@ -206,5 +227,8 @@ namespace TeacherClient
         private static extern void Media_SetShowSmallStream(IntPtr m, int needShowMain, int needShowA, int needShowB);
         [DllImport("libMedia.dll", EntryPoint = "Media_GetShowSmallStream", CallingConvention = CallingConvention.Cdecl)]
         private static extern void Media_GetShowSmallStream(IntPtr m, out int needShowMain, out int needShowA, out int needShowB);
+
+        [DllImport("libMedia.dll", EntryPoint = "Media_SetRun", CallingConvention = CallingConvention.Cdecl)]
+        private static extern void Media_SetRun(IntPtr m, int needRun);
     }
 }

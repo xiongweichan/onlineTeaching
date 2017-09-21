@@ -113,9 +113,22 @@ namespace TeacherClient.Pages
                 {
                     MessageWindow.Alter("提示", "直播结束！");
                     _timer.Stop();
+                    MediaHelper.Instance.Close();
                     return;
                 }
+<<<<<<< HEAD
+                MediaHelper.Instance.Open();
+                if (msgCounter % 5 == 0)
+                {
+                    var img = GetImage();
+                    if(img != null)
+                    {
+                        img_main.Source = img;
+                    }
+                }
+=======
                 img_main.Source = GetImage();
+>>>>>>> parent of 9f093c4... 修改bug
                 //img_main.Source = GetImage(img_main.Tag);
                 //img_thumbnail1.Source = GetImage(img_thumbnail1.Tag);
                 //tbl_thumbnail1.Text = GetName(img_thumbnail1.Tag);
