@@ -149,22 +149,32 @@ namespace TeacherClient
                         UploadProgressHandler upph = new UploadProgressHandler(UploadProgress);
                         UploadController upctl = new UploadController(UploadControl);
                         HttpResult result = await ru.UploadFileAsync(LocalFile, SaveKey, Token, RecordFile, maxTry, upph, upctl);
-                        if (result.Code == 200)
+                        try
                         {
-                            dynamic dy = result.Text.FromJson<dynamic>();
-                            this.Hash = dy.hash;
-                            this.Link = dy.key;
+                            if (result != null && result.Code == 200)
+                            {
+                                dynamic dy = result.Text.FromJson<dynamic>();
+                                this.Hash = dy.hash;
+                                this.Link = dy.key;
+                            }
+                            else
+                            {
+                                Log.Error(result);
+                                MessageWindow.Alter("提示", "上传失败");
+                            }
+                            if (Complated != null)
+                                Complated(this, new EventArgs());
                         }
-                        else
+                        catch(Exception ex)
                         {
-                            Log.Error(result);
-                            MessageWindow.Alter("提示", "上传失败");
-                        }
+                            Log.Error(ex);
+                        }                        
                     }
-                    catch (Exception) { }
+                    catch (Exception ex)
+                    {
+                        Log.Error(ex);
+                    }
                 }
-                if (Complated != null)
-                    Complated(this, new EventArgs());
             }
 
             public void Cancel()
