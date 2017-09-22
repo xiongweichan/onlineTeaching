@@ -44,7 +44,7 @@ namespace TeacherClient
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Log.Error(ex);
             }
@@ -137,27 +137,31 @@ namespace TeacherClient
                 {
                     if (Started != null)
                         Started(this, new EventArgs());
-                    // 包含两个参数，并且都有默认值
-                    // 参数1(bool): uploadFromCDN是否从CDN加速上传，默认否
-                    // 参数2(enum): chunkUnit上传分片大小，可选值128KB,256KB,512KB,1024KB,2048KB,4096KB
-                    ResumableUploader ru = new ResumableUploader(false, ChunkUnit.U128K);
-                    //最大尝试次数(有效值1~20)，在上传过程中(如mkblk或者bput操作)如果发生错误，它将自动重试，如果没有错误则无需重试
-                    int maxTry = 10;
-                    // 使用默认进度处理，使用自定义上传控制            
-                    UploadProgressHandler upph = new UploadProgressHandler(UploadProgress);
-                    UploadController upctl = new UploadController(UploadControl);
-                    HttpResult result = await ru.UploadFileAsync(LocalFile, SaveKey, Token, RecordFile, maxTry, upph, upctl);
-                    if (result.Code == 200)
+                    try
                     {
-                        dynamic dy = result.Text.FromJson<dynamic>();
-                        this.Hash = dy.hash;
-                        this.Link = dy.key;
+                        // 包含两个参数，并且都有默认值
+                        // 参数1(bool): uploadFromCDN是否从CDN加速上传，默认否
+                        // 参数2(enum): chunkUnit上传分片大小，可选值128KB,256KB,512KB,1024KB,2048KB,4096KB
+                        ResumableUploader ru = new ResumableUploader(false, ChunkUnit.U128K);
+                        //最大尝试次数(有效值1~20)，在上传过程中(如mkblk或者bput操作)如果发生错误，它将自动重试，如果没有错误则无需重试
+                        int maxTry = 10;
+                        // 使用默认进度处理，使用自定义上传控制            
+                        UploadProgressHandler upph = new UploadProgressHandler(UploadProgress);
+                        UploadController upctl = new UploadController(UploadControl);
+                        HttpResult result = await ru.UploadFileAsync(LocalFile, SaveKey, Token, RecordFile, maxTry, upph, upctl);
+                        if (result.Code == 200)
+                        {
+                            dynamic dy = result.Text.FromJson<dynamic>();
+                            this.Hash = dy.hash;
+                            this.Link = dy.key;
+                        }
+                        else
+                        {
+                            Log.Error(result);
+                            MessageWindow.Alter("提示", "上传失败");
+                        }
                     }
-                    else
-                    {
-                        Log.Error(result);
-                        MessageWindow.Alter("提示", "上传失败");
-                    }
+                    catch (Exception) { }
                 }
                 if (Complated != null)
                     Complated(this, new EventArgs());

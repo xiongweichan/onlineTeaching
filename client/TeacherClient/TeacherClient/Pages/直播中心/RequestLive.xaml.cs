@@ -79,7 +79,7 @@ namespace TeacherClient.Pages
         {
             IsNew = true;
             InitializeComponent();
-            Model = new LiveModel() { Price = "0", RelateLiveID = "0" };
+            Model = new LiveModel() { Price = "0", RelateLiveID = "0", StartTime = DateTime.Now, EndTime = DateTime.Now };
             this.DataContext = this;
             Init();
         }

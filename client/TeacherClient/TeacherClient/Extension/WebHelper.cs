@@ -21,7 +21,11 @@ namespace TeacherClient
             var ss = md5.ComputeHash(Encoding.UTF8.GetBytes(s));
             var apisign = ToHexString(md5.Hash);
 
-            return string.Format("data={0}&apisign={1}", data, apisign);
+            var a = System.Web.HttpUtility.UrlEncode(data);
+            var b = System.Web.HttpUtility.UrlEncode(apisign);
+            return string.Format("data={0}&apisign={1}", a, b);
+
+            //return string.Format("data={0}&apisign={1}", data, apisign);
         }
 
         static string ToHexString(byte[] bys)
