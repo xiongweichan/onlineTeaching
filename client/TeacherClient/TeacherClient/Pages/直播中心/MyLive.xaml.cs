@@ -107,26 +107,18 @@ namespace TeacherClient.Pages
         private void callback(object sender, EventArgs e)
         {
             if (Live == null) return;
-#if DEBUG
-            if (true)
-#else
-            if (Live.StartTime >= DateTime.Now)
-#endif
+            if (Live.StartTime <= DateTime.Now)
             {
                 Status = 1;
                 //直播结束时间已经到了
-#if DEBUG
-            if (false)
-#else
                 if (Live.EndTime < DateTime.Now)
-#endif
                 {
                     MessageWindow.Alter("提示", "直播结束！");
                     _timer.Stop();
                     return;
                 }
                 if (msgCounter % 10 == 0)
-                    img_main.Source = GetImage();
+                    img_main.Source = GetImage() ?? img_main.Source;
                 //img_main.Source = GetImage(img_main.Tag);
                 //img_thumbnail1.Source = GetImage(img_thumbnail1.Tag);
                 //tbl_thumbnail1.Text = GetName(img_thumbnail1.Tag);
@@ -187,6 +179,7 @@ namespace TeacherClient.Pages
         ImageSource GetImage()
         {
             var stream = MediaHelper.Instance.GetImage();
+            if (stream == null) return null;
             BitmapImage bi = new BitmapImage();
             bi.BeginInit();
             bi.StreamSource = stream;

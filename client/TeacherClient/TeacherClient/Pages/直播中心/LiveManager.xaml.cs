@@ -76,11 +76,7 @@ namespace TeacherClient.Pages
         private void StartLive_Click(object sender, RoutedEventArgs e)
         {
             var l = (sender as Control).Tag as Contract.Reponse.live;
-#if DEBUG
-            if(true)
-#else
             if (l.start_time != null && l.start_time.GetTime().AddHours(1) > DateTime.Now)
-#endif
             {
                 LiveCenter.Current.ShowMylive(true,l.id);
             }

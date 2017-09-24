@@ -193,14 +193,16 @@
                     <Run Text="*" Foreground="#ff0000"/>
                     <Run Text="开始时间：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
                         </TextBlock>
-                        <telerik:RadDateTimePicker Width="433" Height="20" SelectedValue="{Binding Model.StartTime}"/>
+                        <telerik:RadDateTimePicker Width="433" Height="20" SelectedValue="{Binding Model.StartTime}"
+                                                   SelectableDateStart="2000-01-01"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
                         <TextBlock>
                     <Run Text="*" Foreground="#ff0000"/>
                     <Run Text="结束时间：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
                         </TextBlock>
-                        <telerik:RadDateTimePicker Width="433" Height="20" SelectedValue="{Binding Model.EndTime}"/>
+                        <telerik:RadDateTimePicker Width="433" Height="20" SelectedValue="{Binding Model.EndTime}"
+                                                   SelectableDateStart="{Binding Model.StartTime}"/>
                     </StackPanel>
                     <Button Content="提交" Width="130" Height="30" Background="#0096ff" Foreground="#ffffff" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Left"
                     Click="btnNext_Click" Margin="0,30,0,0"/>

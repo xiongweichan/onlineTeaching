@@ -318,6 +318,8 @@ namespace TeacherClient.Pages
             set
             {
                 _StartTime = value;
+                if (EndTime < _StartTime)
+                    EndTime = _StartTime;
                 this.OnPropertyChanged("StartTime");
             }
         }
@@ -326,8 +328,8 @@ namespace TeacherClient.Pages
         {
             get { return _EndTime; }
             set
-            {
-                _EndTime = value;
+            {                
+                _EndTime = value < _StartTime ? _StartTime : value;
                 this.OnPropertyChanged("EndTime");
             }
         }
