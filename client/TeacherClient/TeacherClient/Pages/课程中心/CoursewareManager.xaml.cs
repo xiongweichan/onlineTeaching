@@ -78,6 +78,7 @@ namespace TeacherClient.Pages
         private void Property_Click(object sender, RoutedEventArgs e)
         {
             var c = (sender as Control).Tag as Reponse.courseware;
+            if (c == null) return;
             CoursePropertyWindow win = new CoursePropertyWindow(c);
             win.ShowDialog();
         }
