@@ -12,8 +12,8 @@
             <StackPanel Orientation="Horizontal">
                 <Image Height="90" Width="90" Stretch="Fill" Source="{Binding userInfo.head, Converter={StaticResource PathToImageConverter}}" Margin="16,0,0,0"/>
                 <StackPanel VerticalAlignment="Center" Margin="16,0,0,0">
-                    <TextBlock VerticalAlignment="Center"><Run Text="昵称：" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground39}"/>
-                        <Run Text="{Binding userInfo.nickname}" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground3}"/></TextBlock>
+                    <TextBlock VerticalAlignment="Center"><Run Text="姓名：" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground39}"/>
+                        <Run Text="{Binding userInfo.realname}" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground3}"/></TextBlock>
                     <TextBlock VerticalAlignment="Center" Margin="0,16"><Run Text="性别：" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground39}"/>
                         <Run Text="{Binding userInfo.sex, Converter={StaticResource SexIntToStringConverter}}" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground3}"/></TextBlock>
                     <TextBlock VerticalAlignment="Center"><Run Text="年龄：" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground39}"/>

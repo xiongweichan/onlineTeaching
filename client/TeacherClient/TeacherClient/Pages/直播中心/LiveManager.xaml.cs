@@ -76,9 +76,9 @@ namespace TeacherClient.Pages
         private void StartLive_Click(object sender, RoutedEventArgs e)
         {
             var l = (sender as Control).Tag as Contract.Reponse.live;
-            if (l.start_time != null && l.start_time.GetTime().AddHours(1) > DateTime.Now)
+            if (l.start_time != null && l.start_time.GetTime().AddHours(-1) < DateTime.Now)
             {
-                LiveCenter.Current.ShowMylive(true,l.id);
+                LiveCenter.Current.ShowMylive(true, l.id);
             }
         }
 
@@ -94,7 +94,7 @@ namespace TeacherClient.Pages
             win.liveStartTime.SelectedValue = live.start_time != null ? live.start_time.GetTime() : DateTime.Now;
             win.liveEndTime.SelectedValue = live.end_time != null ? live.end_time.GetTime() : DateTime.Now;
             win.ShowDialog();
-            if(win.DialogResult == true)
+            if (win.DialogResult == true)
             {
                 GetData();
             }
@@ -107,7 +107,7 @@ namespace TeacherClient.Pages
                 var live = (sender as Control).Tag as Contract.Reponse.live;
                 Request.RequestID l = new Request.RequestID() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, id = live.id };
                 var t = await WebHelper.doPost<Request.RequestID>(Config.Interface_liveDel, l);
-                if(t)
+                if (t)
                     GetData();
             }
         }
@@ -128,5 +128,5 @@ namespace TeacherClient.Pages
         {
             this.Type = int.Parse(data.ObjToString());
         }
-    }    
+    }
 }

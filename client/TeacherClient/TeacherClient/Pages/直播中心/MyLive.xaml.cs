@@ -59,13 +59,13 @@ namespace TeacherClient.Pages
             }
         }
 
-        async void RefreshData(string id)
+        public async void RefreshData()
         {
             MainWindow.Current.IsBusy = true;
             Request.RequestID l = new Request.RequestID();
             l.lec_id = App.CurrentLogin.lec_id;
             l.token = App.CurrentLogin.token;
-            l.id = id;
+            l.id = _id;
             var d = await WebHelper.doPost<Reponse.liveDetail, Request.RequestID>(Config.Interface_liveDetail, l);
             Live = new LiveModel();
             Live.CatID = d.cat_id;
@@ -82,33 +82,41 @@ namespace TeacherClient.Pages
             Live.StartTime = d.start_time.GetTime();
             Live.Syllabus = d.syllabus;
             Live.Title = d.title;
+            Live.PushUrl = d.publishUrl;
             this.DataContext = this;
-
-            MediaHelper.Instance.PushStream(d.publishUrl);
+            MediaHelper.Instance.PushStream(Live.PushUrl);
             _timer.Start();
 
             MainWindow.Current.IsBusy = false;
         }
-
+        string _id;
         DispatcherTimer _timer;
         public MyLive(string id)
         {
+            _id = id;
             InitializeComponent();
             _timer = new DispatcherTimer(new TimeSpan(0, 0, 0, 0, 40), DispatcherPriority.Send, callback, this.Dispatcher);
 
             this.Loaded += MyLive_Loaded;
-            RefreshData(id);
+            //RefreshData(id);
         }
 
         private void MyLive_Loaded(object sender, RoutedEventArgs e)
         {
         }
         int msgCounter = 0;
+        bool isLive = false;
         private void callback(object sender, EventArgs e)
         {
             if (Live == null) return;
             if (Live.StartTime <= DateTime.Now)
             {
+                if (!isLive)
+                {
+                    isLive = true;
+                    MediaHelper.Instance.Open();
+                    GetLiveWoard();
+                }
                 Status = 1;
                 //直播结束时间已经到了
                 if (Live.EndTime < DateTime.Now)
@@ -117,7 +125,7 @@ namespace TeacherClient.Pages
                     _timer.Stop();
                     return;
                 }
-                if (msgCounter % 10 == 0)
+                if (msgCounter % 8 == 0)
                     img_main.Source = GetImage() ?? img_main.Source;
                 //img_main.Source = GetImage(img_main.Tag);
                 //img_thumbnail1.Source = GetImage(img_thumbnail1.Tag);

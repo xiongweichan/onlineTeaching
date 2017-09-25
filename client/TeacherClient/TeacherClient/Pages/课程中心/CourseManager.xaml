@@ -69,15 +69,15 @@
                                             <RowDefinition Height="auto"/>
                                         </Grid.RowDefinitions>
                                         <Grid.ContextMenu>
-                                            <ContextMenu Width="114" Height="110" Style="{DynamicResource ContextMenuStyle1}" ItemContainerStyle="{DynamicResource MenuItemStyle1}">
+                                            <ContextMenu Width="114" Height="72" Style="{DynamicResource ContextMenuStyle1}" ItemContainerStyle="{DynamicResource MenuItemStyle1}">
                                                 <MenuItem Height="36" Header="打开课程" Click="OpenCourse_Click" Tag="{Binding id}"/>
                                                 <MenuItem Height="36" Header="删除" Click="DeleteCourse_Click" Tag="{Binding id}"/>
                                                 <!--<MenuItem Height="36" Header="属性" Click="Property_Click" Tag="{Binding id}"/>-->
                                             </ContextMenu>
                                         </Grid.ContextMenu>
                                         <Border x:Name="border" Background="#f1f5fa" BorderBrush="#dde0e4" Width="72" Height="72" BorderThickness="2"/>
-                                        <Image Source="{Binding image,Converter={StaticResource PathToImageConverter}}" Margin="1" Height="70" Width="70" Stretch="Fill"/>
-                                        <local:MyTextBox Foreground="#424e67" HorizontalContentAlignment="Center" Grid.Row="1" Text="{Binding title}" Tag="{Binding id}" TextChanged="MyTextBox_TextChanged"/>
+                                        <Image Source="{Binding image,Converter={StaticResource PathToImageConverter}}" Margin="1" Height="68" Width="68" Stretch="Fill"/>
+                                        <local:MyTextBox MaxWidth="80" Foreground="#424e67" HorizontalContentAlignment="Center" Grid.Row="1" Text="{Binding title}" Tag="{Binding id}" TextChanged="MyTextBox_TextChanged"/>
                                     </Grid>
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsSelected" Value="true">

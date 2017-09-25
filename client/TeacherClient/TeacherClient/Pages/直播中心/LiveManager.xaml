@@ -41,10 +41,10 @@
             </Button>
         </DataTemplate>
         <DataTemplate x:Key="WaitCheck">
-            <Button Style="{StaticResource ButtonStyle2}" Click="EditTime_Click" Tag="{Binding}">
+            <Button Style="{StaticResource ButtonStyle2}" Click="CancelLive_Click" Tag="{Binding}" Margin="8,0,0,0">
                 <StackPanel Orientation="Horizontal">
-                    <Image Stretch="Fill" Width="16" Height="16" Source="/Images/直播中心/修改时间.png"/>
-                    <TextBlock Text="修改时间" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
+                    <Image Stretch="Fill" Width="16" Height="16" Source="/Images/直播中心/取消申请.png"/>
+                    <TextBlock Text="取消申请" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
                 </StackPanel>
             </Button>
         </DataTemplate>

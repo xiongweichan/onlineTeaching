@@ -25,7 +25,8 @@ namespace TeacherClient
         {
             InitializeComponent();
             Model = new SettingModel();
-            Model.UserName = App.CurrentLogin.user.nickname;
+            Model.UserName = App.CurrentLogin.user.realname;
+            Model.Image = App.CurrentLogin.user.head;
             UpdateModel();
             this.DataContext = this;
             this.IsBusy = false;
@@ -71,9 +72,30 @@ namespace TeacherClient
             CacheHelper.ClearCache();
             Model.CacheCount = CacheHelper.GetCacheCount().ToString("f1") + "M";
         }
+
+        private void ChangedDir_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
+            if(dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                Model.CachePath = dialog.SelectedPath;
+                Model.CacheCount = CacheHelper.GetCacheCount().ToString("f1") + "M";
+            }
+        }
     }
     public class SettingModel : ViewModelBase
     {
+        string _Image;
+        public string Image
+        {
+            get { return _Image; }
+            set
+            {
+                _Image = value;
+                this.OnPropertyChanged("Image");
+            }
+        }
+
         string _UserName;
         public string UserName
         {

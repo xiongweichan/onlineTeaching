@@ -27,9 +27,9 @@ namespace TeacherClient
             int idx, idx2;
             m = new MediaInterface();
             ret = m.init(frameRate, sendBitRate, sendWidth, sendHeight, localWidth, localHeight, localSmallWidth, localSmallHeight);
-            idx = m.getLocalStreamIndex();
-            idx2 = m.getSendStreamIndex();
-            m.setShowSmallStream(1, 1, 1);
+            //idx = m.getLocalStreamIndex();
+            //idx2 = m.getSendStreamIndex();
+            m.setShowSmallStream(1, 0, 0);
             //int a = 0, b = 0;
             //m.getShowSmallStream(out a, out b);
             //Console.WriteLine("getLocalStreamIndex:{0}, {1}, {2}, {3}, {4}, {5}", ret, ret2, idx, idx2, a, b);

@@ -38,6 +38,18 @@ namespace TeacherClient.Pages
             DependencyProperty.Register("Model", typeof(CoursewareModel), typeof(CoursewareEdit), new PropertyMetadata());
 
 
+
+        public bool IsReadOnly
+        {
+            get { return (bool)GetValue(IsReadOnlyProperty); }
+            set { SetValue(IsReadOnlyProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for IsReadOnly.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IsReadOnlyProperty =
+            DependencyProperty.Register("IsReadOnly", typeof(bool), typeof(CoursewareEdit), new PropertyMetadata(false));
+
+
         bool _isNew;
         string _id;
         public CoursewareEdit(bool isNew, string id = null)
@@ -48,7 +60,11 @@ namespace TeacherClient.Pages
             _id = id;
             this.DataContext = this;
             if (!_isNew)
+            {
                 Init();
+                IsReadOnly = true;
+                btn_OK.Visibility = Visibility.Collapsed;
+            }
         }
 
         async void Init()
@@ -60,7 +76,7 @@ namespace TeacherClient.Pages
                 lec_id = App.CurrentLogin.lec_id,
                 token = App.CurrentLogin.token,
             };
-            var b = await WebHelper.doPost<Reponse.courseware, Request.RequestID>(Config.Interface_coursewareAdd, l);
+            var b = await WebHelper.doPost<Reponse.courseware, Request.RequestID>(Config.Interface_coursewareDetail, l);
             if(b != null)
             {
                 Model.cat_id = b.cat_id;

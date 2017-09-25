@@ -83,7 +83,10 @@ namespace TeacherClient.Pages
                     if (!_ShowMylive)
                         frame.Content = _liveManager;
                     else
+                    {
                         frame.Content = _myLive;
+                        _myLive.RefreshData();
+                    }
                     break;
                 case 1:
                     frame.Content = _requestLive;

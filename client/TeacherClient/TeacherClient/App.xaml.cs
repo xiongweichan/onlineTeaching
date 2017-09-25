@@ -30,7 +30,7 @@ namespace TeacherClient
             UploadFileHelper.Instance.Run();
             SetAutoStartup();
             IPCHandle.Init();
-            
+            var d = TimerHelper.Instance;
             App.Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
             TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
 

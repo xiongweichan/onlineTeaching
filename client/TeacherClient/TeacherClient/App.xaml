@@ -6,6 +6,7 @@
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation">
     <Application.Resources>
         <ResourceDictionary>
+            <local:BoolConverter x:Key="BooleanConverter"/>
             <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
             <local:BoolToVisibilityConverter2 x:Key="BoolToVisibilityConverter2"/>
             <local:TextToVisibilityConverter x:Key="TextToVisibilityConverter"/>

@@ -72,6 +72,7 @@ namespace TeacherClient.Pages
             Model.StartTime = d.start_time.GetTime();
             Model.Syllabus = d.syllabus;
             Model.Title = d.title;
+            Model.PushUrl = d.publishUrl;
             MainWindow.Current.IsBusy = false;
         }
 
@@ -121,9 +122,33 @@ namespace TeacherClient.Pages
         async void btnNext_Click(object sender, RoutedEventArgs e)
         {
             if (firstpage.IsChecked == true)
-                secondpage.IsChecked = true;
+            {
+                if (string.IsNullOrWhiteSpace(Model.Title))
+                    MessageWindow.Alter("提示", "标题不能为空");
+                else if (string.IsNullOrWhiteSpace(Model.Image))
+                    MessageWindow.Alter("提示", "课程封面不能为空");
+                else if (string.IsNullOrWhiteSpace(Model.IsFirst))
+                    MessageWindow.Alter("提示", "直播次数不能为空");
+                else
+                    secondpage.IsChecked = true;
+            }
             else if (secondpage.IsChecked == true)
-                thirdpage.IsChecked = true;
+            {
+                if (string.IsNullOrWhiteSpace(Model.CatID) ||
+                    string.IsNullOrWhiteSpace(Model.CatID1) ||
+                    string.IsNullOrWhiteSpace(Model.CatID2))
+                    MessageWindow.Alter("提示", "直播类型不能为空");
+                else if(string.IsNullOrWhiteSpace(Model.Intro))
+                    MessageWindow.Alter("提示", "直播描述不能为空");
+                else if(string.IsNullOrWhiteSpace(Model.Courseware))
+                    MessageWindow.Alter("提示", "直播课件不能为空");
+                else if(string.IsNullOrWhiteSpace(Model.Price))
+                    MessageWindow.Alter("提示", "直播售价不能为空");
+                else if(string.IsNullOrWhiteSpace(Model.Intro))
+                    MessageWindow.Alter("提示", "直播详情不能为空");
+                else
+                    thirdpage.IsChecked = true;
+            }
             else if (thirdpage.IsChecked == true)
             {
                 MainWindow.Current.IsBusy = true;
@@ -328,7 +353,7 @@ namespace TeacherClient.Pages
         {
             get { return _EndTime; }
             set
-            {                
+            {
                 _EndTime = value < _StartTime ? _StartTime : value;
                 this.OnPropertyChanged("EndTime");
             }
@@ -344,5 +369,19 @@ namespace TeacherClient.Pages
             }
         }
 
+        public string PushUrl
+        {
+            get
+            {
+                return _PushUrl;
+            }
+            set
+            {
+                _PushUrl = value;
+                this.OnPropertyChanged("PushUrl");
+            }
+        }
+
+        string _PushUrl;
     }
 }

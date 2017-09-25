@@ -22,10 +22,10 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Image Width="200" Height="114" x:Name="img_Index"
-                   Source="{Binding Live.image, Converter={StaticResource PathToImageConverter}}"/>
+                   Source="{Binding Live.Image, Converter={StaticResource PathToImageConverter}}"/>
             <TextBlock Grid.Row="1" TextWrapping="Wrap" MaxHeight="44" FontSize="{StaticResource FontSize3}" Foreground="#333333" TextTrimming="CharacterEllipsis"
                        x:Name="tbl_Name"
-                       Text="{Binding Live.title}"/>
+                       Text="{Binding Live.Title}"/>
             <StackPanel Grid.Row="2" Orientation="Horizontal">
                 <Image Source="/Images/直播中心/学员.png"/>
                 <TextBlock Text="学员：" FontSize="{StaticResource FontSize3}" Foreground="#333333"/>
@@ -116,7 +116,7 @@
             <Grid Background="#000000" Opacity="0.5" VerticalAlignment="Bottom" Height="48" HorizontalAlignment="Stretch"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Height="48" VerticalAlignment="Bottom" Margin="10,0,0,0">
                 <ToggleButton x:Name="tbtn_LB" Style="{DynamicResource ToggleButtonStyle2}"
-                              Click="tbtn_Click">
+                              Click="tbtn_Click" IsChecked="True">
                     <ToggleButton.Content>
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/Images/直播中心/开启录屏直播.png" UseLayoutRounding="True" SnapsToDevicePixels="True" Stretch="Fill" Width="24" Height="24"/>

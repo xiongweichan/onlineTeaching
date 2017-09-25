@@ -156,6 +156,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\bankToBankNameConverter.cs" />
+    <Compile Include="Converters\BoolConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\coursewareStatus2ForegroundConverter.cs" />
     <Compile Include="Converters\coursewareStatusConverter.cs" />
@@ -186,6 +187,7 @@
     <Compile Include="Extension\MediaHelper.cs" />
     <Compile Include="Extension\StatusCode.cs" />
     <Compile Include="Extension\StringExtension.cs" />
+    <Compile Include="Extension\TimerHelper.cs" />
     <Compile Include="Extension\UploadFileHelper.cs" />
     <Compile Include="Extension\UploadImageHelper.cs" />
     <Compile Include="Extension\WebHelper.cs" />

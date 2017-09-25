@@ -35,6 +35,20 @@ namespace TeacherClient.Pages
         public static readonly DependencyProperty ModelProperty =
             DependencyProperty.Register("Model", typeof(CourseEditModel), typeof(CourseEdit), new PropertyMetadata());
 
+
+
+        public bool IsReadOnly
+        {
+            get { return (bool)GetValue(IsReadOnlyProperty); }
+            set { SetValue(IsReadOnlyProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for IsReadOnly.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IsReadOnlyProperty =
+            DependencyProperty.Register("IsReadOnly", typeof(bool), typeof(CourseEdit), new PropertyMetadata(false));
+
+
+
         bool _isNew;
         string _id;
         public CourseEdit(bool isNew, string id = null)
@@ -47,7 +61,8 @@ namespace TeacherClient.Pages
             if (!_isNew)
             {
                 Init();
-                this.IsEnabled = false;
+                btn_OK.Visibility = Visibility.Collapsed;
+                IsReadOnly = true;
             }
         }
 

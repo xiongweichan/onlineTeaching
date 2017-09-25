@@ -19,7 +19,7 @@
             <StackPanel Orientation="Horizontal" Margin="10,20,0,0">
                 <TextBlock Width="100" TextAlignment="Right">
                     <Run Text="*" Foreground="#ff0844"/>
-                    <Run Text="银行卡类型：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
+                    <Run Text="开户银行：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
                 </TextBlock>
                 <ComboBox x:Name="cb_banktype" DisplayMemberPath="bankName" SelectedValuePath="bank" SelectedValue="{Binding Model.bank_type}" Width="319" Foreground="#333333" FontSize="{StaticResource FontSize3}" Height="28"/>
             </StackPanel>

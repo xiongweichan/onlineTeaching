@@ -259,19 +259,62 @@ namespace TeacherClient.Pages
             if (await WebHelper.doPost<Request.userSet>(Config.Interface_userSet, l))
                 MessageWindow.Alter("提示", "保存成功！");
         }
-
+        int t1 = 60;
         async void btnGetCode_Click(object sender, RoutedEventArgs e)
         {
             Request.phoneCode l = new Contract.Request.phoneCode() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, phone = ChangePhone.phone, type = Config.phoneCode.editOldPhone };
-            await WebHelper.doPost<Request.phoneCode>(Config.Interface_phoneCode, l);
+            bool b = await WebHelper.doPost<Request.phoneCode>(Config.Interface_phoneCode, l);
+            if (b)
+            {
+                t1 = 60;
+                TimerHelper.TimerEvent += TimerHelper_TimerEvent;
+            }
         }
 
+        private void TimerHelper_TimerEvent(object sender, EventArgs e)
+        {
+            t1--;
+            if (t1 == 0)
+            {
+                tbl_oldcodeleave.Visibility = Visibility.Collapsed;
+                btnOldPhone.Visibility = Visibility.Visible;
+                TimerHelper.TimerEvent -= TimerHelper_TimerEvent;
+            }
+            else
+            {
+                tbl_oldcodeleave.Visibility = Visibility.Visible;
+                btnOldPhone.Visibility = Visibility.Collapsed;
+                tbl_oldcodeleave.Text = string.Format("{0}秒", t1);
+            }
+        }
+        int t2 = 60;
         async void btnGetCode_Click2(object sender, RoutedEventArgs e)
         {
             Request.phoneCode l = new Contract.Request.phoneCode() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, phone = ChangePhone.phone_new, type = Config.phoneCode.editNewPhone };
-            await WebHelper.doPost<Request.phoneCode>(Config.Interface_phoneCode, l);
+            var b = await WebHelper.doPost<Request.phoneCode>(Config.Interface_phoneCode, l);
+            if (b)
+            {
+                t2 = 60;
+                TimerHelper.TimerEvent += TimerHelper_TimerEvent2;
+            }
         }
 
+        private void TimerHelper_TimerEvent2(object sender, EventArgs e)
+        {
+            t2--;
+            if (t2 == 0)
+            {
+                tbl_newcodeleave.Visibility = Visibility.Collapsed;
+                btnNewPhone.Visibility = Visibility.Visible;
+                TimerHelper.TimerEvent -= TimerHelper_TimerEvent2;
+            }
+            else
+            {
+                tbl_newcodeleave.Visibility = Visibility.Visible;
+                btnNewPhone.Visibility = Visibility.Collapsed;
+                tbl_newcodeleave.Text = string.Format("{0}秒", t2);
+            }
+        }
         async void btnGetOldEmailCode_Click(object sender, RoutedEventArgs e)
         {
             Request.emailCode l = new Contract.Request.emailCode() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, email = ChangeEmail.email, type = Config.emailCode.editOldEmail };
