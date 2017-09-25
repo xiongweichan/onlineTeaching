@@ -52,6 +52,8 @@ namespace TeacherClient
 
         public void Open()
         {
+            m.setShowSmallStream(1, 0, 0);
+
             _instance.m.Start();
         }
 
