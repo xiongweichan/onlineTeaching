@@ -103,7 +103,7 @@ namespace TeacherClient.Pages
             };
             var t = await IPCHandle.doPost<Reponse.ResponseParam<string>>(Config.Interface_withdrawAdd, request.ReturnRequestParam());
             if (t != null)            
-                MessageWindow.Alter("提示", t.info);            
+                MessageWindow.Alter("提示", "提现申请提交成功，等待审核中");            
             else
                 MessageWindow.Alter("错误", "服务器连接失败！");
             MainWindow.Current.IsBusy = false;

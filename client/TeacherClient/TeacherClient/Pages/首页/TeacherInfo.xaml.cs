@@ -145,21 +145,34 @@ namespace TeacherClient.Pages
         {
             if (rb_pcheck.IsChecked.HasValue && rb_pcheck.IsChecked.Value)
             {
-                Request.checkCode l = new Request.checkCode() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, phone = ChangePhone.phone, type = Config.phoneCode.resetPassword, code = ChangePhone.code };
-                var t = await WebHelper.doPost<Request.checkCode>(Config.Interface_checkCode, l);
-                if (t)
-                    rb_pedit.IsChecked = true;
+                if (string.IsNullOrWhiteSpace(ChangePhone.code))
+                    MessageWindow.Alter("提示", "请输入验证码");
+                else
+                {
+                    Request.checkCode l = new Request.checkCode() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, phone = ChangePhone.phone, type = Config.phoneCode.resetPassword, code = ChangePhone.code };
+                    var t = await WebHelper.doPost<Request.checkCode>(Config.Interface_checkCode, l);
+                    if (t)
+                        rb_pedit.IsChecked = true;
+                }
+
             }
             else if (rb_pedit.IsChecked.HasValue && rb_pedit.IsChecked.Value)
             {
-                //提交电话号码修改
-                if (await WebHelper.doPost<Request.changePhone>(Config.Interface_changePhone, ChangePhone))
+                if (string.IsNullOrWhiteSpace(ChangePhone.phone_new))
+                    MessageWindow.Alter("提示", "请输入新手机号");
+                else if (string.IsNullOrWhiteSpace(ChangePhone.code_new))
+                    MessageWindow.Alter("提示", "请输入验证码");
+                else
                 {
-                    UserInfo.phone = ChangePhone.phone_new;
-                    ChangePhone = new Contract.Request.changePhone() { phone = UserInfo.phone };
-                    rb_pcompleted.IsChecked = true;
-                    MainWindow.Current.Logout_Click(null, null);
-                }
+                    //提交电话号码修改
+                    if (await WebHelper.doPost<Request.changePhone>(Config.Interface_changePhone, ChangePhone))
+                    {
+                        UserInfo.phone = ChangePhone.phone_new;
+                        ChangePhone = new Contract.Request.changePhone() { phone = UserInfo.phone };
+                        rb_pcompleted.IsChecked = true;
+                        MainWindow.Current.Logout_Click(null, null);
+                    }
+                }                
             }
             else if (rb_pcompleted.IsChecked.HasValue && rb_pcompleted.IsChecked.Value)
             {
@@ -172,22 +185,34 @@ namespace TeacherClient.Pages
         {
             if (rb_mcheck.IsChecked.HasValue && rb_mcheck.IsChecked.Value)
             {
-                Request.checkEmailCode l = new Request.checkEmailCode() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, email = ChangeEmail.email, type = Config.phoneCode.resetPassword, code = ChangeEmail.code };
-                var t = await WebHelper.doPost<Request.checkEmailCode>(Config.Interface_checkEmailCode, l);
-                if (t)
-                    rb_medit.IsChecked = true;
+                if (string.IsNullOrWhiteSpace(ChangeEmail.code))
+                    MessageWindow.Alter("提示", "请输入验证码");
+                else
+                {
+                    Request.checkEmailCode l = new Request.checkEmailCode() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, email = ChangeEmail.email, type = Config.phoneCode.resetPassword, code = ChangeEmail.code };
+                    var t = await WebHelper.doPost<Request.checkEmailCode>(Config.Interface_checkEmailCode, l);
+                    if (t)
+                        rb_medit.IsChecked = true;
+                }                   
             }
             else if (rb_medit.IsChecked.HasValue && rb_medit.IsChecked.Value)
             {
-                //提交邮箱修改
-                if (await WebHelper.doPost<Request.changeEmail>(Config.Interface_changeEmail, ChangeEmail))
+                if (string.IsNullOrWhiteSpace(ChangeEmail.email_new))
+                    MessageWindow.Alter("提示", "请输入新邮箱号");
+                else if (string.IsNullOrWhiteSpace(ChangeEmail.code_new))
+                    MessageWindow.Alter("提示", "请输入验证码");
+                else
                 {
-                    UserInfo.email = ChangeEmail.email_new;
-                    ChangeEmail = new Contract.Request.changeEmail() { email = UserInfo.email };
-                    rb_mcompleted.IsChecked = true;
+                    //提交邮箱修改
+                    if (await WebHelper.doPost<Request.changeEmail>(Config.Interface_changeEmail, ChangeEmail))
+                    {
+                        UserInfo.email = ChangeEmail.email_new;
+                        ChangeEmail = new Contract.Request.changeEmail() { email = UserInfo.email };
+                        rb_mcompleted.IsChecked = true;
 
-                    MainWindow.Current.Logout_Click(null, null);
-                }
+                        MainWindow.Current.Logout_Click(null, null);
+                    }
+                }                
             }
             else if (rb_mcompleted.IsChecked.HasValue && rb_mcompleted.IsChecked.Value)
             {

@@ -122,10 +122,11 @@ namespace TeacherClient.Pages
                 if (Live.EndTime < DateTime.Now)
                 {
                     MessageWindow.Alter("提示", "直播结束！");
+                    MediaHelper.Instance.Close();
                     _timer.Stop();
                     return;
                 }
-                if (msgCounter % 8 == 0)
+                if (msgCounter % 5 == 0)
                     img_main.Source = GetImage() ?? img_main.Source;
                 //img_main.Source = GetImage(img_main.Tag);
                 //img_thumbnail1.Source = GetImage(img_thumbnail1.Tag);

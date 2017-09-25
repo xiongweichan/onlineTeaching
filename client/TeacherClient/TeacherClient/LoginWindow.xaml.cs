@@ -93,6 +93,11 @@ namespace TeacherClient
             }
             else
             {
+                ConfigManagerHelper.SetConfigByName(Config.IsRememberPwd, _model.RememblePwd.ToString());
+                ConfigManagerHelper.SetConfigByName(Config.UserAccount, _model.RememblePwd ? _model.UserAccount : string.Empty);
+                ConfigManagerHelper.SetConfigByName(Config.Password, _model.RememblePwd ? pwd.Pwd : string.Empty);
+                ConfigManagerHelper.SetConfigByName(Config.IsAutoLogin, _model.AutoLogin.ToString());
+
                 App.CurrentLogin = t.data;
                 MainWindow win = new MainWindow();
                 App.Current.MainWindow = win;

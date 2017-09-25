@@ -26,8 +26,14 @@ namespace TeacherClient.Pages
         public MaryaneRecord()
         {
             InitializeComponent();
+            this.Loaded += MaryaneRecord_Loaded;            
+        }
+
+        private void MaryaneRecord_Loaded(object sender, RoutedEventArgs e)
+        {
             Init();
         }
+
         async void Init()
         {
             MainWindow.Current.IsBusy = true;

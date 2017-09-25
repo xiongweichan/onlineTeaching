@@ -25,11 +25,24 @@ namespace TeacherClient
     /// </summary>
     public partial class RegisterWindow : WindowBase
     {
-        public Request.register Model { get; set; }
+
+
+        public RegisterModel Model
+        {
+            get { return (RegisterModel)GetValue(ModelProperty); }
+            set { SetValue(ModelProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Model.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ModelProperty =
+            DependencyProperty.Register("Model", typeof(RegisterModel), typeof(RegisterWindow), new PropertyMetadata());
+
+
+        //public Request.register Model { get; set; }
         public RegisterWindow()
         {
             InitializeComponent();
-            Model = new Contract.Request.register();
+            Model = new RegisterModel();
             this.DataContext = this;
             this.IsBusy = false;
             _timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, Time_Tick, this.Dispatcher);
@@ -63,7 +76,15 @@ namespace TeacherClient
         {
             if (firstpage.IsChecked.HasValue && firstpage.IsChecked.Value)
             {
-                if (Model.password != pwd_repeat.Pwd)
+                if(string.IsNullOrWhiteSpace(Model.phone))
+                    MessageWindow.Alter("提示", "手机号码不能为空");
+                else if (string.IsNullOrWhiteSpace(Model.code))
+                    MessageWindow.Alter("提示", "验证码不能为空");
+                else if (string.IsNullOrWhiteSpace(Model.email))
+                    MessageWindow.Alter("提示", "邮箱不能为空");
+                else if (string.IsNullOrWhiteSpace(Model.password))
+                    MessageWindow.Alter("提示", "密码不能为空");
+                else if (Model.password != pwd_repeat.Pwd)
                     MessageWindow.Alter("提示", "两次密码输入不一致");
                 else
                     secondpage.IsChecked = true;
@@ -71,7 +92,19 @@ namespace TeacherClient
             else if (secondpage.IsChecked.HasValue && secondpage.IsChecked.Value)
             {
                 this.IsBusy = true;
-                Request.register l = Model;
+                Request.register l = new Contract.Request.register()
+                {
+                    body_photo = Model.body_photo,
+                    code = Model.code,
+                    email = Model.email,
+                    id_card_back = Model.id_card_back,
+                    id_card_front = Model.id_card_front,
+                    lec_id = App.CurrentLogin.lec_id,
+                    token = App.CurrentLogin.token,
+                    password = Model.password,
+                    phone = Model.phone,
+                    qualification_cert = Model.qualification_cert
+                };
                 var t = await WebHelper.doPost<object, Request.register>(Config.Interface_register, l);
                 this.IsBusy = false;
 
@@ -114,8 +147,6 @@ namespace TeacherClient
                     break;
 
             }
-            this.DataContext = null;
-            this.DataContext = this;
             this.IsBusy = false;
 
         }
@@ -147,5 +178,98 @@ namespace TeacherClient
         //    }
         //    return string.Empty;
         //}
+    }
+
+
+    public class RegisterModel : ViewModelBase
+    {
+        string _phone;
+        public string phone
+        {
+            get { return _phone; }
+            set
+            {
+                _phone = value;
+                this.OnPropertyChanged("phone");
+            }
+        }
+        string _password;
+        public string password
+        {
+            get { return _password; }
+            set
+            {
+                _password = value;
+                this.OnPropertyChanged("password");
+            }
+        }
+        string _code;
+        public string code
+        {
+            get { return _code; }
+            set
+            {
+                _code = value;
+                this.OnPropertyChanged("code");
+            }
+        }
+        string _email;
+        public string email
+        {
+            get { return _email; }
+            set
+            {
+                _email = value;
+                this.OnPropertyChanged("email");
+            }
+        }
+        string _id_card_front;
+        public string id_card_front
+        {
+            get { return _id_card_front; }
+            set
+            {
+                _id_card_front = value;
+                this.OnPropertyChanged("id_card_front");
+            }
+        }
+        string _id_card_back;
+        public string id_card_back
+        {
+            get { return _id_card_back; }
+            set
+            {
+                _id_card_back = value;
+                this.OnPropertyChanged("id_card_back");
+            }
+        }
+        string _body_photo;
+        public string body_photo
+        {
+            get { return _body_photo; }
+            set
+            {
+                _body_photo = value;
+                this.OnPropertyChanged("body_photo");
+            }
+        }
+        string _qualification_cert;
+        public string qualification_cert
+        {
+            get { return _qualification_cert; }
+            set
+            {
+                _qualification_cert = value;
+                this.OnPropertyChanged("qualification_cert");
+            }
+        }
+        //public string phone { get; set; }
+        //public string password { get; set; }
+        //public string code { get; set; }
+        //public string email { get; set; }
+        //public string id_card_front { get; set; }
+        //public string id_card_back { get; set; }
+        //public string body_photo { get; set; }
+        //public string qualification_cert { get; set; }
     }
 }

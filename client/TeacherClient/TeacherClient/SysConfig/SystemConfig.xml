@@ -4,7 +4,7 @@
   <para name="CACHE_PATH" value=""/>
 
 
-  <para name="IsAutoLogin" value="true"/>
+  <para name="IsAutoLogin" value="false"/>
   <para name="IsRememberPwd" value="true"/>
   <para name="UserAccount" value="18602043865"/>
   <para name="Password" value="123456"/>

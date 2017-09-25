@@ -32,7 +32,12 @@ namespace TeacherClient
 
         private void ToNewPassword_Click(object sender, RoutedEventArgs e)
         {
-            CheckOldPhone();
+            if (string.IsNullOrWhiteSpace(textBox.Text))
+                MessageWindow.Alter("提示", "请输入手机号码");
+            else if(string.IsNullOrWhiteSpace(recvcode.Text))
+                MessageWindow.Alter("提示", "请输入验证码");
+            else
+                CheckOldPhone();
         }
         async void CheckOldPhone()
         {
@@ -46,31 +51,48 @@ namespace TeacherClient
 
         private async void BtnOK_Click(object sender, RoutedEventArgs e)
         {
-            if (pwd_new.Pwd != pwd_newRepeat.Pwd)
+            if(string.IsNullOrWhiteSpace(pwd_new.Pwd))
+                MessageWindow.Alter("提示", "请输入新密码");
+            else if (pwd_new.Pwd != pwd_newRepeat.Pwd)
             {
                 MessageWindow.Alter("提示", "两次密码输入不一致");
-                return;
             }
-            this.IsBusy = true;
-            Request.resetPwd l = new Request.resetPwd() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, phone = textBox.Text, password = pwd_new.Pwd, code = recvcode.Text };
-            var t = await WebHelper.doPost<Request.resetPwd>(Config.Interface_resetPwd, l);
-            if (t)
-                _model.ShowThirdPage = true;
-            this.IsBusy = false;            
+            else
+            {
+                this.IsBusy = true;
+                Request.resetPwd l = new Request.resetPwd() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, phone = textBox.Text, password = pwd_new.Pwd, code = recvcode.Text };
+                var t = await WebHelper.doPost<Request.resetPwd>(Config.Interface_resetPwd, l);
+                if (t)
+                    _model.ShowThirdPage = true;
+                this.IsBusy = false;
+            }            
         }
 
         private void BtnSure_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-
+        int _count = 60;
         private async void btn_GetPhoneCode(object sender, RoutedEventArgs e)
         {
             this.IsBusy = true;
             Request.phoneCode l = new Request.phoneCode() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, phone = textBox.Text, type = Config.phoneCode.resetPassword };
-            var t = await WebHelper.doPost<object, Request.phoneCode>(Config.Interface_phoneCode, l);
+            var b = await WebHelper.doPost<Request.phoneCode>(Config.Interface_phoneCode, l);
+            if (b)
+            {
+                _count = 60;
+                tblWaitTime.Visibility = Visibility.Visible;
+                btnGetPhoneCode.Visibility = Visibility.Collapsed;
+                TimerHelper.TimerEvent += TimerHelper_TimerEvent;
+                MessageWindow.Alter("提示", "验证码已成功发送");
+            }
             this.IsBusy = false;
 
+        }
+
+        private void TimerHelper_TimerEvent(object sender, EventArgs e)
+        {
+            tblWaitTime.Text = string.Format("{0}秒", _count);
         }
     }
     public class FindPasswordModel : ViewModelBase

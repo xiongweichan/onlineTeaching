@@ -76,8 +76,8 @@
                             <TextBlock Text="年       龄：" Style="{StaticResource text}" Width="65"/>
                             <TextBox Height="24" Width="120" Text="{Binding UserInfo.age}" VerticalContentAlignment="Center"/>
                             <TextBlock Text="生       日：" Style="{StaticResource text}" Width="65" Margin="70,0,0,0"/>
-                            <ComboBox x:Name="months" SelectionChanged="months_SelectionChanged" Width="55" VerticalContentAlignment="Center"/>
-                            <ComboBox x:Name="days" Width="55" Margin="10,0,0,0" VerticalContentAlignment="Center"/>
+                            <ComboBox x:Name="months" SelectionChanged="months_SelectionChanged" Width="60" VerticalContentAlignment="Center"/>
+                            <ComboBox x:Name="days" Width="60" Margin="2,0,0,0" VerticalContentAlignment="Center"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                             <TextBlock Text="讲师类型：" Style="{StaticResource text}" Width="65"/>
