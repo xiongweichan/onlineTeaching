@@ -47,50 +47,52 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <ListBox x:Name="lb_course" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <ListBox.Template>
-                    <ControlTemplate>
-                        <ItemsPresenter/>
-                    </ControlTemplate>
-                </ListBox.Template>
-                <ListBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel/>
-                    </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
-                <ListBox.ItemContainerStyle>
-                    <Style TargetType="ListBoxItem">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="ListBoxItem">
-                                    <Grid Margin="35,22,5,13">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition/>
-                                            <RowDefinition Height="auto"/>
-                                        </Grid.RowDefinitions>
-                                        <Grid.ContextMenu>
-                                            <ContextMenu Width="114" Height="110" Style="{DynamicResource ContextMenuStyle1}" ItemContainerStyle="{DynamicResource MenuItemStyle1}">
-                                                <MenuItem Height="36" Header="打开课件" Click="OpenCourse_Click" Tag="{Binding id}"/>
-                                                <MenuItem Height="36" Header="删除" Click="DeleteCourse_Click" Tag="{Binding id}"/>
-                                                <MenuItem Height="36" Header="属性" Click="Property_Click" Tag="{Binding .}"/>
-                                            </ContextMenu>
-                                        </Grid.ContextMenu>
-                                        <Border x:Name="border" Background="#f1f5fa" BorderBrush="#dde0e4" Width="72" Height="72" BorderThickness="2"/>
-                                        <Image Source="{Binding image,Converter={StaticResource PathToImageConverter}}" Margin="1" Height="68" Width="68" Stretch="Fill"/>
-                                        <local:MyTextBox Foreground="#424e67" HorizontalContentAlignment="Center" Grid.Row="1" Text="{Binding title}" Tag="{Binding id}" TextChanged="MyTextBox_TextChanged"/>
-                                    </Grid>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsSelected" Value="true">
-                                            <Setter Property="Panel.ZIndex" Value="2"/>
-                                            <Setter TargetName="border" Property="BorderBrush" Value="#4991fa"/>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </ListBox.ItemContainerStyle>
-            </ListBox>
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                <ListBox x:Name="lb_course" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <ListBox.Template>
+                        <ControlTemplate>
+                            <ItemsPresenter/>
+                        </ControlTemplate>
+                    </ListBox.Template>
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListBoxItem">
+                                        <Grid Margin="35,22,5,13">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition/>
+                                                <RowDefinition Height="auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ContextMenu>
+                                                <ContextMenu Width="114" Height="110" Style="{DynamicResource ContextMenuStyle1}" ItemContainerStyle="{DynamicResource MenuItemStyle1}">
+                                                    <MenuItem Height="36" Header="打开课件" Click="OpenCourse_Click" Tag="{Binding id}"/>
+                                                    <MenuItem Height="36" Header="删除" Click="DeleteCourse_Click" Tag="{Binding id}"/>
+                                                    <MenuItem Height="36" Header="属性" Click="Property_Click" Tag="{Binding .}"/>
+                                                </ContextMenu>
+                                            </Grid.ContextMenu>
+                                            <Border x:Name="border" Background="#f1f5fa" BorderBrush="#dde0e4" Width="72" Height="72" BorderThickness="2"/>
+                                            <Image Source="{Binding image,Converter={StaticResource PathToImageConverter}}" Margin="1" Height="68" Width="68" Stretch="Fill"/>
+                                            <local:MyTextBox Foreground="#424e67" HorizontalContentAlignment="Center" Grid.Row="1" Text="{Binding title}" Tag="{Binding id}" TextChanged="MyTextBox_TextChanged"/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsSelected" Value="true">
+                                                <Setter Property="Panel.ZIndex" Value="2"/>
+                                                <Setter TargetName="border" Property="BorderBrush" Value="#4991fa"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+            </ScrollViewer>
             <local:MyDataPage Grid.Row="1"  x:Name="pagerData" PagerIndexChanged="pagerData_PagerIndexChanged"
                            HorizontalAlignment="Right"/>
         </Grid>

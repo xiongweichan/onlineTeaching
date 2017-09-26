@@ -62,6 +62,8 @@ namespace TeacherClient.Pages
             {
                 Init();
                 btn_OK.Visibility = Visibility.Collapsed;
+                page_one.IsEnabled = false;
+                page_many.IsEnabled = false;
                 IsReadOnly = true;
             }
         }

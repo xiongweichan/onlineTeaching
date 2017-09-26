@@ -84,7 +84,6 @@ namespace TeacherClient.Pages
             Live.Title = d.title;
             Live.PushUrl = d.publishUrl;
             this.DataContext = this;
-            MediaHelper.Instance.PushStream(Live.PushUrl);
             _timer.Start();
 
             MainWindow.Current.IsBusy = false;
@@ -115,6 +114,7 @@ namespace TeacherClient.Pages
                 {
                     isLive = true;
                     MediaHelper.Instance.Open();
+                    MediaHelper.Instance.PushStream(Live.PushUrl);
                     GetLiveWoard();
                 }
                 Status = 1;

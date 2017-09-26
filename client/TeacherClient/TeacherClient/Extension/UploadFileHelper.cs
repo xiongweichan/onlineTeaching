@@ -153,9 +153,9 @@ namespace TeacherClient
                         {
                             if (result != null && result.Code == 200)
                             {
-                                dynamic dy = result.Text.FromJson<dynamic>();
-                                this.Hash = dy.hash;
-                                this.Link = dy.key;
+                                //dynamic dy = result.Text.FromJson<dynamic>();
+                                //this.Hash = dy.hash;
+                                //this.Link = dy.key;
                             }
                             else
                             {

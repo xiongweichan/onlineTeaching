@@ -73,10 +73,10 @@
                     <RadioButton x:Name="rb_many" Content="多节课程" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}" VerticalAlignment="Center" Margin="6,0,0,0"
                                  IsChecked="{Binding Model.CourseType, Converter={StaticResource IntToBoolConverter}, ConverterParameter='1'}"/>
                 </StackPanel>
-                <page:AddOneCourse Visibility="{Binding ElementName=rb_one,Path=IsChecked,Converter={StaticResource BoolToVisibilityConverter}}"
+                <page:AddOneCourse x:Name="page_one" Visibility="{Binding ElementName=rb_one,Path=IsChecked,Converter={StaticResource BoolToVisibilityConverter}}"
                                           DataContext="{Binding Model.OneCourse}"
                                    IsEnabled="{Binding IsReadOnly,Converter={StaticResource BooleanConverter}}"/>
-                <page:AddManyCourse Visibility="{Binding ElementName=rb_many,Path=IsChecked,Converter={StaticResource BoolToVisibilityConverter}}"
+                <page:AddManyCourse x:Name="page_many" Visibility="{Binding ElementName=rb_many,Path=IsChecked,Converter={StaticResource BoolToVisibilityConverter}}"
                                            DataContext="{Binding Model.ManyCourse}"
                                     IsEnabled="{Binding IsReadOnly,Converter={StaticResource BooleanConverter}}"/>
             </StackPanel>

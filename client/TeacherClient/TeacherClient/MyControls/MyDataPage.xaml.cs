@@ -89,6 +89,7 @@ namespace TeacherClient
                 //计算总页数
                 _pageCount = (int)Math.Ceiling((double)_totalCount / _pageSize);
                 SetPagerInfo(_pageIndex, _pageCount, _totalCount);
+                SetPageButtonEnabled();
             }
         }
 

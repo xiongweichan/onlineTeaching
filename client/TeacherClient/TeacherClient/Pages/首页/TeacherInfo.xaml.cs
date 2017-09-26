@@ -231,7 +231,10 @@ namespace TeacherClient.Pages
                 if (!await WebHelper.doPost<Request.userHeadSet>(Config.Interface_userHeadSet, l))
                     HeadPath = UserInfo.head;
                 else
+                {
                     UserInfo.head = HeadPath;
+                    App.CurrentLogin.user.head = HeadPath;
+                }
             }
             MainWindow.Current.IsBusy = false;
         }

@@ -93,6 +93,7 @@ namespace TeacherClient
         private void TimerHelper_TimerEvent(object sender, EventArgs e)
         {
             tblWaitTime.Text = string.Format("{0}秒", _count);
+            _count--;
         }
     }
     public class FindPasswordModel : ViewModelBase
