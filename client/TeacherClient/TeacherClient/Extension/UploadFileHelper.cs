@@ -109,28 +109,6 @@ namespace TeacherClient
             public string RecordFile { get; set; }
             public string SaveKey { get; set; }
 
-            string _Link;
-            public string Link
-            {
-                get { return _Link; }
-                set
-                {
-                    _Link = value;
-                    this.OnPropertyChanged("Link");
-                }
-            }
-
-            string _Hash;
-            public string Hash
-            {
-                get { return _Hash; }
-                set
-                {
-                    _Hash = value;
-                    this.OnPropertyChanged("Hash");
-                }
-            }
-
             public async void Start()
             {
                 if (!string.IsNullOrWhiteSpace(ID) && !string.IsNullOrWhiteSpace(Token) && File.Exists(LocalFile))
