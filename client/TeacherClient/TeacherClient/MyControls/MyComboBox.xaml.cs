@@ -83,6 +83,8 @@ namespace TeacherClient
         {
             var list = SystemInit.Instance.CategoryList;
             ic_first.ItemsSource = list;
+            if (string.IsNullOrWhiteSpace(cat_id) || string.IsNullOrWhiteSpace(cat_id_1) || string.IsNullOrWhiteSpace(cat_id_2))
+                return;
             if (!string.IsNullOrEmpty(cat_id))
                 ic_first.SelectedItem = list.FirstOrDefault(T => T.id == cat_id);
         }

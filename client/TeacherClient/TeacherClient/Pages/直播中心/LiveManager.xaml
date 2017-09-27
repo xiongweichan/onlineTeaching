@@ -36,7 +36,7 @@
             <Button Style="{StaticResource ButtonStyle2}" Click="DelRecord_Click" Tag="{Binding}">
                 <StackPanel Orientation="Horizontal">
                     <Image Stretch="Fill" Width="16" Height="16" Source="/Images/直播中心/删除.png"/>
-                    <TextBlock Text="删除直播" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
+                    <TextBlock Text="删除记录" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
                 </StackPanel>
             </Button>
         </DataTemplate>

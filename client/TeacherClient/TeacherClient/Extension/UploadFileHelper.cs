@@ -11,13 +11,14 @@ using TeacherClient.Core;
 using Qiniu.IO;
 using Qiniu.IO.Model;
 using Qiniu.Http;
+using System.Windows.Threading;
 
 namespace TeacherClient
 {
     public class UploadFileHelper
     {
         public static readonly UploadFileHelper Instance = new UploadFileHelper();
-        public static readonly string _path = AppDomain.CurrentDomain.BaseDirectory + "uplodingfiles.12345";
+        public string _path = AppDomain.CurrentDomain.BaseDirectory + "uplodingfiles.12345";
 
         public static string GetPath(string dir, string name)
         {
@@ -30,6 +31,7 @@ namespace TeacherClient
         {
             try
             {
+                _path = AppDomain.CurrentDomain.BaseDirectory + App.CurrentLogin.user.lecturer_code + "uplodingfiles.12345";
                 if (File.Exists(_path))
                 {
                     var str = File.ReadAllText(_path);
@@ -109,8 +111,14 @@ namespace TeacherClient
             public string RecordFile { get; set; }
             public string SaveKey { get; set; }
 
-            public async void Start()
+            public void Start()
             {
+                Task.Factory.StartNew(StartReal);
+            }
+
+            async void StartReal()
+            {
+
                 if (!string.IsNullOrWhiteSpace(ID) && !string.IsNullOrWhiteSpace(Token) && File.Exists(LocalFile))
                 {
                     if (Started != null)
@@ -131,22 +139,24 @@ namespace TeacherClient
                         {
                             if (result != null && result.Code == 200)
                             {
-                                //dynamic dy = result.Text.FromJson<dynamic>();
-                                //this.Hash = dy.hash;
-                                //this.Link = dy.key;
+                                IsCompleted = true;
                             }
                             else
                             {
                                 Log.Error(result);
-                                MessageWindow.Alter("提示", "上传失败");
+                                Dispatcher.CurrentDispatcher.Invoke(new Action(() =>
+                                {
+                                    MessageWindow.Alter("提示", "上传失败");
+
+                                }));
                             }
                             if (Complated != null)
                                 Complated(this, new EventArgs());
                         }
-                        catch(Exception ex)
+                        catch (Exception ex)
                         {
                             Log.Error(ex);
-                        }                        
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -192,6 +202,16 @@ namespace TeacherClient
                 {
                     _Per = value;
                     this.OnPropertyChanged("Per");
+                }
+            }
+            bool _IsCompleted;
+            public bool IsCompleted
+            {
+                get { return _IsCompleted; }
+                set
+                {
+                    _IsCompleted = value;
+                    this.OnPropertyChanged("IsCompleted");
                 }
             }
             /// <summary>

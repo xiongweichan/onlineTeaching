@@ -31,6 +31,7 @@ namespace TeacherClient
 
             InitializeComponent();
             Init();
+            UploadFileHelper.Instance.Run();
 
         }
         async void Init()

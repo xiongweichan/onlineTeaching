@@ -9,7 +9,8 @@
     <Grid Background="Transparent" PreviewMouseLeftButtonDown="Grid_PreviewMouseLeftButtonDown">
         <TextBlock MaxWidth="80" TextTrimming="CharacterEllipsis" Text="{Binding ElementName=root,Path=Text}" FontSize="{Binding ElementName=root,Path=FontSize}" Foreground="{Binding ElementName=root,Path=Foreground}"
                    Visibility="{Binding ElementName=root,Path=IsEdit, Converter={StaticResource BoolToVisibilityConverter2}}"
-                   HorizontalAlignment="{Binding ElementName=root, Path=HorizontalContentAlignment}"/>
+                   HorizontalAlignment="{Binding ElementName=root, Path=HorizontalContentAlignment}"
+                   ToolTip="{Binding ElementName=root,Path=Text}"/>
         <Grid Visibility="{Binding ElementName=root,Path=IsEdit, Converter={StaticResource BoolToVisibilityConverter}}">
             <TextBox MaxWidth="80" Text="{Binding ElementName=root,Path=Text}"
                      FontSize="{Binding ElementName=root,Path=FontSize}" Foreground="{Binding ElementName=root,Path=Foreground}"/>

@@ -133,24 +133,38 @@ namespace TeacherClient.Pages
         {
             await Task.Run(() =>
             {
-                long size = 0;
-                DateTime _time = DateTime.Now;
-                bool b = true;
-                while (b)
+                try
                 {
                     var list = UploadFileHelper.Instance.GetList(UploadFileHelper.EnFileType.Course);
-                    var size2 = list.Sum(T => T.UploadedBytes);
-                    this.Dispatcher.Invoke(() =>
+                    long size = list.Sum(T => T.UploadedBytes);
+                    DateTime time = DateTime.Now;
+                    bool b = true;
+                    while (b)
                     {
-                        dg_upload.ItemsSource = list;
-                        tbl_allspeed.Text = ((size2 - size) / (1024d * 1024d * (DateTime.Now - _time).TotalSeconds)).ToString("f2") + "MB/s";
+                        list = UploadFileHelper.Instance.GetList(UploadFileHelper.EnFileType.Course);
+                        var size2 = list.Sum(T => T.UploadedBytes);
+                        var time2 = DateTime.Now;
+                        var l = 1024d * 1024d * (time2 - time).TotalSeconds;
+                        string speed = "0MB/s";
+                        if (l != 0)
+                            speed = ((size2 - size) / l).ToString("f2") + "MB/s";
                         var total = list.Sum(T => T.FileSize);
-                        pb_all.Value = total == 0 ? 0 : size2 * 100 / total;
-                        b = courseTransform.IsChecked == true;
-                    });
+                        this.Dispatcher.Invoke(() =>
+                        {
+                            dg_upload.ItemsSource = list;
+                            tbl_allspeed.Text = speed;
+                            pb_all.Value = total == 0 ? 0 : size2 * 100 / total;
+                            b = courseTransform.IsChecked == true;
+                        });
 
-                    size = size2;
-                    Thread.Sleep(5 * 1000);
+                        size = size2;
+                        time = time2;
+                        Thread.Sleep(1 * 1000);
+                    }
+                }
+                catch (Exception)
+                {
+
                 }
             });
         }

@@ -130,7 +130,7 @@
             </telerik:RadRibbonDropDownButton>
         </telerik:RadToolBar>
         <telerik:HtmlDataProvider x:Name="xamlDataProvider"
-            Html="{Binding Text, ElementName=textBox, Mode=TwoWay}"
+            Html="{Binding Text, ElementName=root, Mode=TwoWay}"
             RichTextBox="{Binding ElementName=radRichTextBox}" Visibility="Collapsed"/>
         <telerik:RadRichTextBox x:Name="radRichTextBox" Grid.Row="1"/>
     </Grid>

@@ -60,7 +60,7 @@
                     <Run Text="*" Foreground="#ff0000"/>
                     <Run Text="课件详情：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
                 </TextBlock>
-                <local:MyHtmlEditor Width="803" Height="200" IsEnabled="{Binding IsReadOnly, Converter={StaticResource BooleanConverter}}"/>
+                <local:MyHtmlEditor Text="{Binding Model.intro}" Width="803" Height="200" IsEnabled="{Binding IsReadOnly, Converter={StaticResource BooleanConverter}}"/>
             </StackPanel>
 
 

@@ -32,7 +32,7 @@ namespace TeacherClient.Pages
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var list = this.DataContext as ObservableCollection<lesson>;
-            list.Add(new Contract.lesson());
+            list.Add(new Contract.lesson() { start_time = DateTime.Now.ConvertDateTimeInt().ToString() });
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
