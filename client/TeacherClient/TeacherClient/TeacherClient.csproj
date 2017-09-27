@@ -132,18 +132,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\Telerik.Windows.Documents.FormatProviders.Html.dll</HintPath>
     </Reference>
+    <Reference Include="Telerik.Windows.Themes.Windows7">
+      <HintPath>..\lib\Telerik.Windows.Themes.Windows7.dll</HintPath>
+    </Reference>
     <Reference Include="Telerik.Windows.Themes.Windows8">
       <HintPath>..\lib\Telerik.Windows.Themes.Windows8.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls, Version=2015.3.930.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.Windows.Controls.ImageEditor, Version=2015.3.930.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.Windows.Controls.Input, Version=2015.3.930.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2015.3.930.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.Windows.Controls.RibbonView, Version=2015.3.930.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.Windows.Controls.RichTextBoxUI, Version=2015.3.930.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.Windows.Documents, Version=2015.3.930.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.Windows.Documents.Core, Version=2015.3.930.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.Windows.Documents.FormatProviders.Html, Version=2015.3.930.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework">
@@ -685,16 +679,6 @@
     <Resource Include="Images\首页\账号绑定.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TeacherClient.Contract\TeacherClient.Contract.csproj">
-      <Project>{D5F4864B-E401-40CA-9002-F0F096B939C4}</Project>
-      <Name>TeacherClient.Contract</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TeacherClient.Core\TeacherClient.Core.csproj">
-      <Project>{4121ee90-8c88-44f7-9f43-852c8210b8c0}</Project>
-      <Name>TeacherClient.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="应用软件图标64px.ico" />
     <Resource Include="Images\首页\LOGO_72.png" />
     <Resource Include="Images\登录注册\形状-3-拷贝_31.png" />
@@ -741,6 +725,16 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TeacherClient.Contract\TeacherClient.Contract.csproj">
+      <Project>{d5f4864b-e401-40ca-9002-f0f096b939c4}</Project>
+      <Name>TeacherClient.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TeacherClient.Core\TeacherClient.Core.csproj">
+      <Project>{4121ee90-8c88-44f7-9f43-852c8210b8c0}</Project>
+      <Name>TeacherClient.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
