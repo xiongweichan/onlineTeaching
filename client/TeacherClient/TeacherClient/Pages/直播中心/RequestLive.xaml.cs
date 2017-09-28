@@ -109,6 +109,11 @@ namespace TeacherClient.Pages
             {
                 var path = dialog.FileName;
                 var s = dialog.OpenFile();
+                if (s.Length == 0)
+                {
+                    MessageWindow.Alter("提示", "文件大小不能为0");
+                    return;
+                }
                 if (s.Length > 10 * 1024 * 1024)
                 {
                     MessageWindow.Alter("提示", "文件过大");

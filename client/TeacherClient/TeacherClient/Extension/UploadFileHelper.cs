@@ -144,7 +144,7 @@ namespace TeacherClient
                             else
                             {
                                 Log.Error(result);
-                                Dispatcher.CurrentDispatcher.Invoke(new Action(() =>
+                                ViewModelBase.InvokeOnUIThread(new Action(() =>
                                 {
                                     MessageWindow.Alter("提示", "上传失败");
 

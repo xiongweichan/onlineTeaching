@@ -31,26 +31,9 @@
                 <telerik:FontFamiliesProvider x:Key="FontFamiliesProvider" />
             </telerik:RadToolBar.Resources>
 
-            <!--<telerik:RadButton Command="{Binding CutCommand}" Margin="2" Padding="0" IsBackgroundVisible="False"
-                                       telerik:ScreenTip.Description="剪切选中内容到剪切板。" 
-                                       telerik:ScreenTip.Title="剪切">
-                <Image Source="/Images/线下课堂/剪切.png" Stretch="Fill" Width="16" Height="16" UseLayoutRounding="True" Margin="4"/>
-            </telerik:RadButton>
-            <telerik:RadButton Command="{Binding CopyCommand}" Margin="2" Padding="0" IsBackgroundVisible="False"
-                                       telerik:ScreenTip.Description="复制选中内容到剪切板。" 
-                                       telerik:ScreenTip.Title="复制">
-                <Image Source="/Images/线下课堂/复制.png" Stretch="Fill" Width="16" Height="16"  UseLayoutRounding="True" Margin="4"/>
-            </telerik:RadButton>
-            <telerik:RadButton Command="{Binding PasteCommand}" Margin="2" Padding="0" IsBackgroundVisible="False"
-                                       telerik:ScreenTip.Description="从剪切板粘贴内容到指定位置" 
-                                       telerik:ScreenTip.Title="粘贴" >
-                <Image Source="/Images/线下课堂/粘贴.png" Stretch="Fill" Width="16" Height="16"  UseLayoutRounding="True" Margin="4"/>
-            </telerik:RadButton>-->
             <telerik:RadRibbonToggleButton CommandParameter="Left" telerik:ScreenTip.Description="文字靠左对齐" telerik:RadRichTextBoxRibbonUI.RichTextCommand="{Binding ChangeTextAlignmentCommand}" Size="Small" SmallImage="/Images/线下课堂/左对齐.png" Text="左对齐" telerik:ScreenTip.Title="文本靠左"/>
             <telerik:RadRibbonToggleButton CommandParameter="Center" telerik:ScreenTip.Description="文字居中" telerik:RadRichTextBoxRibbonUI.RichTextCommand="{Binding ChangeTextAlignmentCommand}" Size="Small" SmallImage="/Images/线下课堂/居中.png" Text="居中" telerik:ScreenTip.Title="文本居中"/>
             <telerik:RadRibbonToggleButton CommandParameter="Right" telerik:ScreenTip.Description="文字靠右对齐" telerik:RadRichTextBoxRibbonUI.RichTextCommand="{Binding ChangeTextAlignmentCommand}" Size="Small" SmallImage="/Images/线下课堂/右对齐.png" Text="右对齐" telerik:ScreenTip.Title="文本靠右"/>
-            <!--<telerik:RadRibbonToggleButton CommandParameter="Justify" telerik:ScreenTip.Description="Align text to both left and right margins, adding extra space between words as necessary." telerik:RadRichTextBoxRibbonUI.RichTextCommand="{Binding ChangeTextAlignmentCommand}" Size="Small" SmallImage="/Images/线下课堂/居中.png" Text="Justify" telerik:ScreenTip.Title="Justify"/>
-            <telerik:RadRibbonToggleButton CommandParameter="Distribute" telerik:ScreenTip.Description="Align text to both left and right margins, adding extra space between characters as necessary." telerik:RadRichTextBoxRibbonUI.RichTextCommand="{Binding ChangeTextAlignmentCommand}" Size="Small" SmallImage="{telerik:IconResource IconRelativePath=16/aligndistribute.png, IconSources={StaticResource IconSources}}" Text="Distributed" telerik:ScreenTip.Title="Distributed"/>-->
 
 
             <telerik:RadToolBarSeparator BorderBrush="#FFCCCCCC"/>

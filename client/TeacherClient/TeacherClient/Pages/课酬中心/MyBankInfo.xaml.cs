@@ -114,11 +114,27 @@ namespace TeacherClient.Pages
         {
             this.Close();
         }
-
+        int count = 60;
         async void btnGetCode_Click(object sender, RoutedEventArgs e)
         {
             Request.phoneCode l = new Contract.Request.phoneCode() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, phone = Model.mobile, type = Config.phoneCode.registerBank };
-            await WebHelper.doPost<Request.phoneCode>(Config.Interface_phoneCode, l);
+            if(await WebHelper.doPost<Request.phoneCode>(Config.Interface_phoneCode, l))
+            {
+                btn_Code.Visibility = Visibility.Collapsed;
+                tbl_codeleave.Visibility = Visibility.Visible;
+                tbl_codeleave.Text = string.Format("{0}秒", count);
+                TimerHelper.TimerEvent += TimerHelper_TimerEvent;                
+            }
+        }
+
+        private void TimerHelper_TimerEvent(object sender, EventArgs e)
+        {
+            count--;
+            if(count == 0)
+            {
+                TimerHelper.TimerEvent -= TimerHelper_TimerEvent;
+                tbl_codeleave.Text = string.Format("{0}秒", count);
+            }
         }
     }
 }

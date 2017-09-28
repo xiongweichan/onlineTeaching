@@ -59,8 +59,9 @@
                     <Run Text="手机验证码：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
                 </TextBlock>
                 <TextBox x:Name="tb_Code" Width="220" Foreground="#333333" FontSize="{StaticResource FontSize3}" Height="28" VerticalContentAlignment="Center"/>
-                <Button Margin="8,0,0,0" Content="获取验证码" Style="{StaticResource ButtonStyle1}" Width="90" Height="28"
+                <Button x:Name="btn_Code" Margin="8,0,0,0" Content="获取验证码" Style="{StaticResource ButtonStyle1}" Width="90" Height="28"
                         Click="btnGetCode_Click"/>
+                <TextBlock x:Name="tbl_codeleave" Foreground="#333333" FontSize="{StaticResource FontSize3}"/>
             </StackPanel>
         </StackPanel>
         <Border Grid.Row="2" BorderBrush="{StaticResource BasicBorder}" BorderThickness="0,1,0,0">

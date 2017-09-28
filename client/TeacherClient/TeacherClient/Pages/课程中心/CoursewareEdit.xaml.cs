@@ -98,7 +98,13 @@ namespace TeacherClient.Pages
             if (dialog.ShowDialog() == true)
             {
                 var path = dialog.FileName;
-                if (new FileInfo(path).Length > 10 * 1024 * 1024)
+                var info = new FileInfo(path);
+                if (info.Length == 0)
+                {
+                    MessageWindow.Alter("提示", "文件大小不能为0");
+                    return;
+                }
+                else if (info.Length > 10 * 1024 * 1024)
                 {
                     MessageWindow.Alter("提示", "文件过大");
                     return;
@@ -111,6 +117,16 @@ namespace TeacherClient.Pages
         {
             if (_isNew)
             {
+
+                bool bcheck = Model.title.MyIsNullOrWhiteSpace("课件名称");
+                bcheck = bcheck && Model.intro.MyIsNullOrWhiteSpace("课件详情");
+                bcheck = bcheck && Model.cat_id.MyIsNullOrWhiteSpace("课件类型");
+                bcheck = bcheck && Model.cat_id_1.MyIsNullOrWhiteSpace("课件类型");
+                bcheck = bcheck && Model.cat_id_2.MyIsNullOrWhiteSpace("课件类型");
+                bcheck = bcheck && Model.price.MyIsNullOrWhiteSpace("课件售价");
+                bcheck = bcheck && Model.url.MyIsNullOrWhiteSpace("上传课件");
+                if (!bcheck) return;
+
                 Request.coursewareAdd l = new Contract.Request.coursewareAdd();
                 l.lec_id = App.CurrentLogin.lec_id;
                 l.token = App.CurrentLogin.token;

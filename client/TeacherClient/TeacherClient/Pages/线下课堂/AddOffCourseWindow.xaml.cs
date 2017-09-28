@@ -47,7 +47,7 @@ namespace TeacherClient.Pages
         {
             if (string.IsNullOrWhiteSpace(Model.title))
                 MessageWindow.Alter("提示", "课程名称不能为空");
-            if (Model.title.Length > 45)
+            else if (Model.title.Length > 45)
                 MessageWindow.Alter("提示", "课程名称不能超过45个字符");
             else if (string.IsNullOrWhiteSpace(Model.intro))
                 MessageWindow.Alter("提示", "课程简介不能为空");

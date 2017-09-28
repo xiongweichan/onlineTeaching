@@ -15,6 +15,7 @@
             <local:IntToBoolConverter2 x:Key="IntToBoolConverter2"/>
             <local:IntToTimeConverter x:Key="IntToTimeConverter"/>
             <local:FileSizeConverter x:Key="FileSizeConverter"/>
+            <local:FileTypeConverter x:Key="FileTypeConverter"/>
             <local:PathToImageConverter x:Key="PathToImageConverter"/>
             <local:IntEqualParamToVisibilityConverter x:Key="IntEqualParamToVisibilityConverter"/>
             <local:IntEqualParamToVisibilityConverter2 x:Key="IntEqualParamToVisibilityConverter2"/>

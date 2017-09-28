@@ -115,6 +115,29 @@ namespace TeacherClient.Pages
         {
             if (_isNew)
             {
+                bool bcheck = Model.Name.MyIsNullOrWhiteSpace("课程名称");
+                bcheck = bcheck && Model.Image.MyIsNullOrWhiteSpace("课程封面");
+                bcheck = bcheck && Model.Detail.MyIsNullOrWhiteSpace("课程详情");
+                bcheck = bcheck && Model.CatID1.MyIsNullOrWhiteSpace("课程类型");
+                bcheck = bcheck && Model.CatID2.MyIsNullOrWhiteSpace("课程类型");
+                bcheck = bcheck && Model.CatID3.MyIsNullOrWhiteSpace("课程类型");
+                bcheck = bcheck && Model.CourseType.MyIsNullOrWhiteSpace("课程数量");
+                if(Model.CourseType == "0")
+                {
+                    bcheck = bcheck && Model.OneCourse.Price.MyIsNullOrWhiteSpace("课程售价");
+                    bcheck = bcheck && Model.OneCourse.Vedio.MyIsNullOrWhiteSpace("课程视频");
+                    bcheck = bcheck && Model.OneCourse.Document.MyIsNullOrWhiteSpace("上传课程");
+                }
+                else
+                {
+                    foreach (var item in Model.ManyCourse)
+                    {
+                        bcheck = bcheck && item.Price.MyIsNullOrWhiteSpace("课程售价");
+                        bcheck = bcheck && item.Vedio.MyIsNullOrWhiteSpace("课程视频");
+                        bcheck = bcheck && item.Document.MyIsNullOrWhiteSpace("上传课程");
+                    }
+                }
+                if (!bcheck) return;
                 Request.courseAdd request = new Request.courseAdd();
                 request.lec_id = App.CurrentLogin.lec_id;
                 request.token = App.CurrentLogin.token;

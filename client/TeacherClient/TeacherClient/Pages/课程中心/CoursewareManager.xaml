@@ -112,7 +112,7 @@
                     </DataGridTemplateColumn>
                     <DataGridTextColumn Binding="{Binding file_name}" Width="*" CellStyle="{StaticResource DataGridCellStyle1}"/>
                     <DataGridTextColumn Binding="{Binding file_size, Converter={StaticResource FileSizeConverter}, StringFormat='文件大小：{0}'}" Width="130" CellStyle="{StaticResource DataGridCellStyle1}"/>
-                    <DataGridTextColumn Binding="{Binding FileType, StringFormat='文件类型：{0}'}" Width="100" CellStyle="{StaticResource DataGridCellStyle1}"/>
+                    <DataGridTextColumn Binding="{Binding file_mime, StringFormat='文件类型：{0}', Converter={StaticResource FileTypeConverter}}" Width="100" CellStyle="{StaticResource DataGridCellStyle1}"/>
                     <DataGridTextColumn Binding="{Binding upload_time, Converter={StaticResource IntToTimeConverter}, StringFormat='上传时间：{0}'}" Width="200" CellStyle="{StaticResource DataGridCellStyle1}"/>
                     <DataGridTextColumn Binding="{Binding status, Converter={StaticResource coursewareStatusConverter}}" Width="130" CellStyle="{StaticResource DataGridCellStyle1}"
                                         Foreground="{Binding status, Converter={StaticResource coursewareStatus2ForegroundConverter}}"/>
@@ -176,49 +176,40 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Width="100" CellStyle="{StaticResource DataGridCellStyle1}">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <ToggleButton HorizontalAlignment="Center" IsChecked="{Binding Pause}"
-                                              Click="ToggleButton_Click">
-                                    <ToggleButton.Template>
-                                        <ControlTemplate TargetType="ToggleButton">
-                                            <Grid>
-                                                <StackPanel Orientation="Horizontal"
-                                                    Visibility="{TemplateBinding IsChecked,Converter={StaticResource BoolToVisibilityConverter2}}">
-                                                    <Image Source="/Images/课程中心/暂停.png"/>
-                                                    <TextBlock Text="暂停" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
-                                                </StackPanel>
-                                                <StackPanel Orientation="Horizontal"
-                                                    Visibility="{TemplateBinding IsChecked,Converter={StaticResource BoolToVisibilityConverter}}">
-                                                    <Image Source="/Images/课程中心/开始.png"/>
-                                                    <TextBlock Text="开始" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
-                                                </StackPanel>
-                                            </Grid>
-                                        </ControlTemplate>
-                                    </ToggleButton.Template>
-                                </ToggleButton>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Width="100" CellStyle="{StaticResource DataGridCellStyle1}"
+                    <DataGridTemplateColumn Width="200" CellStyle="{StaticResource DataGridCellStyle1}"
                                             Visibility="{Binding IsCompleted, Converter={StaticResource BoolToVisibilityConverter2}}">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button HorizontalAlignment="Center" Click="btnCancel_Click" Tag="{Binding .}" Style="{StaticResource ButtonStyle2}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Source="/Images/课程中心/删除课程.png"/>
-                                        <TextBlock Text="取消上传" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
-                                    </StackPanel>
-                                </Button>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Width="100" CellStyle="{StaticResource DataGridCellStyle1}"
-                                            Visibility="{Binding IsCompleted, Converter={StaticResource BoolToVisibilityConverter}}">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="上传成功" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <ToggleButton HorizontalAlignment="Center" IsChecked="{Binding Pause}" Click="ToggleButton_Click"
+                                                  Visibility="{Binding IsCompleted, Converter={StaticResource BoolToVisibilityConverter2}}">
+                                        <ToggleButton.Template>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Grid>
+                                                    <StackPanel Orientation="Horizontal"
+                                                    Visibility="{TemplateBinding IsChecked,Converter={StaticResource BoolToVisibilityConverter2}}">
+                                                        <Image Source="/Images/课程中心/暂停.png"/>
+                                                        <TextBlock Text="暂停" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
+                                                    </StackPanel>
+                                                    <StackPanel Orientation="Horizontal"
+                                                    Visibility="{TemplateBinding IsChecked,Converter={StaticResource BoolToVisibilityConverter}}">
+                                                        <Image Source="/Images/课程中心/开始.png"/>
+                                                        <TextBlock Text="开始" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </ToggleButton.Template>
+                                    </ToggleButton>
+                                    <Button Margin="10,0,0,0" HorizontalAlignment="Center" Click="btnCancel_Click" Tag="{Binding .}" Style="{StaticResource ButtonStyle2}"
+                                            Visibility="{Binding IsCompleted, Converter={StaticResource BoolToVisibilityConverter2}}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="/Images/课程中心/删除课程.png"/>
+                                            <TextBlock Text="取消上传" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
+                                        </StackPanel>
+                                    </Button>
+                                    <TextBlock Text="上传成功" Foreground="#424e67" FontSize="{StaticResource FontSize3}"
+                                           Visibility="{Binding IsCompleted, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                                </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

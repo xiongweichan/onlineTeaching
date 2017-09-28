@@ -230,17 +230,17 @@ namespace TeacherClient.Pages
                 case 0:
                     _catch[0] = i;
                     _catch[1] = 1;
-                    _catch[1] = 2;
+                    _catch[2] = 2;
                     break;
                 case 1:
                     _catch[0] = i;
                     _catch[1] = 0;
-                    _catch[1] = 2;
+                    _catch[2] = 2;
                     break;
                 case 2:
                     _catch[0] = i;
                     _catch[1] = 0;
-                    _catch[1] = 1;
+                    _catch[2] = 1;
                     break;
             }
         }

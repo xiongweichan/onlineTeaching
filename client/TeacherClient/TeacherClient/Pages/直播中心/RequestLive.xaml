@@ -4,10 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TeacherClient"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="1000">
-
+    
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid Margin="16">
             <Grid Visibility="Collapsed">
@@ -194,7 +195,7 @@
                     <Run Text="开始时间：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
                         </TextBlock>
                         <telerik:RadDateTimePicker Width="433" Height="20" SelectedValue="{Binding Model.StartTime}"
-                                                   SelectableDateStart="2000-01-01"/>
+                                                   SelectableDateStart="{Binding Source={x:Static sys:DateTime.Now}}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
                         <TextBlock>

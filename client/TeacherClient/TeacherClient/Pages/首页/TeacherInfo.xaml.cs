@@ -285,7 +285,10 @@ namespace TeacherClient.Pages
             l.phone = UserInfo.phone;
             l.mail = UserInfo.email;
             if (await WebHelper.doPost<Request.userSet>(Config.Interface_userSet, l))
+            {
+                App.CurrentLogin.user.realname = l.realname;
                 MessageWindow.Alter("提示", "保存成功！");
+            }
         }
         int t1 = 60;
         async void btnGetCode_Click(object sender, RoutedEventArgs e)

@@ -42,7 +42,8 @@ namespace TeacherClient
 
 
             Model.UserAccount = App.CurrentLogin.user.phone;
-            Model.MessageCount = t.data.unreadCount;
+            if (t != null && t.data != null)
+                Model.MessageCount = t.data.unreadCount;
             Model.Version = App.CurrentVersion;
 
 

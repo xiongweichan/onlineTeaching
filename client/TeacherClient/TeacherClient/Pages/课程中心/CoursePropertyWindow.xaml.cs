@@ -25,6 +25,7 @@ namespace TeacherClient.Pages
             InitializeComponent();
             run_filename.Text = cw.file_name;
             run_filesize.Text = (int.Parse(cw.file_size)/1024.0/1024.0).ToString("f2")+ "MB";
+            run_filetype.Text = FileTypeConverter.GetFileType(cw.file_mime);
             run_uploadtime.Text = cw.upload_time.GetTime().ToString("yyyy年MM月dd日 HH:mm:ss");
             this.IsBusy = false;
         }
