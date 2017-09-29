@@ -60,7 +60,13 @@ namespace TeacherClient.Pages
             if (dialog.ShowDialog() == true)
             {
                 var path = dialog.FileName;
-                if (new FileInfo(path).Length > 10 * 1024 * 1024)
+                var info = new FileInfo(path);
+                if (info.Length == 0)
+                {
+                    MessageWindow.Alter("提示", "文件大小不能为0");
+                    return;
+                }
+                if (info.Length > 10 * 1024 * 1024)
                 {
                     MessageWindow.Alter("提示", "文件过大");
                     return;
