@@ -154,7 +154,15 @@ namespace TeacherClient
                                 Log.Error(result);
                                 ViewModelBase.InvokeOnUIThread(new Action(() =>
                                 {
-                                    MessageWindow.Alter("提示", "上传失败");
+                                    try
+                                    {
+
+                                        MessageWindow.Alter("提示", "上传失败");
+                                    }
+                                    catch(Exception ex)
+                                    {
+                                        Log.Error(ex);
+                                    }
 
                                 }));
                             }
