@@ -24,7 +24,7 @@ namespace TeacherClient
         MediaHelper()
         {
             int ret;
-            int idx, idx2;
+            //int idx, idx2;
             m = new MediaInterface();
             ret = m.init(frameRate, sendBitRate, sendWidth, sendHeight, localWidth, localHeight, localSmallWidth, localSmallHeight);
             //idx = m.getLocalStreamIndex();
