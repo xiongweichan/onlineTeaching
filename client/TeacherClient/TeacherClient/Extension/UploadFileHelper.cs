@@ -63,25 +63,33 @@ namespace TeacherClient
 
         public FileModel Add(string path, string token, string domain, string key, EnFileType type)
         {
-            if (_WaittingFiles.Any(T => T.LocalFile == path))
-                return _WaittingFiles.FirstOrDefault(T => T.LocalFile == path);
+            try
+            {
+                if (_WaittingFiles.Any(T => T.LocalFile == path))
+                    return _WaittingFiles.FirstOrDefault(T => T.LocalFile == path);
 
-            FileModel model = new FileModel();
-            FileInfo info = new FileInfo(path);
-            model.ID = Guid.NewGuid().ToString();
-            model.SaveKey = key;
-            model.Token = token;
-            model.Type = type;
-            model.Extension = info.Extension;
-            model.FileName = info.Name;
-            model.FileSize = info.Length;
-            model.LocalFile = path;
-            model.RecordFile = GetPath(string.Format("{0}\\{1}", CacheHelper.CacheFilePath, model.ID), info.Name + ".12345");
-            _WaittingFiles.Add(model);
-            model.Started += Model_Started;
-            model.Complated += Item_Complated;
-            model.Start();
-            return model;
+                FileModel model = new FileModel();
+                FileInfo info = new FileInfo(path);
+                model.ID = Guid.NewGuid().ToString();
+                model.SaveKey = key;
+                model.Token = token;
+                model.Type = type;
+                model.Extension = info.Extension;
+                model.FileName = info.Name;
+                model.FileSize = info.Length;
+                model.LocalFile = path;
+                model.RecordFile = GetPath(string.Format("{0}\\{1}", CacheHelper.CacheFilePath, model.ID), info.Name + ".12345");
+                _WaittingFiles.Add(model);
+                model.Started += Model_Started;
+                model.Complated += Item_Complated;
+                model.Start();
+                return model;
+            }
+            catch(Exception ex)
+            {
+                Log.Error(ex);
+            }
+            return null;            
         }
 
         public List<FileModel> GetList(EnFileType type)
