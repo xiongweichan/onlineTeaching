@@ -92,25 +92,9 @@ namespace TeacherClient.Pages
 
         private void UploadCourse_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Multiselect = false;
-            dialog.Filter = "课件文件|*.dox;*.docx;*.ppt;*.pptx;*.png;*.bmp;*.jpg;*.txt;*.xls;*.xlsx";
-            if (dialog.ShowDialog() == true)
-            {
-                var path = dialog.FileName;
-                var info = new FileInfo(path);
-                if (info.Length == 0)
-                {
-                    MessageWindow.Alter("提示", "文件大小不能为0");
-                    return;
-                }
-                else if (info.Length > 10 * 1024 * 1024)
-                {
-                    MessageWindow.Alter("提示", "文件过大");
-                    return;
-                }
-                Model.url = dialog.FileName;
-            }
+            var path = FileSelectHelper.FileSelecte("课件文件|*.doc;*.docx;*.ppt;*.pptx;*.png;*.bmp;*.jpg;*.txt;*.xls;*.xlsx", 10);
+            if (string.IsNullOrWhiteSpace(path)) return;
+            Model.url = path;
         }
 
         async void Button_Click(object sender, RoutedEventArgs e)

@@ -18,6 +18,7 @@ using Telerik.Windows.Controls;
 using TeacherClient.Core;
 using Reponse = TeacherClient.Contract.Reponse;
 using Request = TeacherClient.Contract.Request;
+using System.IO;
 
 namespace TeacherClient.Pages
 {
@@ -83,6 +84,14 @@ namespace TeacherClient.Pages
             Model = new LiveModel() { Price = "0", RelateLiveID = "0", StartTime = DateTime.Now, EndTime = DateTime.Now };
             this.DataContext = this;
             Init();
+            this.Loaded += RequestLive_Loaded;
+        }
+
+        private void RequestLive_Loaded(object sender, RoutedEventArgs e)
+        {
+            //var edit = new MyHtmlEditor() { Width = 800, Height = 200 };
+            //edit.SetBinding(MyHtmlEditor.TextProperty, new Binding { Path = new PropertyPath("Model.Intro") });
+            //sp_liveDetail.Children.Add(edit);
         }
 
         async void Init()
@@ -102,26 +111,10 @@ namespace TeacherClient.Pages
 
         void UploadCourse_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Multiselect = false;
-            dialog.Filter = "课件文件|*.png;*.bmp;*.jpg;*.doc;*.docx;*.ppt;*.pptx";
-            if (dialog.ShowDialog() == true)
-            {
-                var path = dialog.FileName;
-                var s = dialog.OpenFile();
-                if (s.Length == 0)
-                {
-                    MessageWindow.Alter("提示", "文件大小不能为0");
-                    return;
-                }
-                if (s.Length > 10 * 1024 * 1024)
-                {
-                    MessageWindow.Alter("提示", "文件过大");
-                    return;
-                }
+            var path = FileSelectHelper.FileSelecte("课件文件|*.png;*.bmp;*.jpg;*.doc;*.docx;*.ppt;*.pptx", 10);
+            if (string.IsNullOrWhiteSpace(path)) return;
 
-                Model.Courseware = dialog.FileName;
-            }
+            Model.Courseware = path;            
         }
         CancellationTokenSource _token;
         async void btnNext_Click(object sender, RoutedEventArgs e)

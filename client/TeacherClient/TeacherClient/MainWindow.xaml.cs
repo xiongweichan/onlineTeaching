@@ -51,6 +51,8 @@ namespace TeacherClient
             SystemInit.Instance.Init();
 
             this.DataContext = this;
+            //初始化富文本编辑控件
+            new MyHtmlEditor();
             this.IsBusy = false;
         }
 

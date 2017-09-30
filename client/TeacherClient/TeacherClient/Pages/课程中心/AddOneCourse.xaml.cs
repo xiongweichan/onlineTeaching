@@ -28,52 +28,21 @@ namespace TeacherClient.Pages
         }
         private void UploadCourse_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Multiselect = false;
-            dialog.Filter = "视频文件|*.MP4;*.RMVB;*.AVI";
-            if (dialog.ShowDialog() == true)
-            {
-                var path = dialog.FileName;
-                var info = new FileInfo(path);
-                if (info.Length == 0)
-                {
-                    MessageWindow.Alter("提示", "文件大小不能为0");
-                    return;
-                }
-                else if (info.Length > 1000 * 1024 * 1024)
-                {
-                    MessageWindow.Alter("提示", "文件过大");
-                    return;
-                }
+            var path = FileSelectHelper.FileSelecte("视频文件|*.MP4;*.RMVB;*.AVI", 1000);
+            if (string.IsNullOrWhiteSpace(path)) return;
 
-                (DataContext as CourseModel).Vedio = path;
-                (DataContext as CourseModel).VedioName = dialog.SafeFileName;
-            }
-
+            (DataContext as CourseModel).Vedio = path;
+            (DataContext as CourseModel).VedioName = System.IO.Path.GetFileName(path);
         }
         
         private void UploadDocument_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Multiselect = false;
-            dialog.Filter = "课件文件|*.dox;*.docx;*.ppt;*.pptx;*.png;*.bmp;*.jpg;*.txt;*.xls;*.xlsx";
-            if (dialog.ShowDialog() == true)
-            {
-                var path = dialog.FileName;
-                var info = new FileInfo(path);
-                if (info.Length == 0)
-                {
-                    MessageWindow.Alter("提示", "文件大小不能为0");
-                    return;
-                }
-                if (info.Length > 10 * 1024 * 1024)
-                {
-                    MessageWindow.Alter("提示", "文件过大");
-                    return;
-                }
-                (DataContext as CourseModel).Document = path;
-                (DataContext as CourseModel).DocumentName = dialog.SafeFileName;
-            }
+            var path = FileSelectHelper.FileSelecte("课件文件|*.doc;*.docx;*.ppt;*.pptx;*.png;*.bmp;*.jpg;*.txt;*.xls;*.xlsx", 10);
+            if (string.IsNullOrWhiteSpace(path)) return;
+            
+            (DataContext as CourseModel).Document = path;
+            (DataContext as CourseModel).DocumentName = System.IO.Path.GetFileName(path);
+
         }
     }
 }

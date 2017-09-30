@@ -94,7 +94,7 @@ namespace TeacherClient.Pages
         async void GetUnCheckedData()
         {
             MainWindow.Current.IsBusy = true;
-            Request.courseware l = new Request.courseware() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, page = pagerData.PageIndex, pageSize = pagerData.PageSize, check = "0" };
+            Request.courseware l = new Request.courseware() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, page = pagerData2.PageIndex, pageSize = pagerData2.PageSize, check = "0" };
             var t = await WebHelper.doPost<Reponse.listData<Reponse.courseware>, Request.courseware>(Config.Interface_coursewareList, l);
             if (t != null)
             {
