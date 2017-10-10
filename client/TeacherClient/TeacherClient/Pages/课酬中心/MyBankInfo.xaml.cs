@@ -62,6 +62,15 @@ namespace TeacherClient.Pages
 
         async void BtnOk_Click(object sender, RoutedEventArgs e)
         {
+            bool bcheck = Model.bank_card.MyIsNullOrWhiteSpace("银行卡卡号");
+            bcheck = bcheck && Model.bank_type.MyIsNullOrWhiteSpace("开户银行");
+            bcheck = bcheck && Model.city.MyIsNullOrWhiteSpace("开户网点");
+            bcheck = bcheck && Model.province.MyIsNullOrWhiteSpace("开户网点");
+            bcheck = bcheck && Model.bank_site.MyIsNullOrWhiteSpace("开户网点");
+            bcheck = bcheck && Model.real_name.MyIsNullOrWhiteSpace("持卡人姓名");
+            bcheck = bcheck && Model.mobile.MyIsNullOrWhiteSpace("绑定的手机");
+            bcheck = bcheck && tb_Code.Text.MyIsNullOrWhiteSpace("手机验证码");
+            if (!bcheck) return;
             if (isnew)
             {
                 Request.bankcardAdd l = new Contract.Request.bankcardAdd()
@@ -133,8 +142,12 @@ namespace TeacherClient.Pages
             if(count == 0)
             {
                 TimerHelper.TimerEvent -= TimerHelper_TimerEvent;
-                tbl_codeleave.Text = string.Format("{0}秒", count);
+
+                btn_Code.Visibility = Visibility.Visible;
+                tbl_codeleave.Visibility = Visibility.Collapsed;
             }
+            tbl_codeleave.Text = string.Format("{0}秒", count);
+
         }
     }
 }

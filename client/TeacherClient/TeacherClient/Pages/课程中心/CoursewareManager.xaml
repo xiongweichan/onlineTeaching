@@ -156,7 +156,7 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTextColumn Binding="{Binding FileName}" CellStyle="{StaticResource DataGridCellStyle1}" Width="240"/>
-                    <DataGridTemplateColumn CellStyle="{StaticResource DataGridCellStyle1}" Width="100">
+                    <DataGridTemplateColumn CellStyle="{StaticResource DataGridCellStyle1}">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">

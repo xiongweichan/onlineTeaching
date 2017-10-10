@@ -8,7 +8,7 @@ namespace TeacherClient
 {
     public static class Config
     {
-        public static readonly string SystemConfigPath = "SysConfig/SystemConfig.xml";
+        public static readonly string SystemConfigPath = AppDomain.CurrentDomain.BaseDirectory + "SysConfig\\SystemConfig.xml";
         public static readonly string IsAutoStart = "IS_AUTO_STARTUP";
         public static readonly string CacheFilePath = "CACHE_PATH";
 
@@ -92,7 +92,7 @@ namespace TeacherClient
         public static readonly string Interface_liveList = "Live/LecLive/liveList";
         public static readonly string Interface_liveChangeTime = "Live/LecLive/liveChangeTime";
         public static readonly string Interface_liveDel = "Live/LecLive/liveDel";
-        public static readonly string Interface_liveCancel = "Live/LecLive/liveCancel"; 
+        public static readonly string Interface_liveCancel = "Live/LecLive/liveCancel";
         public static readonly string Interface_liveAdd = "Live/LecLive/liveAdd";
         public static readonly string Interface_liveDetail = "Live/LecLive/liveDetail";
         public static readonly string Interface_liveReward = "Live/LecLive/liveReward";

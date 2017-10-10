@@ -45,6 +45,7 @@ namespace TeacherClient.Pages
 
         async void btnOk_Click(object sender, RoutedEventArgs e)
         {
+            bool b = true;
             if (string.IsNullOrWhiteSpace(Model.title))
                 MessageWindow.Alter("提示", "课程名称不能为空");
             else if (Model.title.Length > 45)
@@ -91,12 +92,13 @@ namespace TeacherClient.Pages
                         Lesson.id = "1";
                         Lesson.end_time = Lesson.start_time.GetTime().AddMinutes(double.Parse(Lesson.Long)).ConvertDateTimeInt().ToString();
                         Model.lessonList = new List<Contract.lesson>() { Lesson };
+                        b = false;
                     }
                 }
                 else
                 {
-                    var list = Lessons.ToList();
-                    list.ForEach(T =>
+                    var list = new List<Contract.lesson>();
+                    Lessons.ToList().ForEach(T =>
                     {
                         if (string.IsNullOrWhiteSpace(T.start_time))
                             MessageWindow.Alter("提示", "上课时间不能为空");
@@ -121,14 +123,16 @@ namespace TeacherClient.Pages
                             MessageWindow.Alter("提示", "负责人微信号不能为空");
                         else
                         {
-                            T.lesson_number = (list.IndexOf(T) + 1).ToString();
+                            list.Add(T);
+                            T.lesson_number = list.Count.ToString();
                             T.end_time = T.start_time.GetTime().AddMinutes(double.Parse(T.Long)).ConvertDateTimeInt().ToString();
-                            T.id = (list.IndexOf(T) + 1).ToString();
-                        }                            
+                            T.id = list.Count.ToString();
+                        }
                     });
+                    b = (list.Count != Lessons.Count);
                     Model.lessonList = list;
                 }
-                if (await WebHelper.doPost<Request.offlineCourseAdd>(Config.Interface_offlineCourseAdd, Model))
+                if (!b && await WebHelper.doPost<Request.offlineCourseAdd>(Config.Interface_offlineCourseAdd, Model))
                 {
                     MessageWindow.Alter("提示", "添加成功");
                     this.DialogResult = true;

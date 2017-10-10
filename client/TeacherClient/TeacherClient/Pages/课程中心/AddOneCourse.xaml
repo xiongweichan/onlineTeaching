@@ -23,8 +23,7 @@
                     <Run Text="课程视频：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
             </TextBlock>
             <Button Grid.Row="1" Style="{StaticResource ButtonStyle1}" Height="26" Width="110"
-                Click="UploadCourse_Click"
-                    Visibility="{Binding VedioName,Converter={StaticResource TextToVisibilityConverter}}">
+                Click="UploadCourse_Click">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Images/课程中心/上传.png" Margin="6,0"/>
@@ -41,8 +40,7 @@
                     <Run Text="上传课程：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
             </TextBlock>
             <Button Grid.Row="1" Style="{StaticResource ButtonStyle1}" Height="26" Width="110"
-                Click="UploadDocument_Click"
-                    Visibility="{Binding DocumentName,Converter={StaticResource TextToVisibilityConverter}}">
+                Click="UploadDocument_Click">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Images/课程中心/上传.png" Margin="6,0"/>

@@ -48,7 +48,7 @@ namespace TeacherClient
 
 
             //进入主窗口就开始初始化基础数据
-            SystemInit.Instance.Init();
+            SystemInit.Instance.Init(); 
 
             this.DataContext = this;
             //初始化富文本编辑控件

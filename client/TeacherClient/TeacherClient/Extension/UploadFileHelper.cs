@@ -60,25 +60,34 @@ namespace TeacherClient
                 File.WriteAllText(_path, _WaittingFiles.ToJson());
             }
         }
-
-        public FileModel Add(string path, string token, string domain, string key, EnFileType type)
+        public FileModel Add(string path, string token, string domain, string key,  EnFileType type)
+        //public FileModel Add(string path, string id, EnFileType type, int tokentype,params string[] param)
         {
             try
             {
-                if (_WaittingFiles.Any(T => T.LocalFile == path))
-                    return _WaittingFiles.FirstOrDefault(T => T.LocalFile == path);
+
+                //if (_WaittingFiles.Any(T => T.LocalFile == path))
+                //    return _WaittingFiles.FirstOrDefault(T => T.LocalFile == path);
 
                 FileModel model = new FileModel();
                 FileInfo info = new FileInfo(path);
+
+                //model.ID = id;
+                //model.GUID = Guid.NewGuid().ToString();
+                //model.Params = param;
+                //model.TokenType = tokentype;
+
                 model.ID = Guid.NewGuid().ToString();
                 model.SaveKey = key;
                 model.Token = token;
+
                 model.Type = type;
                 model.Extension = info.Extension;
                 model.FileName = info.Name;
                 model.FileSize = info.Length;
                 model.LocalFile = path;
                 model.RecordFile = GetPath(string.Format("{0}\\{1}", CacheHelper.CacheFilePath, model.ID), info.Name + ".12345");
+                //model.RecordFile = GetPath(string.Format("{0}\\{1}", CacheHelper.CacheFilePath, model.GUID), info.Name + ".12345");
                 _WaittingFiles.Add(model);
                 model.Started += Model_Started;
                 model.Complated += Item_Complated;
@@ -110,6 +119,9 @@ namespace TeacherClient
             public event EventHandler Complated;
 
             public string ID { get; set; }
+            //public string GUID { get; set; }
+            //public int TokenType { get; set; }
+            //public string[] Params { get; set; }
             public string Token { get; set; }
             public EnFileType Type { get; set; }
             public string Extension { get; set; }
@@ -126,6 +138,7 @@ namespace TeacherClient
 
             async void StartReal()
             {
+                //await RefreshToken();
 
                 if (!string.IsNullOrWhiteSpace(ID) && !string.IsNullOrWhiteSpace(Token) && File.Exists(LocalFile))
                 {
@@ -180,6 +193,74 @@ namespace TeacherClient
                     }
                 }
             }
+
+            //async Task<bool> RefreshToken()
+            //{
+            //    try
+            //    {
+            //        switch (TokenType)
+            //        {
+            //            case 1://上传课程
+            //                {
+            //                    Contract.Request.courseLessonUpload t = new Contract.Request.courseLessonUpload()
+            //                    {
+            //                        lec_id = App.CurrentLogin.lec_id,
+            //                        token = App.CurrentLogin.token,
+            //                        file_name = FileName,
+            //                        id = ID,
+            //                        type = Params[0]
+            //                    };
+            //                    var data = await WebHelper.doPost<Contract.Reponse.getToken, Contract.Request.courseLessonUpload>(Config.Interface_courseLessonUpload, t);
+            //                    if (data != null)
+            //                    {
+            //                        Token = data.token;
+            //                        SaveKey = data.key;
+            //                    }
+            //                }
+            //                break;
+            //            case 2://课件上传
+            //                {
+            //                    Contract.Request.getToken t = new Contract.Request.getToken()
+            //                    {
+            //                        lec_id = App.CurrentLogin.lec_id,
+            //                        token = App.CurrentLogin.token,
+            //                        file_name = FileName,
+            //                        id = ID
+            //                    };
+            //                    var data = await WebHelper.doPost<Contract.Reponse.getToken, Contract.Request.getToken>(Config.Interface_coursewareUpload, t);
+            //                    if (data != null)
+            //                    {
+            //                        Token = data.token;
+            //                        SaveKey = data.key;
+            //                    }
+            //                }
+            //                break;
+            //            case 3:
+            //                {
+            //                    Contract.Request.getToken gt = new Contract.Request.getToken()
+            //                    {
+            //                        lec_id = App.CurrentLogin.lec_id,
+            //                        token = App.CurrentLogin.token,
+            //                        file_name = FileName,
+            //                        id = ID
+            //                    };
+            //                    var data = await WebHelper.doPost<Contract.Reponse.getToken, Contract.Request.getToken>(Config.Interface_liveWareUpload, gt);
+            //                    if (data != null)
+            //                    {
+            //                        Token = data.token;
+            //                        SaveKey = data.key;
+            //                    }
+            //                    break;
+            //                }
+            //        }
+            //    }
+            //    catch(Exception ex)
+            //    {
+            //        Log.Error(ex);
+            //    }                
+            //    return true;
+            //}
+
 
             public void Cancel()
             {

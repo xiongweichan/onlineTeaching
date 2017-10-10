@@ -198,6 +198,22 @@ namespace TeacherClient.Pages
                                 }));
                             }), _token.Token);
                         }
+                        //UploadFileHelper.Instance.Add(Model.Courseware, t, UploadFileHelper.EnFileType.Courseware, 3, string.Empty );
+                        //fourthpage.IsChecked = true;
+                        //_token = new CancellationTokenSource();
+                        //await Task.Factory.StartNew(new Action(() =>
+                        //{
+                        //    for (int i = 0; i < 5; i++)
+                        //    {
+                        //        _token.Token.ThrowIfCancellationRequested();
+                        //        Thread.Sleep(1000);
+                        //    }
+                        //    _token.Token.ThrowIfCancellationRequested();
+                        //    this.Dispatcher.Invoke(new Action(() =>
+                        //    {
+                        //        LiveCenter.Current.Type = 0;
+                        //    }));
+                        //}), _token.Token);
                     }
                 }
                 else

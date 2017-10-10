@@ -137,6 +137,9 @@ namespace TeacherClient.Pages
                         UploadFileHelper.Instance.Add(Model.url, data.token, data.domain, data.key, UploadFileHelper.EnFileType.Courseware);
                         CourseCenter.Current.ShowCoursewareManager(true);
                     }
+
+                    //UploadFileHelper.Instance.Add(Model.url, b, UploadFileHelper.EnFileType.Courseware, 2, string.Empty);
+                    //CourseCenter.Current.ShowCoursewareManager(true);
                 }
             }
             else

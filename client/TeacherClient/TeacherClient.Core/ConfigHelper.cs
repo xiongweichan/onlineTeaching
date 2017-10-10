@@ -75,6 +75,7 @@ namespace TeacherClient.Core
         /// </summary>
         public void GetAllConfig()
         {
+            Log.Debug(this.filepath);
             document = new XmlDocument();
             document.Load(this.filepath);
             XmlNodeList paras = document.SelectNodes("//paras/para");

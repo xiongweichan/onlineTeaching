@@ -122,7 +122,7 @@ namespace TeacherClient.Pages
                 bcheck = bcheck && Model.CatID2.MyIsNullOrWhiteSpace("课程类型");
                 bcheck = bcheck && Model.CatID3.MyIsNullOrWhiteSpace("课程类型");
                 bcheck = bcheck && Model.CourseType.MyIsNullOrWhiteSpace("课程数量");
-                if(Model.CourseType == "0")
+                if (Model.CourseType == "0")
                 {
                     bcheck = bcheck && Model.OneCourse.Price.MyIsNullOrWhiteSpace("课程售价");
                     bcheck = bcheck && Model.OneCourse.Vedio.MyIsNullOrWhiteSpace("课程视频");
@@ -205,6 +205,11 @@ namespace TeacherClient.Pages
                             UploadFileHelper.Instance.Add(d, data.token, data.domain, data.key, UploadFileHelper.EnFileType.Course);
 
                         }
+                        //var v = f.FirstOrDefault(T => T.VedioName == item.video_file_name);
+                        //var d = f.FirstOrDefault(T => T.DocumentName == item.courseware_file_name);
+                        //UploadFileHelper.Instance.Add(v.Vedio, item.id, UploadFileHelper.EnFileType.Course, 1, "1");
+                        //UploadFileHelper.Instance.Add(d.Document, item.id, UploadFileHelper.EnFileType.Course, 1, "0");
+
                     }
 
                     CourseCenter.Current.ShowCourseManager(true);

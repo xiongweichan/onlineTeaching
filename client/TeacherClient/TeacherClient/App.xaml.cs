@@ -31,8 +31,29 @@ namespace TeacherClient
             IPCHandle.Init();
             var d = TimerHelper.Instance;
             App.Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
 
+        }
+
+        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            try
+            {
+                Exception error = e.ExceptionObject as Exception;
+                if (error != null)
+                {
+                    Log.Error("未捕获的异常", error);
+                }
+                else
+                {
+                    Log.Error(string.Format("未捕获的异常:{0}", e));
+                }
+
+                Log.Error("未捕获的异常" + e.ExceptionObject.ToJson());
+                MessageWindow.Alter("错误", "程序出现未知异常，请联系管理员处理！");
+            }
+            catch (Exception) { }
         }
 
         private void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
