@@ -70,7 +70,12 @@ namespace TeacherClient
         private void Btn_ClearCacheClick(object sender, RoutedEventArgs e)
         {
             CacheHelper.ClearCache();
-            Model.CacheCount = CacheHelper.GetCacheCount().ToString("f1") + "M";
+            var d = CacheHelper.GetCacheCount();
+            Model.CacheCount = d.ToString("f1") + "M";
+            if (d > 0)
+                MessageWindow.Alter("提示", "清空完成，部分缓存正在使用，无法清除。");
+            else
+                MessageWindow.Alter("提示", "清空完成。");
         }
 
         private void ChangedDir_Click(object sender, RoutedEventArgs e)

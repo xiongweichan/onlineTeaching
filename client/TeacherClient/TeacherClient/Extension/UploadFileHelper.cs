@@ -65,19 +65,21 @@ namespace TeacherClient
         {
             try
             {
-
+                var id = Guid.NewGuid().ToString();
+                var path2 = GetPath(string.Format("{0}\\{1}", CacheHelper.CacheFilePath, id), Path.GetFileName(path));
+                File.Copy(path, path2);
                 //if (_WaittingFiles.Any(T => T.LocalFile == path))
                 //    return _WaittingFiles.FirstOrDefault(T => T.LocalFile == path);
 
                 FileModel model = new FileModel();
-                FileInfo info = new FileInfo(path);
+                FileInfo info = new FileInfo(path2);
 
                 //model.ID = id;
                 //model.GUID = Guid.NewGuid().ToString();
                 //model.Params = param;
                 //model.TokenType = tokentype;
 
-                model.ID = Guid.NewGuid().ToString();
+                model.ID = id;//Guid.NewGuid().ToString();
                 model.SaveKey = key;
                 model.Token = token;
 
@@ -85,7 +87,7 @@ namespace TeacherClient
                 model.Extension = info.Extension;
                 model.FileName = info.Name;
                 model.FileSize = info.Length;
-                model.LocalFile = path;
+                model.LocalFile = path2;
                 model.RecordFile = GetPath(string.Format("{0}\\{1}", CacheHelper.CacheFilePath, model.ID), info.Name + ".12345");
                 //model.RecordFile = GetPath(string.Format("{0}\\{1}", CacheHelper.CacheFilePath, model.GUID), info.Name + ".12345");
                 _WaittingFiles.Add(model);
@@ -142,10 +144,10 @@ namespace TeacherClient
 
                 if (!string.IsNullOrWhiteSpace(ID) && !string.IsNullOrWhiteSpace(Token) && File.Exists(LocalFile))
                 {
-                    if (Started != null)
-                        Started(this, new EventArgs());
                     try
                     {
+                        if (Started != null)
+                            Started(this, new EventArgs());
                         // 包含两个参数，并且都有默认值
                         // 参数1(bool): uploadFromCDN是否从CDN加速上传，默认否
                         // 参数2(enum): chunkUnit上传分片大小，可选值128KB,256KB,512KB,1024KB,2048KB,4096KB
@@ -165,19 +167,38 @@ namespace TeacherClient
                             else
                             {
                                 Log.Error(result);
-                                ViewModelBase.InvokeOnUIThread(new Action(() =>
+                                try
                                 {
-                                    try
+                                    Dispatcher.CurrentDispatcher.Invoke(new Action(() =>
                                     {
+                                        try
+                                        {
+                                            MessageWindow.Alter("提示", "上传失败");
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            Log.Error(ex);
+                                        }
+                                    }));
+                                }
+                                catch (Exception ex)
+                                {
+                                    Log.Error(ex);
+                                }
+                                
+                                //ViewModelBase.InvokeOnUIThread(new Action(() =>
+                                //{
+                                //    try
+                                //    {
 
-                                        MessageWindow.Alter("提示", "上传失败");
-                                    }
-                                    catch(Exception ex)
-                                    {
-                                        Log.Error(ex);
-                                    }
+                                //        MessageWindow.Alter("提示", "上传失败");
+                                //    }
+                                //    catch(Exception ex)
+                                //    {
+                                //        Log.Error(ex);
+                                //    }
 
-                                }));
+                                //}));
                             }
                             if (Complated != null)
                                 Complated(this, new EventArgs());

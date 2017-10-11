@@ -61,8 +61,9 @@ namespace TeacherClient.Pages
         {
             if (cb_province.SelectedItem is Reponse.region)
             {
-                cb_city.ItemsSource = (cb_province.SelectedItem as Reponse.region).data;
+                cb_city.ItemsSource = (cb_province.SelectedItem as Reponse.region).data;                
             }
+            cb_district.ItemsSource = null;
         }
 
         private void cb_city_SelectionChanged(object sender, SelectionChangedEventArgs e)

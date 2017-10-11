@@ -30,7 +30,7 @@ namespace TeacherClient
                     if (!Directory.Exists(path))
                         Directory.CreateDirectory(path);
                 }
-                catch(Exception)
+                catch (Exception)
                 {
                     path = _defaultpath;
                     ConfigManagerHelper.SetConfigByName(Config.CacheFilePath, _defaultpath);
@@ -73,7 +73,10 @@ namespace TeacherClient
             {
                 foreach (var dir in Directory.GetDirectories(path))
                 {
-                    ClearCache(dir);
+                    if (Directory.GetFiles(dir).Length == 0)
+                        Directory.Delete(dir);
+                    else
+                        ClearCache(dir);
                 }
                 foreach (var file in Directory.GetFiles(path))
                 {

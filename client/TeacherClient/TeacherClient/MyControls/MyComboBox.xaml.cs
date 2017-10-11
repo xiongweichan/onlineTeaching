@@ -91,6 +91,7 @@ namespace TeacherClient
 
         private void ic_first_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
             if (ic_first.SelectedItem == null) return;
             var list = (ic_first.SelectedItem as Reponse.category).data;
             ic_second.ItemsSource = list;
@@ -100,6 +101,7 @@ namespace TeacherClient
 
         private void ic_second_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (ic_first.SelectedItem == null) return;
             if (ic_second.SelectedItem == null) return;
             var list = (ic_second.SelectedItem as Reponse.category).data;
             ic_third.ItemsSource = list;
@@ -109,6 +111,10 @@ namespace TeacherClient
 
         private void ic_third_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (ic_first.SelectedItem == null) return;
+            if (ic_second.SelectedItem == null) return;
+            if (ic_third.SelectedItem == null) return;
+
             tb_Text.Text = string.Format("{0} / {1} / {2}"
                 , (ic_first.SelectedItem as Reponse.category).name
                 , (ic_second.SelectedItem as Reponse.category).name
