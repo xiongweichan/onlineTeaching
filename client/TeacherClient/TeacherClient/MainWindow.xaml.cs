@@ -31,7 +31,8 @@ namespace TeacherClient
 
             InitializeComponent();
             Init();
-            UploadFileHelper.Instance.Run();
+            //UploadFileHelper.Instance.Run();
+            AliyunHelper.Instance.Run();
 
         }
         async void Init()

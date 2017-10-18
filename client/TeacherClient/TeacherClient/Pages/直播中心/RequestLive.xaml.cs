@@ -176,12 +176,14 @@ namespace TeacherClient.Pages
                             lec_id = App.CurrentLogin.lec_id,
                             token = App.CurrentLogin.token,
                             file_name = System.IO.Path.GetFileName(Model.Courseware),
+                            aliyun = "1",
                             id = t
                         };
                         var data = await WebHelper.doPost<Reponse.getToken, Request.getToken>(Config.Interface_liveWareUpload, gt);
                         if (data != null)
                         {
-                            UploadFileHelper.Instance.Add(Model.Courseware, data.token, data.domain, data.key, UploadFileHelper.EnFileType.Courseware);
+                            AliyunHelper.Instance.Add(Model.Courseware, data.aliyun.accessid, data.aliyun.signature, data.aliyun.host, data.domain, data.key, AliyunHelper.EnFileType.Courseware);
+                            //UploadFileHelper.Instance.Add(Model.Courseware, data.token, data.domain, data.key, UploadFileHelper.EnFileType.Courseware);
                             fourthpage.IsChecked = true;
                             _token = new CancellationTokenSource();
                             await Task.Factory.StartNew(new Action(() =>

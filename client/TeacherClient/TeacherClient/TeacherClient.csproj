@@ -67,6 +67,9 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Aliyun.OSS">
+      <HintPath>..\lib\Aliyun.OSS.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\lib\log4net.dll</HintPath>
     </Reference>
@@ -173,6 +176,7 @@
     <Compile Include="Converters\SexIntToStringConverter.cs" />
     <Compile Include="Converters\TextToVisibilityConverter.cs" />
     <Compile Include="Converters\WithDrawStatusToStringConverter.cs" />
+    <Compile Include="Extension\AliyunHelper.cs" />
     <Compile Include="Extension\CacheHelper.cs" />
     <Compile Include="Extension\IChangeData.cs" />
     <Compile Include="Extension\INavigation.cs" />

@@ -129,12 +129,15 @@ namespace TeacherClient.Pages
                         lec_id = App.CurrentLogin.lec_id,
                         token = App.CurrentLogin.token,
                         file_name = System.IO.Path.GetFileName(Model.url),
+                        aliyun="1",
                         id = b
                     };
                     var data = await WebHelper.doPost<Reponse.getToken, Request.getToken>(Config.Interface_coursewareUpload, t);
                     if (data != null)
                     {
-                        UploadFileHelper.Instance.Add(Model.url, data.token, data.domain, data.key, UploadFileHelper.EnFileType.Courseware);
+                        AliyunHelper.Instance.Add(Model.url, data.aliyun.accessid, data.aliyun.signature, data.aliyun.dir, data.domain, data.key, AliyunHelper.EnFileType.Courseware);
+
+                        //UploadFileHelper.Instance.Add(Model.url, data.token, data.domain, data.key, UploadFileHelper.EnFileType.Courseware);
                         CourseCenter.Current.ShowCoursewareManager(true);
                     }
 

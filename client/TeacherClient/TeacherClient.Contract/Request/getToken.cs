@@ -10,5 +10,6 @@ namespace TeacherClient.Contract.Request
     {
         public string file_name { get; set; }
         public string id { get; set; }
+        public string aliyun { get; set; }
     }
 }

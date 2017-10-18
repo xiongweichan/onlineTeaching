@@ -201,8 +201,11 @@ namespace TeacherClient.Pages
                             var v = f.FirstOrDefault(T => T.VedioName == item.video_file_name).Vedio;
                             var d = f.FirstOrDefault(T => T.DocumentName == item.courseware_file_name).Document;
 
-                            UploadFileHelper.Instance.Add(v, data.token, data.domain, data.key, UploadFileHelper.EnFileType.Course);
-                            UploadFileHelper.Instance.Add(d, data.token, data.domain, data.key, UploadFileHelper.EnFileType.Course);
+                            AliyunHelper.Instance.Add(v, data.aliyun.accessid, data.aliyun.signature, data.aliyun.host, data.domain, data.key, AliyunHelper.EnFileType.Course);
+                            AliyunHelper.Instance.Add(d, data.aliyun.accessid, data.aliyun.signature, data.aliyun.host, data.domain, data.key, AliyunHelper.EnFileType.Course);
+
+                            //UploadFileHelper.Instance.Add(v, data.token, data.domain, data.key, UploadFileHelper.EnFileType.Course);
+                            //UploadFileHelper.Instance.Add(d, data.token, data.domain, data.key, UploadFileHelper.EnFileType.Course);
 
                         }
                         //var v = f.FirstOrDefault(T => T.VedioName == item.video_file_name);
