@@ -114,7 +114,7 @@ namespace TeacherClient.Pages
             var path = FileSelectHelper.FileSelecte("课件文件|*.png;*.bmp;*.jpg;*.doc;*.docx;*.ppt;*.pptx", 10);
             if (string.IsNullOrWhiteSpace(path)) return;
 
-            Model.Courseware = path;            
+            Model.Courseware = path;
         }
         CancellationTokenSource _token;
         async void btnNext_Click(object sender, RoutedEventArgs e)
@@ -136,13 +136,13 @@ namespace TeacherClient.Pages
                     string.IsNullOrWhiteSpace(Model.CatID1) ||
                     string.IsNullOrWhiteSpace(Model.CatID2))
                     MessageWindow.Alter("提示", "直播类型不能为空");
-                else if(string.IsNullOrWhiteSpace(Model.Intro))
+                else if (string.IsNullOrWhiteSpace(Model.Intro))
                     MessageWindow.Alter("提示", "直播描述不能为空");
-                else if(string.IsNullOrWhiteSpace(Model.Courseware))
+                else if (string.IsNullOrWhiteSpace(Model.Courseware))
                     MessageWindow.Alter("提示", "直播课件不能为空");
-                else if(string.IsNullOrWhiteSpace(Model.Price))
+                else if (string.IsNullOrWhiteSpace(Model.Price))
                     MessageWindow.Alter("提示", "直播售价不能为空");
-                else if(string.IsNullOrWhiteSpace(Model.Intro))
+                else if (string.IsNullOrWhiteSpace(Model.Intro))
                     MessageWindow.Alter("提示", "直播详情不能为空");
                 else
                     thirdpage.IsChecked = true;
@@ -176,13 +176,15 @@ namespace TeacherClient.Pages
                             lec_id = App.CurrentLogin.lec_id,
                             token = App.CurrentLogin.token,
                             file_name = System.IO.Path.GetFileName(Model.Courseware),
-                            aliyun = "1",
+                            //aliyun = "1",
                             id = t
                         };
-                        var data = await WebHelper.doPost<Reponse.getToken, Request.getToken>(Config.Interface_liveWareUpload, gt);
+                        //var data = await WebHelper.doPost<Reponse.getToken, Request.getToken>(Config.Interface_liveWareUpload, gt);
+                        var data = await WebHelper.doPost<Reponse.AliyunUpload, Request.getToken>(Config.Interface_liveWareUpload, gt);
+
                         if (data != null)
                         {
-                            AliyunHelper.Instance.Add(Model.Courseware, data.aliyun.accessid, data.aliyun.signature, data.aliyun.host, data.domain, data.key, AliyunHelper.EnFileType.Courseware);
+                            AliyunHelper.Instance.Add(Model.Courseware, data.access_key_id, data.access_key_secret, data.oss_bucket, data.oss_end_point, data.key, AliyunHelper.EnFileType.Live, t);
                             //UploadFileHelper.Instance.Add(Model.Courseware, data.token, data.domain, data.key, UploadFileHelper.EnFileType.Courseware);
                             fourthpage.IsChecked = true;
                             _token = new CancellationTokenSource();

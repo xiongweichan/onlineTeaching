@@ -75,15 +75,18 @@ namespace TeacherClient
         public static readonly string Interface_courseDetail_LecCourse = "Live/LecCourse/courseDetail";
         public static readonly string Interface_courseDel = "Live/LecCourse/courseDel";
         public static readonly string Interface_courseChangeTitle = "Live/LecCourse/courseChangeTitle";
-        public static readonly string Interface_courseLessonUpload = "Live/LecCourse/courseLessonUpload";
+        public static readonly string Interface_courseLessonUpload = "Live/LecCourse/courseLessonUploadAliyun";
+        public static readonly string Interface_courseLessonUploadCompleted = "Live/LecCourse/courseLessonUploadAliyunComplete";
         public static readonly string Interface_coursewareAdd = "Live/LecCourse/coursewareAdd";
         public static readonly string Interface_coursewareDetail = "Live/LecCourse/coursewareDetail";
-        public static readonly string Interface_coursewareUpload = "Live/LecCourse/liveWareUpload";
+        public static readonly string Interface_coursewareUpload = "Live/LecCourse/courseLessonUploadAliyun";
+        public static readonly string Interface_coursewareUploadCompleted = "Live/LecCourse/liveWareUploadAliyunComplete";
         public static readonly string Interface_coursewareList = "Live/LecCourse/coursewareList";
         public static readonly string Interface_coursewareDel = "Live/LecCourse/coursewareDel";
         public static readonly string Interface_coursewareChangeTitle = "Live/LecCourse/coursewareChangeTitle";
         public static readonly string Interface_messageList = "Live/LecCourse/messageList";
-        public static readonly string Interface_liveWareUpload = "Live/LecLive/liveWareUpload";
+        public static readonly string Interface_liveWareUpload = "Live/LecLive/liveWareUploadAliyun";
+        public static readonly string Interface_liveWareUploadCompleted = "Live/LecLive/liveWareUploadAliyunComplete";
 
 
         public static readonly string Interface_imageUpLoad = "Live/Upload/imageUpLoad";

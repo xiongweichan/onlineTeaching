@@ -1,11 +1,13 @@
 ﻿using Aliyun.OSS;
 using Aliyun.OSS.Common;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using TeacherClient.Core;
 using Telerik.Windows.Controls;
@@ -23,7 +25,7 @@ namespace TeacherClient
                 Directory.CreateDirectory(dir);
             return dir + "\\" + name;
         }
-        
+
         List<FileModel> _WaittingFiles = new List<FileModel>();
 
         public void Run()
@@ -69,14 +71,14 @@ namespace TeacherClient
             File.WriteAllText(_path, _WaittingFiles.ToJson());
         }
         public FileModel Add(string path, string accessKeyId, string accessKeySecret, string bucketName
-            , string endPoint, string key, EnFileType type)
+            , string endPoint, string key, EnFileType type, string id, string btype = null)
         {
             try
             {
-
                 FileModel model = new FileModel();
                 FileInfo info = new FileInfo(path);
-
+                model.ID = id;
+                model.BType = btype;
                 model.AccessKeyId = accessKeyId;
                 model.AccessKeySecret = accessKeySecret;
                 model.BucketName = bucketName;
@@ -105,6 +107,9 @@ namespace TeacherClient
         {
             public event EventHandler Started;
             public event EventHandler Complated;
+
+            public string ID { get; set; }
+            public string BType { get; set; }
 
             public string EndPoint { get; set; }
             public string AccessKeyId { get; set; }
@@ -153,35 +158,92 @@ namespace TeacherClient
                     this.OnPropertyChanged("Per");
                 }
             }
-
+            bool _IsCompleted;
+            public bool IsCompleted
+            {
+                get { return _IsCompleted; }
+                set
+                {
+                    _IsCompleted = value;
+                    this.OnPropertyChanged("IsCompleted");
+                }
+            }
+            bool _Pause;
+            public bool Pause
+            {
+                get { return _Pause; }
+                set
+                {
+                    _Pause = value;
+                    this.OnPropertyChanged("Pause");
+                    try
+                    {
+                        if (value)
+                        {
+                            _thread.Suspend();
+                        }
+                        else
+                        {
+                            _thread.Resume();
+                        }
+                    }
+                    catch(Exception ex)
+                    {
+                        Log.Error(ex);
+                    }                    
+                }
+            }
+            [JsonIgnore]
+            Thread _thread;
             public void Start()
             {
-                try
+                _thread = new Thread(() =>
                 {
-                    OssClient client = new OssClient(EndPoint, AccessKeyId, AccessKeySecret);
-                    string checkpointDir = Config.CacheFilePath;
-                    var result = client.ResumableUploadObject(BucketName, Key, FileToUpload, null, checkpointDir, null, streamProgressCallback);
-                }
-                catch (OssException ex)
-                {
-                    Log.Error(string.Format("Failed with error code: {0}; Error info: {1}. \nRequestID:{2}\tHostID:{3}",
-                        ex.ErrorCode, ex.Message, ex.RequestId, ex.HostId), ex);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex);
-                }
+                    try
+                    {
+                        OssClient client = new OssClient(EndPoint, AccessKeyId, AccessKeySecret);
+                        string checkpointDir = Config.CacheFilePath;
+                        var result = client.ResumableUploadObject(BucketName, Key, FileToUpload, null, checkpointDir, null, streamProgressCallback);
+                        IsCompleted = true;
+                        UploadCompleted();
+                    }
+                    catch (ThreadAbortException)
+                    {//取消任务
+                    }
+                    catch (OssException ex)
+                    {
+                        Log.Error(string.Format("Failed with error code: {0}; Error info: {1}. \nRequestID:{2}\tHostID:{3}",
+                            ex.ErrorCode, ex.Message, ex.RequestId, ex.HostId), ex);
+                        ViewModelBase.InvokeOnUIThread(() =>
+                        {
+                            MessageWindow.Alter("提示", "上传失败:" + ex.Message);
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error(ex);
+                        ViewModelBase.InvokeOnUIThread(() =>
+                        {
+                            MessageWindow.Alter("提示", "上传失败");
+                        });
+                    }
+                    finally
+                    {
+                        if (Complated != null)
+                        {
+                            Complated(this, new EventArgs());
+                        }
+                    }
+                });
+                _thread.Start();
+
             }
             private void streamProgressCallback(object sender, StreamTransferProgressArgs args)
             {
                 try
                 {
                     Per = args.PercentDone;
-                    UploadedBytes = args.TransferredBytes;
-                    if (Per == 100 && Complated != null)
-                    {
-                        Complated(this, new EventArgs());
-                    }
+                    UploadedBytes = args.TransferredBytes; 
                 }
                 catch (Exception ex)
                 {
@@ -189,14 +251,60 @@ namespace TeacherClient
                 }
             }
 
+            async void UploadCompleted()
+            {
+                switch (Type)
+                {
+                    case EnFileType.Course:
+                        {
+                            Contract.Request.AliyunUploadCompleted_Course r = new Contract.Request.AliyunUploadCompleted_Course();
+                            r.token = App.CurrentLogin.token;
+                            r.lec_id = App.CurrentLogin.lec_id;
+                            r.id = this.ID;
+                            r.key = this.Key;
+                            r.type = this.BType;
+                            var b = WebHelper.doPost<Contract.Request.AliyunUploadCompleted_Course>(Config.Interface_courseLessonUploadCompleted, r);
+                        }
+                        break;
+                    case EnFileType.Courseware:
+                        {
+                            Contract.Request.AliyunUploadCompleted r = new Contract.Request.AliyunUploadCompleted();
+                            r.token = App.CurrentLogin.token;
+                            r.lec_id = App.CurrentLogin.lec_id;
+                            r.id = this.ID;
+                            r.key = this.Key;
+                            var b = WebHelper.doPost<Contract.Request.AliyunUploadCompleted>(Config.Interface_coursewareUploadCompleted, r);
+                        }
+                        break;
+                    case EnFileType.Live:
+                        {
+                            Contract.Request.AliyunUploadCompleted r = new Contract.Request.AliyunUploadCompleted();
+                            r.token = App.CurrentLogin.token;
+                            r.lec_id = App.CurrentLogin.lec_id;
+                            r.id = this.ID;
+                            r.key = this.Key;
+                            var b = await WebHelper.doPost<Contract.Request.AliyunUploadCompleted>(Config.Interface_liveWareUploadCompleted, r);
+                        }
+                        break;
+                }
+            }
+
+            public void Cancel()
+            {
+                _thread.Abort();
+                if (Complated != null)
+                {
+                    Complated(this, new EventArgs());
+                }
+            }
         }
         public enum EnFileType
         {
             Course,
             Courseware,
+            Live,
         }
-
-
+        
     }
 
 

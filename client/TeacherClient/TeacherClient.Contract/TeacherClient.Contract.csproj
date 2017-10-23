@@ -46,6 +46,7 @@
     <Compile Include="courselesson.cs" />
     <Compile Include="lesson.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reponse\AliyunUpload.cs" />
     <Compile Include="Reponse\bankcardDetail.cs" />
     <Compile Include="Reponse\bankinfo.cs" />
     <Compile Include="Reponse\category.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Reponse\withdrawCharge.cs" />
     <Compile Include="Reponse\withdrawIndex.cs" />
     <Compile Include="Reponse\withdrawList.cs" />
+    <Compile Include="Request\AliyunUploadCompleted.cs" />
     <Compile Include="Request\bankcardAdd.cs" />
     <Compile Include="Request\bankcardEdit.cs" />
     <Compile Include="Request\changeEmail.cs" />

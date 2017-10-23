@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace TeacherClient.Contract.Request
 {
-    public class getToken : ParamBase
+    public class AliyunUploadCompleted : ParamBase
     {
-        public string file_name { get; set; }
         public string id { get; set; }
-        //public string aliyun { get; set; }
+        public string key { get; set; }
+    }
+    public class AliyunUploadCompleted_Course : AliyunUploadCompleted
+    {
+        public string type { get; set; }
     }
 }

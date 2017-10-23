@@ -193,16 +193,16 @@ namespace TeacherClient.Pages
                             id = item.id,
                             type = "0"
                         };
-                        var data = await WebHelper.doPost<Reponse.getToken, Request.courseLessonUpload>(Config.Interface_courseLessonUpload, t);
+                        var data = await WebHelper.doPost<Reponse.AliyunUpload, Request.courseLessonUpload>(Config.Interface_courseLessonUpload, t);
 
-                        var data1 = await WebHelper.doPost<Reponse.getToken, Request.courseLessonUpload>(Config.Interface_courseLessonUpload, t1);
+                        var data1 = await WebHelper.doPost<Reponse.AliyunUpload, Request.courseLessonUpload>(Config.Interface_courseLessonUpload, t1);
                         if (data != null && data1 != null)
                         {
                             var v = f.FirstOrDefault(T => T.VedioName == item.video_file_name).Vedio;
                             var d = f.FirstOrDefault(T => T.DocumentName == item.courseware_file_name).Document;
 
-                            AliyunHelper.Instance.Add(v, data.aliyun.accessid, data.aliyun.signature, data.aliyun.host, data.domain, data.key, AliyunHelper.EnFileType.Course);
-                            AliyunHelper.Instance.Add(d, data.aliyun.accessid, data.aliyun.signature, data.aliyun.host, data.domain, data.key, AliyunHelper.EnFileType.Course);
+                            AliyunHelper.Instance.Add(v, data.access_key_id, data.access_key_secret, data.oss_bucket, data.oss_end_point, data.key, AliyunHelper.EnFileType.Course, item.id, "1");
+                            AliyunHelper.Instance.Add(d, data1.access_key_id, data1.access_key_secret, data1.oss_bucket, data1.oss_end_point, data1.key, AliyunHelper.EnFileType.Course, item.id, "0");
 
                             //UploadFileHelper.Instance.Add(v, data.token, data.domain, data.key, UploadFileHelper.EnFileType.Course);
                             //UploadFileHelper.Instance.Add(d, data.token, data.domain, data.key, UploadFileHelper.EnFileType.Course);

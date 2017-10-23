@@ -195,21 +195,25 @@ namespace TeacherClient.Pages
         private void btnStartAll_Click(object sender, RoutedEventArgs e)
         {
             //(dg_upload.ItemsSource as List<UploadFileHelper.FileModel>).ForEach(T => T.Pause = false);
+            (dg_upload.ItemsSource as List<AliyunHelper.FileModel>).ForEach(T => T.Pause = false);
         }
 
         private void btn_StopAll_Click(object sender, RoutedEventArgs e)
         {
             //(dg_upload.ItemsSource as List<UploadFileHelper.FileModel>).ForEach(T => T.Pause = true);
+            (dg_upload.ItemsSource as List<AliyunHelper.FileModel>).ForEach(T => T.Pause = true);
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             //((sender as Control).Tag as UploadFileHelper.FileModel).Cancel();
+            ((sender as Control).Tag as AliyunHelper.FileModel).Cancel();
         }
 
         private void ToggleButton_Click(object sender, RoutedEventArgs e)
         {
             //((sender as Control).DataContext as UploadFileHelper.FileModel).Pause = (sender as ToggleButton).IsChecked.Value;
+            ((sender as Control).DataContext as AliyunHelper.FileModel).Pause = (sender as ToggleButton).IsChecked.Value;
         }
     }
 }
