@@ -206,7 +206,7 @@ namespace TeacherClient.Pages
                 if (p.Y / img.ActualHeight < (double)MediaHelper.Instance.localSmallHeight / MediaHelper.Instance.localHeight)
                 //切换1
                 {
-                    var i = _catch[0];
+                    var i = _catch[1];
                     //_catch[0] = _catch[1];
                     //_catch[1] = i;
                     ChangeCatch(i);
@@ -215,7 +215,7 @@ namespace TeacherClient.Pages
                 else if (p.Y / img.ActualHeight < 2 * (double)MediaHelper.Instance.localSmallHeight / MediaHelper.Instance.localHeight)
                 //切换2
                 {
-                    var i = _catch[0];
+                    var i = _catch[2];
                     //_catch[0] = _catch[2];
                     //_catch[2] = i;
                     ChangeCatch(i);

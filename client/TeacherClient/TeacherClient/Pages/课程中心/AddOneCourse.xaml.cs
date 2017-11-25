@@ -28,7 +28,7 @@ namespace TeacherClient.Pages
         }
         private void UploadCourse_Click(object sender, RoutedEventArgs e)
         {
-            var path = FileSelectHelper.FileSelecte("视频文件|*.MP4;*.RMVB;*.AVI", 1000);
+            var path = FileSelectHelper.FileSelecte("视频文件|*.flv;*.MP4;*.mov;*.f4v;*.3gp", 1000);
             if (string.IsNullOrWhiteSpace(path)) return;
 
             (DataContext as CourseModel).Vedio = path;

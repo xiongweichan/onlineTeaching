@@ -62,9 +62,9 @@ namespace TeacherClient
             _instance.m.Stop();
         }
 
+        byte[] data = new byte[1920 * 1080 * 3 + 99];
         public Stream GetImage()
         {
-            byte[] data = new byte[1920 * 1080 * 3 + 99];
             int dataSize;
             dataSize = m.getPlayData(data);
             if (dataSize > 0)

@@ -24,38 +24,38 @@ namespace TeacherClient
     {
 
 
-        public string cat_id
+        public string cat_id_1
         {
             get { return (string)GetValue(cat_idProperty); }
             set { SetValue(cat_idProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for cat_id.  This enables animation, styling, binding, etc...
+        // Using a DependencyProperty as the backing store for cat_id_1.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty cat_idProperty =
-            DependencyProperty.Register("cat_id", typeof(string), typeof(MyComboBox), new FrameworkPropertyMetadata(propertyChangedCallback) { BindsTwoWayByDefault = true });
+            DependencyProperty.Register("cat_id_1", typeof(string), typeof(MyComboBox), new FrameworkPropertyMetadata(propertyChangedCallback) { BindsTwoWayByDefault = true });
 
 
-        public string cat_id_1
+        public string cat_id_2
         {
             get { return (string)GetValue(cat_id_1Property); }
             set { SetValue(cat_id_1Property, value); }
         }
 
-        // Using a DependencyProperty as the backing store for cat_id_1.  This enables animation, styling, binding, etc...
+        // Using a DependencyProperty as the backing store for cat_id_2.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty cat_id_1Property =
-            DependencyProperty.Register("cat_id_1", typeof(string), typeof(MyComboBox), new FrameworkPropertyMetadata(propertyChangedCallback) { BindsTwoWayByDefault = true });
+            DependencyProperty.Register("cat_id_2", typeof(string), typeof(MyComboBox), new FrameworkPropertyMetadata(propertyChangedCallback) { BindsTwoWayByDefault = true });
 
 
 
-        public string cat_id_2
+        public string cat_id
         {
             get { return (string)GetValue(cat_id_2Property); }
             set { SetValue(cat_id_2Property, value); }
         }
 
-        // Using a DependencyProperty as the backing store for cat_id_2.  This enables animation, styling, binding, etc...
+        // Using a DependencyProperty as the backing store for cat_id.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty cat_id_2Property =
-            DependencyProperty.Register("cat_id_2", typeof(string), typeof(MyComboBox), new FrameworkPropertyMetadata(propertyChangedCallback) { BindsTwoWayByDefault = true });
+            DependencyProperty.Register("cat_id", typeof(string), typeof(MyComboBox), new FrameworkPropertyMetadata(propertyChangedCallback) { BindsTwoWayByDefault = true });
 
 
 
@@ -63,12 +63,12 @@ namespace TeacherClient
         {
             (d as MyComboBox).SetDataSource();
         }
-        
+
 
         public MyComboBox()
         {
             InitializeComponent();
-            //cat_id = "1"; cat_id_1 = "2"; cat_id_2 = "3";
+            //cat_id_1 = "1"; cat_id_2 = "2"; cat_id = "3";
 
         }
 
@@ -83,10 +83,10 @@ namespace TeacherClient
         {
             var list = SystemInit.Instance.CategoryList;
             ic_first.ItemsSource = list;
-            if (string.IsNullOrWhiteSpace(cat_id) || string.IsNullOrWhiteSpace(cat_id_1) || string.IsNullOrWhiteSpace(cat_id_2))
+            if (string.IsNullOrWhiteSpace(cat_id_1) || string.IsNullOrWhiteSpace(cat_id_2) || string.IsNullOrWhiteSpace(cat_id))
                 return;
-            if (!string.IsNullOrEmpty(cat_id))
-                ic_first.SelectedItem = list.FirstOrDefault(T => T.id == cat_id);
+            if (!string.IsNullOrEmpty(cat_id_1) && list != null)
+                ic_first.SelectedItem = list.FirstOrDefault(T => T.id == cat_id_1);
         }
 
         private void ic_first_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -95,8 +95,8 @@ namespace TeacherClient
             if (ic_first.SelectedItem == null) return;
             var list = (ic_first.SelectedItem as Reponse.category).data;
             ic_second.ItemsSource = list;
-            if (!string.IsNullOrEmpty(cat_id_1))
-                ic_second.SelectedItem = list.FirstOrDefault(T => T.id == cat_id_1);
+            if (!string.IsNullOrEmpty(cat_id_2) && list != null)
+                ic_second.SelectedItem = list.FirstOrDefault(T => T.id == cat_id_2);
         }
 
         private void ic_second_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -105,8 +105,8 @@ namespace TeacherClient
             if (ic_second.SelectedItem == null) return;
             var list = (ic_second.SelectedItem as Reponse.category).data;
             ic_third.ItemsSource = list;
-            if (!string.IsNullOrEmpty(cat_id_2))
-                ic_third.SelectedItem = list.FirstOrDefault(T => T.id == cat_id_2);
+            if (!string.IsNullOrEmpty(cat_id) && list != null)
+                ic_third.SelectedItem = list.FirstOrDefault(T => T.id == cat_id);
         }
 
         private void ic_third_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -119,9 +119,9 @@ namespace TeacherClient
                 , (ic_first.SelectedItem as Reponse.category).name
                 , (ic_second.SelectedItem as Reponse.category).name
                 , (ic_third.SelectedItem as Reponse.category).name);
-            this.cat_id = (ic_first.SelectedItem as Reponse.category).id;
-            this.cat_id_1 = (ic_second.SelectedItem as Reponse.category).id;
-            this.cat_id_2 = (ic_third.SelectedItem as Reponse.category).id;
+            this.cat_id_1 = (ic_first.SelectedItem as Reponse.category).id;
+            this.cat_id_2 = (ic_second.SelectedItem as Reponse.category).id;
+            this.cat_id = (ic_third.SelectedItem as Reponse.category).id;
         }
     }
 }

@@ -84,10 +84,10 @@ namespace TeacherClient.Pages
 
         private void EditTime_Click(object sender, RoutedEventArgs e)
         {
-#if DEBUG
-            StartLive_Click(sender, e);
-#else
-#endif
+//#if DEBUG
+//            StartLive_Click(sender, e);
+//#else
+//#endif
 
             var live = (sender as Control).Tag as Contract.Reponse.live;
             EditLiveTime win = new EditLiveTime(live.id);
