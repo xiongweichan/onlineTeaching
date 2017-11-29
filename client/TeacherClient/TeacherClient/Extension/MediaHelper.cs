@@ -63,12 +63,17 @@ namespace TeacherClient
         }
 
         byte[] data = new byte[1920 * 1080 * 3 + 99];
+        MemoryStream stream = new MemoryStream();
         public Stream GetImage()
         {
             int dataSize;
             dataSize = m.getPlayData(data);
             if (dataSize > 0)
-                return new MemoryStream(data);
+            {
+                stream.Write(data, 0, data.Length);
+                stream.Position = 0;
+                return stream;
+            }
             return null;
         }
 

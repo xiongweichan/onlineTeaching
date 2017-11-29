@@ -35,7 +35,7 @@
                                         Click="btnShowCourse_Click" Tag="{Binding course_id}" Margin="10,0"/>
                                 <Button Foreground="#424e67" Width="90" Height="24" Style="{StaticResource ButtonStyle3}" Content="查看报名列表"
                                         Visibility="{Binding time_status, Converter={StaticResource IntEqualParamToVisibilityConverter},ConverterParameter='3'}"
-                                        Click="btnShowStudent_Click" Tag="{Binding course_id}"/>
+                                        Click="btnShowStudent_Click" Tag="{Binding .}"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

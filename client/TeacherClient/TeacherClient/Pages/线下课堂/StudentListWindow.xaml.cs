@@ -23,9 +23,11 @@ namespace TeacherClient.Pages
     public partial class StudentListWindow : WindowBase
     {
         string _courseID;
-        public StudentListWindow(string cid)
+        string _lessionnumber;
+        public StudentListWindow(string cid, string lessionnumber)
         {
             _courseID = cid;
+            _lessionnumber = lessionnumber;
             InitializeComponent();
             this.IsBusy = false;
         }

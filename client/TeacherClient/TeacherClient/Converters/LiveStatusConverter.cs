@@ -21,12 +21,22 @@ namespace TeacherClient
                     case "2":
                         return "审核失败";
                     case "1":
-                        if (live.start_time != null && live.start_time.GetTime().AddHours(48) > DateTime.Now)
-                            return "等待直播";
-                        else if (live.end_time != null && live.end_time.GetTime() > DateTime.Now)
-                            return "直播结束";
-                        else
-                            return "审核成功";
+                        //if (live.start_time != null && live.start_time.GetTime().AddHours(48) > DateTime.Now)
+                        //    return "等待直播";
+                        //else if (live.end_time != null && live.end_time.GetTime() > DateTime.Now)
+                        //    return "直播结束";
+                        //else
+                        //    return "审核成功";
+                        switch (live.time_status.ObjToString())
+                        {
+                            case "0":
+                                return "等待直播";
+                            case "1":
+                                return "正在直播";
+                            case "2":
+                                return "直播结束";
+                        }
+                        return "审核成功";
                 }
             return value;
         }

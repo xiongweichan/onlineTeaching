@@ -63,8 +63,8 @@ namespace TeacherClient.Pages
 
         private void btnShowStudent_Click(object sender, RoutedEventArgs e)
         {
-            var id = (sender as Control).Tag.ObjToString();
-            StudentListWindow win = new StudentListWindow(id);
+            var lession = (sender as Control).Tag as Reponse.lessonList;
+            StudentListWindow win = new StudentListWindow(lession.course_id, lession.lesson_number);
             win.ShowDialog();
         }
     }

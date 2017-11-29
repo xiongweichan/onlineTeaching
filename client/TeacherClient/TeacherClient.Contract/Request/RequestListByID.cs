@@ -9,5 +9,6 @@ namespace TeacherClient.Contract.Request
     public class courseid : PageParam
     {
         public string course_id { get; set; }
+        public string lesson_number { get; set; }
     }
 }

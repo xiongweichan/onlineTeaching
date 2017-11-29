@@ -24,6 +24,7 @@ namespace TeacherClient.Contract.Reponse
         public string start_time { get; set; }
         public string end_time { get; set; }
         public string status { get; set; }
+        public string time_status { get; set; }
         public string add_time { get; set; }
         public string is_cancel { get; set; }
         public string cat_name { get; set; }
