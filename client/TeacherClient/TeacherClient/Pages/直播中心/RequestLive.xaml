@@ -74,9 +74,9 @@
                     <Run Text="直播次数：" Foreground="#3e3e3e" FontSize="{StaticResource FontSize3}"/>
                         </TextBlock>
                         <RadioButton x:Name="rb_one" Content="首播" Foreground="#FF3E3E3E" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="6,0"
-                                     IsChecked="{Binding Model.IsFirst, Converter={StaticResource IntToBoolConverter}, ConverterParameter='0'}"/>
-                        <RadioButton x:Name="rb_many" Content="多节" Foreground="#FF3E3E3E" VerticalContentAlignment="Center" VerticalAlignment="Center"
                                      IsChecked="{Binding Model.IsFirst, Converter={StaticResource IntToBoolConverter}, ConverterParameter='1'}"/>
+                        <RadioButton x:Name="rb_many" Content="多节" Foreground="#FF3E3E3E" VerticalContentAlignment="Center" VerticalAlignment="Center"
+                                     IsChecked="{Binding Model.IsFirst, Converter={StaticResource IntToBoolConverter}, ConverterParameter='0'}"/>
                     </StackPanel>
                     <Button Content="下一步" Width="130" Height="30" Background="#0096ff" Foreground="#ffffff" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Left"
                         Click="btnNext_Click" Margin="0,10,0,0"/>
