@@ -202,7 +202,7 @@ namespace TeacherClient
                     try
                     {
                         OssClient client = new OssClient(EndPoint, AccessKeyId, AccessKeySecret);
-                        string checkpointDir = Config.CacheFilePath;
+                        string checkpointDir = CacheHelper.CacheFilePath;
                         var result = client.ResumableUploadObject(BucketName, Key, FileToUpload, null, checkpointDir, null, streamProgressCallback);
                         IsCompleted = true;
                         UploadCompleted();

@@ -136,6 +136,8 @@ namespace TeacherClient.Pages
                     string.IsNullOrWhiteSpace(Model.CatID1) ||
                     string.IsNullOrWhiteSpace(Model.CatID2))
                     MessageWindow.Alter("提示", "直播类型不能为空");
+                else if (Model.IsFirst=="0" && string.IsNullOrWhiteSpace(Model.RelateLiveID))
+                    MessageWindow.Alter("提示", "关联直播不能为空");
                 else if (string.IsNullOrWhiteSpace(Model.Intro))
                     MessageWindow.Alter("提示", "直播描述不能为空");
                 else if (string.IsNullOrWhiteSpace(Model.Courseware))

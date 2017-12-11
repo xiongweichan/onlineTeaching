@@ -79,7 +79,7 @@ namespace TeacherClient
         public static readonly string Interface_courseLessonUploadCompleted = "Live/LecCourse/courseLessonUploadAliyunComplete";
         public static readonly string Interface_coursewareAdd = "Live/LecCourse/coursewareAdd";
         public static readonly string Interface_coursewareDetail = "Live/LecCourse/coursewareDetail";
-        public static readonly string Interface_coursewareUpload = "Live/LecCourse/courseLessonUploadAliyun";
+        public static readonly string Interface_coursewareUpload = "Live/LecCourse/liveWareUploadAliyun";
         public static readonly string Interface_coursewareUploadCompleted = "Live/LecCourse/liveWareUploadAliyunComplete";
         public static readonly string Interface_coursewareList = "Live/LecCourse/coursewareList";
         public static readonly string Interface_coursewareDel = "Live/LecCourse/coursewareDel";

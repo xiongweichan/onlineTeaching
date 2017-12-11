@@ -68,21 +68,25 @@ namespace TeacherClient.Pages
             l.id = _id;
             var d = await WebHelper.doPost<Reponse.liveDetail, Request.RequestID>(Config.Interface_liveDetail, l);
             Live = new LiveModel();
-            Live.CatID = d.cat_id;
-            Live.CatID1 = d.cat_id_1;
-            Live.CatID2 = d.cat_id_2;
-            Live.Courseware = d.courseware;
-            Live.EndTime = d.end_time.GetTime();
-            Live.ID = d.id;
-            Live.Image = d.image;
-            Live.Intro = d.intro;
-            Live.IsFirst = d.is_first;
-            Live.Price = d.price;
-            Live.RelateLiveID = d.relate_live_id;
-            Live.StartTime = d.start_time.GetTime();
-            Live.Syllabus = d.syllabus;
-            Live.Title = d.title;
-            Live.PushUrl = d.publishUrl;
+            if (d != null)
+            {
+                Live.CatID = d.cat_id;
+                Live.CatID1 = d.cat_id_1;
+                Live.CatID2 = d.cat_id_2;
+                Live.Courseware = d.courseware;
+                Live.EndTime = d.end_time.GetTime();
+                Live.ID = d.id;
+                Live.Image = d.image;
+                Live.Intro = d.intro;
+                Live.IsFirst = d.is_first;
+                Live.Price = d.price;
+                Live.RelateLiveID = d.relate_live_id;
+                Live.StartTime = d.start_time.GetTime();
+                Live.Syllabus = d.syllabus;
+                Live.Title = d.title;
+                Live.PushUrl = d.publishUrl;
+            }
+            
             this.DataContext = this;
             _timer.Start();
 
