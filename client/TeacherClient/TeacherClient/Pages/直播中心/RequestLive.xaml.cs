@@ -128,7 +128,10 @@ namespace TeacherClient.Pages
                 else if (string.IsNullOrWhiteSpace(Model.IsFirst))
                     MessageWindow.Alter("提示", "直播次数不能为空");
                 else
+                {
                     secondpage.IsChecked = true;
+                    sp_relationlive.Visibility = Model.IsFirst == "1" ? Visibility.Collapsed : Visibility.Visible;
+                }
             }
             else if (secondpage.IsChecked == true)
             {

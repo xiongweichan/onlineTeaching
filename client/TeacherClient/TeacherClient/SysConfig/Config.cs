@@ -11,6 +11,8 @@ namespace TeacherClient
         public static readonly string SystemConfigPath = AppDomain.CurrentDomain.BaseDirectory + "SysConfig\\SystemConfig.xml";
         public static readonly string IsAutoStart = "IS_AUTO_STARTUP";
         public static readonly string CacheFilePath = "CACHE_PATH";
+        public static readonly string UpdateUrl = "UpdateUrl";
+        public static readonly string HelpDocUrl = "HelpDocUrl";
 
 
         public static readonly string IsAutoLogin = "IsAutoLogin";

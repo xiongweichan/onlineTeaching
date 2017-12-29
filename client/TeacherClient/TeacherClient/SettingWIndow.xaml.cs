@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TeacherClient.Core;
 using Telerik.Windows.Controls;
 
 namespace TeacherClient
@@ -65,6 +66,14 @@ namespace TeacherClient
         private void CheckNewVersion_Click(object sender, RoutedEventArgs e)
         {
             //TODO:检查更新
+            try
+            {
+                var str = ConfigManagerHelper.GetConfigByName(Config.UpdateUrl);
+                System.Diagnostics.Process.Start(str);
+            }
+            catch
+            {
+            }
         }
 
         private void Btn_ClearCacheClick(object sender, RoutedEventArgs e)
@@ -81,10 +90,22 @@ namespace TeacherClient
         private void ChangedDir_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
-            if(dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 Model.CachePath = dialog.SelectedPath;
                 Model.CacheCount = CacheHelper.GetCacheCount().ToString("f1") + "M";
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var str = ConfigManagerHelper.GetConfigByName(Config.HelpDocUrl);
+                System.Diagnostics.Process.Start(str);
+            }
+            catch
+            {
             }
         }
     }

@@ -40,7 +40,7 @@ namespace TeacherClient.Pages
         async void GetData()
         {
             MainWindow.Current.IsBusy = true;
-            Request.courseid l = new Request.courseid() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, page = pagerData.PageIndex, pageSize = pagerData.PageSize, course_id = _courseID };
+            Request.courseid l = new Request.courseid() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, page = pagerData.PageIndex, pageSize = pagerData.PageSize, course_id = _courseID, lesson_number= _lessionnumber };
 
             var t = await WebHelper.doPost<Reponse.listData<Reponse.offUserlist>, Request.courseid>(Config.Interface_userList, l);
             //t = new Contract.Reponse.listData<Contract.Reponse.offUserlist>()

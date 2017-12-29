@@ -110,8 +110,9 @@
                         <local:MyComboBox cat_id="{Binding Model.CatID}" cat_id_1="{Binding Model.CatID1}" cat_id_2="{Binding Model.CatID2}"/>
                     </StackPanel>
                 </StackPanel>
+                <!--Visibility="{Binding Model.IsFirst, Converter={StaticResource IntEqualParamToVisibilityConverter}, ConverterParameter='1'}"-->
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0"
-                            Visibility="{Binding Model.IsFirst, Converter={StaticResource IntEqualParamToVisibilityConverter}, ConverterParameter='1'}">
+                            x:Name="sp_relationlive">
                     <TextBlock Margin="10,0,0,0" FontSize="12">                    
                     <Run Text="关联直播：" Foreground="#3e3e3e"/>
                     </TextBlock>

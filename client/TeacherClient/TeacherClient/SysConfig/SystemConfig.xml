@@ -11,6 +11,7 @@
 
 
 
-
+  <para name="UpdateUrl" value="http://guocai.test2.ruanjiekeji.com/"/>
+  <para name="HelpDocUrl" value="http://guocai.test2.ruanjiekeji.com/"/>
   <para name="BASE_ADDRESS" value="http://guocai.test2.ruanjiekeji.com/"/>
 </paras>

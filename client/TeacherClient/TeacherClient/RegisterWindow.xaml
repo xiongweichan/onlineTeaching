@@ -47,8 +47,9 @@
                     <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                         <TextBlock Text="验证码：" Width="90" TextAlignment="Right" Foreground="{StaticResource Forground35}"/>
                         <TextBox Style="{StaticResource TextBoxStyle2}" Text="{Binding Model.code, Mode=TwoWay}" Width="173"/>
-                        <Button Content="获取验证码" Width="87" Style="{StaticResource ButtonStyle1}"
+                        <Button x:Name="btn_Code" Content="获取验证码" Width="87" Style="{StaticResource ButtonStyle1}"
                                 Click="btn_GetPhoneCode"/>
+                        <TextBlock x:Name="tbl_codeleave" Foreground="#333333" FontSize="{StaticResource FontSize3}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                         <TextBlock Text="邮箱：" Width="90" TextAlignment="Right" Foreground="{StaticResource Forground35}"/>
@@ -63,9 +64,16 @@
                         <TextBlock Text="重复密码：" Width="90" TextAlignment="Right" Foreground="{StaticResource Forground35}"/>
                         <local:MyPassword Height="30" Width="260" x:Name="pwd_repeat" Tag="输入密码"/>
                     </StackPanel>
-
-                    <Button Content="《用户服务协议》" Margin="90,15,0,0" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground36}" Style="{StaticResource ButtonStyle2}"
-                            HorizontalAlignment="Left" BorderThickness="0" Background="Transparent"/>
+                    <StackPanel Orientation="Horizontal" Margin="90,15,0,0">
+                        <CheckBox FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground36}" Content="我已阅读并同意"/>
+                        <Button Content="《邻居学院用户协议》" BorderThickness="0" Background="Transparent" FontSize="{StaticResource FontSize3}" Foreground="Red" Style="{StaticResource ButtonStyle2}"
+                                Click="Button_Click"/>
+                        <TextBlock FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground36}" Text="和"/>
+                        <Button Content="《邻居学院用户保密协议》" BorderThickness="0" Background="Transparent" FontSize="{StaticResource FontSize3}" Foreground="Red" Style="{StaticResource ButtonStyle2}"
+                                Click="Button_Click_1"/>
+                    </StackPanel>
+                    <!--<Button Content="我已阅读并同意《邻居学院用户协议》和《邻居学院用户保密协议》" Margin="90,15,0,0" FontSize="{StaticResource FontSize3}" Foreground="{StaticResource Forground36}" Style="{StaticResource ButtonStyle2}"
+                            HorizontalAlignment="Left" BorderThickness="0" Background="Transparent"/>-->
                     <Button x:Name="btnNextStep" Click="btnNextStep_Click" Margin="90,20,0,0" HorizontalAlignment="Left" Content="下一步" Style="{DynamicResource ButtonStyle1}" Width="140" Height="30"/>
                 </StackPanel>
             </StackPanel>

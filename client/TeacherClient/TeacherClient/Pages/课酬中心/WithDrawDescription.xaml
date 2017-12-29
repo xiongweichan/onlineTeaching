@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeacherClient"
         mc:Ignorable="d" Background="White" Margin="0"
-        Title="WithDrawDescription" Height="287" Width="456">
+        Title="平台服务费说明" Height="287" Width="456">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>

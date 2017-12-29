@@ -323,6 +323,9 @@
     <Compile Include="Pages\首页\TogetherInfo.xaml.cs">
       <DependentUpon>TogetherInfo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProtocolWindow.xaml.cs">
+      <DependentUpon>ProtocolWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RegisterWindow.xaml.cs">
       <DependentUpon>RegisterWindow.xaml</DependentUpon>
     </Compile>
@@ -544,6 +547,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <ContainsDesignTimeResources>true</ContainsDesignTimeResources>
+    </Page>
+    <Page Include="ProtocolWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RegisterWindow.xaml">
       <SubType>Designer</SubType>

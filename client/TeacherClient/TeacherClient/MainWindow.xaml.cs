@@ -129,6 +129,18 @@ namespace TeacherClient
         {
             this.NavigateToPage(1, 1, null);
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var str = ConfigManagerHelper.GetConfigByName(Config.HelpDocUrl);
+                System.Diagnostics.Process.Start(str);
+            }
+            catch
+            {
+            }
+        }
     }
 
     public class UserModel : ViewModelBase

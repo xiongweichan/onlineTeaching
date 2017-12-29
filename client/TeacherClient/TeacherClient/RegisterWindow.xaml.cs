@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -76,7 +77,7 @@ namespace TeacherClient
         {
             if (firstpage.IsChecked.HasValue && firstpage.IsChecked.Value)
             {
-                if(string.IsNullOrWhiteSpace(Model.phone))
+                if (string.IsNullOrWhiteSpace(Model.phone))
                     MessageWindow.Alter("提示", "手机号码不能为空");
                 else if (string.IsNullOrWhiteSpace(Model.code))
                     MessageWindow.Alter("提示", "验证码不能为空");
@@ -87,7 +88,13 @@ namespace TeacherClient
                 else if (Model.password != pwd_repeat.Pwd)
                     MessageWindow.Alter("提示", "两次密码输入不一致");
                 else
-                    secondpage.IsChecked = true;
+                {
+                    Regex r = new Regex(@"^(?![a-zA-Z]+$)(?!\d+$)(?![\W_]+$)\S{6,16}$");
+                    if (r.Match(Model.password).Success)
+                        secondpage.IsChecked = true;
+                    else
+                        MessageWindow.Alter("提示", "密码长度为6-16位，数字、英文、符号至少包含两种！");
+                }
             }
             else if (secondpage.IsChecked.HasValue && secondpage.IsChecked.Value)
             {
@@ -108,7 +115,7 @@ namespace TeacherClient
                 var t = await WebHelper.doPost<object, Request.register>(Config.Interface_register, l);
                 this.IsBusy = false;
 
-                if(t != null)
+                if (t != null)
                 {
                     thirdpage.IsChecked = true;
                     Count = 5;
@@ -119,12 +126,38 @@ namespace TeacherClient
 
         }
 
+        int count = 60;
         private async void btn_GetPhoneCode(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(Model.phone))
+            {
+                MessageWindow.Alter("提示", "手机号码不能为空");
+                return;
+            }
             this.IsBusy = true;
-            Request.phoneCode l = new Request.phoneCode() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, phone = Model.phone, type = Config.phoneCode.registerAccount };
-            var t = await WebHelper.doPost<object, Request.phoneCode>(Config.Interface_phoneCode, l);
+            Request.phoneCode l = new Request.phoneCode() { lec_id = App.CurrentLogin == null ? string.Empty : App.CurrentLogin.lec_id, token = App.CurrentLogin == null ? string.Empty : App.CurrentLogin.token, phone = Model.phone, type = Config.phoneCode.registerAccount };
+            if (await WebHelper.doPost<Request.phoneCode>(Config.Interface_phoneCode, l))
+            {
+                btn_Code.Visibility = Visibility.Collapsed;
+                tbl_codeleave.Visibility = Visibility.Visible;
+                tbl_codeleave.Text = string.Format("{0}秒", count);
+                TimerHelper.TimerEvent += TimerHelper_TimerEvent;
+            }
             this.IsBusy = false;
+        }
+
+        private void TimerHelper_TimerEvent(object sender, EventArgs e)
+        {
+            count--;
+            if (count == 0)
+            {
+                TimerHelper.TimerEvent -= TimerHelper_TimerEvent;
+
+                btn_Code.Visibility = Visibility.Visible;
+                tbl_codeleave.Visibility = Visibility.Collapsed;
+            }
+            tbl_codeleave.Text = string.Format("{0}秒", count);
+
         }
 
         async void btn_UploadImage(object sender, RoutedEventArgs e)
@@ -149,6 +182,18 @@ namespace TeacherClient
             }
             this.IsBusy = false;
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ProtocolWindow win = new ProtocolWindow("邻居学院用户协议","");
+            win.ShowDialog();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            ProtocolWindow win = new ProtocolWindow("邻居学院用户保密协议", "");
+            win.ShowDialog();
         }
 
         //private async Task<string> UploadImage()
