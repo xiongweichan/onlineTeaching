@@ -121,14 +121,16 @@ namespace TeacherClient.Pages
             {
                 try
                 {
-                    var list = AliyunHelper.Instance.GetList(AliyunHelper.EnFileType.Courseware);
+                    var list = AliyunHelper2.GetInstance().Files.Where(T => T.UFile.Type == UploadFileInfo.EnFileType.Courseware).ToList();
+                    //var list = AliyunHelper.Instance.GetList(AliyunHelper.EnFileType.Courseware);
                     //var list = UploadFileHelper.Instance.GetList(UploadFileHelper.EnFileType.Courseware);
                     long size = list.Sum(T => T.UploadedBytes);
                     DateTime time = DateTime.Now;
                     bool b = true;
                     while (b)
                     {
-                        list = AliyunHelper.Instance.GetList(AliyunHelper.EnFileType.Courseware);
+                        list = AliyunHelper2.GetInstance().Files.Where(T => T.UFile.Type == UploadFileInfo.EnFileType.Courseware).ToList();
+                        //list = AliyunHelper.Instance.GetList(AliyunHelper.EnFileType.Courseware);
                         //list = UploadFileHelper.Instance.GetList(UploadFileHelper.EnFileType.Courseware);
                         var size2 = list.Sum(T => T.UploadedBytes);
                         var time2 = DateTime.Now;
@@ -195,25 +197,31 @@ namespace TeacherClient.Pages
         private void btnStartAll_Click(object sender, RoutedEventArgs e)
         {
             //(dg_upload.ItemsSource as List<UploadFileHelper.FileModel>).ForEach(T => T.Pause = false);
-            (dg_upload.ItemsSource as List<AliyunHelper.FileModel>).ForEach(T => T.Pause = false);
+            //(dg_upload.ItemsSource as List<AliyunHelper.FileModel>).ForEach(T => T.Pause = false);
+            //(dg_upload.ItemsSource as List<AliyunHelper.FileModel>).ForEach(T => T.Pause = false);
+            (dg_upload.ItemsSource as List<UploadFileShowInfo>).ForEach(T => T.Pause = false);
         }
 
         private void btn_StopAll_Click(object sender, RoutedEventArgs e)
         {
             //(dg_upload.ItemsSource as List<UploadFileHelper.FileModel>).ForEach(T => T.Pause = true);
-            (dg_upload.ItemsSource as List<AliyunHelper.FileModel>).ForEach(T => T.Pause = true);
+            //(dg_upload.ItemsSource as List<AliyunHelper.FileModel>).ForEach(T => T.Pause = true);
+            (dg_upload.ItemsSource as List<UploadFileShowInfo>).ForEach(T => T.Pause = true);
+
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             //((sender as Control).Tag as UploadFileHelper.FileModel).Cancel();
-            ((sender as Control).Tag as AliyunHelper.FileModel).Cancel();
+            //((sender as Control).Tag as AliyunHelper.FileModel).Cancel();
+            ((sender as Control).Tag as UploadFileShowInfo).Cancel = true;
         }
 
         private void ToggleButton_Click(object sender, RoutedEventArgs e)
         {
             //((sender as Control).DataContext as UploadFileHelper.FileModel).Pause = (sender as ToggleButton).IsChecked.Value;
-            ((sender as Control).DataContext as AliyunHelper.FileModel).Pause = (sender as ToggleButton).IsChecked.Value;
+            //((sender as Control).DataContext as AliyunHelper.FileModel).Pause = (sender as ToggleButton).IsChecked.Value;
+            ((sender as Control).DataContext as UploadFileShowInfo).Pause = (sender as ToggleButton).IsChecked.Value;
         }
     }
 }

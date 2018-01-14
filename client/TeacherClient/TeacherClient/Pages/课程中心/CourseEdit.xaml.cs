@@ -201,8 +201,10 @@ namespace TeacherClient.Pages
                             var v = f.FirstOrDefault(T => T.VedioName == item.video_file_name).Vedio;
                             var d = f.FirstOrDefault(T => T.DocumentName == item.courseware_file_name).Document;
 
-                            AliyunHelper.Instance.Add(v, data.access_key_id, data.access_key_secret, data.oss_bucket, data.oss_end_point, data.key, AliyunHelper.EnFileType.Course, item.id, "1");
-                            AliyunHelper.Instance.Add(d, data1.access_key_id, data1.access_key_secret, data1.oss_bucket, data1.oss_end_point, data1.key, AliyunHelper.EnFileType.Course, item.id, "0");
+                            AliyunHelper2.GetInstance().AddUploadTask(v, data.access_key_id, data.access_key_secret, data.oss_bucket, data.oss_end_point, data.key, UploadFileInfo.EnFileType.Course_Video, item.id);
+                            AliyunHelper2.GetInstance().AddUploadTask(d, data1.access_key_id, data1.access_key_secret, data1.oss_bucket, data1.oss_end_point, data1.key, UploadFileInfo.EnFileType.Course_Document, item.id);
+                            //AliyunHelper.Instance.Add(v, data.access_key_id, data.access_key_secret, data.oss_bucket, data.oss_end_point, data.key, AliyunHelper.EnFileType.Course, item.id, "1");
+                            //AliyunHelper.Instance.Add(d, data1.access_key_id, data1.access_key_secret, data1.oss_bucket, data1.oss_end_point, data1.key, AliyunHelper.EnFileType.Course, item.id, "0");
 
                             //UploadFileHelper.Instance.Add(v, data.token, data.domain, data.key, UploadFileHelper.EnFileType.Course);
                             //UploadFileHelper.Instance.Add(d, data.token, data.domain, data.key, UploadFileHelper.EnFileType.Course);

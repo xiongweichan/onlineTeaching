@@ -189,7 +189,8 @@ namespace TeacherClient.Pages
 
                         if (data != null)
                         {
-                            AliyunHelper.Instance.Add(Model.Courseware, data.access_key_id, data.access_key_secret, data.oss_bucket, data.oss_end_point, data.key, AliyunHelper.EnFileType.Live, t);
+                            AliyunHelper2.GetInstance().AddUploadTask(Model.Courseware, data.access_key_id, data.access_key_secret, data.oss_bucket, data.oss_end_point, data.key, UploadFileInfo.EnFileType.Live, t);
+                            //AliyunHelper.Instance.Add(Model.Courseware, data.access_key_id, data.access_key_secret, data.oss_bucket, data.oss_end_point, data.key, AliyunHelper.EnFileType.Live, t);
                             //UploadFileHelper.Instance.Add(Model.Courseware, data.token, data.domain, data.key, UploadFileHelper.EnFileType.Courseware);
                             fourthpage.IsChecked = true;
                             _token = new CancellationTokenSource();

@@ -137,8 +137,8 @@ namespace TeacherClient.Pages
 
                     if (data != null)
                     {
-                        AliyunHelper.Instance.Add(Model.url, data.access_key_id, data.access_key_secret, data.oss_bucket, data.oss_end_point, data.key, AliyunHelper.EnFileType.Courseware, b);
-
+                        AliyunHelper2.GetInstance().AddUploadTask(Model.url, data.access_key_id, data.access_key_secret, data.oss_bucket, data.oss_end_point, data.key, UploadFileInfo.EnFileType.Courseware, b);
+                        //AliyunHelper.Instance.Add(Model.url, data.access_key_id, data.access_key_secret, data.oss_bucket, data.oss_end_point, data.key, AliyunHelper.EnFileType.Courseware, b);
                         //UploadFileHelper.Instance.Add(Model.url, data.token, data.domain, data.key, UploadFileHelper.EnFileType.Courseware);
                         CourseCenter.Current.ShowCoursewareManager(true);
                     }

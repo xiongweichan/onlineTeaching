@@ -67,9 +67,6 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Aliyun.OSS">
-      <HintPath>..\lib\Aliyun.OSS.dll</HintPath>
-    </Reference>
     <Reference Include="log4net">
       <HintPath>..\lib\log4net.dll</HintPath>
     </Reference>
@@ -177,6 +174,7 @@
     <Compile Include="Converters\TextToVisibilityConverter.cs" />
     <Compile Include="Converters\WithDrawStatusToStringConverter.cs" />
     <Compile Include="Extension\AliyunHelper.cs" />
+    <Compile Include="Extension\AliyunHelper2.cs" />
     <Compile Include="Extension\CacheHelper.cs" />
     <Compile Include="Extension\IChangeData.cs" />
     <Compile Include="Extension\INavigation.cs" />
@@ -740,6 +738,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\aliyun_oss_dotnet_sdk_2_7_0\src\aliyun-oss-sdk.csproj">
+      <Project>{67bdc800-084c-4f84-8a80-661b5afe499a}</Project>
+      <Name>aliyun-oss-sdk</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TeacherClient.Contract\TeacherClient.Contract.csproj">
       <Project>{d5f4864b-e401-40ca-9002-f0f096b939c4}</Project>
       <Name>TeacherClient.Contract</Name>
