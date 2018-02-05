@@ -80,6 +80,10 @@ namespace TeacherClient.Pages
             {
                 LiveCenter.Current.ShowMylive(true, l.id);
             }
+            else
+            {
+                MessageWindow.Alter("提示", "直播开始前一小时可进入直播间！");
+            }
         }
 
         private void EditTime_Click(object sender, RoutedEventArgs e)

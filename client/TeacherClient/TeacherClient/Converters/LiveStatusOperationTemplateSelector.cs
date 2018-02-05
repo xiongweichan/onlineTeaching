@@ -26,12 +26,16 @@ namespace TeacherClient
                     case "2":
                         return CheckFailed;
                     case "1":
-                        if (live.start_time != null && live.start_time.GetTime().AddHours(48) > DateTime.Now)
-                            return WaitLive;
-                        else if(live.end_time != null && live.end_time.GetTime() > DateTime.Now)
-                            return LiveEnd;
-                        else
-                            return CheckSuccess;
+                        switch (live.time_status.ObjToString())
+                        {
+                            case "0":
+                                return WaitLive;
+                            case "1":
+                                return WaitLive;
+                            case "2":
+                                return LiveEnd;
+                        }
+                        return CheckSuccess;
                 }
             return base.SelectTemplate(item, container);
         }

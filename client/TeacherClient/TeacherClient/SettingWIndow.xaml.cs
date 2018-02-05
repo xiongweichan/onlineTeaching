@@ -99,13 +99,18 @@ namespace TeacherClient
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if (App.AppConfig == null || string.IsNullOrWhiteSpace(App.AppConfig.LEC_HELP))
+            {
+                MessageWindow.Alter("提示", "获取帮助文档失败，请重启应用程序！");
+                return;
+            }
             try
             {
-                var str = ConfigManagerHelper.GetConfigByName(Config.HelpDocUrl);
-                System.Diagnostics.Process.Start(str);
+                System.Diagnostics.Process.Start(App.AppConfig.LEC_HELP);
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Error("打开帮助文档失败", ex);
             }
         }
     }

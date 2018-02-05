@@ -260,8 +260,9 @@
                                 <StackPanel Orientation="Horizontal" Margin="10,30,0,0">
                                     <TextBlock Text="已验证邮箱：" Foreground="#666666" FontSize="12"/>
                                     <TextBlock Text="{Binding ChangeEmail.email}" Foreground="#333333" FontSize="12"/>
-                                    <Button Margin="6,0,0,0" Content="发送验证码" Foreground="#333333" FontSize="12" Style="{DynamicResource ButtonStyle3}" Height="22" Width="66"
+                                    <Button x:Name="btnOldEmail" Margin="6,0,0,0" Content="发送验证码" Foreground="#333333" FontSize="12" Style="{DynamicResource ButtonStyle3}" Height="22" Width="66"
                                             Click="btnGetOldEmailCode_Click"/>
+                                    <TextBlock x:Name="tbl_oldcodeleave1" Margin="6,0,0,0"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="10,15,0,0">
                                     <TextBlock Text="验证码：" Foreground="#666666" FontSize="12"/>
@@ -291,8 +292,9 @@
                                 <StackPanel Orientation="Horizontal" Margin="10,30,0,0">
                                     <TextBlock Text="新邮箱：" Foreground="#666666" FontSize="12"/>
                                     <TextBox Text="{Binding ChangeEmail.email_new}" Width="100" Foreground="#333333" FontSize="12"/>
-                                    <Button Content="发送验证码" Foreground="#333333" FontSize="12" Width="66" Height="22" Margin="6,0,0,0" Style="{DynamicResource ButtonStyle3}"
+                                    <Button x:Name="btnNewEmail" Content="发送验证码" Foreground="#333333" FontSize="12" Width="66" Height="22" Margin="6,0,0,0" Style="{DynamicResource ButtonStyle3}"
                                             Click="btnGetNewEmailCode_Click"/>
+                                    <TextBlock x:Name="tbl_newcodeleave1" Margin="6,0,0,0"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="10,15,0,0" Height="22">
                                     <TextBlock Text="验证码：" Foreground="#666666" FontSize="12"/>

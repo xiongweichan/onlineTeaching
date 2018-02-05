@@ -68,6 +68,11 @@ namespace TeacherClient.Pages
         RequestLive _requestLive = new RequestLive();
         LiveManager _liveManager = new LiveManager();
 
+        public void ClearRequestLive()
+        {
+            _requestLive = new RequestLive();
+        }
+
         // Using a DependencyProperty as the backing store for Type.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TypeProperty =
             DependencyProperty.Register("Type", typeof(int), typeof(LiveCenter), new PropertyMetadata(-1, (obj, e) =>

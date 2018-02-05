@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using TeacherClient.Core;
 using Telerik.Windows.Controls;
 using Reponse = TeacherClient.Contract.Reponse;
 using Request = TeacherClient.Contract.Request;
@@ -186,14 +187,36 @@ namespace TeacherClient
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ProtocolWindow win = new ProtocolWindow("邻居学院用户协议","");
-            win.ShowDialog();
+            if (App.AppConfig == null)
+            {
+                MessageWindow.Alter("提示", "获取协议失败，请重启应用程序！");
+                return;
+            }
+            try
+            {
+                System.Diagnostics.Process.Start(App.AppConfig.LEC_REGISTER_SERVICE);
+            }
+            catch(Exception ex)
+            {
+                Log.Error("打开协议失败", ex);
+            }         
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            ProtocolWindow win = new ProtocolWindow("邻居学院用户保密协议", "");
-            win.ShowDialog();
+            if (App.AppConfig == null)
+            {
+                MessageWindow.Alter("提示", "获取协议失败，请重启应用程序！");
+                return;
+            }
+            try
+            {
+                System.Diagnostics.Process.Start(App.AppConfig.LEC_REGISTER_PRIVATE);
+            }
+            catch (Exception ex)
+            {
+                Log.Error("打开协议失败", ex);
+            }
         }
 
         //private async Task<string> UploadImage()

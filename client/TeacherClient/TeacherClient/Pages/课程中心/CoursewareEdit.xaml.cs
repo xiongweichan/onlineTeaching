@@ -217,6 +217,12 @@ namespace TeacherClient.Pages
             get { return _price; }
             set
             {
+                double i;
+                if (!string.IsNullOrWhiteSpace(value) && !double.TryParse(value, out i))
+                {
+                    MessageWindow.Alter("提示", "价格必须输入整数！");
+                    return;
+                }
                 _price = value;
                 this.OnPropertyChanged("price");
             }

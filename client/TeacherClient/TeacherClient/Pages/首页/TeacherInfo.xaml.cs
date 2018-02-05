@@ -149,7 +149,7 @@ namespace TeacherClient.Pages
                     MessageWindow.Alter("提示", "请输入验证码");
                 else
                 {
-                    Request.checkCode l = new Request.checkCode() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, phone = ChangePhone.phone, type = Config.phoneCode.resetPassword, code = ChangePhone.code };
+                    Request.checkCode l = new Request.checkCode() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, phone = ChangePhone.phone, type = Config.phoneCode.editOldPhone, code = ChangePhone.code };
                     var t = await WebHelper.doPost<Request.checkCode>(Config.Interface_checkCode, l);
                     if (t)
                         rb_pedit.IsChecked = true;
@@ -346,16 +346,63 @@ namespace TeacherClient.Pages
                 tbl_newcodeleave.Text = string.Format("{0}秒", t2);
             }
         }
+        
+        int t3 = 60;
         async void btnGetOldEmailCode_Click(object sender, RoutedEventArgs e)
         {
             Request.emailCode l = new Contract.Request.emailCode() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, email = ChangeEmail.email, type = Config.emailCode.editOldEmail };
-            await WebHelper.doPost<Request.emailCode>(Config.Interface_emailCode, l);
+            var b = await WebHelper.doPost<Request.emailCode>(Config.Interface_emailCode, l);
+            if (b)
+            {
+                t3 = 60;
+                TimerHelper.TimerEvent += TimerHelper_TimerEvent3;
+            }
         }
 
+        private void TimerHelper_TimerEvent3(object sender, EventArgs e)
+        {
+            t3--;
+            if (t3 == 0)
+            {
+                tbl_oldcodeleave1.Visibility = Visibility.Collapsed;
+                btnOldEmail.Visibility = Visibility.Visible;
+                TimerHelper.TimerEvent -= TimerHelper_TimerEvent3;
+            }
+            else
+            {
+                tbl_oldcodeleave1.Visibility = Visibility.Visible;
+                btnOldEmail.Visibility = Visibility.Collapsed;
+                tbl_oldcodeleave1.Text = string.Format("{0}秒", t3);
+            }
+        }
+
+        int t4 = 60;
         async void btnGetNewEmailCode_Click(object sender, RoutedEventArgs e)
         {
             Request.emailCode l = new Contract.Request.emailCode() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, email = ChangeEmail.email_new, type = Config.emailCode.editNewEmail };
-            await WebHelper.doPost<Request.emailCode>(Config.Interface_emailCode, l);
+            var b = await WebHelper.doPost<Request.emailCode>(Config.Interface_emailCode, l);
+            if (b)
+            {
+                t4 = 60;
+                TimerHelper.TimerEvent += TimerHelper_TimerEvent4;
+            }
+        }
+
+        private void TimerHelper_TimerEvent4(object sender, EventArgs e)
+        {
+            t4--;
+            if (t4 == 0)
+            {
+                tbl_newcodeleave1.Visibility = Visibility.Collapsed;
+                btnNewEmail.Visibility = Visibility.Visible;
+                TimerHelper.TimerEvent -= TimerHelper_TimerEvent4;
+            }
+            else
+            {
+                tbl_newcodeleave1.Visibility = Visibility.Visible;
+                btnNewEmail.Visibility = Visibility.Collapsed;
+                tbl_newcodeleave1.Text = string.Format("{0}秒", t4);
+            }
         }
 
         private void rb_Binding_Checked(object sender, RoutedEventArgs e)

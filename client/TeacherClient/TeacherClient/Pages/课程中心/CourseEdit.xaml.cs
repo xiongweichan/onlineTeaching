@@ -87,7 +87,7 @@ namespace TeacherClient.Pages
                     Model.OneCourse = Transfer(detail.lessonList[0], 1);
                 else
                 {
-                    for (int i = 0; i < Model.ManyCourse.Count; i++)
+                    for (int i = 0; i < detail.lessonList.Count; i++)
                     {
                         Model.ManyCourse.Add(Transfer(detail.lessonList[i], i + 1));
                     }
@@ -382,6 +382,12 @@ namespace TeacherClient.Pages
             get { return _Price; }
             set
             {
+                double i;
+                if (!string.IsNullOrWhiteSpace(value) && !double.TryParse(value, out i))
+                {
+                    MessageWindow.Alter("提示", "价格必须输入整数！");
+                    return;
+                }
                 _Price = value;
                 this.OnPropertyChanged("Price");
             }

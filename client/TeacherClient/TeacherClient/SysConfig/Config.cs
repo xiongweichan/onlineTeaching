@@ -25,6 +25,7 @@ namespace TeacherClient
 
 
 
+        public static readonly string Interface_appConfig = "Live/LecLogin/appConfig";
         public static readonly string Interface_login = "Live/LecLogin/login";
         public static readonly string Interface_phoneCode = "Live/LecLogin/phoneCode";
         public static readonly string Interface_emailCode = "Live/LecLogin/emailCode";

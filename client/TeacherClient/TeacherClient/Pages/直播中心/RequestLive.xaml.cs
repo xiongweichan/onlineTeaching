@@ -204,6 +204,7 @@ namespace TeacherClient.Pages
                                 _token.Token.ThrowIfCancellationRequested();
                                 this.Dispatcher.Invoke(new Action(() =>
                                 {
+                                    LiveCenter.Current.ClearRequestLive();
                                     LiveCenter.Current.Type = 0;
                                 }));
                             }), _token.Token);
@@ -346,6 +347,12 @@ namespace TeacherClient.Pages
             get { return _Price; }
             set
             {
+                double i;
+                if (!string.IsNullOrWhiteSpace(value) && !double.TryParse(value, out i))
+                {
+                    MessageWindow.Alter("提示", "价格必须输入整数！");
+                    return;
+                }
                 _Price = value;
                 this.OnPropertyChanged("Price");
             }

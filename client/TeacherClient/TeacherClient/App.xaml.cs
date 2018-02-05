@@ -29,10 +29,24 @@ namespace TeacherClient
             ConfigManagerHelper.Init(Config.SystemConfigPath, true);
             SetAutoStartup();
             IPCHandle.Init();
+            GetAppConfig();
             var d = TimerHelper.Instance;
             App.Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
+
+        }
+
+        private async void GetAppConfig()
+        {
+            try
+            {
+                Contract.Request.ParamBase l = new Contract.Request.ParamBase() { lec_id = "", token = "" };
+                AppConfig = await WebHelper.doPost<Contract.Reponse.appConfig, Contract.Request.ParamBase>(Config.Interface_appConfig, l);
+            }catch(Exception ex)
+            {
+                Log.Error("获取配置失败", ex);
+            }
 
         }
 
@@ -133,5 +147,7 @@ namespace TeacherClient
         {
             get; set;
         }
+        public static Reponse.appConfig AppConfig { get; private set; }
+
     }
 }

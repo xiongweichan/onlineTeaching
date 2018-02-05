@@ -9,7 +9,7 @@
     <UserControl.Resources>
         <local:LiveStatusConverter x:Key="LiveStatusConverter"/>
         <DataTemplate x:Key="CheckFailed">
-            <Button Style="{StaticResource ButtonStyle2}" Click="EditRequest_Click">
+            <Button Style="{StaticResource ButtonStyle2}" Tag="{Binding}" Click="EditRequest_Click">
                 <StackPanel Orientation="Horizontal">
                     <Image Stretch="Fill" Width="16" Height="16" Source="/Images/直播中心/修改申请.png"/>
                     <TextBlock Text="修改申请" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
@@ -24,12 +24,12 @@
                         <TextBlock Text="修改时间" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
                     </StackPanel>
                 </Button>
-                <!--<Button Style="{StaticResource ButtonStyle2}" Click="CancelLive_Click" Tag="{Binding}" Margin="8,0,0,0">
+                <Button Style="{StaticResource ButtonStyle2}" Click="CancelLive_Click" Tag="{Binding}" Margin="8,0,0,0">
                     <StackPanel Orientation="Horizontal">
                         <Image Stretch="Fill" Width="16" Height="16" Source="/Images/直播中心/取消申请.png"/>
-                        <TextBlock Text="取消直播" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
+                        <TextBlock Text="取消申请" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
                     </StackPanel>                    
-                </Button>-->
+                </Button>
             </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="LiveEnd">
