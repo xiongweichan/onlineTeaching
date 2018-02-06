@@ -719,6 +719,7 @@
     <Resource Include="Images\线下课堂\粘贴.png" />
     <Resource Include="Images\直播中心\录像时长.png" />
     <Resource Include="Images\直播中心\直播已开始.png" />
+    <Resource Include="Images\直播中心\上传.png" />
     <Content Include="SysConfig\SystemConfig.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

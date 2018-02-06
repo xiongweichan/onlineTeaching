@@ -132,5 +132,24 @@ namespace TeacherClient.Pages
         {
             this.Type = int.Parse(data.ObjToString());
         }
+
+        private async void UploadVideo_Click(object sender, RoutedEventArgs e)
+        {
+            var l = (sender as Control).Tag as Contract.Reponse.live;
+            var path = FileSelectHelper.FileSelecte("视频文件|*.flv;*.MP4;*.mov;*.f4v;*.3gp", 1000);
+            if (string.IsNullOrWhiteSpace(path)) return;
+            Request.getToken t = new Contract.Request.getToken()
+            {
+                lec_id = App.CurrentLogin.lec_id,
+                token = App.CurrentLogin.token,
+                file_name = System.IO.Path.GetFileName(path),
+                id = l.id
+            };
+            var data = await WebHelper.doPost<Reponse.AliyunUpload, Request.getToken>(Config.Interface_liveVideoUploadAliyun, t);
+            if (data != null)
+            {
+                AliyunHelper2.GetInstance().AddUploadTask(path, data.access_key_id, data.access_key_secret, data.oss_bucket, data.oss_end_point, data.key, UploadFileInfo.EnFileType.Live_Video, l.id);
+            }
+        }
     }
 }

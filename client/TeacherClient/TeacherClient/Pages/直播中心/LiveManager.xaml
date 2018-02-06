@@ -28,17 +28,25 @@
                     <StackPanel Orientation="Horizontal">
                         <Image Stretch="Fill" Width="16" Height="16" Source="/Images/直播中心/取消申请.png"/>
                         <TextBlock Text="取消申请" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
-                    </StackPanel>                    
+                    </StackPanel>
                 </Button>
             </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="LiveEnd">
-            <Button Style="{StaticResource ButtonStyle2}" Click="DelRecord_Click" Tag="{Binding}">
-                <StackPanel Orientation="Horizontal">
-                    <Image Stretch="Fill" Width="16" Height="16" Source="/Images/直播中心/删除.png"/>
-                    <TextBlock Text="删除记录" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
-                </StackPanel>
-            </Button>
+            <StackPanel Orientation="Horizontal">
+                <Button Style="{StaticResource ButtonStyle2}" Click="UploadVideo_Click" Tag="{Binding}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Stretch="Fill" Width="16" Height="16" Source="/Images/直播中心/上传.png"/>
+                        <TextBlock Text="上传视频" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
+                    </StackPanel>
+                </Button>
+                <Button Style="{StaticResource ButtonStyle2}" Click="DelRecord_Click" Tag="{Binding}" Margin="8,0,0,0">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Stretch="Fill" Width="16" Height="16" Source="/Images/直播中心/删除.png"/>
+                        <TextBlock Text="删除记录" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="WaitCheck">
             <Button Style="{StaticResource ButtonStyle2}" Click="CancelLive_Click" Tag="{Binding}" Margin="8,0,0,0">

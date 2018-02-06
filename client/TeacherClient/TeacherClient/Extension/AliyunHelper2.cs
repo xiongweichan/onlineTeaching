@@ -190,6 +190,16 @@ namespace TeacherClient
                         var b = await WebHelper.doPost<Contract.Request.AliyunUploadCompleted>(Config.Interface_liveWareUploadCompleted, r);
                     }
                     break;
+                case UploadFileInfo.EnFileType.Live_Video:
+                    {
+                        Contract.Request.AliyunUploadCompleted r = new Contract.Request.AliyunUploadCompleted();
+                        r.token = App.CurrentLogin.token;
+                        r.lec_id = App.CurrentLogin.lec_id;
+                        r.id = CurrentFile.UFile.ID;
+                        r.key = CurrentFile.UFile.Key;
+                        var b = await WebHelper.doPost<Contract.Request.AliyunUploadCompleted>(Config.Interface_liveVideoUploadAliyunComplete, r);
+                    }
+                    break;
             }
         }
 
@@ -302,6 +312,7 @@ namespace TeacherClient
             Course_Document,
             Courseware,
             Live,
+            Live_Video,
         }
     }
 }

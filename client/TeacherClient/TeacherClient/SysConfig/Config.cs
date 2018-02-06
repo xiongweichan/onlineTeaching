@@ -95,6 +95,8 @@ namespace TeacherClient
         public static readonly string Interface_imageUpLoad = "Live/Upload/imageUpLoad";
         public static readonly string Interface_upload = "Live/Upload/upload";
 
+        public static readonly string Interface_liveVideoUploadAliyun = "Live/LecLive/liveVideoUploadAliyun";
+        public static readonly string Interface_liveVideoUploadAliyunComplete = "Live/LecLive/liveVideoUploadAliyunComplete";
         public static readonly string Interface_liveList = "Live/LecLive/liveList";
         public static readonly string Interface_liveChangeTime = "Live/LecLive/liveChangeTime";
         public static readonly string Interface_liveDel = "Live/LecLive/liveDel";
