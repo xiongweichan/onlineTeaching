@@ -12,9 +12,9 @@ namespace TeacherClient
     public class MediaHelper
     {
         public int frameRate = 25;
-        public int sendBitRate = 1024 * 1024;
-        public int sendWidth = 800;
-        public int sendHeight = 600;
+        public int sendBitRate = 128 * 1024;//1024 * 1024;
+        public int sendWidth = 352;//800;
+        public int sendHeight = 288;//600;
         public int localWidth = 1920;
         public int localHeight = 1080;
         public int localSmallWidth = 352;
