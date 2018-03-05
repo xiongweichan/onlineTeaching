@@ -120,6 +120,7 @@ namespace TeacherClient.Pages
                 l.intro = Model.intro;
                 l.price = Model.price;
                 l.title = Model.title;
+                l.image = Model.image;
                 l.url = Model.url;
                 var b = await WebHelper.doPost<string, Request.coursewareAdd>(Config.Interface_coursewareAdd, l);
                 if (b != null)
@@ -157,6 +158,15 @@ namespace TeacherClient.Pages
         {
             CourseCenter.Current.ShowCoursewareManager(true);
         }
+
+        async void UploadImage_Click(object sender, RoutedEventArgs e)
+        {
+            var str = await UploadImageHelper.UploadImage();
+            if (!string.IsNullOrEmpty(str))
+            {
+                Model.image = str;
+            }
+        }
     }
 
     public class CoursewareModel : ViewModelBase
@@ -169,6 +179,16 @@ namespace TeacherClient.Pages
             {
                 _title = value;
                 this.OnPropertyChanged("title");
+            }
+        }
+        string _image;
+        public string image
+        {
+            get { return _image; }
+            set
+            {
+                _image = value;
+                this.OnPropertyChanged("image");
             }
         }
         string _intro;

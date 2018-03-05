@@ -9,6 +9,7 @@ namespace TeacherClient.Contract.Request
     public class coursewareAdd : ParamBase
     {
         public string title { get; set; }
+        public string image { get; set; }
         public string intro { get; set; }
         public string cat_id { get; set; }
         public string cat_id_1 { get; set; }

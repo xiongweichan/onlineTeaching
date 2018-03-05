@@ -30,8 +30,8 @@ namespace TeacherClient.Pages
             {
                 if (system.IsChecked.HasValue && system.IsChecked.Value)
                     return "0";
-                if (student.IsChecked.HasValue && student.IsChecked.Value)
-                    return "1";
+                //if (student.IsChecked.HasValue && student.IsChecked.Value)
+                //    return "1";
                 if (studentleave.IsChecked.HasValue && studentleave.IsChecked.Value)
                     return "2";
                 return null;
@@ -68,6 +68,19 @@ namespace TeacherClient.Pages
             if (pagerData == null) return;
             pagerData.PageIndex = 0;
             GetData();
+        }
+
+        private void datagrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var datagrid = sender as DataGrid;
+            if (datagrid == null) return;
+            var item = datagrid.SelectedItem as Reponse.message;
+            new DetailMessageWindow() { Title = item.title, Summary = item.summary, Message = item.content }.ShowDialog();
+        }
+
+        private void DeleteCourse_Click(object sender, RoutedEventArgs e)
+        {
+            MessageWindow.Alter("提示", "服务端接口没有！");
         }
     }
 }

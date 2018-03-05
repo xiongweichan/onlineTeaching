@@ -19,17 +19,29 @@
             <StackPanel Orientation="Horizontal" RadioButton.Checked="StackPanel_Checked">
                 <RadioButton x:Name="all"  Content="全部消息" Style="{StaticResource RadioButtonStyle5}" IsChecked="True"/>
                 <RadioButton x:Name="system" Content="系统消息" Style="{StaticResource RadioButtonStyle5}"/>
-                <RadioButton x:Name="student" Content="学员消息" Style="{StaticResource RadioButtonStyle5}"/>
+                <!--<RadioButton x:Name="student" Content="学员消息" Style="{StaticResource RadioButtonStyle5}"/>-->
                 <RadioButton x:Name="studentleave" Content="学员留言" Style="{StaticResource RadioButtonStyle5}" />
             </StackPanel>
         </Border>
         <DataGrid x:Name="datagrid" RowStyle="{DynamicResource DataGridRowStyle1}" 
-                      ColumnHeaderHeight="0"
+                      ColumnHeaderHeight="0" MouseDoubleClick="datagrid_MouseDoubleClick"
                       Style="{DynamicResource DataGridStyle1}" Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding type, Converter={StaticResource MessageTypeConverter}}" Width="150" CellStyle="{DynamicResource DataGridCellStyle1}"/>
                 <DataGridTextColumn Binding="{Binding add_time, Converter={StaticResource IntToTimeConverter}, ConverterParameter='yyyy-MM-dd HH:mm'}" Width="200" CellStyle="{DynamicResource DataGridCellStyle1}"/>
                 <DataGridTextColumn Binding="{Binding title}" Width="*" CellStyle="{DynamicResource DataGridCellStyle1}"/>
+                <DataGridTemplateColumn Width="150" CellStyle="{StaticResource DataGridCellStyle1}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Tag="{Binding id}" Click="DeleteCourse_Click" Style="{StaticResource ButtonStyle2}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/Images/课程中心/删除课程.png"/>
+                                    <TextBlock Text="删除" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
+                                </StackPanel>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
         <local:MyDataPage Grid.Row="2"  x:Name="pagerData" PagerIndexChanged="pagerData_PagerIndexChanged"

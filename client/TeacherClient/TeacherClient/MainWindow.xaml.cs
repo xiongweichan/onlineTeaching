@@ -122,6 +122,7 @@ namespace TeacherClient
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            //new DetailMessageWindow() { Title = "test", Summary = "safsafsdf\r\njlkj;lj\r\nkasdfhiuh\r\n", Message = "fff\r\nfff\r\nffff\r\naaaa\r\nff\r\nffffsdasd\r\nqqqq\r\nqqqqq\r\nqqq\r\n" }.ShowDialog();
             this.NavigateToPage(2, 2, null);
         }
 

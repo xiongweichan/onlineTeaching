@@ -234,6 +234,9 @@
     <Compile Include="Pages\课程中心\CoursewareEdit.xaml.cs">
       <DependentUpon>CoursewareEdit.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\课程中心\DetailMessageWindow.xaml.cs">
+      <DependentUpon>DetailMessageWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\课程中心\MessageCenter.xaml.cs">
       <DependentUpon>MessageCenter.xaml</DependentUpon>
     </Compile>
@@ -418,6 +421,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\课程中心\CoursewareEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\课程中心\DetailMessageWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
