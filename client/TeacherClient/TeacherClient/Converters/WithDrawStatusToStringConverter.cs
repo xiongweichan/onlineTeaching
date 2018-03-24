@@ -18,6 +18,8 @@ namespace TeacherClient
                     return "等待转账";
                 case "1":
                     return "提现成功";
+                case "2":
+                    return "不通过";
             }
             return "未知";
         }

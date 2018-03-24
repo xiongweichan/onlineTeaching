@@ -80,7 +80,8 @@ namespace TeacherClient.Pages
 
         private void DeleteCourse_Click(object sender, RoutedEventArgs e)
         {
-            MessageWindow.Alter("提示", "服务端接口没有！");
+            var id = (sender as Button).Tag.ToString();
+
         }
     }
 }
