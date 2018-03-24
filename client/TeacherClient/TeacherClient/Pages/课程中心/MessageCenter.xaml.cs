@@ -50,7 +50,7 @@ namespace TeacherClient.Pages
         async void GetData()
         {
             MainWindow.Current.IsBusy = true;
-            Request.requestType l = new Request.requestType() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, page = pagerData.PageIndex, pageSize = pagerData.PageSize, type = this.Type};
+            Request.requestType l = new Request.requestType() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, page = pagerData.PageIndex, pageSize = pagerData.PageSize, type = this.Type };
 
             var t = await WebHelper.doPost<Reponse.listData<Reponse.message>, Request.requestType>(Config.Interface_messageList, l);
             if (t != null)
@@ -78,9 +78,25 @@ namespace TeacherClient.Pages
             new DetailMessageWindow() { Title = item.title, Summary = item.summary, Message = item.content }.ShowDialog();
         }
 
-        private void DeleteCourse_Click(object sender, RoutedEventArgs e)
+        private async void DeleteCourse_Click(object sender, RoutedEventArgs e)
         {
-            var id = (sender as Button).Tag.ToString();
+            var msg = (sender as Button).Tag as Reponse.message;
+            if (msg.type == "0")
+            {
+                MessageWindow.Alter("提示", "系统消息不允许删除");
+                return;
+            }
+            MainWindow.Current.IsBusy = true;
+            Request.messageDel l = new Request.messageDel() { lec_id = App.CurrentLogin.lec_id, token = App.CurrentLogin.token, id = msg.id, type = msg.type };
+
+            var t = await WebHelper.doPost<Request.RequestID>(Config.Interface_messageDel, l);
+            if (t)
+            {
+                MessageWindow.Alter("提示", "删除成功！");
+                GetData();
+            }
+
+            MainWindow.Current.IsBusy = false;
 
         }
     }

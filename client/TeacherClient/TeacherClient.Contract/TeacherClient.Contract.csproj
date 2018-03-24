@@ -98,6 +98,7 @@
     <Compile Include="Request\liveAdd.cs" />
     <Compile Include="Request\liveChangeTime.cs" />
     <Compile Include="Request\Login.cs" />
+    <Compile Include="Request\messageDel.cs" />
     <Compile Include="Request\OffCourselist.cs" />
     <Compile Include="Request\offlineCourseAdd.cs" />
     <Compile Include="Request\offlineCourseUpdate.cs" />
