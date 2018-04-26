@@ -33,8 +33,7 @@
                 <DataGridTemplateColumn Width="150" CellStyle="{StaticResource DataGridCellStyle1}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Tag="{Binding .}" Click="DeleteCourse_Click" Style="{StaticResource ButtonStyle2}"
-                                    Visibility="{Binding type, Converter={StaticResource IntEqualParamToVisibilityConverter2}, ConverterParameter=0}">
+                            <Button Tag="{Binding .}" Click="DeleteCourse_Click" Style="{StaticResource ButtonStyle2}">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="/Images/课程中心/删除课程.png"/>
                                     <TextBlock Text="删除" Margin="6,0,0,0" Foreground="#424e67" FontSize="{StaticResource FontSize3}"/>
